@@ -3,6 +3,7 @@ import reportWebVitals from './reportWebVitals';
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 
+import './index.css';
 
 const root = ReactDOM.createRoot(
    document.getElementById('root') as HTMLElement
@@ -10,10 +11,7 @@ const root = ReactDOM.createRoot(
   root.render(
 <BrowserRouter>
   <App/>
-</BrowserRouter>
-
-
-  );
+</BrowserRouter>);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
