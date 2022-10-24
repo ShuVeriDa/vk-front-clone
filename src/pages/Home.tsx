@@ -6,7 +6,7 @@ interface HomePropsType {
 export const Home: FC<HomePropsType> = () => {
   return (
     <div>
-      Home 
+      Home
     </div>
   );
 };
