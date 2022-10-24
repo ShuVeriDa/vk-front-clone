@@ -1,5 +1,6 @@
 .header {
   background: #fff;
+  border-bottom: 1px solid #e7e8ec;
 
   .container {
     padding: 0 15px;
@@ -7,7 +8,6 @@
     width: 100%;
     max-width: 1076px;
     height: 48px;
-    border: 1px solid #282c34;
 
     display: flex;
     align-items: center;
@@ -19,11 +19,11 @@
       align-items: center;
       align-content: center;
       width: 165px;
+      padding: 12px 0;
       
       &:hover {
         cursor: pointer;
       }
-      
 
       .logoImg {
         width: 24px;
@@ -37,6 +37,10 @@
         font-size: 20px;
         transform: translate(0, -15%)
       }
+    }
+
+    .shiftDown {
+      transform: translateY(3px);;
     }
 
     .search {
@@ -59,6 +63,10 @@
         width: 230px;
         height: 32px;
         padding-left: 34px;
+
+        &::placeholder {
+          color: #8198BE;
+      }
       }
     }
 
@@ -67,13 +75,23 @@
       right: 15px;
 
       width: 58px;
+      padding: 6px 8px;
 
       &:hover {
         background: #E1E7ED;
+        cursor: pointer;
       }
 
       svg {
+        position: absolute;
+        top: 20px;
         color: #AEB7C2;
+        padding-left: 8px;
+      }
+
+      img {
+        width: 32px;
+        height: 32px;
       }
     }
   }
