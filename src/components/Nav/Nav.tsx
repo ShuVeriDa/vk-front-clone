@@ -136,11 +136,9 @@ export const Nav: FC<NavPropsType> = () => {
       <div className={styles.container}>
         <ul>
           {navObj.map((link, i) => {
-              return <div key={i}>
-                <li>
-                  <Link to={link.url}>{link.svg} {link.title}</Link>
-                </li>
-              </div>
+              return <li key={i}>
+                  <NavLink to={link.url}>{link.svg} <span className={styles.text}>{link.title}</span></NavLink>
+              </li>
             }
           )}
         </ul>

@@ -1,4 +1,7 @@
 .nav {
+  width: 164px;
+  position: relative;
+  left: -5px;
 
   .container {
 
@@ -6,6 +9,37 @@
       list-style: none;
       padding: 0;
       margin: 0;
+
+      li {
+        box-sizing: border-box;
+        width: 151px;
+        padding: 0 6px;
+        height: 30px;
+        font-size: 13px;
+        line-height: 30px;
+        border-radius: 4px;
+
+        &:hover {
+          background: #E5E7EB;
+          cursor: pointer;
+        }
+
+        svg {
+          position: relative;
+          top: 5px;
+          color: #447BBA;
+        }
+
+        a {
+          text-decoration: none;
+
+        }
+
+        .text {
+          padding-left: 7px;
+          color: #000;
+        }
+      }
     }
   }
 }
