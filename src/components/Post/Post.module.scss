@@ -1,0 +1,115 @@
+.post {
+  min-height: 159px;
+  border: 1px solid #e7e8ec;
+  border-radius: 12px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+
+  .header {
+    display: flex;
+    padding: 15px 20px 0 20px;
+
+    .avatar {
+      margin-right: 15px;
+
+      img {
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .nameAndDate {
+      display: flex;
+      flex-direction: column;
+      width: 421px;
+      padding: 8px 0 0 0;
+
+
+      .name {
+        font-size: 13px;
+
+        a {
+          color: #2a5885;
+          font-weight: 500;
+          line-height: 16px;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+        }
+      }
+
+      .date {
+        font-size: 12.5px;
+
+        a {
+          color: #818C99;
+          line-height: 14px;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .crudComponent {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+
+      &:hover .crud {
+        visibility: visible;
+      }
+
+      .svgComponent {
+        svg {
+          color: #AEB7C2;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .crud {
+        position: absolute;
+        margin-top: 30px;
+        min-width: 150px;
+        width: 188px;
+        max-width: 250px;
+        min-height: 44px;
+        padding: 6px 0;
+        z-index: 1;
+        box-shadow: rgba(0, 0, 0, 0.32) 0 20px 40px 0;
+        border-radius: 8px;
+        overflow: hidden;
+
+        ul {
+          overflow: hidden;
+          padding: 0;
+          margin: 0;
+          li {
+            display: block;
+            padding: 8px 15px;
+            font-size: 13px;
+            line-height: 18px;
+
+            &:hover {
+              cursor: pointer;
+              background: #F5F6F8;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@
   border-radius: 12px;
   background: #ffffff;
   display: flex;
+  margin-bottom: 15px;
+  border: 1px solid #e7e8ec;
 
   &Active {
     min-height: 141px;
@@ -17,10 +19,12 @@
     }
 
     .profileImg {
+
       position: relative;
       top: 12px;
       left: 20px;
       img {
+        border-radius: 100%;
         width: 28px;
         height: 28px;
       }
