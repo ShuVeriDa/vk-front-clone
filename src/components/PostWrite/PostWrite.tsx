@@ -91,7 +91,7 @@ export const PostWrite: FC<PostPropsType> = () => {
       <div className={show ? `${styles.buttonComponentActive} ${styles.buttonComponent} ` : styles.buttonComponent}>
         <div ref={inputOutRef}  className={show ? `${styles.fileInputsActive} ${styles.fileInputs}` : styles.fileInputs}>
           {buttons.map((obj, i) => <>
-            <button key={i} className={styles.btn} onClick={() => inputFileRef.current?.click()}>{obj.svg}</button>
+            <button className={styles.btn} onClick={() => inputFileRef.current?.click()}>{obj.svg}</button>
             <input ref={inputFileRef} type="file" accept={obj.type} hidden/>
           </>)}
 
