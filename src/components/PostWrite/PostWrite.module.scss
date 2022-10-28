@@ -1,0 +1,127 @@
+.postWrite {
+  width: inherit;
+  border-radius: 12px;
+  background: #ffffff;
+  display: flex;
+
+  &Active {
+    min-height: 141px;
+    flex-direction: column;
+  }
+
+  .imgAndInput {
+    display: flex;
+
+    &Active {
+      min-height: 84px;
+    }
+
+    .profileImg {
+      position: relative;
+      top: 12px;
+      left: 20px;
+      img {
+        width: 28px;
+        height: 28px;
+      }
+
+    }
+
+    .inputField {
+      margin-left: 28px;
+      width: 480px;
+      min-height: 52px;
+
+      &Active {
+        min-height: 80px;
+        border-bottom: 1px solid #dce1e6;
+      }
+
+      textarea {
+        width: 480px;
+        height: 52px;
+        font-size: 13px;
+        outline: none;
+        border: none;
+        box-sizing: border-box;
+        padding: 16px 20px 16px 12px;
+        color: #818C99;
+        resize: none;
+        overflow:hidden;
+
+        &:focus {
+          min-height: 80px;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+
+
+
+    .buttonComponent {
+      display: flex;
+      position: relative;
+      bottom: -13px;
+      right: 200px;
+
+      &Active {
+        height: 32px;
+        border-top: 1px solid #dce1e6;
+        bottom: 0;
+        left: 0;
+        padding: 13px 20px 12px 20px;
+      }
+
+      .fileInputs {
+        display: flex;
+        position: relative;
+        top: -9.5px;
+
+        &Active {
+          position: relative;
+          top: 5px;
+          left: -5px;
+        }
+
+        .btn {
+          border: none;
+          background: none;
+          color: #A5ACB6;
+          position: relative;
+          top: -5px;
+
+          &:hover {
+            color: #818C99;
+            cursor: pointer;
+          }
+        }
+
+      }
+
+
+
+      .btnSubmit {
+        border-radius: 8px;
+        padding: 0 16px;
+        border: none;
+        color: #fff;
+        background: #447BBA;
+        position: relative;
+        right: -232px;
+
+        &:hover {
+          background: #6597d2;
+          cursor: pointer;
+        }
+      }
+    }
+
+
+
+
+
+
+}
+

@@ -2,10 +2,13 @@
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
 
+
   .content {
     margin: 15px auto 0;
     width: 100%;
     max-width: 1076px;
     padding: 0 15px;
+
+    display: flex;
   }
 }
