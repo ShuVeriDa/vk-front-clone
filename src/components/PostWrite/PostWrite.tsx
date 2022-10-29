@@ -3,7 +3,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 
 import styles from './PostWrite.module.scss'
-import defaultAvatar from './../../assets/defaultAvatar.png'
+import defaultAvatar from '../../assets/defaultAvatar.png'
 
 interface PostPropsType {
 }

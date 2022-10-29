@@ -1,8 +1,9 @@
 import {FC, useState} from 'react';
 
 import Logo from './../../assets/logo.png'
-import defaultAvatar from './../../assets/defaultAvatar.png'
+import defaultAvatar from '../../assets/defaultAvatar.png'
 import styles from './Header.module.scss'
+import {NavLink} from "react-router-dom";
 
 interface HeaderPropsType {
 }
@@ -13,8 +14,10 @@ export const Header: FC<HeaderPropsType> = () => {
     <div className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <img className={styles.logoImg} src={Logo} alt=""/>
-          <span className={styles.logoText}>вконтакте</span>
+          <NavLink to={"/"}>
+            <img className={styles.logoImg} src={Logo} alt=""/>
+            <span className={styles.logoText}>вконтакте</span>
+          </NavLink>
         </div>
         <div className={styles.search}>
           <svg className={styles.icon}

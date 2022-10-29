@@ -1,7 +1,7 @@
 import {FC, useEffect, useRef, useState} from 'react';
 
 import styles from './Post.module.scss'
-import defaultAvatar from './../../assets/defaultAvatar.png'
+import defaultAvatar from '../../assets/defaultAvatar.png'
 import {Link, NavLink} from "react-router-dom";
 
 const crudList = ['Удалить запись', "Редактировать", "Выключить комментарий"]

@@ -1,0 +1,130 @@
+.profileHeader {
+  width: 911px;
+  height: 401px;
+  border: 1px solid #e7e8ec;
+  border-radius: 12px;
+
+  .profileBackground {
+    height: 303px;
+    background: lightskyblue;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  .profileInfo {
+    position: relative;
+    top: -10px;
+    border-radius: 12px;
+
+    height: 83px;
+    background: #ffffff;
+    padding: 20px;
+    display: flex;
+
+    .profilePhoto {
+      position: relative;
+      bottom: 100px;
+      right: 5px;
+
+      width: 158px;
+      height: 158px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+      }
+    }
+
+    .profileDetails {
+      width: 721px;
+      height: 79px;
+      display: flex;
+      justify-content: space-between;
+
+      margin: 0 0 4px 16px;
+
+      .profileNameStatusOthers {
+        width: 408.5px;
+
+        display: flex;
+        flex-direction: column;
+
+        .name {
+          font-size: 21px;
+          font-weight: 600;
+          line-height: 26px;
+          height: 26px;
+        }
+
+        .status, .city {
+          display: flex;
+          align-items: center;
+          font-size: 13px;
+          line-height: 16px;
+          height: 29px;
+        }
+
+         .city {
+          color: #626d7a;
+
+           svg {
+             color: #626d7a;
+           }
+        }
+      }
+
+      .profileBtns {
+        display: flex;
+        min-width: 190px;
+
+        button {
+          margin-right: 10px;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+
+        .btn{
+          border-radius: 8px;
+          padding: 0 16px;
+          border: none;
+          color: #fff;
+          background: #447BBA;
+          height: 32px;
+
+          &:hover {
+            background: #6597d2;
+            cursor: pointer;
+          }
+        }
+
+        .btnMessage {
+
+          border-radius: 8px;
+          border: none;
+          height: 32px;
+          width: 32px;
+          background: #E5EBF1;
+
+          &:hover {
+            background: #d6d7da;
+            cursor: pointer;
+          }
+
+          svg {
+            width: 20px;
+            height: 20px;
+            color: #346297;
+          }
+        }
+      }
+    }
+  }
+}
