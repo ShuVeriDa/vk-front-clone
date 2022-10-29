@@ -90,6 +90,7 @@
         z-index: 1;
         box-shadow: rgba(0, 0, 0, 0.32) 0 20px 40px 0;
         border-radius: 8px;
+        background: #fff;
 
         opacity: 0;
         visibility: hidden;
@@ -106,6 +107,7 @@
           overflow: hidden;
           padding: 0;
           margin: 0;
+
           li {
             display: block;
             padding: 8px 15px;
@@ -145,23 +147,52 @@
     height: 56px;
     padding: 0 20px;
     width: 510px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .bottomBtn {
+    .buttonComponent {
+      width: 160px;
       height: 32px;
-      width: 48px;
-      padding: 4px 12px;
-      cursor: pointer;
-      background: #f0f2f5;
-      border: none;
-      border-radius: 32px;
+      display: flex;
+      justify-content: space-between;
 
-      svg {
-        color: #99a2ad;
-      }
+      .bottomBtn {
+        height: 32px;
+        width: 48px;
+        padding: 4px 12px;
+        cursor: pointer;
+        background: #f0f2f5;
+        border: none;
+        border-radius: 32px;
 
-      &:hover {
-        background: #e8e8ea;
+        svg {
+          color: #99a2ad;
+        }
+
+        &:hover {
+          background: #e8e8ea;
+        }
       }
     }
+
+    .viewsComponent {
+      color: #99a2ad;
+      font-size: 13px;
+      display: flex;
+      span {
+
+        svg {
+          width: 14px;
+          height: 14px;
+
+          margin-right: 3px;
+        }
+      }
+
+
+    }
+
+
   }
 }
