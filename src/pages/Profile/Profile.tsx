@@ -1,13 +1,17 @@
 import {FC} from 'react';
 
-import styles from './Profile.module.scss'
 import {ProfileHeader} from "../../components/ProfileHeader/ProfileHeader";
 import {ProfileWall} from "../../components/ProfileWall/ProfileWall";
 import {PostWrite} from "../../components/PostWrite/PostWrite";
 import {CategoryPosts} from "../../components/CategoryPosts/CategoryPosts";
 import {Post} from "../../components/Post/Post";
-import {ProfileFriends} from "../../components/ProfileFriends/ProfileFriends";
-import {ProfileSubscriptions} from "../../components/ProfileSubscriptions/ProfileSubscriptions";
+import {ProfileFriendsAndSubs} from "../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubs";
+
+import defaultAvatar from "../../assets/defaultAvatar.png";
+import defaultDescAvatar from "../../assets/defaultDescAvatar.png";
+import styles from './Profile.module.scss'
+import stylesFriendsItem from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss'
+import stylesSubsItem from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileSubscriptionsItem.module.scss'
 
 interface ProfilePropsType {
 }
@@ -30,8 +34,19 @@ export const Profile: FC<ProfilePropsType> = () => {
           <Post/>
         </div>
         <div className={styles.rightSide}>
-          <ProfileFriends/>
-          <ProfileSubscriptions />
+          <ProfileFriendsAndSubs itemStyles={stylesFriendsItem}
+                                 avatar={defaultAvatar}
+                                 title={"Друзья"}
+                                 length={5}
+                                 name={'Адам'}
+          />
+          <ProfileFriendsAndSubs itemStyles={stylesSubsItem}
+                                 avatar={defaultDescAvatar}
+                                 title={"Подписки"}
+                                 length={18}
+                                 name={'Гуллам'}
+                                 description={'Описание группы'}
+          />
         </div>
       </div>
 

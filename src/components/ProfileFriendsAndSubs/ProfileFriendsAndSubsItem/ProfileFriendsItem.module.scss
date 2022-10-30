@@ -1,8 +1,9 @@
-.friendsItem {
+.profileFriendsItem {
   width: 72px;
   height: 96px;
 
   margin-right: 10px;
+  border-radius: 8px;
 
   &:nth-of-type(4) {
     margin-right: 0;
@@ -13,6 +14,21 @@
   }
   a {
     text-decoration: none;
+
+    .profileFriendAvatar {
+      display: flex;
+      position: relative;
+      right: 4px;
+
+      width: 64px;
+      height: 64px;
+      padding: 4px 8px;
+      img {
+        border-radius: 50%;
+        width: 64px;
+        height: 64px;
+      }
+    }
   }
 
   &:hover {
@@ -20,20 +36,7 @@
     background: #e7e8ec;
   }
 
-  .friendAvatar {
-    display: flex;
-    position: relative;
-    right: 4px;
 
-    width: 64px;
-    height: 64px;
-    padding: 4px 8px;
-    img {
-      border-radius: 50%;
-      width: 64px;
-      height: 64px;
-    }
-  }
 
   .friendsNameComponent{
     text-align: center;

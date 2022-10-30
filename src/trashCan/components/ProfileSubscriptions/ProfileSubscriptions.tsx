@@ -19,9 +19,7 @@ export const ProfileSubscriptions: FC<ProfileSubscriptionsPropsType> = () => {
       </div>
       <div className={styles.profileSubsItems}>
         <ProfileSubscriptionsItem/>
-
       </div>
-
     </div>
   );
 };

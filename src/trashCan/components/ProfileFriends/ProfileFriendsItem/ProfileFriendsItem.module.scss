@@ -1,0 +1,50 @@
+.profileFriendsItem {
+  width: 72px;
+  height: 96px;
+
+  margin-right: 10px;
+
+  &:nth-of-type(4) {
+    margin-right: 0;
+  }
+
+  &:nth-of-type(8) {
+    margin-right: 0;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background: #e7e8ec;
+  }
+
+  .profileFriendAvatar {
+    display: flex;
+    position: relative;
+    right: 4px;
+
+    width: 64px;
+    height: 64px;
+    padding: 4px 8px;
+    img {
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .friendsNameComponent{
+    text-align: center;
+
+    .friendsName {
+      font-size: 12px;
+      line-height: 14px;
+      text-decoration: none;
+      color: #000;
+    }
+  }
+
+
+}

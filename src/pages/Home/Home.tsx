@@ -4,6 +4,7 @@ import styles from './Home.module.scss'
 import {PostWrite} from "../../components/PostWrite/PostWrite";
 import {Post} from "../../components/Post/Post";
 import {RightSide} from "../../components/RightSide/RightSide";
+import {FilterByInteresting} from "../../components/FilterByInteresting/FilterByInteresting";
 
 interface HomePropsType {
 }
@@ -18,6 +19,7 @@ export const Home: FC<HomePropsType> = () => {
       </div>
       <div className={styles.rightSide}>
         <RightSide />
+        <FilterByInteresting />
       </div>
     </div>
   );

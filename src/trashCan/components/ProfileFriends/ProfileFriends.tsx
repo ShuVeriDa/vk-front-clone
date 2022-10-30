@@ -9,8 +9,8 @@ interface FriendsPropsType {
 
 export const ProfileFriends: FC<FriendsPropsType> = () => {
   return (
-    <div className={styles.friends}>
-      <div className={styles.friendsHeader}>
+    <div className={styles.profileFriends}>
+      <div className={styles.profileFriendsHeader}>
         <Link to={"/friends"}>
           <span className={styles.name}>Друзья </span>
           <span className={styles.count}>5</span>
