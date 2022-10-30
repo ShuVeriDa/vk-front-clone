@@ -1,9 +1,9 @@
 .postWrite {
-  width: inherit;
+  width: 550px;
   border-radius: 12px;
   background: #ffffff;
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   border: 1px solid #e7e8ec;
 
   &Active {
@@ -49,9 +49,16 @@
         border: none;
         box-sizing: border-box;
         padding: 16px 20px 16px 12px;
-        color: #818C99;
+        color: #000;
         resize: none;
         overflow:hidden;
+        line-height: 19px;
+        word-wrap: break-word;
+
+
+        &::placeholder {
+          color: #818C99;
+        }
 
         &:focus {
           min-height: 80px;
