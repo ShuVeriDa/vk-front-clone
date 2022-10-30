@@ -1,13 +1,14 @@
-.friends {
-  min-height: 138px;
+
+.profileSubs {
   width: 329px;
-  padding: 8px;
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid #e7e8ec;
+  min-height: 100px;
   margin-bottom: 16px;
 
-  .friendsHeader {
+  border-radius: 12px;
+  background: #fff;
+  padding: 8px;
+
+  .profileSubsHeader {
     display: flex;
     align-items: center;
     height: 42px;
@@ -32,17 +33,10 @@
         color: #626d7a
       }
     }
-
-
-
-
   }
 
-  .friendsItems {
+  .profileSubsItems {
     display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
+    flex-direction: column;
   }
-
-
 }

@@ -7,6 +7,7 @@ import {PostWrite} from "../../components/PostWrite/PostWrite";
 import {CategoryPosts} from "../../components/CategoryPosts/CategoryPosts";
 import {Post} from "../../components/Post/Post";
 import {ProfileFriends} from "../../components/ProfileFriends/ProfileFriends";
+import {ProfileSubscriptions} from "../../components/ProfileSubscriptions/ProfileSubscriptions";
 
 interface ProfilePropsType {
 }
@@ -30,6 +31,7 @@ export const Profile: FC<ProfilePropsType> = () => {
         </div>
         <div className={styles.rightSide}>
           <ProfileFriends/>
+          <ProfileSubscriptions />
         </div>
       </div>
 

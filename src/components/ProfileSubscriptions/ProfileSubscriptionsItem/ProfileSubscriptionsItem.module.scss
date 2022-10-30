@@ -1,0 +1,45 @@
+.profileSubsItem {
+  padding: 0 12px;
+  a {
+    display: flex;
+    text-decoration: none;
+
+    .subsAvatar {
+      display: flex;
+      position: relative;
+      right: 4px;
+
+      width: 48px;
+      height: 48px;
+      padding: 4px 8px;
+      img {
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    .subsNameComponent {
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .subsName {
+        font-size: 13px;
+        line-height: 18px;
+        color: #000;
+        height: 18px;
+      }
+
+      .subsDescription {
+        font-size: 12px;
+        line-height: 14px;
+        height: 14px;
+        color: #818c99;
+      }
+    }
+  }
+
+
+}

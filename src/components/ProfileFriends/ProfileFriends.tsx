@@ -24,7 +24,6 @@ export const ProfileFriends: FC<FriendsPropsType> = () => {
         <ProfileFriendsItem />
         <ProfileFriendsItem />
         <ProfileFriendsItem />
-        <ProfileFriendsItem />
       </div>
 
     </div>
