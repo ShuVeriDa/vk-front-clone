@@ -1,0 +1,46 @@
+.friends {
+  min-height: 238px;
+  width: 329px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e7e8ec;
+
+  .friendsHeader {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    width: 305px;
+    padding: 0 12px;
+
+    a {
+      text-decoration: none;
+      color: #000;
+
+      .name {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500;
+        margin-right: 5px;
+      }
+
+      .count {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 16px;
+        color: #626d7a
+      }
+    }
+
+
+
+
+  }
+
+  .friendsItems {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+
+}
