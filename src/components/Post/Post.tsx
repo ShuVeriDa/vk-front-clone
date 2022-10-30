@@ -7,9 +7,10 @@ import {Link, NavLink} from "react-router-dom";
 const crudList = ['Удалить запись', "Редактировать", "Выключить комментарий"]
 
 interface PostPropsType {
+  borderRadius?: object
 }
 
-export const Post: FC<PostPropsType> = () => {
+export const Post: FC<PostPropsType> = ({borderRadius}) => {
   const refOut = useRef(null)
 
   const [show, setShow] = useState(false)
@@ -29,7 +30,7 @@ export const Post: FC<PostPropsType> = () => {
   }, [])
 
   return (
-    <div className={styles.post}>
+    <div className={styles.post} style={borderRadius}>
       <div className={styles.header}>
         <div className={styles.avatar}>
           <img src={defaultAvatar} alt=""/>
