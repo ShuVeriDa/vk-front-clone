@@ -1,6 +1,6 @@
 import {IAuthResponse, ILogin, IRegister} from "../../redux/user/user.interface";
 import {axiosClassic} from "../../api/api.interceptor";
-import {removeTokensStorage, saveToStorage} from "./auth.helpers";
+import {removeFromStorage, saveToStorage} from "./auth.helpers";
 import Cookies from "js-cookie";
 import {getContentType} from "../../api/api.helper";
 
@@ -24,7 +24,7 @@ export const AuthService = {
     return res
   },
   logout: async () => {
-    removeTokensStorage()
+    removeFromStorage()
     localStorage.removeItem('user')
   },
   getNewTokens: async () => {
