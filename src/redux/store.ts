@@ -6,9 +6,9 @@ import storage from "redux-persist/lib/storage";
 import {rootReducer} from "./reducers";
 
 const persistConfig = {
-  key: 'root',
+  key: 'vk-clone',
   storage,
-  blacklist: []
+  whitelist: []
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
