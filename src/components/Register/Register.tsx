@@ -36,9 +36,9 @@ export const Register: FC<IRegisterProps> = (
         <p className={styles.description}>Ваш email будет использоваться для входа в аккаунт</p>
       </div>
       <Input {...register('email', {
-          required: "Email is required", pattern: {
+          required: "Электронная почта обязательна", pattern: {
             value: validEmail,
-            message: 'Please enter a valid email address'
+            message: 'Пожалуйста, введите действительный адрес электронной почты'
           }
         }
       )}
@@ -47,10 +47,10 @@ export const Register: FC<IRegisterProps> = (
              error={errors.email}
       />
       <Input {...register('password', isPasswordRequired ? {
-          required: "Password is required",
+          required: "Пароль обязателен",
           minLength: {
             value: 6,
-            message: "Min length should more 6 symbols"
+            message: "Минимальная длина должна быть больше 6 символов"
           }
         } : {}
       )}
@@ -58,15 +58,25 @@ export const Register: FC<IRegisterProps> = (
              type={'password'}
              error={errors.password}
       />
-      <Input {...register('nickName', {
-          required: "Nickname is required", minLength: {
-            value: 3, message: "Min length should more 3 symbols"
+      <Input {...register('lastName', {
+          required: "Фамилия обязательна", minLength: {
+            value: 3, message: "Минимальная длина должна быть больше 3 символов"
           }
         }
       )}
-             title={'Nickname'}
-             type={'nickName'}
-             error={errors.nickName}
+             type={'lastName'}
+             placeholder={'Фамилия'}
+             error={errors.lastName}
+      />
+      <Input {...register('firstName', {
+          required: "Имя обязательно", minLength: {
+            value: 3, message: "Минимальная длина должна быть больше 3 символов"
+          }
+        }
+      )}
+             type={'firstName'}
+             placeholder={'Имя'}
+             error={errors.firstName}
       />
     </div>
   );

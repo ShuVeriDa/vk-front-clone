@@ -19,7 +19,7 @@ export const Login: FC<ILoginProps> = ({register, isPasswordRequired = false, fo
         <h2 className={styles.title}>Вход ВКонтакте</h2>
       </div>
       <Input {...register('email', {
-          required: "Email is required", pattern: {
+          required: "Электронная почта обязательна", pattern: {
             value: validEmail,
             message: 'Пожалуйста, введите действительный адрес электронной почты'
           }
@@ -31,7 +31,7 @@ export const Login: FC<ILoginProps> = ({register, isPasswordRequired = false, fo
              error={errors.email}
       />
       <Input {...register('password', isPasswordRequired ? {
-          required: "Password is required",
+          required: "Пароль обязателен",
           minLength: {
             value: 6,
             message: "Минимальная длина должна быть больше 6 символов"

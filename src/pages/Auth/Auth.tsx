@@ -8,13 +8,14 @@ import {IAuthInputType} from "../../redux/types";
 import {HandleChangeImage} from "../../utils/HandleChangeImage";
 import {useAppSelector} from "../../redux/store";
 import logo from '../../assets/vk.png'
+import {SubmitButton} from "../../components/SubmitButton/SubmitButton";
 
 interface ILoginProps {
 }
 
 export const Auth: FC<ILoginProps> = () => {
   const [imageUrl, setImageUrl] = useState('')
-  const [type, setType] = useState<'login' | 'register'>('login')
+  const [type, setType] = useState<'login' | 'register'>('register')
 
   const {status, user} = useAppSelector(state => state.user)
 
@@ -47,7 +48,7 @@ export const Auth: FC<ILoginProps> = () => {
                 <img src={logo} alt=""/>
               </div>
             </div>
-            {type === 'register'
+            {type === 'login'
               ? <Login register={registerInput}
                        formState={formState}
                        isPasswordRequired
@@ -64,7 +65,9 @@ export const Auth: FC<ILoginProps> = () => {
               />
             }
           <div>
-            <button>Вход</button>
+            <SubmitButton status={status}
+                          title={type === 'login' ? "Вход" : "Зарегистрироваться"}
+            />
           </div>
         </form>
       </div>
