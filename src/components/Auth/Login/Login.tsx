@@ -1,9 +1,9 @@
 import {FC} from 'react';
 import styles from './Login.module.scss';
-import {StatusEnum} from "../../redux/types";
-import {Input} from "../Input/Input";
+import {StatusEnum} from "../../../redux/types";
+import {Input} from "../../Input/Input";
 import {FormState, UseFormRegister} from "react-hook-form";
-import {validEmail} from "../../utils/regex";
+import {validEmail} from "../../../utils/regex";
 interface ILoginProps {
   register: UseFormRegister<any>
   formState: FormState<any>

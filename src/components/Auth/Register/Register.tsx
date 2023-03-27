@@ -1,10 +1,10 @@
 import {ChangeEvent, FC} from 'react';
-import {StatusEnum} from "../../redux/types";
-import {Input} from "../Input/Input";
+import {StatusEnum} from "../../../redux/types";
+import {Input} from "../../Input/Input";
 import {FormState, UseFormRegister} from "react-hook-form";
 import {useDispatch} from "react-redux";
-import {AppDispatchType} from "../../redux/store";
-import {validEmail} from "../../utils/regex";
+import {AppDispatchType} from "../../../redux/store";
+import {validEmail} from "../../../utils/regex";
 
 import styles from './Register.module.scss';
 

@@ -1,7 +1,7 @@
 import {ChangeEvent, FC, useState} from 'react';
 import styles from './Auth.module.scss';
-import {Login} from "../../components/Login/Login";
-import {Register} from "../../components/Register/Register";
+import {Login} from "../../components/Auth/Login/Login";
+import {Register} from "../../components/Auth/Register/Register";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useActions} from "../../hooks/useActions";
 import {IAuthInputType} from "../../redux/types";
@@ -9,15 +9,20 @@ import {HandleChangeImage} from "../../utils/HandleChangeImage";
 import {useAppSelector} from "../../redux/store";
 import logo from '../../assets/vk.png'
 import {SubmitButton} from "../../components/SubmitButton/SubmitButton";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../hooks/useAuth";
+import {useAuthRedirect} from "../../components/Auth/useAuthRedirect";
 
 interface ILoginProps {
 }
 
 export const Auth: FC<ILoginProps> = () => {
-  const [imageUrl, setImageUrl] = useState('')
-  const [type, setType] = useState<'login' | 'register'>('register')
+  useAuthRedirect()
 
-  const {status, user} = useAppSelector(state => state.user)
+  const [imageUrl, setImageUrl] = useState('')
+  const [type, setType] = useState<'login' | 'register'>('login')
+
+  const {status} = useAuth()
 
   const {loginTC, registerTC} = useActions()
   const {register: registerInput, handleSubmit, formState, reset} = useForm<IAuthInputType>({mode: 'onChange'})

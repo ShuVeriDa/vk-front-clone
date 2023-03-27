@@ -4,7 +4,7 @@ import {getAccessToken, removeFromStorage} from "../services/auth/auth.helpers";
 import {AuthService} from "../services/auth/auth.service";
 
 const axiosOptions = {
-  baseURL: process.env.SERVER_URL,
+  baseURL: process.env.REACT_APP_SERVER_URL,
   headers: getContentType()
 }
 export const axiosClassic = axios.create(axiosOptions)
