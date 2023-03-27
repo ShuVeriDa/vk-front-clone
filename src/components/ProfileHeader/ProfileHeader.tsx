@@ -2,11 +2,14 @@ import {FC} from 'react';
 
 import defaultAvatar from '../../assets/defaultAvatar.png'
 import styles from './ProfileHeader.module.scss'
+import {IUserState} from "../../redux/user/user.interface";
 
-interface ProfileHeaderPropsType {
+interface IProfileHeader {
+  user: IUserState | null
 }
 
-export const ProfileHeader: FC<ProfileHeaderPropsType> = () => {
+export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
+  const fullName = `${user?.lastName} ${user?.firstName}`
   return (
     <div className={styles.profileHeader}>
       <div className={styles.profileBackground}>
@@ -14,12 +17,12 @@ export const ProfileHeader: FC<ProfileHeaderPropsType> = () => {
       </div>
       <div className={styles.profileInfo}>
         <div className={styles.profilePhoto}>
-          <img src={defaultAvatar} alt=""/>
+          <img src={user?.avatar || defaultAvatar} alt=""/>
         </div>
         <div className={styles.profileDetails}>
           <div className={styles.profileNameStatusOthers}>
-            <span className={styles.name}>Biltoyn SaIid-Muhammad</span>
-            <span className={styles.status}>Статус</span>
+            <span className={styles.name}>{fullName}</span>
+            <span className={styles.status}>{!user?.status.length ? 'Введите статус' : user.status}</span>
             <span className={styles.city}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 100 100"><path
               d="M50 8C34.6 8 22 20.4 22 35.7c0 32.6 25.6 54.9 26.7 55.9.7.6 1.9.6 2.6 0 1.1-1 26.7-23.4 26.7-55.9C78 20.4 65.4 8 50 8zm0 79.3c-5.2-5-24-25-24-51.6C26 22.6 36.8 12 50 12s24 10.6 24 23.7c0 26.6-18.8 46.6-24 51.6zM50 20c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16zm0 28c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12z"/><path

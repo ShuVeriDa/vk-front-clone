@@ -1,9 +1,10 @@
 import {StatusEnum} from "../types";
 import {getStoreLocal} from "./local-storage";
 import {createSlice} from "@reduxjs/toolkit";
-import {loginTC, logoutTC, registerTC} from "./user.actions";
+import {checkAuthTC, loginTC, logoutTC, registerTC} from "./user.actions";
+import {IInitialState} from "./user.interface";
 
-const initialState = {
+const initialState:IInitialState = {
   status: StatusEnum.IDLE,
   user: getStoreLocal('user')
 }
@@ -45,6 +46,12 @@ export const userSlice = createSlice({
         state.status = StatusEnum.SUCCESS
         state.user = null
       })
+
+    //check auth
+      .addCase(checkAuthTC.fulfilled, (state, action) => {
+        state.user = action.payload.user
+      })
+
   }
 })
 

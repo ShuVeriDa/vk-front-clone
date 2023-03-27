@@ -12,8 +12,8 @@ export interface IUserState {
   // reposts
   // favorites
   // friends:
-  createdAt: string
-  updatedAt: string
+  createdAt?: string
+  updatedAt?: string
 }
 
 export interface IInitialState {

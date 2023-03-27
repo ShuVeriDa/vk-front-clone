@@ -12,18 +12,21 @@ import defaultDescAvatar from "../../assets/defaultDescAvatar.png";
 import styles from './Profile.module.scss'
 import stylesFriendsItem from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss'
 import stylesSubsItem from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileSubscriptionsItem.module.scss'
+import {useAuth} from "../../hooks/useAuth";
 
 interface ProfilePropsType {
 }
 
 export const Profile: FC<ProfilePropsType> = () => {
+  const {user} = useAuth()
   const borderRadius = {
     borderTopLeftRadius: "0",
     borderTopRightRadius: "0",
   }
+
   return (
     <div className={styles.profile}>
-      <ProfileHeader/>
+      <ProfileHeader user={user} />
       <div className={styles.profileMain}>
         <div className={styles.profilePosts}>
           <ProfileWall/>
