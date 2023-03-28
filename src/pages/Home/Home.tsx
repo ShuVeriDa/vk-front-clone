@@ -14,8 +14,8 @@ export const Home: FC<HomePropsType> = () => {
     <div className={styles.home}>
       <div className={styles.main}>
         <PostWrite />
-        <Post />
-        <Post />
+        {/*<Post />*/}
+        {/*<Post />*/}
       </div>
       <div className={styles.rightSide}>
         <RightSide />

@@ -10,15 +10,28 @@ import {ProfileFriendsAndSubs} from "../../components/ProfileFriendsAndSubs/Prof
 import defaultAvatar from "../../assets/defaultAvatar.png";
 import defaultDescAvatar from "../../assets/defaultDescAvatar.png";
 import styles from './Profile.module.scss'
-import stylesFriendsItem from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss'
-import stylesSubsItem from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileSubscriptionsItem.module.scss'
+import stylesFriendsItem
+  from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss'
+import stylesSubsItem
+  from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileSubscriptionsItem.module.scss'
 import {useAuth} from "../../hooks/useAuth";
+import {useQuery} from "@tanstack/react-query";
+import {PostService} from "../../services/post.service";
+import {useParams} from "react-router-dom";
 
 interface ProfilePropsType {
 }
 
 export const Profile: FC<ProfilePropsType> = () => {
+  const {id} = useParams()
+  const {data: posts, isLoading, isSuccess} = useQuery({
+    queryFn: () => PostService.fetchMyPosts(id!),
+    queryKey: ['myPosts', 'all']
+  })
+
+
   const {user} = useAuth()
+
   const borderRadius = {
     borderTopLeftRadius: "0",
     borderTopRightRadius: "0",
@@ -26,15 +39,21 @@ export const Profile: FC<ProfilePropsType> = () => {
 
   return (
     <div className={styles.profile}>
-      <ProfileHeader user={user} />
+      <ProfileHeader user={user}/>
       <div className={styles.profileMain}>
         <div className={styles.profilePosts}>
           <ProfileWall/>
           <PostWrite/>
           <CategoryPosts/>
-          <Post borderRadius={borderRadius}/>
-          <Post/>
-          <Post/>
+          {isSuccess && posts.map((post, i) => {
+            return <Post key={post.id}
+                         post={post}
+                         borderRadius={i === 0 ? borderRadius : undefined}
+            />
+          })}
+          {/*<Post borderRadius={borderRadius}/>*/}
+          {/*<Post/>*/}
+          {/*<Post/>*/}
         </div>
         <div className={styles.rightSide}>
           <ProfileFriendsAndSubs itemStyles={stylesFriendsItem}

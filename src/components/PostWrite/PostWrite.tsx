@@ -90,10 +90,10 @@ export const PostWrite: FC<PostPropsType> = () => {
 
       <div className={show ? `${styles.buttonComponentActive} ${styles.buttonComponent} ` : styles.buttonComponent}>
         <div ref={inputOutRef}  className={show ? `${styles.fileInputsActive} ${styles.fileInputs}` : styles.fileInputs}>
-          {buttons.map((obj, i) => <>
+          {buttons.map((obj, i) => <div key={i}>
             <button className={styles.btn} onClick={() => inputFileRef.current?.click()}>{obj.svg}</button>
             <input ref={inputFileRef} type="file" accept={obj.type} hidden/>
-          </>)}
+          </div>)}
 
           <button className={styles.btn}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

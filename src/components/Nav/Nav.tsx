@@ -2,6 +2,7 @@ import {FC} from 'react';
 
 import styles from './Nav.module.scss'
 import {Link, NavLink} from "react-router-dom";
+import {useAuth} from "../../hooks/useAuth";
 
 interface NavPropsType {
 }
@@ -14,7 +15,7 @@ const navObj = [
             d="M5.84 15.63a6.97 6.97 0 0 0 8.32 0 8.2 8.2 0 0 0-8.32 0zM4.7 14.57a7 7 0 1 1 10.6 0 9.7 9.7 0 0 0-10.6 0zM10 1.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17zm-1.5 7a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zm1.5-3a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
             fill="currentColor" fillRule="evenodd"></path>
     </svg>,
-    url: 'profile',
+    url: 'profile/',
   },
   {
     title: 'Новости',
@@ -23,7 +24,7 @@ const navObj = [
             d="M11.84 2H8.16c-.93 0-1.67 0-2.26.05-.62.05-1.15.15-1.63.4a4.15 4.15 0 0 0-1.82 1.82 4.26 4.26 0 0 0-.4 1.63C2 6.5 2 7.23 2 8.16v3.68c0 .93 0 1.67.05 2.26.05.62.15 1.15.4 1.63.4.78 1.04 1.42 1.82 1.82.48.25 1.01.35 1.63.4.6.05 1.33.05 2.26.05h3.68c.93 0 1.67 0 2.26-.05a4.26 4.26 0 0 0 1.63-.4 4.15 4.15 0 0 0 1.82-1.82c.25-.48.35-1.01.4-1.63.05-.6.05-1.33.05-2.26V8.16c0-.93 0-1.67-.05-2.26a4.26 4.26 0 0 0-.4-1.63 4.15 4.15 0 0 0-1.82-1.82 4.26 4.26 0 0 0-1.63-.4C13.5 2 12.77 2 11.84 2zm-6.9 1.79c.25-.12.56-.2 1.08-.25.53-.04 1.2-.04 2.17-.04h3.62c.96 0 1.64 0 2.17.04.52.05.83.13 1.07.25.5.25.9.66 1.16 1.16.12.24.2.55.25 1.07l.02.48H3.52l.02-.48c.05-.52.13-.83.25-1.07.25-.5.66-.9 1.16-1.16zM3.5 8v3.81c0 .96 0 1.64.04 2.17.05.52.13.83.25 1.07.25.5.66.9 1.16 1.16.24.12.55.2 1.07.25.53.04 1.2.04 2.17.04h3.62c.96 0 1.64 0 2.17-.04a2.8 2.8 0 0 0 1.07-.25c.5-.25.9-.66 1.16-1.16.12-.24.2-.55.25-1.07.04-.53.04-1.2.04-2.17V8z"
             fill="currentColor" fillRule="evenodd"></path>
     </svg>,
-    url: 'feed',
+    url: '/',
   },
   {
     title: 'Мессенджер',
@@ -131,13 +132,14 @@ const navObj = [
 ]
 
 export const Nav: FC<NavPropsType> = () => {
+  const {user} = useAuth()
   return (
     <div className={styles.nav}>
       <div className={styles.container}>
         <ul>
           {navObj.map((link, i) => {
               return <li key={i}>
-                  <NavLink to={link.url}>{link.svg} <span className={styles.text}>{link.title}</span></NavLink>
+                  <NavLink to={i === 0 ? link.url + `${user?.id}` : link.url}>{link.svg} <span className={styles.text}>{link.title}</span></NavLink>
               </li>
             }
           )}

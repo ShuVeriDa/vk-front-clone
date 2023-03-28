@@ -7,3 +7,10 @@ export interface IUser {
   status: string
   isAdmin?: boolean
 }
+
+export interface IUserAbbr {
+  id: number | string,
+  firstName: string,
+  lastName: string,
+  avatar: string
+}

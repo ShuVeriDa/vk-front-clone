@@ -3,14 +3,17 @@ import {FC, useEffect, useRef, useState} from 'react';
 import styles from './Post.module.scss'
 import defaultAvatar from '../../assets/defaultAvatar.png'
 import {Link, NavLink} from "react-router-dom";
+import {IPost} from "../../types/post.interface";
+import ReactTimeago from "react-timeago";
 
 const crudList = ['Удалить запись', "Редактировать", "Выключить комментарий"]
 
-interface PostPropsType {
+interface IPostProps {
+  post: IPost
   borderRadius?: object
 }
 
-export const Post: FC<PostPropsType> = ({borderRadius}) => {
+export const Post: FC<IPostProps> = ({post, borderRadius}) => {
   const refOut = useRef(null)
 
   const [show, setShow] = useState(false)
@@ -33,14 +36,16 @@ export const Post: FC<PostPropsType> = ({borderRadius}) => {
     <div className={styles.post} style={borderRadius}>
       <div className={styles.header}>
         <div className={styles.avatar}>
-          <img src={defaultAvatar} alt=""/>
+          <img src={post.user.avatar || defaultAvatar} alt=""/>
         </div>
         <div className={styles.nameAndDate}>
           <span className={styles.name}>
-             <Link to={'/'}>Biltoyn SaIid-Muhammad</Link>
+             <Link to={'/'}>{`${post.user.lastName} ${post.user.firstName}`}</Link>
           </span>
           <span className={styles.date}>
-            <Link to={'/'}>28 октябрь 2022 в 18:07</Link>
+            <Link to={'/'}>
+              <ReactTimeago date={post.updatedAt}/>
+            </Link>
           </span>
         </div>
         <div ref={refOut} className={styles.crudComponent}>
@@ -69,7 +74,7 @@ export const Post: FC<PostPropsType> = ({borderRadius}) => {
         </div>
       </div>
       <div className={styles.postText}>
-        <span className={styles.text}>Post</span>
+        <span className={styles.text}>{post.text}</span>
       </div>
       <div className={styles.bottom}>
         <div className={styles.buttonComponent}>
@@ -119,7 +124,7 @@ export const Post: FC<PostPropsType> = ({borderRadius}) => {
                                                                                                      fillRule="evenodd"></path></g>
             </svg>
           </span>
-          <span>1000</span>
+          <span>{post.views}</span>
         </div>
 
 
