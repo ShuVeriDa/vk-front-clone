@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 import styles from './Home.module.scss'
-import {PostWrite} from "../../components/PostWrite/PostWrite";
+import {PostWrite} from "../../components/Post/PostWrite/PostWrite";
 import {Post} from "../../components/Post/Post";
 import {RightSide} from "../../components/RightSide/RightSide";
 import {FilterByInteresting} from "../../components/FilterByInteresting/FilterByInteresting";

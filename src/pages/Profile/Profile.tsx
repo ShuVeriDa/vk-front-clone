@@ -2,7 +2,7 @@ import {FC} from 'react';
 
 import {ProfileHeader} from "../../components/ProfileHeader/ProfileHeader";
 import {ProfileWall} from "../../components/ProfileWall/ProfileWall";
-import {PostWrite} from "../../components/PostWrite/PostWrite";
+import {PostWrite} from "../../components/Post/PostWrite/PostWrite";
 import {CategoryPosts} from "../../components/CategoryPosts/CategoryPosts";
 import {Post} from "../../components/Post/Post";
 import {ProfileFriendsAndSubs} from "../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubs";
