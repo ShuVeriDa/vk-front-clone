@@ -3,9 +3,10 @@ import {FC} from 'react';
 import defaultAvatar from '../../assets/defaultAvatar.png'
 import styles from './ProfileHeader.module.scss'
 import {IUserState} from "../../redux/user/user.interface";
+import {IUserFull} from "../../types/user.interface";
 
 interface IProfileHeader {
-  user: IUserState | null
+  user: IUserFull | null | undefined
 }
 
 export const ProfileHeader: FC<IProfileHeader> = ({user}) => {

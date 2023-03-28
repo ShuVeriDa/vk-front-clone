@@ -2,7 +2,6 @@ import {IAuthResponse, ILogin, IRegister} from "../../redux/user/user.interface"
 import {axiosClassic} from "../../api/api.interceptor";
 import {removeFromStorage, saveToStorage} from "./auth.helpers";
 import Cookies from "js-cookie";
-import {getContentType} from "../../api/api.helper";
 
 export const AuthService = {
   register: async (data: IRegister) => {

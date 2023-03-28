@@ -3,6 +3,6 @@ export interface ICommunityAbbr {
   name: string,
   description: string,
   imageUrl: string,
-  createdAt: string,
-  updatedAt: string
+  createdAt?: string,
+  updatedAt?: string
 }
