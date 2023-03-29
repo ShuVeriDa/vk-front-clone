@@ -14,7 +14,6 @@ interface IRegisterProps {
   isPasswordRequired?: boolean
   status: StatusEnum
   onSelectType: (type: 'login' | 'register') => void
-  handleChangeImage: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Register: FC<IRegisterProps> = (
@@ -24,7 +23,6 @@ export const Register: FC<IRegisterProps> = (
     formState: {errors},
     status,
     onSelectType,
-    handleChangeImage
   }) => {
 
   const dispatch = useDispatch<AppDispatchType>()

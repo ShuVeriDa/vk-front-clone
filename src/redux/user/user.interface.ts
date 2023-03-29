@@ -8,6 +8,7 @@ export interface IUserState {
   lastName: string
   avatar: string
   status: string
+  location: string
   isAdmin?: boolean
   // reposts
   // favorites
@@ -26,8 +27,6 @@ export interface IRegister {
   password: string
   firstName: string
   lastName: string
-  avatar?: string
-  isAdmin?: boolean
 }
 
 export interface ILogin {

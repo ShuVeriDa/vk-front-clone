@@ -7,6 +7,7 @@ export interface IUser {
   lastName: string
   avatar: string
   status: string
+  location: string
   isAdmin?: boolean
 }
 

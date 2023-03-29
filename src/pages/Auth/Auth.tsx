@@ -18,8 +18,6 @@ interface ILoginProps {
 
 export const Auth: FC<ILoginProps> = () => {
   useAuthRedirect()
-
-  const [imageUrl, setImageUrl] = useState('')
   const [type, setType] = useState<'login' | 'register'>('login')
 
   const {status} = useAuth()
@@ -30,9 +28,7 @@ export const Auth: FC<ILoginProps> = () => {
   const onSubmit: SubmitHandler<IAuthInputType> = (data) => {
     if (type === 'login') loginTC(data)
     else if(type === 'register') registerTC({
-      ...data,
-      avatar: imageUrl,
-    })
+      ...data,})
   }
 
   const onSelectType = (type: 'login' | 'register') => {
@@ -40,9 +36,9 @@ export const Auth: FC<ILoginProps> = () => {
   }
 
 
-  const changeImage = (e: ChangeEvent<HTMLInputElement>) => {
-    HandleChangeImage(e, setImageUrl, 'user')
-  }
+  // const changeImage = (e: ChangeEvent<HTMLInputElement>) => {
+  //   HandleChangeImage(e, setImageUrl, 'user')
+  // }
 
   return (
     <div className={styles.auth}>
@@ -65,7 +61,6 @@ export const Auth: FC<ILoginProps> = () => {
                           isPasswordRequired
                           status={status}
                           onSelectType={onSelectType}
-                          handleChangeImage={changeImage}
 
               />
             }

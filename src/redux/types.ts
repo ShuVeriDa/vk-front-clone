@@ -10,5 +10,4 @@ export interface IAuthInputType {
   password: string
   firstName: string
   lastName: string
-  avatar: string
 }
