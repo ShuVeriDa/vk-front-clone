@@ -11,26 +11,20 @@ import stylesFriendsItem
   from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss'
 import stylesSubsItem
   from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileSubscriptionsItem.module.scss'
-import {useQuery} from "@tanstack/react-query";
-import {PostService} from "../../services/post.service";
 import {useParams} from "react-router-dom";
-import {UserService} from "../../services/user.service";
+import {usePostsQuery} from "../../react-query/usePostsQuery";
+import {useUsersQuery} from "../../react-query/useUsersQuery";
 
 interface ProfilePropsType {
 }
 
 export const Profile: FC<ProfilePropsType> = () => {
   const {id} = useParams()
-  const {data: posts, isLoading, isSuccess: isSuccessPosts} = useQuery({
-    queryFn: () => PostService.fetchMyPosts(id!),
-    queryKey: ['myPosts', 'all']
-  })
 
-  const {data: user, isSuccess: isSuccessUser} = useQuery({
-    queryFn: () => UserService.fetchUser(id!),
-    queryKey: ['user', 'one']
-  })
-
+  const {getMyPosts} = usePostsQuery(id!)
+  const {getUserById} = useUsersQuery(id!)
+  const {data: user, isSuccess: isSuccessUser} = getUserById
+  const {data: posts, isSuccess: isSuccessPosts} = getMyPosts
 
   const borderRadius = {
     borderTopLeftRadius: "0",
@@ -43,7 +37,7 @@ export const Profile: FC<ProfilePropsType> = () => {
       <div className={styles.profileMain}>
         <div className={styles.profilePosts}>
           <ProfileWall/>
-          <PostWrite/>
+          <PostWrite avatar={user?.avatar}/>
           <CategoryPosts/>
           {isSuccessPosts && posts.map((post, i) => {
             return <Post key={post.id}
@@ -61,7 +55,7 @@ export const Profile: FC<ProfilePropsType> = () => {
 
           <ProfileFriendsAndSubs itemStyles={stylesSubsItem}
                                  title={"Подписки"}
-                                 user={user!}
+                                 user={isSuccessUser ? user : undefined}
           />
         </div>
       </div>

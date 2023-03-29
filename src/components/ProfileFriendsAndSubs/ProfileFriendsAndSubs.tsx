@@ -10,11 +10,7 @@ import defaultCommunityAvatar from "../../assets/defaultCommunityAvatar.png";
 
 interface ProfileFriendsAndSubsPropsType {
   itemStyles: any
-  // avatar: string
   title: "Друзья" | "Подписки"
-  // length: number | boolean
-  // friends?: IUserAbbr[] | undefined
-  // community?: ICommunityAbbr[] | undefined
   user: IUserFull | undefined
 }
 
@@ -40,21 +36,23 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
         {title === "Друзья"
           ? friends?.map(friend => {
 
-            return <ProfileFriendsAndSubsItem id={friend.id}
+            return <ProfileFriendsAndSubsItem key={friend.id}
+                                              id={friend.id}
                                               styles={itemStyles}
                                               avatar={friend.avatar || defaultAvatar}
                                               name={friend.firstName}
                                               title={title}
+
             />
           })
-          : communities?.splice(2).map(community => {
-            return <ProfileFriendsAndSubsItem
-              id={community.id}
-              name={community.name}
-              avatar={community.imageUrl || defaultCommunityAvatar}
-              styles={itemStyles}
-              description={community.description}
-              title={title}
+          : communities?.splice(0, 5).map(community => {
+            return <ProfileFriendsAndSubsItem key={community.id}
+                                              id={community.id}
+                                              name={community.name}
+                                              avatar={community.imageUrl || defaultCommunityAvatar}
+                                              styles={itemStyles}
+                                              description={community.description}
+                                              title={title}
             />
           })
         }

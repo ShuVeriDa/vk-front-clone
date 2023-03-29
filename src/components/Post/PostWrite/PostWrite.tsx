@@ -4,8 +4,13 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import styles from './PostWrite.module.scss'
 import defaultAvatar from '../../../assets/defaultAvatar.png'
+import {SubmitHandler, useForm} from "react-hook-form";
+import {ICreatePost} from "../../../types/post.interface";
+import {usePostsQuery} from "../../../react-query/usePostsQuery";
+import {useAuth} from "../../../hooks/useAuth";
 
-interface PostPropsType {
+interface IPostProps {
+  avatar?: string | undefined
 }
 
 const buttons = [
@@ -50,10 +55,15 @@ const buttons = [
   }
 ]
 
-export const PostWrite: FC<PostPropsType> = () => {
+export const PostWrite: FC<IPostProps> = ({avatar}) => {
+  const {user} = useAuth()
+
   const [show, setShow] = useState(false)
   const inputFileRef = useRef<HTMLInputElement>(null)
   const inputOutRef = useRef(null)
+
+  const {createPost} = usePostsQuery(user?.id)
+  const {mutate} = createPost
 
   const onClickShow = () => {
     setShow(true)
@@ -77,36 +87,55 @@ export const PostWrite: FC<PostPropsType> = () => {
     }
   }, [])
 
+  const {register, handleSubmit, formState, reset} = useForm<ICreatePost>({mode: "onChange"})
+
+  const onSubmit:SubmitHandler<ICreatePost> = async (data) => {
+    await mutate(data)
+    reset()
+  }
+
   return (
-    <div ref={inputOutRef} className={show ? `${styles.postWriteActive} ${styles.postWrite}` : styles.postWrite}>
-      <div className={show ? `${styles.imgAndInputActive} ${styles.imgAndInput}` : styles.imgAndInput}>
-        <div className={styles.profileImg}>
-          <img src={defaultAvatar} alt=""/>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div ref={inputOutRef} className={show ? `${styles.postWriteActive} ${styles.postWrite}` : styles.postWrite}>
+        <div className={show ? `${styles.imgAndInputActive} ${styles.imgAndInput}` : styles.imgAndInput}>
+          <div className={styles.profileImg}>
+            <img src={avatar || defaultAvatar} alt=""/>
+          </div>
+          <div className={styles.inputField}>
+            <TextareaAutosize {...register('text', {
+              required: "Text is required",
+              minLength: {
+                value: 1,
+                message: ''
+              }
+            })}
+                              onClick={onClickShow}
+                              placeholder="Что у вас нового?"
+            />
+          </div>
         </div>
-        <div className={styles.inputField}>
-          <TextareaAutosize onClick={onClickShow} placeholder="Что у вас нового?"/>
+
+        <div className={show ? `${styles.buttonComponentActive} ${styles.buttonComponent} ` : styles.buttonComponent}>
+          <div ref={inputOutRef}
+               className={show ? `${styles.fileInputsActive} ${styles.fileInputs}` : styles.fileInputs}>
+            {buttons.map((obj, i) => <div key={i}>
+              <button className={styles.btn} onClick={() => inputFileRef.current?.click()}>{obj.svg}</button>
+              <input ref={inputFileRef} type="file" accept={obj.type} hidden/>
+            </div>)}
+
+            <button className={styles.btn}>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.25 14.5c.42 0 .75.34.75.75v.1a.75.75 0 0 1-.75.65H4.75a.75.75 0 1 1 0-1.5h12.5Zm0-5a.75.75 0 1 1 0 1.5h-8.5a.75.75 0 0 1-.75-.75v-.1a.75.75 0 0 1 .75-.65h8.5Zm-9-6.5c.4 0 .75.34.75.75v.1a.75.75 0 0 1-.75.65h-2.5v5.75a.75.75 0 0 1-1.5 0V4.5h-2.5a.76.76 0 0 1-.74-.65L1 3.75c0-.42.34-.75.75-.75h6.5Zm9 1.5a.75.75 0 0 1 0 1.5h-5.5a.75.75 0 0 1-.75-.75v-.1a.75.75 0 0 1 .75-.65h5.5Z"
+                  fill="currentColor"></path>
+              </svg>
+            </button>
+          </div>
+          {show && <button className={styles.btnSubmit}>Опубликовать</button>}
+
         </div>
+
       </div>
-
-      <div className={show ? `${styles.buttonComponentActive} ${styles.buttonComponent} ` : styles.buttonComponent}>
-        <div ref={inputOutRef}  className={show ? `${styles.fileInputsActive} ${styles.fileInputs}` : styles.fileInputs}>
-          {buttons.map((obj, i) => <div key={i}>
-            <button className={styles.btn} onClick={() => inputFileRef.current?.click()}>{obj.svg}</button>
-            <input ref={inputFileRef} type="file" accept={obj.type} hidden/>
-          </div>)}
-
-          <button className={styles.btn}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M17.25 14.5c.42 0 .75.34.75.75v.1a.75.75 0 0 1-.75.65H4.75a.75.75 0 1 1 0-1.5h12.5Zm0-5a.75.75 0 1 1 0 1.5h-8.5a.75.75 0 0 1-.75-.75v-.1a.75.75 0 0 1 .75-.65h8.5Zm-9-6.5c.4 0 .75.34.75.75v.1a.75.75 0 0 1-.75.65h-2.5v5.75a.75.75 0 0 1-1.5 0V4.5h-2.5a.76.76 0 0 1-.74-.65L1 3.75c0-.42.34-.75.75-.75h6.5Zm9 1.5a.75.75 0 0 1 0 1.5h-5.5a.75.75 0 0 1-.75-.75v-.1a.75.75 0 0 1 .75-.65h5.5Z"
-                fill="currentColor"></path>
-            </svg>
-          </button>
-        </div>
-        {show && <button className={styles.btnSubmit}>Опубликовать</button>}
-
-      </div>
-
-    </div>
+    </form>
   );
 };

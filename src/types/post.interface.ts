@@ -19,3 +19,11 @@ export interface IPost {
   user: IUserAbbr,
   comments: ICommentsAbbr[]
 }
+
+export interface ICreatePost {
+  text: string,
+  imageUrl: string | null,
+  musicUrl: string | null,
+  videoUrl: string | null,
+  turnOffComments: boolean
+}
