@@ -50,7 +50,11 @@ export const Post: FC<IPostProps> = ({post, borderRadius}) => {
             </Link>
           </span>
         </div>
-        <PostMenu setShow={() => setShow(!show)} show={show} refOut={refOut} />
+        <PostMenu setShow={() => setShow(!show)}
+                  show={show}
+                  refOut={refOut}
+                  postId={post.id}
+        />
       </div>
       <div className={styles.postText}>
         <span className={styles.text}>{post.text}</span>
