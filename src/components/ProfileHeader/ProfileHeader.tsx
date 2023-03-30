@@ -2,20 +2,24 @@ import {FC} from 'react';
 
 import defaultAvatar from '../../assets/defaultAvatar.png'
 import styles from './ProfileHeader.module.scss'
-import {IUserState} from "../../redux/user/user.interface";
 import {IUserFull} from "../../types/user.interface";
 import {useAuth} from "../../hooks/useAuth";
+import {Link, useNavigate} from "react-router-dom";
 
 interface IProfileHeader {
   user: IUserFull | null | undefined
 }
 
 export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
+  const navigate = useNavigate()
   const fullName = `${user?.lastName} ${user?.firstName}`
 
   const {user: authUser} = useAuth()
-  const onChangeProfile = () => {}
-  const onAddFriend = () => {}
+  const onChangeProfile = () => {
+    navigate(`/edit`)
+  }
+  const onAddFriend = () => {
+  }
 
   const variableBtn = () => {
     authUser?.id === user?.id

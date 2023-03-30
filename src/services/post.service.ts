@@ -10,7 +10,7 @@ export const PostService =  {
   },
 
   createPost: async (data: ICreatePost) => {
-    const res = await instance.post<IPost[]>(getPostsUrl(''), data)
+    const res = await instance.post<IPost>(getPostsUrl(''), data)
     return res.data
   },
 

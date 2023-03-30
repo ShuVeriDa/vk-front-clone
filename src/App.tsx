@@ -5,6 +5,7 @@ import {Home} from "./pages/Home/Home";
 import {Auth} from "./pages/Auth/Auth";
 import {useAuth} from "./hooks/useAuth";
 import {lazy, Suspense, useEffect} from "react";
+import {ProfileEdit} from "./pages/ProfileEdit/ProfileEdit";
 
 const Profile = lazy(() => import("./pages/Profile/Profile")
     .then(({Profile}) => ({default: Profile}))
@@ -30,7 +31,9 @@ function App() {
             <Profile />
           </Suspense>
         }/>
+        <Route path={'/edit'} element={<ProfileEdit />}/>
       </Route>
+
     </Routes>
   );
 }

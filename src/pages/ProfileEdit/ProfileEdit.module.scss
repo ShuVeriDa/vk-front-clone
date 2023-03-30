@@ -1,0 +1,105 @@
+.wrapper {
+  width: 550px;
+  height: 100%;
+  padding: 5px 20px;
+  border-radius: 12px;
+  background: #fff;
+
+  .userInfo {
+    display: flex;
+    height: 72px;
+    padding: 16px 16px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #EDEEF0;
+
+    .img {
+      width: 72px;
+      height: 72px;
+      margin-right: 12px;
+
+      img {
+        width: inherit;
+        height: inherit;
+        border-radius: 100%;
+      }
+
+      &:hover button {
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.3);
+        visibility: visible;
+        border: 0;
+      }
+
+      button {
+        width: inherit;
+        height: inherit;
+        border-radius: 100%;
+        visibility: hidden;
+        position: relative;
+        bottom: 78px;
+      }
+    }
+
+    .info {
+      align-self: center;
+      flex-direction: column;
+
+      .fullName {
+        //height: 22px;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 22px;
+      }
+
+      .id {
+        font-size: 13px;
+        line-height: 16px;
+        color: #818c99;
+      }
+    }
+  }
+
+  .edit {
+    border-bottom: 1px solid #EDEEF0;
+    .inputs {
+      width: inherit;
+
+      .inputItem {
+        display: flex;
+        //align-content: center;
+        //align-items: center;
+
+        label {
+          text-align: right;
+          display: block;
+          width: 80px;
+          font-size: 13px;
+          line-height: 16px;
+          color: #626d7a;
+          padding: 6px 10px;
+        }
+
+        input {
+          font-size: 13px;
+          height: 30px;
+          width: 300px;
+          background: #fff;
+          color: #000;
+          padding: 5px 9px 7px;
+
+        }
+      }
+    }
+  }
+
+  .btn {
+    display: flex;
+    justify-content: center;
+    .btnSave{
+      width: 110px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

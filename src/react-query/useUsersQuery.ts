@@ -1,6 +1,7 @@
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {UserService} from "../services/user.service";
 import {useMemo} from "react";
+import {IUserUpdate} from "../types/user.interface";
 
 export const useUsersQuery = (userId: string | number) => {
   const getUserById = useQuery({
@@ -8,7 +9,17 @@ export const useUsersQuery = (userId: string | number) => {
     queryKey: ['user', userId],
   })
 
+  const client = useQueryClient()
+
+  const updateUser = useMutation({
+    mutationFn: (data: IUserUpdate) => UserService.updateUser(userId, data),
+    onSuccess: () => [
+      client.invalidateQueries({queryKey: ['user', userId]})
+    ]
+  })
+
   return useMemo(() => ({
     getUserById,
-  }), [getUserById])
+    updateUser
+  }), [getUserById, updateUser])
 }

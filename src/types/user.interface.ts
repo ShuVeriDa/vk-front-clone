@@ -8,7 +8,9 @@ export interface IUser {
   avatar: string
   status: string
   location: string
+  password?: string
   isAdmin?: boolean
+
 }
 
 export interface IUserFull extends IUser {
@@ -23,4 +25,13 @@ export interface IUserAbbr {
   firstName: string,
   lastName: string,
   avatar: string
+}
+
+export interface IUserUpdate {
+  email: string
+  firstName: string
+  lastName: string
+  avatar: string
+  status: string
+  location: string
 }
