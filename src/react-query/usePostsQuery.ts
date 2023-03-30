@@ -6,7 +6,7 @@ import {ICreatePost} from "../types/post.interface";
 export const usePostsQuery = (userId: string | number | undefined) => {
   const getMyPosts = useQuery({
     queryFn: () => PostService.fetchMyPosts(userId!),
-    queryKey: ['myPosts', 'allMyPosts']
+    queryKey: ['myPosts', 'allMyPosts', userId]
   })
 
   const client = useQueryClient()

@@ -2,9 +2,9 @@ import {FC} from 'react';
 
 import {ProfileHeader} from "../../components/ProfileHeader/ProfileHeader";
 import {ProfileWall} from "../../components/ProfileWall/ProfileWall";
-import {PostWrite} from "../../components/Post/PostWrite/PostWrite";
+import {PostWrite} from "../../components/Posts/PostWrite/PostWrite";
 import {CategoryPosts} from "../../components/CategoryPosts/CategoryPosts";
-import {Post} from "../../components/Post/Post";
+import {PostItem} from "../../components/Posts/PostItem/PostItem";
 import {ProfileFriendsAndSubs} from "../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubs";
 import styles from './Profile.module.scss'
 import stylesFriendsItem
@@ -14,6 +14,7 @@ import stylesSubsItem
 import {useParams} from "react-router-dom";
 import {usePostsQuery} from "../../react-query/usePostsQuery";
 import {useUsersQuery} from "../../react-query/useUsersQuery";
+import {PostsWrapper} from "../../components/Posts/PostsWrapper";
 
 interface ProfilePropsType {
 }
@@ -26,26 +27,11 @@ export const Profile: FC<ProfilePropsType> = () => {
   const {data: user, isSuccess: isSuccessUser} = getUserById
   const {data: posts, isSuccess: isSuccessPosts} = getMyPosts
 
-  const borderRadius = {
-    borderTopLeftRadius: "0",
-    borderTopRightRadius: "0",
-  }
-
   return (
     <div className={styles.profile}>
       <ProfileHeader user={isSuccessUser ? user : undefined}/>
       <div className={styles.profileMain}>
-        <div className={styles.profilePosts}>
-          <ProfileWall/>
-          <PostWrite avatar={user?.avatar}/>
-          <CategoryPosts/>
-          {isSuccessPosts && posts.map((post, i) => {
-            return <Post key={post.id}
-                         post={post}
-                         borderRadius={i === 0 ? borderRadius : undefined}
-            />
-          })}
-        </div>
+        <PostsWrapper posts={posts!} isSuccessPosts={isSuccessPosts} user={user!} />
         <div className={styles.rightSide}>
           <ProfileFriendsAndSubs itemStyles={stylesFriendsItem}
                                  title={"Друзья"}

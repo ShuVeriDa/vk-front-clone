@@ -89,7 +89,7 @@ export const PostWrite: FC<IPostProps> = ({avatar}) => {
 
   const {register, handleSubmit, formState, reset} = useForm<ICreatePost>({mode: "onChange"})
 
-  const onSubmit:SubmitHandler<ICreatePost> = async (data) => {
+  const onSubmit: SubmitHandler<ICreatePost> = async (data) => {
     await mutate(data)
     reset()
   }
@@ -102,15 +102,16 @@ export const PostWrite: FC<IPostProps> = ({avatar}) => {
             <img src={avatar || defaultAvatar} alt=""/>
           </div>
           <div className={styles.inputField}>
-            <TextareaAutosize {...register('text', {
-              required: "Text is required",
-              minLength: {
-                value: 1,
-                message: ''
-              }
-            })}
-                              onClick={onClickShow}
-                              placeholder="Что у вас нового?"
+            <TextareaAutosize
+              {...register('text', {
+                required: "Text is required",
+                minLength: {
+                  value: 1,
+                  message: ''
+                }
+              })}
+              onClick={onClickShow}
+              placeholder="Что у вас нового?"
             />
           </div>
         </div>

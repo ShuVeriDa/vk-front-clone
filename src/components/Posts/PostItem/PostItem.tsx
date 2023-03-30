@@ -1,12 +1,12 @@
 import {FC, useEffect, useRef, useState} from 'react';
 
-import styles from './Post.module.scss'
-import defaultAvatar from '../../assets/defaultAvatar.png'
+import styles from './PostItem.module.scss'
+import defaultAvatar from '../../../assets/defaultAvatar.png'
 import {Link, NavLink} from "react-router-dom";
-import {IPost} from "../../types/post.interface";
+import {IPost} from "../../../types/post.interface";
 import ReactTimeago from "react-timeago";
-import {CommentPostSVG, FavoritePostSVG, RepostPostSVG, ShowPostMenuSVG, ViewsPostSVG} from "../SvgComponent";
-import {PostMenu} from "./PostMenu/PostMenu";
+import {CommentPostSVG, FavoritePostSVG, RepostPostSVG, ShowPostMenuSVG, ViewsPostSVG} from "../../SvgComponent";
+import {PostMenu} from "../PostMenu/PostMenu";
 
 
 
@@ -15,7 +15,7 @@ interface IPostProps {
   borderRadius?: object
 }
 
-export const Post: FC<IPostProps> = ({post, borderRadius}) => {
+export const PostItem: FC<IPostProps> = ({post, borderRadius}) => {
   const refOut = useRef(null)
 
   const [show, setShow] = useState(false)
@@ -57,6 +57,7 @@ export const Post: FC<IPostProps> = ({post, borderRadius}) => {
         />
       </div>
       <div className={styles.postText}>
+
         <span className={styles.text}>{post.text}</span>
       </div>
       <div className={styles.bottom}>

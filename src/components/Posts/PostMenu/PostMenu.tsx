@@ -1,5 +1,5 @@
 import {FC, MutableRefObject} from 'react';
-import styles from "../Post.module.scss";
+import styles from "../PostItem/PostItem.module.scss";
 import {ShowPostMenuSVG} from "../../SvgComponent";
 import {usePostsQuery} from "../../../react-query/usePostsQuery";
 import {useAuth} from "../../../hooks/useAuth";

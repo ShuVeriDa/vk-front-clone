@@ -5,7 +5,7 @@ import {useMemo} from "react";
 export const useUsersQuery = (userId: string | number) => {
   const getUserById = useQuery({
     queryFn: () => UserService.fetchUser(userId!),
-    queryKey: ['user', userId]
+    queryKey: ['user', userId],
   })
 
   return useMemo(() => ({
