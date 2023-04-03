@@ -17,6 +17,7 @@ interface IPostProps {
 
 export const PostItem: FC<IPostProps> = ({post, borderRadius}) => {
   const refOut = useRef(null)
+  const avatar = `${process.env.REACT_APP_SERVER_URL}${post.user.avatar}`
 
   const [show, setShow] = useState(false)
 
@@ -38,7 +39,7 @@ export const PostItem: FC<IPostProps> = ({post, borderRadius}) => {
     <div className={styles.post} style={borderRadius}>
       <div className={styles.header}>
         <div className={styles.avatar}>
-          <img src={post.user.avatar || defaultAvatar} alt=""/>
+          <img src={avatar || defaultAvatar} alt=""/>
         </div>
         <div className={styles.nameAndDate}>
           <span className={styles.name}>

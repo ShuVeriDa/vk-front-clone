@@ -45,7 +45,7 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
 
             />
           })
-          : communities?.splice(0, 5).map(community => {
+          : communities?.map(community => {
             return <ProfileFriendsAndSubsItem key={community.id}
                                               id={community.id}
                                               name={community.name}
@@ -54,7 +54,7 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
                                               description={community.description}
                                               title={title}
             />
-          })
+          }).splice(0, 5)
         }
       </div>
     </div>

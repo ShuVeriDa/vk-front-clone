@@ -13,6 +13,7 @@ interface IPostsProps {
 }
 
 export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts}) => {
+  const avatar = `${process.env.REACT_APP_SERVER_URL}${user?.avatar}`
   const borderRadius = {
     borderTopLeftRadius: "0",
     borderTopRightRadius: "0",
@@ -21,7 +22,7 @@ export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts}) => 
   return (
     <div className={styles.profilePosts}>
       <ProfileWall/>
-      <PostWrite avatar={user?.avatar}/>
+      <PostWrite avatar={avatar}/>
       <CategoryPosts/>
       {isSuccessPosts && posts.map((post, i) => {
         return <PostItem key={post.id}

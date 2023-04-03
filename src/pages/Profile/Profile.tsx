@@ -1,10 +1,6 @@
 import {FC} from 'react';
 
 import {ProfileHeader} from "../../components/ProfileHeader/ProfileHeader";
-import {ProfileWall} from "../../components/ProfileWall/ProfileWall";
-import {PostWrite} from "../../components/Posts/PostWrite/PostWrite";
-import {CategoryPosts} from "../../components/CategoryPosts/CategoryPosts";
-import {PostItem} from "../../components/Posts/PostItem/PostItem";
 import {ProfileFriendsAndSubs} from "../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubs";
 import styles from './Profile.module.scss'
 import stylesFriendsItem
@@ -26,6 +22,8 @@ export const Profile: FC<ProfilePropsType> = () => {
   const {getUserById} = useUsersQuery(id!)
   const {data: user, isSuccess: isSuccessUser} = getUserById
   const {data: posts, isSuccess: isSuccessPosts} = getMyPosts
+
+  console.log("user: ", user)
 
   return (
     <div className={styles.profile}>

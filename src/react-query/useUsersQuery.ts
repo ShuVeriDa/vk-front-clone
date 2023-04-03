@@ -6,7 +6,7 @@ import {IUserUpdate} from "../types/user.interface";
 export const useUsersQuery = (userId: string | number) => {
   const getUserById = useQuery({
     queryFn: () => UserService.fetchUser(userId!),
-    queryKey: ['user', userId],
+    queryKey: ['user', 'one', userId],
   })
 
   const client = useQueryClient()

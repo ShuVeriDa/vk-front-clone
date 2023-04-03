@@ -15,6 +15,8 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   const fullName = `${user?.lastName} ${user?.firstName}`
 
   const {user: authUser} = useAuth()
+
+  const avatar = `${process.env.REACT_APP_SERVER_URL}${user?.avatar}`
   const onChangeProfile = () => {
     navigate(`/edit`)
   }
@@ -41,7 +43,7 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
       </div>
       <div className={styles.profileInfo}>
         <div className={styles.profilePhoto}>
-          <img src={user?.avatar || defaultAvatar} alt=""/>
+          <img src={avatar || defaultAvatar} alt=""/>
         </div>
         <div className={styles.profileDetails}>
           <div className={styles.profileNameStatusOthers}>
