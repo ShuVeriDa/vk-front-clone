@@ -27,3 +27,11 @@ export interface ICreatePost {
   videoUrl: string | null,
   turnOffComments: boolean
 }
+
+export interface IUpdatePost {
+  text?: string,
+  imageUrl?: string | null,
+  musicUrl?: string | null,
+  videoUrl?: string | null,
+  turnOffComments?: boolean
+}

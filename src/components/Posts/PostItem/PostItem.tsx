@@ -1,25 +1,32 @@
-import {FC, useEffect, useRef, useState} from 'react';
+import {ChangeEvent, FC, useEffect, useRef, useState} from 'react';
 
 import styles from './PostItem.module.scss'
 import defaultAvatar from '../../../assets/defaultAvatar.png'
 import {Link, NavLink} from "react-router-dom";
-import {IPost} from "../../../types/post.interface";
+import {ICreatePost, IPost, IUpdatePost} from "../../../types/post.interface";
 import ReactTimeago from "react-timeago";
 import {CommentPostSVG, FavoritePostSVG, RepostPostSVG, ShowPostMenuSVG, ViewsPostSVG} from "../../SvgComponent";
 import {PostMenu} from "../PostMenu/PostMenu";
-
+import {IUserFull} from "../../../types/user.interface";
+import TextareaAutosize from "react-textarea-autosize";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {usePostsQuery} from "../../../react-query/usePostsQuery";
+import {PostUpdate} from "../PostUpdate/PostUpdate";
 
 
 interface IPostProps {
   post: IPost
   borderRadius?: object
+  // user: IUserFull
+  authorizedUserId: string | number
 }
 
-export const PostItem: FC<IPostProps> = ({post, borderRadius}) => {
+export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId}) => {
   const refOut = useRef(null)
   const avatar = `${process.env.REACT_APP_SERVER_URL}${post.user.avatar}`
 
   const [show, setShow] = useState(false)
+  const [isEdit, setIsEdit] = useState(false)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -52,30 +59,41 @@ export const PostItem: FC<IPostProps> = ({post, borderRadius}) => {
           </span>
         </div>
         <PostMenu setShow={() => setShow(!show)}
+                  isEdit={isEdit}
+                  setIsEdit={setIsEdit}
                   show={show}
                   refOut={refOut}
                   postId={post.id}
         />
       </div>
       <div className={styles.postText}>
-
-        <span className={styles.text}>{post.text}</span>
+        {isEdit && authorizedUserId === post.user.id
+          ? <PostUpdate post={post}
+                        setIsEdit={setIsEdit}
+                        authorizedUserId={authorizedUserId}
+          />
+          : <span className={styles.text}>{post.text}</span>
+        }
       </div>
       <div className={styles.bottom}>
         <div className={styles.buttonComponent}>
           <button className={styles.bottomBtn}>
-            <FavoritePostSVG onClick={() => {}} />
+            <FavoritePostSVG onClick={() => {
+            }}/>
           </button>
           <button className={styles.bottomBtn}>
-            <CommentPostSVG onClick={() => {} } />
+            <CommentPostSVG onClick={() => {
+            }}/>
           </button>
           <button className={styles.bottomBtn}>
-           <RepostPostSVG onClick={() => {}} />
+            <RepostPostSVG onClick={() => {
+            }}/>
           </button>
         </div>
         <div className={styles.viewsComponent}>
           <span>
-            <ViewsPostSVG onClick={() => {}} />
+            <ViewsPostSVG onClick={() => {
+            }}/>
           </span>
           <span>{post.views}</span>
         </div>

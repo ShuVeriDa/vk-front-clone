@@ -11,9 +11,11 @@ interface IPostMenuProps {
   show: boolean
   setShow: () => void
   postId: string
+  setIsEdit: (edit: boolean) => void
+  isEdit: boolean
 }
 
-export const PostMenu: FC<IPostMenuProps> = ({refOut, show, setShow, postId}) => {
+export const PostMenu: FC<IPostMenuProps> = ({refOut, show, setShow, postId, setIsEdit, isEdit}) => {
   const {user} = useAuth()
   const {deletePost} = usePostsQuery(user?.id)
   const {mutate: remove} = deletePost
@@ -25,6 +27,11 @@ export const PostMenu: FC<IPostMenuProps> = ({refOut, show, setShow, postId}) =>
   const currentElem = (elem: number) => {
     if(elem === 0) {
       onDeleteClick()
+    }
+
+    if(elem === 1) {
+      setIsEdit(!isEdit)
+      setShow()
     }
   }
 

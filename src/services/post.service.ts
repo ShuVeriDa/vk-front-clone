@@ -1,4 +1,4 @@
-import {ICreatePost, IPost} from "../types/post.interface";
+import {ICreatePost, IPost, IUpdatePost} from "../types/post.interface";
 import {instance} from "../api/api.interceptor";
 import {getPostsUrl} from "../api/api.config";
 
@@ -11,6 +11,12 @@ export const PostService =  {
 
   createPost: async (data: ICreatePost) => {
     const res = await instance.post<IPost>(getPostsUrl(''), data)
+    return res.data
+  },
+
+  updatePost: async (postId: string, data: IUpdatePost) => {
+    const res = await instance.put<IPost>(getPostsUrl(`/${postId}`), data)
+
     return res.data
   },
 

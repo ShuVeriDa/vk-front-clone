@@ -1,9 +1,9 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {PostService} from "../services/post.service";
 import {useMemo} from "react";
-import {ICreatePost} from "../types/post.interface";
+import {ICreatePost, IUpdatePost} from "../types/post.interface";
 
-export const usePostsQuery = (userId: string | number | undefined) => {
+export const usePostsQuery = (userId: string | number | undefined, postId?: string) => {
   const getMyPosts = useQuery({
     queryFn: () => PostService.fetchMyPosts(userId!),
     queryKey: ['myPosts', 'allMyPosts', userId]
@@ -13,6 +13,13 @@ export const usePostsQuery = (userId: string | number | undefined) => {
 
   const createPost = useMutation({
     mutationFn: (data:ICreatePost) => PostService.createPost(data),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['myPosts', 'allMyPosts']})
+    }
+  })
+
+  const updatePost = useMutation({
+    mutationFn: (data:IUpdatePost) => PostService.updatePost(postId!, data),
     onSuccess: () => {
       client.invalidateQueries({queryKey: ['myPosts', 'allMyPosts']})
     }
@@ -29,6 +36,7 @@ export const usePostsQuery = (userId: string | number | undefined) => {
   return useMemo(() => ({
     getMyPosts,
     createPost,
+    updatePost,
     deletePost,
-  }), [getMyPosts, createPost, deletePost])
+  }), [getMyPosts, createPost, deletePost, updatePost])
 }

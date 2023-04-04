@@ -6,6 +6,7 @@ import {CategoryPosts} from "../CategoryPosts/CategoryPosts";
 import {PostItem} from "./PostItem/PostItem";
 import {IUserFull} from "../../types/user.interface";
 import {IPost} from "../../types/post.interface";
+import {useAuth} from "../../hooks/useAuth";
 interface IPostsProps {
   user: IUserFull
   posts: IPost[]
@@ -13,6 +14,7 @@ interface IPostsProps {
 }
 
 export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts}) => {
+  const {user: authorizedUser} = useAuth()
   const avatar = `${process.env.REACT_APP_SERVER_URL}${user?.avatar}`
   const borderRadius = {
     borderTopLeftRadius: "0",
@@ -28,6 +30,8 @@ export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts}) => 
         return <PostItem key={post.id}
                          post={post}
                          borderRadius={i === 0 ? borderRadius : undefined}
+                         // user={user}
+                         authorizedUserId={authorizedUser?.id!}
         />
       })}
     </div>

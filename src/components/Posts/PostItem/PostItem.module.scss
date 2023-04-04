@@ -1,5 +1,5 @@
 .post {
-  min-height: 159px;
+  min-height: 80px;
   border: 1px solid #e7e8ec;
   border-radius: 12px;
   background: #ffffff;
@@ -127,12 +127,68 @@
   }
 
   .postText {
-    height: 22px;
+    min-height: 22px;
     width: 510px;
     font-size: 13px;
     line-height: 14px;
     text-align: left;
     padding: 8px 20px 0 20px;
+
+    .editText {
+      position: relative;
+      min-height: 80px;
+
+      .textArea {
+        resize: none;
+        box-sizing: border-box;
+        outline: none;
+        display: block;
+        width: 510px;
+        min-height: 48px;
+        border: 1px solid #dce1e6;
+        border-radius: 8px;
+        padding: 5px 21px 7px 9px;
+        font-size: 13px;
+        line-height: 16px;
+      }
+
+      .btnDiv {
+        position: absolute;
+        right: 0px;
+      }
+
+      .btn {
+        min-width: 78px;
+        height: 30px;
+        padding: 0 16px;
+        font-size: 13px;
+        outline: none;
+        border: none;
+        border-radius: 7px;
+        color: #245385;
+        margin: 8px 0;
+
+        &:hover {
+          background: #e5ebf1;
+          color: #346297;
+          cursor: pointer;
+        }
+
+        &:nth-of-type(1) {
+          margin: 0 10px 0 0;
+        }
+      }
+
+      .btnSave {
+        background: #447bba;
+        color: #fff;
+
+        &:hover {
+          background: #5a85c4;
+          color: #fff;
+        }
+      }
+    }
 
     .text {
       height: 19px;
