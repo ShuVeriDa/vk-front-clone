@@ -16,9 +16,11 @@ export interface IUser {
 export interface IUserFull extends IUser {
   createdAt: string
   updatedAt: string
-  friends: IUserAbbr[]
+  friends: IFriend[]
   communities: ICommunityAbbr[]
 }
+
+export interface IFriend extends IUserAbbr {}
 
 export interface IUserAbbr {
   id: number | string,

@@ -1,0 +1,51 @@
+.friendItem {
+  min-height: 80px;
+  padding: 12px 0;
+  width: 512px;
+  display: flex;
+  border-top: 1px solid #dce1e6;
+
+  &:nth-child(3) {
+    border-top: none;
+  }
+
+  .avatar {
+    height: 80px;
+    width: 80px;
+
+    img {
+      height: inherit;
+      width: inherit;
+      border-radius: 100%;
+    }
+  }
+
+  .info {
+    width: 100%;
+    padding: 12px 0;
+    margin-left: 9px;
+    font-size: 13px;
+    line-height: 15px;
+    display: flex;
+    flex-direction: column;
+    span {
+      margin-bottom: 9px;
+      .fullName {
+        color: #2a5885;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .sendMessage {
+        color: #2a5885;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+
+
+  }
+}

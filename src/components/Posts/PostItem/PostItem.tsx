@@ -1,17 +1,14 @@
-import {ChangeEvent, FC, useEffect, useRef, useState} from 'react';
+import {FC, useEffect, useRef, useState} from 'react';
 
 import styles from './PostItem.module.scss'
 import defaultAvatar from '../../../assets/defaultAvatar.png'
-import {Link, NavLink} from "react-router-dom";
-import {ICreatePost, IPost, IUpdatePost} from "../../../types/post.interface";
+import {Link} from "react-router-dom";
+import {IPost} from "../../../types/post.interface";
 import ReactTimeago from "react-timeago";
-import {CommentPostSVG, FavoritePostSVG, RepostPostSVG, ShowPostMenuSVG, ViewsPostSVG} from "../../SvgComponent";
+import {CommentPostSVG, FavoritePostSVG, RepostPostSVG, ViewsPostSVG} from "../../SvgComponent";
 import {PostMenu} from "../PostMenu/PostMenu";
-import {IUserFull} from "../../../types/user.interface";
-import TextareaAutosize from "react-textarea-autosize";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {usePostsQuery} from "../../../react-query/usePostsQuery";
 import {PostUpdate} from "../PostUpdate/PostUpdate";
+import {avatarUrl} from "../../../utils/avatarUrl";
 
 
 interface IPostProps {
@@ -23,7 +20,7 @@ interface IPostProps {
 
 export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId}) => {
   const refOut = useRef(null)
-  const avatar = `${process.env.REACT_APP_SERVER_URL}${post.user.avatar}`
+  const avatar = avatarUrl(post.user.avatar) || defaultAvatar
 
   const [show, setShow] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
@@ -46,7 +43,7 @@ export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId})
     <div className={styles.post} style={borderRadius}>
       <div className={styles.header}>
         <div className={styles.avatar}>
-          <img src={avatar || defaultAvatar} alt=""/>
+          <img src={avatar} alt=""/>
         </div>
         <div className={styles.nameAndDate}>
           <span className={styles.name}>
@@ -72,7 +69,12 @@ export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId})
                         setIsEdit={setIsEdit}
                         authorizedUserId={authorizedUserId}
           />
-          : <span className={styles.text}>{post.text}</span>
+          : <>
+            <span className={styles.text}>{post.text}</span>
+            <p>{post.user.firstName}</p>
+
+            {/*{post.repost ? <PostItem post={post.repost} authorizedUserId={authorizedUserId} /> : null}*/}
+          </>
         }
       </div>
       <div className={styles.bottom}>

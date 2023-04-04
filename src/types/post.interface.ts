@@ -18,6 +18,7 @@ export interface IPost {
   community: ICommunityAbbr | null,
   user: IUserAbbr,
   comments: ICommentsAbbr[]
+  repost?: IPost | null
 }
 
 export interface ICreatePost {

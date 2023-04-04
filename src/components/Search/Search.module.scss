@@ -1,0 +1,35 @@
+.search {
+  width: 510px;
+  min-height: 34px;
+  padding: 15px 0;
+  box-sizing: border-box;
+  display: flex;
+
+  input {
+    width: 89%;
+    height: 32px;
+    border: 1px solid #d3d9de;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 8px 8px 8px 12px;
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  button {
+    height: 32px;
+    width: 60px;
+    color: #99a2ad;
+    border: 1px solid #d3d9de;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    background: #e5ebf1;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

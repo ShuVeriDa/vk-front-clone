@@ -6,12 +6,14 @@ import styles from './Header.module.scss'
 import {NavLink} from "react-router-dom";
 import {useAuth} from "../../hooks/useAuth";
 import {useAppSelector} from "../../redux/store";
+import {avatarUrl} from "../../utils/avatarUrl";
 
 interface HeaderPropsType {
 }
 
 export const Header: FC<HeaderPropsType> = () => {
   const {user} = useAuth()
+  const avatar = avatarUrl(user?.avatar!) || defaultAvatar
 
   const [shiftDown, setShiftDown] = useState(false)
   return (
@@ -58,7 +60,7 @@ export const Header: FC<HeaderPropsType> = () => {
           <input placeholder={"Поиск"} className={styles.searchInput} type="text"/>
         </div>
         <div className={styles.profile}>
-          <img src={user?.avatar} alt=""/>
+          <img src={avatar} alt=""/>
           <svg fill="none" height="8" viewBox="0 0 12 8" width="12" xmlns="http://www.w3.org/2000/svg" ><path clipRule="evenodd" d="M2.16 2.3a.75.75 0 0 1 1.05-.14L6 4.3l2.8-2.15a.75.75 0 1 1 .9 1.19l-3.24 2.5c-.27.2-.65.2-.92 0L2.3 3.35a.75.75 0 0 1-.13-1.05z" fill="currentColor" fillRule="evenodd"></path></svg>
         </div>
       </div>

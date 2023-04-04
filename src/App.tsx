@@ -6,6 +6,7 @@ import {Auth} from "./pages/Auth/Auth";
 import {useAuth} from "./hooks/useAuth";
 import {lazy, Suspense, useEffect} from "react";
 import {ProfileEdit} from "./pages/ProfileEdit/ProfileEdit";
+import {Friends} from "./pages/Friends/Friends";
 
 const Profile = lazy(() => import("./pages/Profile/Profile")
     .then(({Profile}) => ({default: Profile}))
@@ -31,6 +32,7 @@ function App() {
             <Profile />
           </Suspense>
         }/>
+        <Route path={'/friends'} element={<Friends />}/>
         <Route path={'/edit'} element={<ProfileEdit />}/>
       </Route>
 
