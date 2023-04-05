@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC, useCallback, useState} from 'react';
 import styles from './Friends.module.scss';
 import {Link} from "react-router-dom";
 import {FriendItem} from "../../components/Friends/FriendItem/FriendItem";
@@ -6,6 +6,7 @@ import {Search} from "../../components/Search/Search";
 import {useFriendsQuery} from "../../react-query/useFriendsQuery";
 import {avatarUrl} from "../../utils/avatarUrl";
 import {useAuth} from "../../hooks/useAuth";
+import debounce from "lodash.debounce";
 
 interface IFriendsProps {
 }
@@ -17,6 +18,12 @@ export const Friends: FC<IFriendsProps> = () => {
 
   const {searchFriends} = useFriendsQuery({firstname: firstName, lastname: lastName})
   const {data, isSuccess} = searchFriends
+
+  const updateSearch = useCallback(
+    debounce((str: string) => {
+      setFirstName(str)
+    }, 350), []
+  )
 
 
   return (
@@ -35,7 +42,12 @@ export const Friends: FC<IFriendsProps> = () => {
             </li>
           </ul>
         </div>
-        <Search firstName={firstName} setFirstName={setFirstName}/>
+        <Search firstName={firstName}
+                lastName={lastName}
+                updateSearch={updateSearch}
+                setFirstName={setFirstName}
+                setLastName={setLastName}
+        />
         <>
           {isSuccess && data.friends.map(friend => {
               return <FriendItem key={friend.id}
