@@ -23,8 +23,16 @@ export const FriendItem: FC<IFriendItemProps> = (
     authorizedUserId, isAnotherUsers
   }
 ) => {
+  const {addFriend, removeFriend} = useFriendsQuery()
+  const {mutate: remove} = removeFriend
+  const {mutate: add} = addFriend
+
   const avatar = user.avatar !== null ? avatarUrl(user.avatar) : defaultAvatar
   const fullName = `${user.firstName} ${user.lastName}`
+
+  const onClick = () => {
+    isFriend ? remove(user.id) : add(user.id)
+  }
 
   return (
     <div className={styles.friendItem}>
@@ -42,6 +50,7 @@ export const FriendItem: FC<IFriendItemProps> = (
         <div className={styles.addFriend}>
           <SubscribeBtn title={isFriend ? 'Вы подписаны' : 'Добавить в друзья'}
                         classes={isFriend ? styles.removeFriend : ''}
+                        onChange={onClick}
           />
         </div>
       }
