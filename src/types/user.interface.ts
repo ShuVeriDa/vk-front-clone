@@ -1,4 +1,5 @@
 import {ICommunityAbbr} from "./community.interface";
+import {IFriend} from "./friend.interface";
 
 export interface IUser {
   id: string | number
@@ -19,8 +20,6 @@ export interface IUserFull extends IUser {
   friends: IFriend[]
   communities: ICommunityAbbr[]
 }
-
-export interface IFriend extends IUserAbbr {}
 
 export interface IUserAbbr {
   id: number | string,

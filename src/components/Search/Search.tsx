@@ -1,12 +1,14 @@
 import {FC} from 'react';
 import styles from './Search.module.scss';
 interface ISearchProps {
+  firstName: string
+  setFirstName: (firstName: string) => void
 }
 
-export const Search: FC<ISearchProps> = () => {
+export const Search: FC<ISearchProps> = ({firstName, setFirstName}) => {
   return (
     <div className={styles.search}>
-      <input type="text" placeholder={"Поиск друзей"}/>
+      <input type="text" placeholder={"Поиск друзей"} value={firstName} onChange={(e) => setFirstName(e.currentTarget.value)}/>
       <button>
         <svg
           enableBackground="new 0 0 32 32"

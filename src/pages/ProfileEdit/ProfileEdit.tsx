@@ -54,8 +54,6 @@ export const ProfileEdit: FC<IProfileUpdateProps> = () => {
     navigate(`/profile/${user?.id}`)
     reset()
   }
-  console.log(event.firstName)
-  // console.log(user)
 
 
   return (
