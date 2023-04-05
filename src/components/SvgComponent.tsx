@@ -53,7 +53,7 @@ export const CommentPostSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
 };
 
 export const RepostPostSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
-  return  <svg onClick={onClick} height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  return <svg onClick={onClick} height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
     <g fill="none"
        fillRule="evenodd">
       <path
@@ -66,13 +66,44 @@ export const RepostPostSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
 }
 
 export const ViewsPostSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
-  return  <svg onClick={onClick} fill="none" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><g
-    fill="currentColor"><path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path><path clipRule="evenodd"
-                                                                                           d="M15.5 8c0-1-3-5-7.5-5S.5 7 .5 8s3 5 7.5 5 7.5-4 7.5-5zm-4 0a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"
-                                                                                           fillRule="evenodd"></path></g>
+  return <svg onClick={onClick} fill="none" height="16" viewBox="0 0 16 16" width="16"
+              xmlns="http://www.w3.org/2000/svg">
+    <g
+      fill="currentColor">
+      <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
+      <path clipRule="evenodd"
+            d="M15.5 8c0-1-3-5-7.5-5S.5 7 .5 8s3 5 7.5 5 7.5-4 7.5-5zm-4 0a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"
+            fillRule="evenodd"></path>
+    </g>
   </svg>
 }
 
-export const SVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
-  return <></>
+export const SearchLoaderSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
+  return <>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{
+      margin: "auto",
+      background: "none",
+      display: "block",
+      shapeRendering: "auto"}} width="20px" height="20px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+      <circle cx="50" cy="50" fill="none" stroke="#818c99" strokeWidth="10" r="35" strokeDasharray="164.93361431346415 56.97787143782138">
+        <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.8474576271186441s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+      </circle>
+      </svg>
+  </>
 }
+
+export const ClearSearchValueSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
+  return (
+    <svg className={styles}
+         onClick={onClick}
+         height="22"
+         viewBox="0 0 48 48"
+         width="22"
+         xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/>
+      <path d="M0 0h48v48h-48z" fill="none"/>
+    </svg>
+  );
+};

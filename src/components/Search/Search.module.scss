@@ -4,6 +4,7 @@
   padding: 15px 0;
   box-sizing: border-box;
   display: flex;
+  position: relative;
 
   input {
     width: 89%;
@@ -26,10 +27,35 @@
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
     background: #e5ebf1;
+    
+    &:hover {
+      cursor: pointer;
+    }
 
     svg {
       width: 18px;
       height: 18px;
+    }
+  }
+  
+  .spinner {
+    position: absolute;
+    top: 21px;
+    left: 425px;
+    z-index: 1;
+  }
+
+  .clear {
+    position: absolute;
+    top: 21px;
+    left: 425px;
+    z-index: 3;
+
+    &:hover {
+      cursor: pointer;
+    }
+    svg {
+      fill: #818c99
     }
   }
 }

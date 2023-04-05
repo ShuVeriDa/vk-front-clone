@@ -64,6 +64,25 @@
         }
       }
     }
+
+    .notFound {
+      box-sizing: border-box;
+      height: 22px;
+      width: 100%;
+      padding: 30px 50px;
+      text-align: center;
+
+      .info {
+
+        font-size: 14px;
+        line-height: 22px;
+        color: #818c99;
+
+        .text {
+          font-weight: 700;
+        }
+      }
+    }
   }
 
   .foundedUsers {

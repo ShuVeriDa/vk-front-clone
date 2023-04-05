@@ -1,5 +1,6 @@
 import {ChangeEvent, FC, useState} from 'react';
 import styles from './Search.module.scss';
+import {ClearSearchValueSVG, SearchLoaderSVG} from "../SvgComponent";
 
 interface ISearchProps {
   firstName: string
@@ -7,9 +8,10 @@ interface ISearchProps {
   lastName: string
   setLastName: (lastName: string) => void
   updateSearch: (str: string) => void
+  status: "error" | "success" | "loading"
 }
 
-export const Search: FC<ISearchProps> = ({firstName, setFirstName, setLastName, lastName, updateSearch}) => {
+export const Search: FC<ISearchProps> = ({firstName, setFirstName, setLastName, lastName, updateSearch, status}) => {
 
   const [searchName, setSearchName] = useState('')
 
@@ -19,9 +21,15 @@ export const Search: FC<ISearchProps> = ({firstName, setFirstName, setLastName, 
     setSearchName(e.currentTarget.value)
   }
 
+  const onClear = () => {
+    updateSearch('')
+    setSearchName('')
+  }
+
   return (
     <div className={styles.search}>
       <input type="text" placeholder={"Поиск друзей"} value={searchName} onChange={onChange}/>
+
       <button>
         <svg
           enableBackground="new 0 0 32 32"
@@ -55,6 +63,10 @@ export const Search: FC<ISearchProps> = ({firstName, setFirstName, setLastName, 
           />
         </svg>
       </button>
+      {status === 'loading'
+        ? <div className={styles.spinner}><SearchLoaderSVG/></div>
+        : searchName && <div className={styles.clear}><ClearSearchValueSVG onClick={onClear}/> </div>
+      }
     </div>
   );
 };
