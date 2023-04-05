@@ -22,14 +22,21 @@
 
   .info {
     width: 100%;
-    padding: 12px 0;
-    margin-left: 9px;
+    padding: 8px 0;
+    margin-left: 15px;
     font-size: 13px;
     line-height: 15px;
     display: flex;
     flex-direction: column;
+
+    .location {
+      font-size: 13px;
+      color: #626d7a;
+    }
+
     span {
       margin-bottom: 9px;
+
       .fullName {
         color: #2a5885;
         text-decoration: none;
@@ -39,13 +46,25 @@
       .sendMessage {
         color: #2a5885;
         text-decoration: none;
+
         &:hover {
           text-decoration: underline;
         }
       }
     }
+  }
 
+  .addFriend {
+    position: relative;
+    top: 14px;
+    .removeFriend {
+      button {
+        background: #dae2ea;
+        min-width: 118px;
+        padding: 8px 0;
+        color: #224b71;
+      }
 
-
+    }
   }
 }

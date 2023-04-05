@@ -26,6 +26,7 @@ export interface IUserAbbr {
   firstName: string,
   lastName: string,
   avatar: string
+  location?: string
 }
 
 export interface IUserUpdate {

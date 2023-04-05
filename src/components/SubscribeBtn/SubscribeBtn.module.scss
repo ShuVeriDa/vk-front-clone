@@ -1,0 +1,21 @@
+.btn {
+  button {
+    font-size: 12.5px;
+    line-height: 11px;
+    text-align: center;
+    vertical-align: top;
+    background: #447bba;
+    height: 26px;
+    min-width: 144px;
+    padding: 7px 16px;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+
+    &:hover {
+      background: #6597d2;
+      cursor: pointer;
+    }
+  }
+}

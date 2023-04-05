@@ -5,11 +5,13 @@ import {FriendItem} from "../../components/Friends/FriendItem/FriendItem";
 import {Search} from "../../components/Search/Search";
 import {useFriendsQuery} from "../../react-query/useFriendsQuery";
 import {avatarUrl} from "../../utils/avatarUrl";
+import {useAuth} from "../../hooks/useAuth";
 
 interface IFriendsProps {
 }
 
 export const Friends: FC<IFriendsProps> = () => {
+  const {user: authorizedUser} = useAuth()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
 
@@ -35,7 +37,15 @@ export const Friends: FC<IFriendsProps> = () => {
         </div>
         <Search firstName={firstName} setFirstName={setFirstName}/>
         <>
-          {isSuccess && data.friends.map(friend => <FriendItem key={friend.id} friend={friend!}/>)}
+          {isSuccess && data.friends.map(friend => {
+              return <FriendItem key={friend.id}
+                                 user={friend}
+                                 isFriend
+                                 authorizedUserId={authorizedUser?.id!}
+              />
+            }
+          )
+          }
         </>
       </div>
 
@@ -44,9 +54,18 @@ export const Friends: FC<IFriendsProps> = () => {
           <span>Другие пользователи</span>
         </div>
         <>
-          {isSuccess && data.users.map(user => <FriendItem key={user.id} friend={user!}/>)}
-        </>
+          {isSuccess && data.users.map(user => {
+            const isFriend = data.friends.some(fr => fr.id === user.id)
 
+            return <FriendItem key={user.id}
+                               user={user}
+                               isFriend={isFriend}
+                               authorizedUserId={authorizedUser?.id!}
+                               isAnotherUsers
+            />
+          })
+          }
+        </>
       </div>
     </div>
   );
