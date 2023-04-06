@@ -7,6 +7,8 @@ import {useAuth} from "./hooks/useAuth";
 import {lazy, Suspense, useEffect} from "react";
 import {ProfileEdit} from "./pages/ProfileEdit/ProfileEdit";
 import {Friends} from "./pages/Friends/Friends";
+import Cookies from "js-cookie";
+import {useActions} from "./hooks/useActions";
 
 const Profile = lazy(() => import("./pages/Profile/Profile")
     .then(({Profile}) => ({default: Profile}))
@@ -16,6 +18,18 @@ const Profile = lazy(() => import("./pages/Profile/Profile")
 function App() {
   const navigate = useNavigate()
   const {user} = useAuth()
+
+  const {checkAuthTC, logoutTC} = useActions()
+
+  useEffect(() => {
+    const accessToken = Cookies.get('accessToken')
+    if (accessToken) checkAuthTC()
+  }, [])
+
+  useEffect(() => {
+    const refreshToken = Cookies.get('refreshToken')
+    if (!refreshToken && user) logoutTC()
+  }, [])
 
   useEffect(() => {
     if (!user) {
