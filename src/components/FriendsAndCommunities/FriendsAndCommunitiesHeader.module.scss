@@ -1,0 +1,57 @@
+.header {
+  ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    //width: 100%;
+
+    li {
+      display: flex;
+      align-self: flex-start;
+      align-items: center;
+      list-style: none;
+      height: 28px;
+      min-width: 76px;
+      padding: 2px 8px;
+      color: #818C99;
+      font-size: 14px;
+      font-weight: 500;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+
+      .friendsLength {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 16px;
+        color: #818c99;
+        margin-left: 3px;
+      }
+
+      &:hover, &.active {
+        cursor: pointer;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.04) 0 4px 8px 0, rgba(0, 0, 0, 0.06) 0 0 4px 0;
+        color: #346297;
+        border: 1px solid #e7e8ec;
+      }
+
+      &:nth-child(2) {
+        margin-left: 8px;
+      }
+
+      &:last-child {
+        background: #447bba;
+        border-radius: 8px;
+        padding: 0 16px;
+        position: relative;
+        left: 102px;
+
+        a {
+          font-size: 13px;
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

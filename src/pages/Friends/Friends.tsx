@@ -5,9 +5,9 @@ import {Search} from "../../components/Search/Search";
 import {useFriendsQuery} from "../../react-query/useFriendsQuery";
 import {useAuth} from "../../hooks/useAuth";
 import debounce from "lodash.debounce";
-import {FriendsHeader} from "../../components/Friends/FriendsHeader";
 import {FoundedUser} from "../../components/Friends/FoundedUser";
 import {FriendNotFound} from "../../components/Friends/FriendNotFound";
+import {FriendsAndCommunitiesHeader} from "../../components/FriendsAndCommunities/FriendsAndCommunitiesHeader";
 
 interface IFriendsProps {
 }
@@ -29,12 +29,14 @@ export const Friends: FC<IFriendsProps> = () => {
   return (
     <div className={styles.friends}>
       <div className={styles.friendsContainer}>
-        <FriendsHeader friendsLength={isSuccess && data.friends.length}/>
-        <Search name={firstName}
-                lastName={lastName}
-                updateSearch={updateSearch}
-                setName={setFirstName}
-                setLastName={setLastName}
+        <FriendsAndCommunitiesHeader firstText={'Все друзья'}
+                                     secondText={"Друзья онлайн"}
+                                     thirdText={"Найти друзья"}
+                                     url={"find"}
+                                     flag={true}
+                                     itemsLength={isSuccess && data.friends.length}
+        />
+        <Search updateSearch={updateSearch}
                 status={status}
         />
         <>
