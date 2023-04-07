@@ -1,12 +1,12 @@
 import {FC} from 'react';
 
-import {ProfileHeader} from "../../components/ProfileHeader/ProfileHeader";
-import {ProfileFriendsAndSubs} from "../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubs";
+import {ProfileHeader} from "../../components/Profile/ProfileHeader/ProfileHeader";
+import {ProfileFriendsAndSubs} from "../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubs";
 import styles from './Profile.module.scss'
 import stylesFriendsItem
-  from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss'
+  from '../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss'
 import stylesSubsItem
-  from '../../components/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileSubscriptionsItem.module.scss'
+  from '../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileSubscriptionsItem.module.scss'
 import {useParams} from "react-router-dom";
 import {usePostsQuery} from "../../react-query/usePostsQuery";
 import {useUsersQuery} from "../../react-query/useUsersQuery";

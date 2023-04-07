@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 import {ProfileFriendsAndSubsItem} from "./ProfileFriendsAndSubsItem/ProfileFriendsAndSubsItem";
 
 import styles from './ProfileFriendsAndSubs.module.scss'
-import {IUserFull} from "../../types/user.interface";
-import defaultAvatar from "../../assets/defaultAvatar.png";
-import defaultCommunityAvatar from "../../assets/defaultCommunityAvatar.png";
+import {IUserFull} from "../../../types/user.interface";
+import defaultAvatar from "../../../assets/defaultAvatar.png";
+import defaultCommunityAvatar from "../../../assets/defaultCommunityAvatar.png";
 
 interface ProfileFriendsAndSubsPropsType {
   itemStyles: any
@@ -49,7 +49,7 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
             return <ProfileFriendsAndSubsItem key={community.id}
                                               id={community.id}
                                               name={community.name}
-                                              avatar={community.imageUrl || defaultCommunityAvatar}
+                                              avatar={community.avatar || defaultCommunityAvatar}
                                               styles={itemStyles}
                                               description={community.description}
                                               title={title}

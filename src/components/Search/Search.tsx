@@ -3,15 +3,15 @@ import styles from './Search.module.scss';
 import {ClearSearchValueSVG, SearchLoaderSVG} from "../SvgComponent";
 
 interface ISearchProps {
-  firstName: string
-  setFirstName: (firstName: string) => void
-  lastName: string
-  setLastName: (lastName: string) => void
+  name: string
+  setName: (firstName: string) => void
+  lastName?: string
+  setLastName?: (lastName: string) => void
   updateSearch: (str: string) => void
   status: "error" | "success" | "loading"
 }
 
-export const Search: FC<ISearchProps> = ({firstName, setFirstName, setLastName, lastName, updateSearch, status}) => {
+export const Search: FC<ISearchProps> = ({name, setName, setLastName, lastName, updateSearch, status}) => {
 
   const [searchName, setSearchName] = useState('')
 

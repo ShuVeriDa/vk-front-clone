@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {Link} from "react-router-dom";
 import {useQuery} from "@tanstack/react-query";
-import {UserService} from "../../../services/user.service";
+import {UserService} from "../../../../services/user.service";
 
 interface FriendsItemPropsType {
   id:  number | string

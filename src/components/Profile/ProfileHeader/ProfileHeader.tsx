@@ -1,9 +1,9 @@
 import {FC} from 'react';
 
-import defaultAvatar from '../../assets/defaultAvatar.png'
+import defaultAvatar from '../../../assets/defaultAvatar.png'
 import styles from './ProfileHeader.module.scss'
-import {IUserFull} from "../../types/user.interface";
-import {useAuth} from "../../hooks/useAuth";
+import {IUserFull} from "../../../types/user.interface";
+import {useAuth} from "../../../hooks/useAuth";
 import {Link, useNavigate} from "react-router-dom";
 
 interface IProfileHeader {

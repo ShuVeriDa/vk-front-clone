@@ -9,6 +9,7 @@ import {ProfileEdit} from "./pages/ProfileEdit/ProfileEdit";
 import {Friends} from "./pages/Friends/Friends";
 import Cookies from "js-cookie";
 import {useActions} from "./hooks/useActions";
+import {Community} from "./pages/Community/Community";
 
 const Profile = lazy(() => import("./pages/Profile/Profile")
     .then(({Profile}) => ({default: Profile}))
@@ -47,6 +48,7 @@ function App() {
           </Suspense>
         }/>
         <Route path={'/friends'} element={<Friends />}/>
+        <Route path={'/groups'} element={<Community />}/>
         <Route path={'/edit'} element={<ProfileEdit />}/>
       </Route>
 

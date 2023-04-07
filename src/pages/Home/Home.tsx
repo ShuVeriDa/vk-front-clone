@@ -2,7 +2,6 @@ import {FC} from 'react';
 
 import styles from './Home.module.scss'
 import {PostWrite} from "../../components/Posts/PostWrite/PostWrite";
-import {PostItem} from "../../components/Posts/PostItem/PostItem";
 import {RightSide} from "../../components/RightSide/RightSide";
 import {FilterByInteresting} from "../../components/FilterByInteresting/FilterByInteresting";
 

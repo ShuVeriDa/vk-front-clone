@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import styles from './Posts.module.scss';
-import {ProfileWall} from "../ProfileWall/ProfileWall";
+import {ProfileWall} from "../Profile/ProfileWall/ProfileWall";
 import {PostWrite} from "./PostWrite/PostWrite";
 import {CategoryPosts} from "../CategoryPosts/CategoryPosts";
 import {PostItem} from "./PostItem/PostItem";

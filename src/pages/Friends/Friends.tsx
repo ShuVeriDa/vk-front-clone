@@ -1,10 +1,8 @@
 import {FC, useCallback, useState} from 'react';
 import styles from './Friends.module.scss';
-import {Link} from "react-router-dom";
 import {FriendItem} from "../../components/Friends/FriendItem/FriendItem";
 import {Search} from "../../components/Search/Search";
 import {useFriendsQuery} from "../../react-query/useFriendsQuery";
-import {avatarUrl} from "../../utils/avatarUrl";
 import {useAuth} from "../../hooks/useAuth";
 import debounce from "lodash.debounce";
 import {FriendsHeader} from "../../components/Friends/FriendsHeader";
@@ -19,7 +17,6 @@ export const Friends: FC<IFriendsProps> = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
 
-
   const {searchFriends} = useFriendsQuery({firstname: firstName, lastname: lastName})
   const {data, isSuccess, status} = searchFriends
 
@@ -29,16 +26,14 @@ export const Friends: FC<IFriendsProps> = () => {
     }, 350), []
   )
 
-
-
   return (
     <div className={styles.friends}>
       <div className={styles.friendsContainer}>
         <FriendsHeader friendsLength={isSuccess && data.friends.length}/>
-        <Search firstName={firstName}
+        <Search name={firstName}
                 lastName={lastName}
                 updateSearch={updateSearch}
-                setFirstName={setFirstName}
+                setName={setFirstName}
                 setLastName={setLastName}
                 status={status}
         />
