@@ -1,9 +1,9 @@
-import {FC, Reducer, useReducer, useRef, useState} from 'react';
+import {FC, Reducer, useReducer, useRef} from 'react';
 import styles from './ProfileEdit.module.scss';
 import {Input} from "../../components/Input/Input";
 import {useAuth} from "../../hooks/useAuth";
 import {SubmitButton} from "../../components/SubmitButton/SubmitButton";
-import {IUser, IUserUpdate} from "../../types/user.interface";
+import {IUserUpdate} from "../../types/user.interface";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {useUsersQuery} from "../../react-query/useUsersQuery";

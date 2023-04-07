@@ -1,5 +1,5 @@
 import {IUserAbbr} from "./user.interface";
-import {ICommunityAbbr} from "./community.interface";
+import {ICommunitySearchResponse} from "./community.interface";
 import {ICommentsAbbr} from "./comments.interface";
 
 export interface IPost {
@@ -15,7 +15,7 @@ export interface IPost {
   turnOffComments: boolean,
   createdAt: string,
   updatedAt: string,
-  community: ICommunityAbbr | null,
+  community: ICommunitySearchResponse | null,
   user: IUserAbbr,
   comments: ICommentsAbbr[]
   repost?: IPost | null

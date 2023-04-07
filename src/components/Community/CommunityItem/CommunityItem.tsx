@@ -6,11 +6,11 @@ import defaultCommunityAvatar from '../../../assets/defaultCommunityAvatar.png'
 import {avatarUrl} from "../../../utils/avatarUrl";
 import {useFriendsQuery} from "../../../react-query/useFriendsQuery";
 import {SubscribeBtn} from "../../SubscribeBtn/SubscribeBtn";
-import {ICommunityAbbr} from "../../../types/community.interface";
+import {ICommunitySearchAbbr, ICommunitySearchResponse} from "../../../types/community.interface";
 
 interface ICommunityItemProps {
   authorizedUserId: number | string
-  community: ICommunityAbbr
+  community: ICommunitySearchAbbr
   isCommunity: boolean
   isAnotherUsers?: boolean
 }
@@ -38,15 +38,20 @@ export const CommunityItem: FC<ICommunityItemProps> = (
         <img src={avatar} alt=""/>
       </div>
       <div className={styles.info}>
-        <span><Link to={`../profile/${community.id}`} className={styles.fullName}>{fullName}</Link></span>
-        {isAnotherUsers
-          ? <span className={styles.location}>{community.category}</span>
-          : <span>{community.members && typeof community.members === 'number'}</span>
-        }
+        <span>
+          <Link to={`../profile/${community.id}`}
+                className={styles.fullName}
+          >
+            {fullName}
+          </Link>
+        </span>
+        <span className={styles.location}>{community.category}</span>
+        <span className={styles.location}>{community.members} подписчиков</span>
+
       </div>
       {authorizedUserId !== community.id &&
         <div className={styles.addFriend}>
-          <SubscribeBtn title={isCommunity ? 'Вы подписаны' : 'Добавить в друзья'}
+          <SubscribeBtn title={isCommunity ? 'Вы подписаны' : 'Подписаться'}
                         classes={isCommunity ? styles.removeFriend : ''}
                         onChange={onClick}
           />

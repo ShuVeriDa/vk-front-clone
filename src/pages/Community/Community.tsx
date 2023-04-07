@@ -1,25 +1,28 @@
 import {FC, useCallback, useState} from 'react';
 import styles from './Community.module.scss';
-import {FriendItem} from "../../components/Friends/FriendItem/FriendItem";
 import {Search} from "../../components/Search/Search";
-import {useFriendsQuery} from "../../react-query/useFriendsQuery";
 import {useAuth} from "../../hooks/useAuth";
 import debounce from "lodash.debounce";
-import {FriendsHeader} from "../../components/Friends/FriendsHeader";
-import {FoundedUser} from "../../components/Friends/FoundedUser";
 import {FriendNotFound} from "../../components/Friends/FriendNotFound";
 import {useCommunityQuery} from "../../react-query/useCommunityQuery";
 import {CommunityItem} from "../../components/Community/CommunityItem/CommunityItem";
+import {CommunityHeader} from "../../components/Community/CommunityHeader";
+import {useUsersQuery} from "../../react-query/useUsersQuery";
+import {CommunityNotFound} from "../../components/Community/CommunityNotFound";
+import {FoundedUser} from "../../components/Friends/FoundedUser";
+import {FoundedCommunity} from "../../components/Community/FoundedCommunity";
 
 interface ICommunityProps {
 }
 
 export const Community: FC<ICommunityProps> = () => {
   const {user: authorizedUser} = useAuth()
+  const {getUserById} = useUsersQuery(authorizedUser?.id!)
+  const {data: users} = getUserById
   const [name, setName] = useState('')
 
   const {searchCommunity} = useCommunityQuery({name: name})
-  const {data, isSuccess, status} = searchCommunity
+  const {data: communities, isSuccess, status} = searchCommunity
 
   const updateSearch = useCallback(
     debounce((str: string) => {
@@ -27,29 +30,40 @@ export const Community: FC<ICommunityProps> = () => {
     }, 350), []
   )
 
+  console.log(communities?.myCommunities)
+
+
   return (
     <div className={styles.community}>
       <div className={styles.communityContainer}>
-        <FriendsHeader friendsLength={isSuccess && data.communities.length}/>
+        <CommunityHeader communityLength={isSuccess && communities.myCommunities.length}/>
         <Search name={name}
                 updateSearch={updateSearch}
                 setName={setName}
                 status={status}
         />
         <>
-          {isSuccess && data.communities.map(community => {
+          {isSuccess && communities.myCommunities.map(community => {
+              const isCommunity = users?.communities?.some(co => co.id === community.id)
+
+
               return <CommunityItem key={community.id}
-                                 community={community}
-                                 isCommunity
-                                 authorizedUserId={authorizedUser?.id!}
+                                    community={community}
+                                    isCommunity={isCommunity!}
+                                    authorizedUserId={authorizedUser?.id!}
               />
             }
           )
           }
-          {data?.communities.length === 0 && <FriendNotFound text={name}/>}
+          {communities?.myCommunities?.length === 0 && <CommunityNotFound/>}
         </>
       </div>
-      {/*{name && data?.communities.length !== 0 && <FoundedUser data={data!} authorizedUserId={authorizedUser?.id!} />}*/}
+      {name
+        && communities?.otherCommunities?.length !== 0
+        && <FoundedCommunity data={communities!}
+                             authorizedUserId={authorizedUser?.id!}
+        />
+      }
 
     </div>
   );

@@ -1,5 +1,6 @@
 .community {
   width: 550px;
+
   .communityContainer {
     background: #fff;
     width: 550px;
@@ -8,15 +9,17 @@
     padding: 18px 20px;
     box-sizing: border-box;
     margin-bottom: 18px;
+
     .header {
       ul {
         display: flex;
         padding: 0;
         margin: 0;
-        width: 100%;
+        //width: 100%;
 
         li {
           display: flex;
+          align-self: flex-start;
           align-items: center;
           list-style: none;
           height: 28px;
@@ -52,8 +55,9 @@
             background: #447bba;
             border-radius: 8px;
             padding: 0 16px;
+            //margin-left: 90px;
             position: relative;
-            left: 165px;
+            left: 95px;
 
             a {
               font-size: 13px;

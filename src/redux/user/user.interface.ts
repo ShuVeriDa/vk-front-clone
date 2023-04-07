@@ -1,5 +1,5 @@
 import {StatusEnum} from "../types";
-import {IUser} from "../../types/user.interface";
+import {IUserFull} from "../../types/user.interface";
 
 // export interface IUserState {
 //   id: string | number
@@ -18,7 +18,7 @@ import {IUser} from "../../types/user.interface";
 // }
 
 export interface IInitialState {
-  user: IUser | null
+  user: IUserFull | null
   status: StatusEnum
 }
 
@@ -40,6 +40,6 @@ export interface ITokens {
 }
 
 export interface IAuthResponse extends ITokens {
- user: IUser
+ user: IUserFull
 }
 

@@ -1,11 +1,11 @@
 import {axiosClassic, instance} from "../api/api.interceptor";
 import {getCommunityUrl, getUsersUrl} from "../api/api.config";
 import {IFriendsResponse, ISearchFriendsParams} from "../types/friend.interface";
-import {ICommunityAbbr, ISearchCommunityParams} from "../types/community.interface";
+import {ICommunitySearchResponse, ISearchCommunityParams} from "../types/community.interface";
 
 export const CommunityService = {
   searchCommunity: async (params?: ISearchCommunityParams) => {
-    const {data} = await axiosClassic.get<{communities: ICommunityAbbr[]}>(getCommunityUrl(`/search?name=${params?.name}`))
+    const {data} = await instance.get< ICommunitySearchResponse>(getCommunityUrl(`/search?name=${params?.name}`))
 
     return data
   },

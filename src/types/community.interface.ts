@@ -1,14 +1,26 @@
 import {IUserAbbr} from "./user.interface";
 
-export interface ICommunityAbbr {
+export interface ICommunitySearchAbbr {
   id: string
   name: string
   category: string
   description: string
   avatar: string
-  members: IUserAbbr[] | number
-  createdAt?: string
-  updatedAt?: string
+  members: number
+}
+
+export interface ICommunitySearchResponse {
+  myCommunities: ICommunitySearchAbbr[],
+  otherCommunities: ICommunitySearchAbbr[],
+}
+
+export interface ICommunity {
+  id: string
+  name: string
+  category: string
+  description: string
+  avatar: string
+  members: IUserAbbr[]
 }
 
 export interface ISearchCommunityParams {
