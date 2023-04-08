@@ -10,15 +10,15 @@ export const CommunityService = {
     return data
   },
 
-  // addCommunity: async (userId: string | number) => {
-  //   const {data} = await instance.patch<string>(getCommunityUrl(`/friend/${userId}`))
-  //
-  //   return data
-  // },
-  //
-  // removeCommunity: async (userId: string | number) => {
-  //   const {data} = await instance.delete<string>(getCommunityUrl(`/friend/${userId}`))
-  //
-  //   return data
-  // },
+  addCommunity: async (communityId: string ) => {
+    const {data} = await instance.post<string>(getCommunityUrl(`/subscribe/${communityId}`))
+
+    return data
+  },
+
+  removeCommunity: async (communityId: string ) => {
+    const {data} = await instance.delete<string>(getCommunityUrl(`/subscribe/${communityId}`))
+
+    return data
+  },
 }

@@ -4,6 +4,7 @@ import defaultCommunityAvatar from '../../../assets/defaultCommunityAvatar.png'
 import {avatarUrl} from "../../../utils/avatarUrl";
 import {ICommunitySearchAbbr} from "../../../types/community.interface";
 import {FrAndCoItem} from "../FrAndCoItem/FrAndCoItem";
+import {useCommunityQuery} from "../../../react-query/useCommunityQuery";
 
 interface ICommunityItemProps {
   community: ICommunitySearchAbbr
@@ -20,8 +21,12 @@ export const CommunityItem: FC<ICommunityItemProps> = (
   const name = community.name
   const path = '../community/'
 
+  const {removeCommunity, addCommunity} = useCommunityQuery()
+  const {mutate: subscribe} = addCommunity
+  const {mutate: unsubscribe} = removeCommunity
+
   const onClick = () => {
-    // isCommunity ? remove(user.id) : add(user.id)
+    isCommunity ? unsubscribe(community.id) : subscribe(community.id)
   }
 
   return (

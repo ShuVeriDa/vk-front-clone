@@ -1,13 +1,9 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {useMemo} from "react";
-import {FriendService} from "../services/friend.service";
-import {ISearchFriendsParams} from "../types/friend.interface";
-import {PostService} from "../services/post.service";
-import {IUpdatePost} from "../types/post.interface";
 import {CommunityService} from "../services/community.service";
 import {ISearchCommunityParams} from "../types/community.interface";
 
-export const useCommunityQuery = (params?: ISearchCommunityParams | undefined, userId?: string | number ) => {
+export const useCommunityQuery = (params?: ISearchCommunityParams | undefined ) => {
   const searchCommunity = useQuery({
     queryFn: () => CommunityService.searchCommunity(params!),
     queryKey: ['community', 'all', params],
@@ -15,23 +11,23 @@ export const useCommunityQuery = (params?: ISearchCommunityParams | undefined, u
 
   const client = useQueryClient()
 
-  // const addCommunity = useMutation({
-  //   mutationFn: (userId: string | number) => CommunityService.addFriend(userId),
-  //   onSuccess: () => {
-  //     client.invalidateQueries({queryKey: ['friends', 'all']})
-  //   }
-  // })
-  //
-  //
-  // const removeCommunity = useMutation({
-  //   mutationFn: (userId: string | number) => FriendService.removeFriend(userId),
-  //   onSuccess: () => {
-  //     client.invalidateQueries({queryKey: ['friends', 'all']})
-  //     searchFriends.refetch()
-  //   }
-  // })
+  const addCommunity = useMutation({
+    mutationFn: (communityId: string) => CommunityService.addCommunity(communityId),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['community', 'all']})
+    }
+  })
+  const removeCommunity = useMutation({
+    mutationFn: (communityId: string) => CommunityService.removeCommunity(communityId),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['community', 'all']})
+      searchCommunity.refetch()
+    }
+  })
 
   return useMemo(() => ({
-    searchCommunity
-  }), [searchCommunity])
+    searchCommunity,
+    addCommunity,
+    removeCommunity
+  }), [searchCommunity, addCommunity, removeCommunity])
 }
