@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import styles from './FriendsAndCommunitiesHeader.module.scss';
+import styles from './FrAndCoHeader.module.scss';
 import {Link} from "react-router-dom";
 interface IFriendsAndCommunitiesHeaderProps {
   firstText: string
@@ -10,7 +10,7 @@ interface IFriendsAndCommunitiesHeaderProps {
   flag?: boolean
 }
 
-export const FriendsAndCommunitiesHeader: FC<IFriendsAndCommunitiesHeaderProps> = ({ itemsLength, firstText, secondText, thirdText, url, flag }) => {
+export const FrAndCoHeader: FC<IFriendsAndCommunitiesHeaderProps> = ({ itemsLength, firstText, secondText, thirdText, url, flag }) => {
   return (
     <div className={styles.header}>
       <ul>

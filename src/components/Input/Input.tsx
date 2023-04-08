@@ -47,6 +47,8 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
                step={step}
                placeholder={placeholder}
 
+
+
         />
         {error && error.type && <div className={styles.error}>{error.message}</div>}
       </div>

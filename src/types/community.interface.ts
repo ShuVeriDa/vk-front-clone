@@ -12,6 +12,7 @@ export interface ICommunitySearchAbbr {
 export interface ICommunitySearchResponse {
   myCommunities: ICommunitySearchAbbr[],
   otherCommunities: ICommunitySearchAbbr[],
+  total: number
 }
 
 export interface ICommunity {

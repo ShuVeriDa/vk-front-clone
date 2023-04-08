@@ -4,10 +4,11 @@ import {ClearSearchValueSVG, MagnifierSVG, SearchLoaderSVG} from "../SvgComponen
 
 interface ISearchProps {
   updateSearch: (str: string) => void
+  placeholder: string
   status: "error" | "success" | "loading"
 }
 
-export const Search: FC<ISearchProps> = ({updateSearch, status}) => {
+export const Search: FC<ISearchProps> = ({updateSearch, status, placeholder}) => {
 
   const [searchName, setSearchName] = useState('')
 
@@ -24,7 +25,11 @@ export const Search: FC<ISearchProps> = ({updateSearch, status}) => {
 
   return (
     <div className={styles.search}>
-      <input type="text" placeholder={"Поиск друзей"} value={searchName} onChange={onChange}/>
+      <input type="text"
+             placeholder={placeholder}
+             value={searchName}
+             onChange={onChange}
+      />
 
       <button>
         <MagnifierSVG />

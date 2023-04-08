@@ -29,6 +29,7 @@ export const Login: FC<ILoginProps> = ({register, isPasswordRequired = false, fo
              placeholder={'Почта'}
              type={'email'}
              error={errors.email}
+             autoComplete={'email'}
       />
       <Input {...register('password', isPasswordRequired ? {
           required: "Пароль обязателен",
@@ -42,6 +43,7 @@ export const Login: FC<ILoginProps> = ({register, isPasswordRequired = false, fo
              placeholder={'Пароль'}
              type={'password'}
              error={errors.password}
+             autoComplete={'password'}
       />
     </div>
   );

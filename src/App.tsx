@@ -6,10 +6,10 @@ import {Auth} from "./pages/Auth/Auth";
 import {useAuth} from "./hooks/useAuth";
 import {lazy, Suspense, useEffect} from "react";
 import {ProfileEdit} from "./pages/ProfileEdit/ProfileEdit";
-import {Friends} from "./pages/Friends/Friends";
+import {FriendPage} from "./pages/Friends/FriendPage";
 import Cookies from "js-cookie";
 import {useActions} from "./hooks/useActions";
-import {Community} from "./pages/Community/Community";
+import {CommunityPage} from "./pages/Community/CommunityPage";
 
 const Profile = lazy(() => import("./pages/Profile/Profile")
     .then(({Profile}) => ({default: Profile}))
@@ -47,8 +47,8 @@ function App() {
             <Profile />
           </Suspense>
         }/>
-        <Route path={'/friends'} element={<Friends />}/>
-        <Route path={'/groups'} element={<Community />}/>
+        <Route path={'/friends'} element={<FriendPage />}/>
+        <Route path={'/groups'} element={<CommunityPage />}/>
         <Route path={'/edit'} element={<ProfileEdit />}/>
       </Route>
 

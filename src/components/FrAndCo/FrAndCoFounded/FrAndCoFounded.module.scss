@@ -1,0 +1,23 @@
+.founded {
+  background: #fff;
+  width: 550px;
+  min-height: 100px;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-sizing: border-box;
+
+  .title {
+    min-height: 42px;
+    font-size: 15px;
+    color: #000;
+
+    .results {
+
+      .total {
+        color: #626d7a;
+      }
+    }
+  }
+
+
+}
