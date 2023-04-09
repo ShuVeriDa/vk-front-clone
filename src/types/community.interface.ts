@@ -1,4 +1,8 @@
 import {IUserAbbr} from "./user.interface";
+import {IMusicAbbr} from "./music.interface";
+import {IVideoAbbr} from "./video.interface";
+import {IPostAbbr} from "./post.interface";
+import {IPhotoAbbr} from "./photo.interface";
 
 export interface ICommunitySearchAbbr {
   id: string
@@ -22,6 +26,22 @@ export interface ICommunity {
   description: string
   avatar: string
   members: IUserAbbr[]
+}
+
+export interface ICommunityFull {
+  id: string,
+  name: string,
+  description: string,
+  imageUrl: string,
+  createdAt: string,
+  updatedAt: string,
+  members: IUserAbbr[],
+  posts: IPostAbbr[],
+  music: IMusicAbbr[],
+  photos: IPhotoAbbr[],
+  video: IVideoAbbr[],
+  admins: IUserAbbr[],
+  author: IUserAbbr
 }
 
 export interface ISearchCommunityParams {

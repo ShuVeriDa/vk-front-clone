@@ -4,6 +4,12 @@ import {IFriendsResponse, ISearchFriendsParams} from "../types/friend.interface"
 import {ICommunitySearchResponse, ISearchCommunityParams} from "../types/community.interface";
 
 export const CommunityService = {
+  fetchOne: async (id: string) => {
+    const {data} = await instance.get(getCommunityUrl(`/community/${id}`))
+
+    return data
+  },
+
   searchCommunity: async (params?: ISearchCommunityParams) => {
     const {data} = await instance.get< ICommunitySearchResponse>(getCommunityUrl(`/search?name=${params?.name}`))
 

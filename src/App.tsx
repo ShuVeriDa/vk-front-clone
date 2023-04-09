@@ -9,12 +9,16 @@ import {ProfileEdit} from "./pages/ProfileEdit/ProfileEdit";
 import {FriendPage} from "./pages/Friends/FriendPage";
 import Cookies from "js-cookie";
 import {useActions} from "./hooks/useActions";
-import {CommunityPage} from "./pages/Community/CommunityPage";
+import {CommunitySearchPage} from "./pages/CommunitySearchPage/CommunitySearchPage";
+
 
 const Profile = lazy(() => import("./pages/Profile/Profile")
     .then(({Profile}) => ({default: Profile}))
 )
 
+const Community = lazy(() => import("./pages/Community/Community")
+  .then(({CommunityPage}) => ({default: CommunityPage}))
+)
 
 function App() {
   const navigate = useNavigate()
@@ -47,8 +51,13 @@ function App() {
             <Profile />
           </Suspense>
         }/>
+        <Route path={'/group/:id'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <Community />
+          </Suspense>
+        }/>
         <Route path={'/friends'} element={<FriendPage />}/>
-        <Route path={'/groups'} element={<CommunityPage />}/>
+        <Route path={'/groups'} element={<CommunitySearchPage />}/>
         <Route path={'/edit'} element={<ProfileEdit />}/>
       </Route>
 

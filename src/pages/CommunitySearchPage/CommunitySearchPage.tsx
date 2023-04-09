@@ -9,10 +9,10 @@ import {FrAndCoNotFound} from "../../components/FrAndCo/FrAndCoNotFound/FrAndCoN
 import {FrAndCoFounded} from "../../components/FrAndCo/FrAndCoFounded/FrAndCoFounded";
 import {useDebounce} from "../../hooks/useDebounce";
 
-interface ICommunityPageProps {
+interface ICommunitySearchPageProps {
 }
 
-export const CommunityPage: FC<ICommunityPageProps> = () => {
+export const CommunitySearchPage: FC<ICommunitySearchPageProps> = () => {
   const {user: authorizedUser} = useAuth()
   const [name, setName] = useState('')
 

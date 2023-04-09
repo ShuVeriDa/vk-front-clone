@@ -21,6 +21,21 @@ export interface IPost {
   repost?: IPost | null
 }
 
+export interface IPostAbbr {
+  id: string,
+  text: string,
+  imageUrl: string | null,
+  musicUrl: string | null,
+  videoUrl: string | null,
+  views: number,
+  reposts: number,
+  favorites: number,
+  rating: number,
+  turnOffComments: boolean,
+  createdAt: string,
+  updatedAt: string,
+}
+
 export interface ICreatePost {
   text: string,
   imageUrl: string | null,
