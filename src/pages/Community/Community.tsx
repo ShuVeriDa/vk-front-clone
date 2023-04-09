@@ -15,7 +15,7 @@ export const CommunityPage: FC<ICommunityPageProps> = () => {
 
   return (
     <div>
-      <CommunityHeader />
+      <CommunityHeader community={community}/>
     </div>
   );
 };

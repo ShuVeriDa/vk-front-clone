@@ -32,7 +32,7 @@ export interface ICommunityFull {
   id: string,
   name: string,
   description: string,
-  imageUrl: string,
+  avatar: string | null,
   createdAt: string,
   updatedAt: string,
   members: IUserAbbr[],

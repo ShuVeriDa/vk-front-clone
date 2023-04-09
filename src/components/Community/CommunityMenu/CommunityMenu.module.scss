@@ -1,0 +1,58 @@
+.crudComponent {
+  &:hover .crud {
+    visibility: visible;
+  }
+
+  .subscribe {
+    &:hover {
+      cursor: pointer;
+    }
+
+    svg {
+      color: #AEB7C2;
+    }
+  }
+}
+
+.crud {
+  margin-top: 5px;
+  min-width: 150px;
+  width: 188px;
+  max-width: 250px;
+  min-height: 44px;
+  padding: 6px 0;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.32) 0 20px 40px 0;
+  border-radius: 8px;
+  background: #fff;
+
+  opacity: 0;
+  visibility: hidden;
+  //transform: translate(0%, 50%);
+  transition: .3s ease;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    //transform: translate(0%, 0%);
+  }
+
+  ul {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: block;
+      padding: 8px 15px;
+      font-size: 13px;
+      line-height: 18px;
+
+      &:hover {
+        cursor: pointer;
+        background: #F5F6F8;
+      }
+    }
+  }
+
+}
