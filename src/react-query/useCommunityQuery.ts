@@ -3,7 +3,13 @@ import {useMemo} from "react";
 import {CommunityService} from "../services/community.service";
 import {ISearchCommunityParams} from "../types/community.interface";
 
-export const useCommunityQuery = (params?: ISearchCommunityParams | undefined ) => {
+export const useCommunityQuery = (params?: ISearchCommunityParams | undefined, communityId?: string ) => {
+
+  const fetchOne = useQuery({
+    queryFn: () => CommunityService.fetchOne(communityId!),
+    queryKey: ['community', 'one'],
+  })
+
   const searchCommunity = useQuery({
     queryFn: () => CommunityService.searchCommunity(params!),
     queryKey: ['community', 'all', params],
@@ -26,8 +32,9 @@ export const useCommunityQuery = (params?: ISearchCommunityParams | undefined ) 
   })
 
   return useMemo(() => ({
+    fetchOne,
     searchCommunity,
     addCommunity,
     removeCommunity
-  }), [searchCommunity, addCommunity, removeCommunity])
+  }), [fetchOne, searchCommunity, addCommunity, removeCommunity])
 }

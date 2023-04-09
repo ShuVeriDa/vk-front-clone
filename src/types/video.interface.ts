@@ -3,7 +3,7 @@ export interface IVideoAbbr {
   title: string,
   description: string,
   videoUrl: string,
-  turnOffComments: false,
+  turnOffComments: boolean,
   createdAt: string,
   updatedAt: string
 }
