@@ -24,22 +24,17 @@ export interface ICommunity {
   name: string
   category: string
   description: string
-  avatar: string
+  avatar: string | null
   members: IUserAbbr[]
 }
 
-export interface ICommunityFull {
-  id: string,
-  name: string,
-  description: string,
-  avatar: string | null,
+export interface ICommunityFull extends ICommunity{
   createdAt: string,
   updatedAt: string,
-  members: IUserAbbr[],
-  posts: IPostAbbr[],
-  music: IMusicAbbr[],
-  photos: IPhotoAbbr[],
-  video: IVideoAbbr[],
+  // posts: IPostAbbr[],
+  // music: IMusicAbbr[],
+  // photos: IPhotoAbbr[],
+  // video: IVideoAbbr[],
   admins: IUserAbbr[],
   author: IUserAbbr
 }

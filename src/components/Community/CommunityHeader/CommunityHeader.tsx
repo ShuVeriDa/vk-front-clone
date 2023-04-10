@@ -8,6 +8,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {ICommunityFull} from "../../../types/community.interface";
 import {CheckMarkSVG} from "../../SvgComponent";
 import {CommunityMenu} from "../CommunityMenu/CommunityMenu";
+import {useUsersQuery} from "../../../react-query/useUsersQuery";
 
 interface IProfileHeader {
   community?: ICommunityFull | null | undefined
@@ -35,10 +36,20 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
 
 
   const {user: authUser} = useAuth()
+  const  {getUserById} = useUsersQuery(authUser?.id!)
+  const {data: user} = getUserById
 
   const fullName = community?.name
   const avatar = community?.avatar ? `${process.env.REACT_APP_SERVER_URL}${community?.avatar}` : defaultCommunityAvatar
+  const membersLength = community?.members.length
+  const isFriend = community?.members
+    .filter(member => user?.friends.map(friend => friend.id === member.id))
 
+  console.log(isFriend)
+
+  // const friends = currentUser.friends
+  //   .filter((fr1) => user.some((fr2) => fr1.id === fr2.id))
+  //   .map((friend) => returnUserData(friend));
 
   // const onChangeProfile = () => {
   //   navigate(`/edit`)
@@ -57,8 +68,6 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
   //
   // console.log(authUser?.id)
   // console.log(user)
-
-  console.log(avatar)
 
   const isSubscribe = community?.members.some(member => member.id === authUser?.id)
 
@@ -80,6 +89,18 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
               setShow={() => setShow(!show)}
               communityId={community?.id!}
             />}
+            {!isSubscribe && <>
+           <span>
+             {
+               membersLength === 1
+                 ? <>{membersLength} подписчик </>
+                 : <>{membersLength} подписчика </>
+             }
+             ·
+             <> {isFriend?.length} друг</>
+           </span>
+            </>
+            }
 
           </div>
           {/*<div className={styles.profileBtns}>

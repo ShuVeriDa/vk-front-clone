@@ -7,7 +7,7 @@ export const useCommunityQuery = (params?: ISearchCommunityParams | undefined, c
 
   const fetchOne = useQuery({
     queryFn: () => CommunityService.fetchOne(communityId!),
-    queryKey: ['community', 'one'],
+    queryKey: ['communityOne', 'one'],
   })
 
   const searchCommunity = useQuery({
