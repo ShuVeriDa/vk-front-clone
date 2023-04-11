@@ -9,12 +9,26 @@ import {ICommunityFull} from "../../../types/community.interface";
 import {CheckMarkSVG} from "../../SvgComponent";
 import {CommunityMenu} from "../CommunityMenu/CommunityMenu";
 import {useUsersQuery} from "../../../react-query/useUsersQuery";
+import {SubscribeBtn} from "../../SubscribeBtn/SubscribeBtn";
+import {useCommunityQuery} from "../../../react-query/useCommunityQuery";
 
 interface IProfileHeader {
   community?: ICommunityFull | null | undefined
 }
 
 export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
+  const {user: authUser} = useAuth()
+  const {getUserById} = useUsersQuery(authUser?.id!)
+  const {data: user} = getUserById
+
+  const {addCommunity, removeCommunity} = useCommunityQuery(community?.id)
+  const {mutate: subscribe} = addCommunity
+  const {mutate: unSubscribe} = removeCommunity
+
+  const onSubscribe = () => {
+    subscribe(community?.id!)
+  }
+
   const navigate = useNavigate()
 
   const refOut = useRef(null)
@@ -34,10 +48,6 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
     }
   }, [])
 
-
-  const {user: authUser} = useAuth()
-  const  {getUserById} = useUsersQuery(authUser?.id!)
-  const {data: user} = getUserById
 
   const fullName = community?.name
   const avatar = community?.avatar ? `${process.env.REACT_APP_SERVER_URL}${community?.avatar}` : defaultCommunityAvatar
@@ -72,16 +82,16 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
   const isSubscribe = community?.members.some(member => member.id === authUser?.id)
 
   return (
-    <div className={styles.profileHeader}>
-      <div className={styles.profileBackground}>
+    <div className={styles.communityHeader}>
+      <div className={styles.communityBackground}>
         <img src="" alt=""/>
       </div>
-      <div className={styles.profileInfo}>
-        <div className={styles.profilePhoto}>
+      <div className={styles.communityInfo}>
+        <div className={styles.communityPhoto}>
           <img src={avatar} alt=""/>
         </div>
-        <div className={styles.profileDetails}>
-          <div className={styles.profileNameStatusOthers}>
+        <div className={styles.communityDetails}>
+          <div className={styles.communityNameStatusOthers}>
             <span className={styles.name}>{fullName}</span>
             {isSubscribe && <CommunityMenu
               refOut={refOut}
@@ -90,14 +100,17 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
               communityId={community?.id!}
             />}
             {!isSubscribe && <>
-           <span>
-             {
-               membersLength === 1
-                 ? <>{membersLength} подписчик </>
-                 : <>{membersLength} подписчика </>
-             }
-             ·
-             <> {isFriend?.length} друг</>
+           <span className={styles.subscribes}>
+             <span>
+               {isFriend && <span className={styles.friendItem}><img src={avatar} alt=""/></span>}
+             </span>
+
+             <span>
+               {membersLength === 1
+                 ? <span><b>{membersLength}</b> подписчик </span>
+                 : <span><b>{membersLength}</b> подписчика </span>
+               }·<span> <b>{isFriend?.length}</b> друг</span>
+               </span>
            </span>
             </>
             }
@@ -115,6 +128,15 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
             </button>}
           </div>*/}
         </div>
+        {
+          !isSubscribe && <div className={styles.communitySubscribe}>
+            <SubscribeBtn title={"Подписаться"}
+                          classes={styles.subscribe}
+                          onChange={onSubscribe}
+            />
+          </div>
+        }
+
       </div>
     </div>
   );

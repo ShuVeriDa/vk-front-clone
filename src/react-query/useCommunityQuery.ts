@@ -1,18 +1,16 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {useMemo} from "react";
 import {CommunityService} from "../services/community.service";
-import {ISearchCommunityParams} from "../types/community.interface";
+import {useCommunitySearchQuery} from "./useCommunitySearchQuery";
 
-export const useCommunityQuery = (params?: ISearchCommunityParams | undefined, communityId?: string ) => {
+
+export const useCommunityQuery = (communityId?: string ) => {
+  const {searchCommunity} = useCommunitySearchQuery()
 
   const fetchOne = useQuery({
     queryFn: () => CommunityService.fetchOne(communityId!),
     queryKey: ['communityOne', 'one'],
-  })
-
-  const searchCommunity = useQuery({
-    queryFn: () => CommunityService.searchCommunity(params!),
-    queryKey: ['community', 'all', params],
+    enabled: !!communityId
   })
 
   const client = useQueryClient()
@@ -20,13 +18,14 @@ export const useCommunityQuery = (params?: ISearchCommunityParams | undefined, c
   const addCommunity = useMutation({
     mutationFn: (communityId: string) => CommunityService.addCommunity(communityId),
     onSuccess: () => {
-      client.invalidateQueries({queryKey: ['community', 'all']})
+      client.invalidateQueries({queryKey: ['communities', 'all']})
+      client.invalidateQueries({queryKey: ['communityOne', 'one']})
     }
   })
   const removeCommunity = useMutation({
     mutationFn: (communityId: string) => CommunityService.removeCommunity(communityId),
     onSuccess: () => {
-      client.invalidateQueries({queryKey: ['community', 'all']})
+      client.invalidateQueries({queryKey: ['communityOne', 'one']})
       searchCommunity.refetch()
     }
   })

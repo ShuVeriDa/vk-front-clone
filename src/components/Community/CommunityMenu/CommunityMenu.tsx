@@ -15,9 +15,7 @@ interface ICommunityMenuProps {
 }
 
 export const CommunityMenu: FC<ICommunityMenuProps> = ({communityId, show, setShow, refOut}) => {
-  const {user} = useAuth()
-  const {addCommunity, removeCommunity} = useCommunityQuery(undefined, communityId)
-  const {mutate: subscribe} = addCommunity
+  const { removeCommunity} = useCommunityQuery( communityId)
   const {mutate: unSubscribe} = removeCommunity
 
   const onUnSubscribeClick = () => {

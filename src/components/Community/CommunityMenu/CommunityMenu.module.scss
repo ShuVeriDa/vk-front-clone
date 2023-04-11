@@ -4,8 +4,12 @@
   }
 
   .subscribe {
+    border-radius: 8px;
+
     &:hover {
       cursor: pointer;
+      background-color: #AEB7C2;
+
     }
 
     svg {
