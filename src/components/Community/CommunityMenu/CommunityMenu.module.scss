@@ -4,16 +4,27 @@
   }
 
   .subscribe {
+    width: 120px;
+    height: 20px;
+    padding: 3px 5px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    color: #6d7885;
+
+    font-size: 13px;
+    line-height: 16px;
 
     &:hover {
       cursor: pointer;
-      background-color: #AEB7C2;
-
+      background-color: #f1f1f1;
     }
 
     svg {
+      //position: relative;
+      //bottom: 3px;
       color: #AEB7C2;
+      margin-right: 5px;
     }
   }
 }

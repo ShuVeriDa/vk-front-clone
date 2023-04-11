@@ -93,12 +93,13 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
         <div className={styles.communityDetails}>
           <div className={styles.communityNameStatusOthers}>
             <span className={styles.name}>{fullName}</span>
-            {isSubscribe && <CommunityMenu
-              refOut={refOut}
-              show={show}
-              setShow={() => setShow(!show)}
-              communityId={community?.id!}
-            />}
+              {isSubscribe && <CommunityMenu
+                refOut={refOut}
+                show={show}
+                setShow={() => setShow(!show)}
+                communityId={community?.id!}
+              />}
+
             {!isSubscribe && <>
            <span className={styles.subscribes}>
              <span>

@@ -1,20 +1,8 @@
 import {IUserAbbr} from "./user.interface";
-import {ICommunitySearchResponse} from "./community.interface";
+import {ICommunitySearchAbbr, ICommunitySearchResponse} from "./community.interface";
 import {ICommentsAbbr} from "./comments.interface";
 
-export interface IPost {
-  id: string,
-  text: string,
-  imageUrl: string | null,
-  musicUrl: string | null,
-  videoUrl: string | null,
-  views: number,
-  reposts: number,
-  favorites: number,
-  rating: number,
-  turnOffComments: boolean,
-  createdAt: string,
-  updatedAt: string,
+export interface IPost extends IPostAbbr{
   community: ICommunitySearchResponse | null,
   user: IUserAbbr,
   comments: ICommentsAbbr[]
@@ -34,6 +22,12 @@ export interface IPostAbbr {
   turnOffComments: boolean,
   createdAt: string,
   updatedAt: string,
+}
+
+export interface IPostCommunity extends IPostAbbr {
+  community: ICommunitySearchAbbr | null,
+  user: IUserAbbr,
+  comments: ICommentsAbbr[]
 }
 
 export interface ICreatePost {

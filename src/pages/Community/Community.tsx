@@ -19,7 +19,7 @@ export const CommunityPage: FC<ICommunityPageProps> = () => {
   return (
     <div>
       <CommunityHeader community={community}/>
-      {/*<PostsWrapper user={user!} posts={community?.posts!} isSuccessPosts={true} />*/}
+      {/*<PostsWrapper user={user!} posts={} isSuccessPosts={true} />*/}
     </div>
   );
 };

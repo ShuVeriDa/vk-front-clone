@@ -1,6 +1,6 @@
-import {ICreatePost, IPost, IUpdatePost} from "../types/post.interface";
+import {ICreatePost, IPost, IPostCommunity, IUpdatePost} from "../types/post.interface";
 import {instance} from "../api/api.interceptor";
-import {getPostsUrl} from "../api/api.config";
+import {getPostsCommunityUrl, getPostsUrl} from "../api/api.config";
 
 
 export const PostService =  {
@@ -23,6 +23,14 @@ export const PostService =  {
   deletePost: async (postId: string) => {
     const res = await instance.delete(getPostsUrl(`/${postId}`))
     return res.data
+  },
+
+
+  //community
+  getPostsCommunityUrl: async (communityId: string) => {
+    const {data} = await instance.get<IPostCommunity[]>(getPostsCommunityUrl(''), {data: communityId})
+
+    return data
   }
 
 }
