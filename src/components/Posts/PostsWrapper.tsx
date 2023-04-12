@@ -5,12 +5,12 @@ import {PostWrite} from "./PostWrite/PostWrite";
 import {CategoryPosts} from "../CategoryPosts/CategoryPosts";
 import {PostItem} from "./PostItem/PostItem";
 import {IUserFull} from "../../types/user.interface";
-import {IPost} from "../../types/post.interface";
+import {IPost, IPostCommunity} from "../../types/post.interface";
 import {useAuth} from "../../hooks/useAuth";
 import {avatarUrl} from "../../utils/avatarUrl";
 interface IPostsProps {
   user: IUserFull
-  posts: IPost[]
+  posts: IPost[] | IPostCommunity[]
   isSuccessPosts: boolean
 }
 

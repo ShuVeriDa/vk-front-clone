@@ -3,10 +3,10 @@ import {PostService} from "../services/post.service";
 import {useMemo} from "react";
 import {ICreatePost, IUpdatePost} from "../types/post.interface";
 
-export const usePostsQuery = (userId: string | number | undefined, postId?: string) => {
+export const usePostsQuery = (userId?: string | number, postId?: string, communityId?: string) => {
   const getMyPosts = useQuery({
     queryFn: () => PostService.fetchMyPosts(userId!),
-    queryKey: ['myPosts', 'allMyPosts', userId]
+    queryKey: ['myPosts', 'allMyPosts']
   })
 
   const client = useQueryClient()
@@ -33,10 +33,17 @@ export const usePostsQuery = (userId: string | number | undefined, postId?: stri
     }
   })
 
+  //community
+  const getCommunityPosts = useQuery({
+    queryFn: () => PostService.getPostsCommunityUrl(communityId!),
+    queryKey: ['communityPosts', 'all']
+  })
+
   return useMemo(() => ({
     getMyPosts,
     createPost,
     updatePost,
     deletePost,
-  }), [getMyPosts, createPost, deletePost, updatePost])
+    getCommunityPosts,
+  }), [getMyPosts, createPost, deletePost, updatePost, getCommunityPosts])
 }

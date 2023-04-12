@@ -17,7 +17,7 @@ export const ProfileFriendsAndSubsItem: FC<FriendsItemPropsType> = (
 ) => {
 
   const friendUrl = `/profile/${id}`
-  const communityUrl = `/groups/${id}`
+  const communityUrl = `/group/${id}`
 
   return (
     <div className={styles.profileSubsItem || styles.profileFriendsItem}>

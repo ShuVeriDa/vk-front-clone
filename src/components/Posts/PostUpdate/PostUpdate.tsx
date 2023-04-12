@@ -1,12 +1,12 @@
 import {ChangeEvent, FC, useState} from 'react';
 import styles from "../PostItem/PostItem.module.scss";
 import TextareaAutosize from "react-textarea-autosize";
-import {IPost, IUpdatePost} from "../../../types/post.interface";
+import {IPost, IPostCommunity, IUpdatePost} from "../../../types/post.interface";
 import {usePostsQuery} from "../../../react-query/usePostsQuery";
 import {SubmitHandler, useForm} from "react-hook-form";
 
 interface IPostUpdateProps {
-  post: IPost
+  post: IPost | IPostCommunity
   authorizedUserId: string | number
   setIsEdit: (edit: boolean) => void
 }
@@ -24,7 +24,7 @@ export const PostUpdate: FC<IPostUpdateProps> = ({post, authorizedUserId, setIsE
   const {register, handleSubmit, formState, reset} = useForm<IUpdatePost>({mode: "onChange"})
 
   const onSubmit: SubmitHandler<IUpdatePost> = async (data) => {
-    console.log(data)
+
     await update({...data, text: value})
     setIsEdit(false)
     reset()

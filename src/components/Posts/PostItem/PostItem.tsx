@@ -3,7 +3,7 @@ import {FC, useEffect, useRef, useState} from 'react';
 import styles from './PostItem.module.scss'
 import defaultAvatar from '../../../assets/defaultAvatar.png'
 import {Link} from "react-router-dom";
-import {IPost} from "../../../types/post.interface";
+import {IPost, IPostCommunity} from "../../../types/post.interface";
 import ReactTimeago from "react-timeago";
 import {CommentPostSVG, FavoritePostSVG, RepostPostSVG, ViewsPostSVG} from "../../SvgComponent";
 import {PostMenu} from "../PostMenu/PostMenu";
@@ -12,7 +12,7 @@ import {avatarUrl} from "../../../utils/avatarUrl";
 
 
 interface IPostProps {
-  post: IPost
+  post: IPost | IPostCommunity
   borderRadius?: object
   // user: IUserFull
   authorizedUserId: string | number

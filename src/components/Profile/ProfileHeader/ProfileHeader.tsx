@@ -32,8 +32,7 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
 
   const buttonsName = authUser?.id === user?.id ? 'Редактировать профиль' : 'Добавить в друзья'
 
-  console.log(authUser?.id)
-  console.log(user)
+
 
 
   return (

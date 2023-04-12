@@ -55,7 +55,7 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
   const isFriend = community?.members
     .filter(member => user?.friends.map(friend => friend.id === member.id))
 
-  console.log(isFriend)
+
 
   // const friends = currentUser.friends
   //   .filter((fr1) => user.some((fr2) => fr1.id === fr2.id))

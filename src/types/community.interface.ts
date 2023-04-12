@@ -1,8 +1,4 @@
 import {IUserAbbr} from "./user.interface";
-import {IMusicAbbr} from "./music.interface";
-import {IVideoAbbr} from "./video.interface";
-import {IPostAbbr} from "./post.interface";
-import {IPhotoAbbr} from "./photo.interface";
 
 export interface ICommunitySearchAbbr {
   id: string

@@ -23,7 +23,7 @@ export const Profile: FC<ProfilePropsType> = () => {
   const {data: user, isSuccess: isSuccessUser} = getUserById
   const {data: posts, isSuccess: isSuccessPosts} = getMyPosts
 
-  console.log("user: ", user)
+
 
   return (
     <div className={styles.profile}>
