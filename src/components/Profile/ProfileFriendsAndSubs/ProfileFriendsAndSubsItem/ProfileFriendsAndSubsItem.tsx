@@ -4,11 +4,11 @@ import {useQuery} from "@tanstack/react-query";
 import {UserService} from "../../../../services/user.service";
 
 interface FriendsItemPropsType {
-  id:  number | string
+  id: number | string
   name: string
   avatar: string | undefined
   styles: any
-  title: "Друзья" | "Подписки"
+  title: "Друзья" | "Подписки" | 'Подписчики'
   description?: string
 }
 
@@ -18,10 +18,17 @@ export const ProfileFriendsAndSubsItem: FC<FriendsItemPropsType> = (
 
   const friendUrl = `/profile/${id}`
   const communityUrl = `/group/${id}`
+  const membersUrl = `/members/${id}`
+  const link = title === 'Друзья'
+    ? friendUrl
+    : title === "Подписки"
+      ? communityUrl
+      : title === "Подписчики" ? membersUrl
+        : ''
 
   return (
     <div className={styles.profileSubsItem || styles.profileFriendsItem}>
-      <Link to={title === 'Друзья' ? friendUrl : communityUrl}>
+      <Link to={link}>
         <div className={styles.subsAvatar || styles.profileFriendAvatar}>
           <img src={avatar} alt=""/>
         </div>

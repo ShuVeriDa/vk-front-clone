@@ -4,26 +4,33 @@ import {Link} from "react-router-dom";
 import {ProfileFriendsAndSubsItem} from "./ProfileFriendsAndSubsItem/ProfileFriendsAndSubsItem";
 
 import styles from './ProfileFriendsAndSubs.module.scss'
-import {IUserFull} from "../../../types/user.interface";
+import {IUserAbbr} from "../../../types/user.interface";
 import defaultAvatar from "../../../assets/defaultAvatar.png";
 import defaultCommunityAvatar from "../../../assets/defaultCommunityAvatar.png";
+import {ICommunity, ICommunityFull} from "../../../types/community.interface";
+import {IFriend} from "../../../types/friend.interface";
+import stylesFriendsItem from "./ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss";
+import {avatarUrl} from "../../../utils/avatarUrl";
 
 interface ProfileFriendsAndSubsPropsType {
   itemStyles: any
-  title: "Друзья" | "Подписки"
-  user: IUserFull | undefined
+  title: "Друзья" | "Подписки" | 'Подписчики'
+  // user: IUserFull | undefined
+  communities?: ICommunity[] | ICommunityFull[]
+  friends?: IFriend[]
+  members?: IUserAbbr[]
 }
 
 export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
   {
     itemStyles,
     title,
-    user,
+    friends, communities,
+    members
+
   }) => {
-  const friends = user?.friends
-  const communities = user?.communities
-  const friendsLength = user?.friends.length
-  const communityLength = user?.communities.length
+  const friendsLength = friends?.length
+  const communityLength = communities?.length
   return (
     <div className={styles.profileFrAndSubs}>
       <div className={styles.profileFrAndSubsHeader}>
@@ -34,7 +41,7 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
       </div>
       <div className={styles.friendsItems || styles.profileSubsItems}>
         {title === "Друзья"
-          ? friends?.map(friend => {
+          && friends?.map(friend => {
 
             return <ProfileFriendsAndSubsItem key={friend.id}
                                               id={friend.id}
@@ -45,7 +52,8 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
 
             />
           })
-          : communities?.map(community => {
+        }
+        {title === "Подписки" && communities?.map(community => {
             return <ProfileFriendsAndSubsItem key={community.id}
                                               id={community.id}
                                               name={community.name}
@@ -55,6 +63,18 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
                                               title={title}
             />
           }).splice(0, 5)
+        }
+        {
+         title === 'Подписчики' && members?.map(member => {
+           const avatar = member.avatar !== null ? avatarUrl(member.avatar): defaultAvatar
+            return <ProfileFriendsAndSubsItem key={member.id}
+                                              id={member.id}
+                                              name={member.firstName}
+                                              avatar={avatar}
+                                              styles={stylesFriendsItem}
+                                              title={'Подписчики'}
+            />
+          }).splice(0, 8)
         }
       </div>
     </div>
