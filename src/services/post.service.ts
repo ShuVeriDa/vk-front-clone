@@ -1,5 +1,5 @@
-import {ICreatePost, IPost, IPostCommunity, IUpdatePost} from "../types/post.interface";
-import {instance} from "../api/api.interceptor";
+import {ICreatePost, IPost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../types/post.interface";
+import {axiosClassic, instance} from "../api/api.interceptor";
 import {getPostsCommunityUrl, getPostsUrl} from "../api/api.config";
 
 
@@ -28,9 +28,9 @@ export const PostService =  {
 
   //community
   getPostsCommunityUrl: async (communityId: string) => {
-    const {data} = await instance.get<IPostCommunity[]>(getPostsCommunityUrl(''), {data: communityId})
+    const res = await axiosClassic.get<IPostCommunity[]>(getPostsCommunityUrl(communityId, ''))
 
-    return data
+    return res.data
   }
 
 }

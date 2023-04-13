@@ -15,9 +15,12 @@ export const CommunityPage: FC<ICommunityPageProps> = () => {
 
   const {fetchOne} = useCommunityQuery (id!)
   const {data: community} = fetchOne
-  const {getCommunityPosts} = usePostsQuery(undefined, undefined, id)
-  const {data: posts, isSuccess} = getCommunityPosts
+
+  const {getCommunityPosts} = usePostsQuery(undefined, undefined, community?.id)
+  const { data: posts, isSuccess} = getCommunityPosts
+  // mutate({communityId: id!})
   console.log(posts)
+
   return (
     <div>
       <CommunityHeader community={community}/>

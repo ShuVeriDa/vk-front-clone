@@ -24,6 +24,10 @@ export interface IPostAbbr {
   updatedAt: string,
 }
 
+export interface IPostCommunityData {
+  communityId: string
+}
+
 export interface IPostCommunity extends IPostAbbr {
   community: ICommunitySearchAbbr | null,
   user: IUserAbbr,

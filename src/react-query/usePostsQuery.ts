@@ -1,12 +1,13 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {PostService} from "../services/post.service";
 import {useMemo} from "react";
-import {ICreatePost, IUpdatePost} from "../types/post.interface";
+import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../types/post.interface";
 
 export const usePostsQuery = (userId?: string | number, postId?: string, communityId?: string) => {
   const getMyPosts = useQuery({
     queryFn: () => PostService.fetchMyPosts(userId!),
-    queryKey: ['myPosts', 'allMyPosts']
+    queryKey: ['myPosts', 'allMyPosts'],
+    enabled: !!userId
   })
 
   const client = useQueryClient()
@@ -36,7 +37,8 @@ export const usePostsQuery = (userId?: string | number, postId?: string, communi
   //community
   const getCommunityPosts = useQuery({
     queryFn: () => PostService.getPostsCommunityUrl(communityId!),
-    queryKey: ['communityPosts', 'all']
+    queryKey: ['get all posts', 'in community', communityId],
+    enabled: !!communityId
   })
 
   return useMemo(() => ({
