@@ -12,9 +12,10 @@ interface IPostsProps {
   user: IUserFull
   posts: IPost[] | IPostCommunity[]
   isSuccessPosts: boolean
+  profileId: string | number
 }
 
-export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts}) => {
+export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts, profileId}) => {
   const {user: authorizedUser} = useAuth()
   const avatar = avatarUrl(user?.avatar)
   const borderRadius = {
@@ -33,6 +34,8 @@ export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts}) => 
                          borderRadius={i === 0 ? borderRadius : undefined}
                          // user={user}
                          authorizedUserId={authorizedUser?.id!}
+                         profileId={profileId}
+
         />
       })}
     </div>

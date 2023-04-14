@@ -24,11 +24,12 @@ export const Profile: FC<ProfilePropsType> = () => {
   const {data: posts, isSuccess: isSuccessPosts} = getMyPosts
 
 
+
   return (
     <div className={styles.profile}>
       <ProfileHeader user={isSuccessUser ? user : undefined}/>
       <div className={styles.profileMain}>
-        <PostsWrapper posts={posts!} isSuccessPosts={isSuccessPosts} user={user!}/>
+        <PostsWrapper posts={posts!} isSuccessPosts={isSuccessPosts} user={user!} profileId={id}/>
         <div className={styles.rightSide}>
           <ProfileFriendsAndSubs itemStyles={stylesFriendsItem}
                                  title={"Друзья"}

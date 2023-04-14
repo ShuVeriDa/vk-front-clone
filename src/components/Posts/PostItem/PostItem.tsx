@@ -16,9 +16,10 @@ interface IPostProps {
   borderRadius?: object
   // user: IUserFull
   authorizedUserId: string | number
+  profileId: string | number
 }
 
-export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId}) => {
+export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId, profileId}) => {
   const refOut = useRef(null)
   const avatar = avatarUrl(post.user.avatar) || defaultAvatar
 
@@ -39,6 +40,9 @@ export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId})
     }
   }, [])
 
+  console.log(authorizedUserId, ": authorizedUserId")
+  console.log(post.user.id, ": post.user.id")
+
   return (
     <div className={styles.post} style={borderRadius}>
       <div className={styles.header}>
@@ -55,13 +59,14 @@ export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId})
             </Link>
           </span>
         </div>
-        <PostMenu setShow={() => setShow(!show)}
-                  isEdit={isEdit}
-                  setIsEdit={setIsEdit}
-                  show={show}
-                  refOut={refOut}
-                  postId={post.id}
-        />
+        {post.user.id === authorizedUserId && <PostMenu setShow={() => setShow(!show)}
+                                                        isEdit={isEdit}
+                                                        setIsEdit={setIsEdit}
+                                                        show={show}
+                                                        refOut={refOut}
+                                                        postId={post.id}
+        />}
+
       </div>
       <div className={styles.postText}>
         {isEdit && authorizedUserId === post.user.id

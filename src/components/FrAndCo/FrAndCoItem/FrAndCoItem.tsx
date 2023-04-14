@@ -28,9 +28,11 @@ export const FrAndCoItem: FC<IFrAndCoItemProps> = (
     path, isAuthorizedUser, isAnotherUsers
   }
 ) => {
-  const isFriendOrCommunity = isAuthorizedUser
-    ? isFriend ? 'Вы подписаны' : 'Добавить в друзья'
-    : isCommunity ? 'Вы подписаны' : 'Подписаться'
+  const isFriendOrCommunity =
+    isFriend ? 'Вы подписаны' : 'Добавить в друзья' ||
+     isCommunity ? 'Вы подписаны' : 'Подписаться'
+
+  const isSubscribe = isFriend || isCommunity ? styles.removeFriend : ''
 
   return (
     <div className={styles.friendItem}>
@@ -59,7 +61,7 @@ export const FrAndCoItem: FC<IFrAndCoItemProps> = (
       </div>
       <div className={styles.addFriend}>
         <SubscribeBtn title={isFriendOrCommunity}
-                      classes={isFriend || isCommunity ? styles.removeFriend : ''}
+                      classes={isSubscribe}
                       onChange={onClick}
         />
       </div>
