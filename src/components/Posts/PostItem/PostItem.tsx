@@ -40,9 +40,6 @@ export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId, 
     }
   }, [])
 
-  console.log(authorizedUserId, ": authorizedUserId")
-  console.log(post.user.id, ": post.user.id")
-
   return (
     <div className={styles.post} style={borderRadius}>
       <div className={styles.header}>

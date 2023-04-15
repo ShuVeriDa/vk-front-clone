@@ -1,18 +1,22 @@
-import {FC} from 'react';
+import {FC, useRef, useState} from 'react';
 
 import defaultAvatar from '../../../assets/defaultAvatar.png'
 import styles from './ProfileHeader.module.scss'
 import {IUserFull} from "../../../types/user.interface";
 import {useAuth} from "../../../hooks/useAuth";
 import {Link, useNavigate} from "react-router-dom";
+import {PhotoSVG} from "../../SvgComponent";
 
 interface IProfileHeader {
   user: IUserFull | null | undefined
 }
 
 export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
+  const inputFileRef = useRef<any>(null)
   const navigate = useNavigate()
   const fullName = `${user?.lastName} ${user?.firstName}`
+
+  const [show, setShow] = useState(false)
 
   const {user: authUser} = useAuth()
 
@@ -30,20 +34,38 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
 
   }
 
+
   const buttonsName = authUser?.id === user?.id ? 'Редактировать профиль' : 'Добавить в друзья'
 
-
-
+  console.log(show)
 
   return (
     <div className={styles.profileHeader}>
       <div className={styles.profileBackground}>
         <img src="" alt=""/>
       </div>
-      <div className={styles.profileInfo}>
+      <div className={styles.profileInfo}
+           onMouseEnter={() => {
+             setShow(true)
+           }}
+           onMouseLeave={() => {
+             setShow(false)
+           }}>
         <div className={styles.profilePhoto}>
-          <img src={avatar || defaultAvatar} alt=""/>
+          <img src={avatar || defaultAvatar}
+               alt=""
+            //
+          />
         </div>
+        {show && <div className={styles.input}
+                      onClick={() => inputFileRef.current.click()}
+        >
+          <div className={styles.info}>
+            <PhotoSVG />
+            <span>Загрузить фотографию</span>
+          </div>
+          <input type="file" ref={inputFileRef} hidden/>
+        </div>}
         <div className={styles.profileDetails}>
           <div className={styles.profileNameStatusOthers}>
             <span className={styles.name}>{fullName}</span>

@@ -22,6 +22,47 @@
     padding: 20px;
     display: flex;
 
+    .input {
+      display: flex;
+      border: 1px solid #F5F6F8FF;
+      width: 210px;
+      min-height: 26px;
+      padding: 8px;
+      position: absolute;
+      top: 83px;
+      overflow: hidden;
+      border-radius: 8px;
+      background-color: #fff;
+
+      .info {
+        padding: 0 10px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-radius: 5px;
+
+        svg {
+          color: #6591C3;
+        }
+
+        span {
+          padding-left: 10px;
+          font-size: 14px;
+          line-height: 15px;
+        }
+
+        &:hover {
+          background-color: #F5F6F8;
+          cursor: pointer;
+        }
+      }
+
+      input {
+        overflow: hidden;
+      }
+    }
+
     .profilePhoto {
       position: relative;
       bottom: 100px;
@@ -34,6 +75,8 @@
       align-items: center;
       justify-content: center;
       border-radius: 100%;
+
+
 
       img {
         width: 150px;

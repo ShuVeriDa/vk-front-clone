@@ -6,7 +6,7 @@ import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../t
 export const usePostsQuery = (userId?: string | number, postId?: string, communityId?: string) => {
   const getMyPosts = useQuery({
     queryFn: () => PostService.fetchMyPosts(userId!),
-    queryKey: ['myPosts', 'allMyPosts'],
+    queryKey: ['myPosts', 'allMyPosts', userId],
     enabled: !!userId
   })
 

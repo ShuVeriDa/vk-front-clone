@@ -12,7 +12,7 @@ interface IPostsProps {
   user: IUserFull
   posts: IPost[] | IPostCommunity[]
   isSuccessPosts: boolean
-  profileId: string | number
+  profileId?: string | number
 }
 
 export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts, profileId}) => {
@@ -22,6 +22,8 @@ export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts, prof
     borderTopLeftRadius: "0",
     borderTopRightRadius: "0",
   }
+
+  console.log(profileId, ": profileId")
 
   return (
     <div className={styles.profilePosts}>
@@ -34,7 +36,7 @@ export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts, prof
                          borderRadius={i === 0 ? borderRadius : undefined}
                          // user={user}
                          authorizedUserId={authorizedUser?.id!}
-                         profileId={profileId}
+                         profileId={profileId!}
 
         />
       })}
