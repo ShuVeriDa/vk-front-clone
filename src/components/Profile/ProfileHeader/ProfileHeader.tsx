@@ -9,6 +9,7 @@ import {LocationSVG, PhotoSVG} from "../../SvgComponent";
 import {HandleChangeImage} from "../../../utils/HandleChangeImage";
 import {useUsersQuery} from "../../../react-query/useUsersQuery";
 import {SubmitHandler, useForm} from "react-hook-form";
+import {UploadFileService} from "../../../services/uploadFile.services";
 
 interface IProfileHeader {
   user: IUserFull | null | undefined
@@ -35,9 +36,18 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   const onAddFriend = () => {
   }
 
-  const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
-    HandleChangeImage(e, setImageUrl, 'avatar')
-    // uploadImage({avatar: '/uploads/avatar/PaYn7izUI8M.jpg'} as IUserUpdate)
+  const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files
+    if(!files?.length) return
+
+    const formData = new FormData()
+    formData.append('file', files[0])
+    try {
+      const res = await UploadFileService.uploadFile(formData, 'avatar')
+      uploadImage({avatar: res.data[0].url} as IUserUpdate)
+    } catch (error) {
+      console.warn(error)
+    }
   }
 
   const variableBtn = () => {
