@@ -1,18 +1,14 @@
-import {ChangeEvent, FC, useEffect, useState} from 'react';
+import {FC, useState} from 'react';
 import styles from './Auth.module.scss';
 import {Login} from "../../components/Auth/Login/Login";
 import {Register} from "../../components/Auth/Register/Register";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useActions} from "../../hooks/useActions";
 import {IAuthInputType} from "../../redux/types";
-import {HandleChangeImage} from "../../utils/HandleChangeImage";
-import {useAppSelector} from "../../redux/store";
 import logo from '../../assets/vk.png'
 import {SubmitButton} from "../../components/SubmitButton/SubmitButton";
-import {useNavigate, useRoutes} from "react-router-dom";
 import {useAuth} from "../../hooks/useAuth";
 import {useAuthRedirect} from "../../components/Auth/useAuthRedirect";
-import Cookies from "js-cookie";
 
 interface ILoginProps {
 }

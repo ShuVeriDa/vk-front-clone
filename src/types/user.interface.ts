@@ -45,3 +45,7 @@ export interface IUserUpdate {
   status: string
   location: string
 }
+
+export interface IUpdateAvatar {
+  avatar: string
+}

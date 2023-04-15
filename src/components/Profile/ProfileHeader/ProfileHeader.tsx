@@ -1,11 +1,14 @@
-import {FC, useRef, useState} from 'react';
+import {ChangeEvent, FC, useRef, useState} from 'react';
 
 import defaultAvatar from '../../../assets/defaultAvatar.png'
 import styles from './ProfileHeader.module.scss'
-import {IUserFull} from "../../../types/user.interface";
+import {IUpdateAvatar, IUserFull, IUserUpdate} from "../../../types/user.interface";
 import {useAuth} from "../../../hooks/useAuth";
 import {Link, useNavigate} from "react-router-dom";
 import {LocationSVG, PhotoSVG} from "../../SvgComponent";
+import {HandleChangeImage} from "../../../utils/HandleChangeImage";
+import {useUsersQuery} from "../../../react-query/useUsersQuery";
+import {SubmitHandler, useForm} from "react-hook-form";
 
 interface IProfileHeader {
   user: IUserFull | null | undefined
@@ -16,15 +19,25 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   const navigate = useNavigate()
   const fullName = `${user?.lastName} ${user?.firstName}`
 
+  const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [show, setShow] = useState(false)
 
   const {user: authUser} = useAuth()
 
+  const {updateUser} = useUsersQuery(authUser?.id!)
+  const {mutate: uploadImage} = updateUser
+
   const avatar = `${process.env.REACT_APP_SERVER_URL}${user?.avatar}`
+
   const onChangeProfile = () => {
     navigate(`/edit`)
   }
   const onAddFriend = () => {
+  }
+
+  const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+    HandleChangeImage(e, setImageUrl, 'avatar')
+    // uploadImage({avatar: '/uploads/avatar/PaYn7izUI8M.jpg'} as IUserUpdate)
   }
 
   const variableBtn = () => {
@@ -35,6 +48,12 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
 
   const buttonsName = authUser?.id === user?.id ? 'Редактировать профиль' : 'Добавить в друзья'
 
+  const {register, handleSubmit, formState, reset} = useForm<IUserUpdate>({mode: "onChange"})
+  const onSubmit: SubmitHandler<IUserUpdate> = (data) => {
+    console.log(data)
+    uploadImage({avatar: imageUrl} as IUserUpdate)
+    reset()
+  }
 
   return (
     <div className={styles.profileHeader}>
@@ -51,18 +70,30 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
                alt=""
           />
         </div>
-        {show && <div className={styles.input}
-                      onClick={() => inputFileRef.current.click()}
-                      onMouseLeave={() => {
-                        setShow(false)
-                      }}
-        >
-          <div className={styles.info}>
-            <PhotoSVG/>
-            <span>Загрузить фотографию</span>
-          </div>
-          <input type="file" ref={inputFileRef} hidden/>
-        </div>}
+        {
+          authUser?.id === user?.id
+            ? show
+            && <div className={styles.input}
+                    onClick={() => inputFileRef.current.click()}
+                    onMouseLeave={() => {
+                      setShow(false)
+                    }}
+            >
+              <div className={styles.info}>
+                <PhotoSVG/>
+                <span>Загрузить фотографию</span>
+              </div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input {...register('avatar', {required: true})}
+                       type="file"
+                       ref={inputFileRef}
+                       onChange={handleChangeImage}
+                       hidden
+                />
+              </form>
+            </div>
+            : null
+        }
         <div className={styles.profileDetails}>
           <div className={styles.profileNameStatusOthers}>
             <span className={styles.name}>{fullName}</span>
