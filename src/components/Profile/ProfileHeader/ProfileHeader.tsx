@@ -36,18 +36,12 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
   const onAddFriend = () => {
   }
 
-  const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-    if(!files?.length) return
+  const uploadAvatar = (url: string) => {
+    uploadImage({avatar: url} as IUserUpdate)
+  }
 
-    const formData = new FormData()
-    formData.append('file', files[0])
-    try {
-      const res = await UploadFileService.uploadFile(formData, 'avatar')
-      uploadImage({avatar: res.data[0].url} as IUserUpdate)
-    } catch (error) {
-      console.warn(error)
-    }
+  const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    await HandleChangeImage(e, 'avatar', uploadAvatar)
   }
 
   const variableBtn = () => {
