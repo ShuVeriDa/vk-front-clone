@@ -5,7 +5,7 @@ import styles from './ProfileHeader.module.scss'
 import {IUserFull} from "../../../types/user.interface";
 import {useAuth} from "../../../hooks/useAuth";
 import {Link, useNavigate} from "react-router-dom";
-import {PhotoSVG} from "../../SvgComponent";
+import {LocationSVG, PhotoSVG} from "../../SvgComponent";
 
 interface IProfileHeader {
   user: IUserFull | null | undefined
@@ -31,37 +31,34 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
     authUser?.id === user?.id
       ? onChangeProfile()
       : onAddFriend()
-
   }
-
 
   const buttonsName = authUser?.id === user?.id ? 'Редактировать профиль' : 'Добавить в друзья'
 
-  console.log(show)
 
   return (
     <div className={styles.profileHeader}>
       <div className={styles.profileBackground}>
         <img src="" alt=""/>
       </div>
-      <div className={styles.profileInfo}
-           onMouseEnter={() => {
-             setShow(true)
-           }}
-           onMouseLeave={() => {
-             setShow(false)
-           }}>
-        <div className={styles.profilePhoto}>
+      <div className={styles.profileInfo}>
+        <div className={styles.profilePhoto}
+             onMouseEnter={() => {
+               setShow(true)
+             }}
+        >
           <img src={avatar || defaultAvatar}
                alt=""
-            //
           />
         </div>
         {show && <div className={styles.input}
                       onClick={() => inputFileRef.current.click()}
+                      onMouseLeave={() => {
+                        setShow(false)
+                      }}
         >
           <div className={styles.info}>
-            <PhotoSVG />
+            <PhotoSVG/>
             <span>Загрузить фотографию</span>
           </div>
           <input type="file" ref={inputFileRef} hidden/>
@@ -71,10 +68,7 @@ export const ProfileHeader: FC<IProfileHeader> = ({user}) => {
             <span className={styles.name}>{fullName}</span>
             <span className={styles.status}>{!user?.status.length ? 'Введите статус' : user.status}</span>
             <span className={styles.city}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 100 100"><path
-              d="M50 8C34.6 8 22 20.4 22 35.7c0 32.6 25.6 54.9 26.7 55.9.7.6 1.9.6 2.6 0 1.1-1 26.7-23.4 26.7-55.9C78 20.4 65.4 8 50 8zm0 79.3c-5.2-5-24-25-24-51.6C26 22.6 36.8 12 50 12s24 10.6 24 23.7c0 26.6-18.8 46.6-24 51.6zM50 20c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16-7.2-16-16-16zm0 28c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12z"/><path
-              fill="#00F" d="M1644-370v1684H-140V-370h1784m8-8H-148v1700h1800V-378z"/>
-            </svg>
+              <LocationSVG/>
               <span>{user?.location}</span>
             </span>
           </div>
