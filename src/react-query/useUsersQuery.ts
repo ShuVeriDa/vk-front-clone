@@ -7,6 +7,7 @@ export const useUsersQuery = (userId: string | number) => {
   const getUserById = useQuery({
     queryFn: () => UserService.fetchUser(userId!),
     queryKey: ['user', 'one', userId],
+    enabled: !!userId
   })
 
   const client = useQueryClient()

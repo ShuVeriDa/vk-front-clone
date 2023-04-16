@@ -25,7 +25,7 @@ export const Profile: FC<ProfilePropsType> = () => {
 
   return (
     <div className={styles.profile}>
-      <ProfileHeader user={isSuccessUser ? user : undefined}/>
+      <ProfileHeader user={isSuccessUser ? user : undefined} profileId={id!}/>
       <div className={styles.profileMain}>
         <PostsWrapper posts={posts!}
                       isSuccessPosts={isSuccessPosts}

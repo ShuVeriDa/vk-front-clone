@@ -1,4 +1,4 @@
-import {FC, Reducer, useReducer, useRef} from 'react';
+import {ChangeEvent, FC, Reducer, useReducer, useRef} from 'react';
 import styles from './ProfileEdit.module.scss';
 import {Input} from "../../components/Input/Input";
 import {useAuth} from "../../hooks/useAuth";
@@ -8,6 +8,8 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {useUsersQuery} from "../../react-query/useUsersQuery";
 import {validEmail} from "../../utils/regex";
+import {useUploadQuery} from "../../react-query/useUploadQuery";
+import {avatarUrl} from "../../utils/avatarUrl";
 
 interface IProfileUpdateProps {
 }
@@ -20,11 +22,21 @@ export const ProfileEdit: FC<IProfileUpdateProps> = () => {
   const inputFileRef = useRef<any>(null)
   const navigate = useNavigate()
   const {user} = useAuth()
+  const avatar = avatarUrl(user?.avatar!)
   const fullName = `${user?.lastName} ${user?.firstName}`
 
-  const {updateUser, getUserById} = useUsersQuery(user?.id!)
-  // const {data: currentUser} = getUserById
+  const {updateUser} = useUsersQuery(user?.id!)
   const {mutate} = updateUser
+
+  const uploadAvatar = (url: string) => {
+    mutate({avatar: url} as IUserUpdate)
+  }
+
+  const {uploadFile} = useUploadQuery('avatar', uploadAvatar, user?.id!)
+
+  const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    await uploadFile(e)
+  }
 
   const [event, updateEvent] = useReducer<EventReducer>((prev, next) => {
       return {...prev, ...next}
@@ -35,13 +47,6 @@ export const ProfileEdit: FC<IProfileUpdateProps> = () => {
       lastName: user?.lastName!,
       status: user?.status!,
       location: user?.location!
-
-    // email: currentUser?.email!,
-    //   avatar: currentUser?.avatar!,
-    //   firstName: currentUser?.firstName!,
-    //   lastName: currentUser?.lastName!,
-    //   status: currentUser?.status!,
-    //   location: currentUser?.location!
     }
   //   TODO: При повторном изменении пользователя, данные приходят со времени авторизации, а не измененные - решить проблему
   )
@@ -55,14 +60,13 @@ export const ProfileEdit: FC<IProfileUpdateProps> = () => {
     reset()
   }
 
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.userInfo}>
         <div className={styles.img}>
-          <img src={user?.avatar} alt=""/>
+          <img src={avatar} alt=""/>
           <button onClick={() => inputFileRef.current.click()}></button>
-          <input type="file" ref={inputFileRef} hidden/>
+          <input type="file" ref={inputFileRef} onChange={handleChangeImage} hidden/>
         </div>
         <div className={styles.info}>
           <span className={styles.fullName}>{fullName}</span><br/>
