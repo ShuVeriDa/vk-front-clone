@@ -57,7 +57,11 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
       <div className={styles.profileBackground}>
         <img src="" alt=""/>
       </div>
-      <div className={styles.profileInfo}>
+      <div className={styles.profileInfo}
+           onMouseLeave={() => {
+             setShow(false)
+           }}
+      >
         <div className={styles.profilePhoto}
              onMouseEnter={() => {
                setShow(true)
@@ -72,9 +76,7 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
             ? show
             && <div className={styles.input}
                     onClick={() => inputFileRef.current.click()}
-                    onMouseLeave={() => {
-                      setShow(false)
-                    }}
+
             >
               <div className={styles.info}>
                 <PhotoSVG/>
@@ -100,7 +102,7 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
           <div className={styles.profileBtns}>
             <button className={styles.btn} onClick={variableBtn}>{buttonsName}</button>
             {authUser?.id !== user?.id && <button className={styles.btnMessage}>
-              <MessageBtn />
+              <MessageBtn/>
             </button>}
 
           </div>
