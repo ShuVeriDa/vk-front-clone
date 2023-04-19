@@ -41,6 +41,7 @@ export const Register: FC<IRegisterProps> = (
         }
       )}
              placeholder={'Почта'}
+             value={''}
              type={'email'}
              error={errors.email}
       />
@@ -53,6 +54,7 @@ export const Register: FC<IRegisterProps> = (
         } : {}
       )}
              placeholder={'Пароль'}
+             value={''}
              type={'password'}
              error={errors.password}
       />
@@ -63,6 +65,7 @@ export const Register: FC<IRegisterProps> = (
         }
       )}
              type={'lastName'}
+             value={''}
              placeholder={'Фамилия'}
              error={errors.lastName}
       />
@@ -73,6 +76,7 @@ export const Register: FC<IRegisterProps> = (
         }
       )}
              type={'firstName'}
+             value={''}
              placeholder={'Имя'}
              error={errors.firstName}
       />

@@ -1,25 +1,15 @@
-import {FC, Reducer, useReducer} from 'react';
+import {FC} from 'react';
 import styles from './CreateCommunityMain.module.scss';
 import {Input} from "../../../Input/Input";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
-import {ICreateCommunity} from "../../../../types/community.interface";
 import publicCommunity from '../../../../assets/img/public-community.png'
+import {FormState, UseFormRegister} from "react-hook-form";
+
 interface ICreateCommunityMainProps {
+  register: UseFormRegister<any>
+  formState: FormState<any>
 }
 
-export const CreateCommunityMain: FC<ICreateCommunityMainProps> = () => {
-  const navigate = useNavigate()
-
-  const {register, handleSubmit, formState, reset} = useForm<ICreateCommunity>({mode: "onChange"})
-
-
-  const onSubmit: SubmitHandler<ICreateCommunity> = (data) => {
-    // mutate(data)
-
-    // navigate(`/profile/${user?.id}`)
-    reset()
-  }
+export const CreateCommunityMain: FC<ICreateCommunityMainProps> = ({register, formState}) => {
 
   return (
     <div className={styles.main}>
@@ -30,42 +20,39 @@ export const CreateCommunityMain: FC<ICreateCommunityMainProps> = () => {
 поделитесь успехами и новостями</span>
       </div>
       <div className={styles.data}>
-        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.edit}>
             <div className={styles.inputs}>
               <Input {...register('name', {
-                required: "name is required",
+                required: "Name is required",
                 minLength: {
                   value: 3,
                   message: "Min length should more 3 symbols"
                 }
               })}
                      type={'text'}
+                     value={''}
                      label={'Название:'}
                      classes={styles.inputItem}
                      error={formState.errors.name}
               />
 
-              <Input {...register('category', {
-                required: "category is required",
-              })}
+              <Input {...register('category',)}
                      type={'text'}
+                     value={''}
                      label={'Тематика:'}
                      classes={styles.inputItem}
                      error={formState.errors.category}
               />
 
-              <Input {...register('description', {
-                required: "description is required",
-              })}
+              <Input {...register('description')}
                      type={'text'}
+                     value={''}
                      label={'Описание:'}
                      classes={styles.inputItem}
                      error={formState.errors.description}
               />
             </div>
           </div>
-        </form>
       </div>
     </div>
   );

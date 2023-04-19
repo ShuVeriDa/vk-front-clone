@@ -26,6 +26,7 @@ export const Login: FC<ILoginProps> = ({register, isPasswordRequired = false, fo
         }
       )}
              title={'Email'}
+             value={''}
              placeholder={'Почта'}
              type={'email'}
              error={errors.email}
@@ -40,6 +41,7 @@ export const Login: FC<ILoginProps> = ({register, isPasswordRequired = false, fo
         } : {}
       )}
              title={'Password'}
+             value={''}
              placeholder={'Пароль'}
              type={'password'}
              error={errors.password}

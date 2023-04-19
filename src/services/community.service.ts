@@ -1,6 +1,11 @@
 import {instance} from "../api/api.interceptor";
 import {getCommunityUrl} from "../api/api.config";
-import {ICommunityFull, ICommunitySearchResponse, ISearchCommunityParams} from "../types/community.interface";
+import {
+  ICommunityFull,
+  ICommunitySearchResponse,
+  ICreateCommunity,
+  ISearchCommunityParams
+} from "../types/community.interface";
 
 export const CommunityService = {
   searchCommunity: async (params?: ISearchCommunityParams) => {
@@ -26,4 +31,10 @@ export const CommunityService = {
 
     return data
   },
+
+  createCommunity: async (data: ICreateCommunity) => {
+    const res = await instance.post<string>(getCommunityUrl(''), data)
+
+    return res.data
+  }
 }

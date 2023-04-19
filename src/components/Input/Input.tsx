@@ -21,7 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
   (
     {
       type, title, style, error,
-      value, step, classes, onChangeSome, placeholder, label, ...rest
+      value, step, classes, placeholder, label,onChangeSome, ...rest
     }, ref
   ) => {
 
@@ -46,9 +46,6 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
                onChange={onChangeHandler}
                step={step}
                placeholder={placeholder}
-
-
-
         />
         {error && error.type && <div className={styles.error}>{error.message}</div>}
       </div>
