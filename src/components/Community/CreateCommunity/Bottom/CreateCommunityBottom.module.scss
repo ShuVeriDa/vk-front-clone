@@ -1,0 +1,72 @@
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 23px 14px 25px;
+  background-color: #FAFBFC;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 500;
+  height: 54px;
+  border-top: 1px solid #dce1e6;
+
+  .rules {
+    display: flex;
+    align-items: center;
+
+    input {
+      margin-right: 10px;
+    }
+
+    span {
+      font-size: 13px;
+      line-height: 16.51px;
+
+      &.blue {
+        color:#6787A7;
+        
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    font-size: 13px;
+    button {
+      height: 32px;
+      font-size: 13px;
+      min-width: 50px;
+      width: auto;
+      padding: 0 16px;
+      margin: 0;
+    }
+
+    .cancelBtn {
+      background-color: transparent;
+      color: #346297;
+
+      &:hover {
+        background-color: #e5ebf1;
+        cursor: pointer;
+      }
+    }
+
+    .submitBtnDisabled {
+      background-color: gainsboro;
+    }
+
+    .submitBtn {
+      margin-left: 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+}

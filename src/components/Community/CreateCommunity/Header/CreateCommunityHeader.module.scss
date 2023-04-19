@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 23px 14px 25px;
+  background-color: #FAFBFC;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  //line-height: 54px;
+  font-size: 14px;
+  font-weight: 500;
+  height: 54px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #dce1e6;
+
+  .close {
+    cursor: pointer;
+
+    svg {
+      fill: #cbcdd0;;
+
+      &:hover {
+        fill: #8e8f91;;
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ import {CommentPostSVG, FavoritePostSVG, RepostPostSVG, ViewsPostSVG} from "../.
 import {PostMenu} from "../PostMenu/PostMenu";
 import {PostUpdate} from "../PostUpdate/PostUpdate";
 import {avatarUrl} from "../../../utils/avatarUrl";
+import {ICommunitySearchAbbr, ICommunitySearchResponse} from "../../../types/community.interface";
 
 
 interface IPostProps {
@@ -19,7 +20,7 @@ interface IPostProps {
   profileId: string | number
 }
 
-export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId, profileId}) => {
+export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId}) => {
   const refOut = useRef(null)
   const avatar = avatarUrl(post.user.avatar) || defaultAvatar
 

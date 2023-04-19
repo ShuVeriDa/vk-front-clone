@@ -9,15 +9,17 @@ interface ISubmitButtonProps {
   status?: StatusEnum
   onSelectType?: () => void
   classes?: string
+  disabled?: boolean
 }
 
-export const SubmitButton: FC<ISubmitButtonProps> = ({title, classes, status, onSelectType}) => {
+export const SubmitButton: FC<ISubmitButtonProps> = ({title, classes, status, onSelectType, disabled}) => {
   const isLoading = status === 'success'
   return (
     <>
       <button type={'submit'}
               onClick={onSelectType}
-              className={cn(styles.btn, classes)} disabled={isLoading}
+              className={cn(styles.btn, classes)}
+              disabled={status ? isLoading : disabled}
       >
         {title}
       </button>

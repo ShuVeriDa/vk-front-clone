@@ -10,6 +10,7 @@ import {FriendPage} from "./pages/Friends/FriendPage";
 import Cookies from "js-cookie";
 import {useActions} from "./hooks/useActions";
 import {CommunitySearchPage} from "./pages/CommunitySearchPage/CommunitySearchPage";
+import {CreateCommunity} from "./pages/CreateCommunity/CreateCommunity";
 
 
 const Profile = lazy(() => import("./pages/Profile/Profile")
@@ -44,6 +45,7 @@ function App() {
   return (
     <Routes>
       <Route path={'/auth'} element={<Auth/>}/>
+      <Route path={'/groups/create'} element={<CreateCommunity />}/>
       <Route path="/" element={<MainLayout/>}>
         <Route path={"/"} element={<Home/>}/>
         <Route path={'/profile/:id'} element={
@@ -58,6 +60,7 @@ function App() {
         }/>
         <Route path={'/friends'} element={<FriendPage />}/>
         <Route path={'/groups'} element={<CommunitySearchPage />}/>
+
         <Route path={'/edit'} element={<ProfileEdit />}/>
       </Route>
 
