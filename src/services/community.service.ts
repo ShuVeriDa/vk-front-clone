@@ -33,7 +33,7 @@ export const CommunityService = {
   },
 
   createCommunity: async (data: ICreateCommunity) => {
-    const res = await instance.post<string>(getCommunityUrl(''), data)
+    const res = await instance.post<{id: string}>(getCommunityUrl(''), data)
 
     return res.data
   }

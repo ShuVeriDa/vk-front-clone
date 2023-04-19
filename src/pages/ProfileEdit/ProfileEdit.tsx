@@ -77,44 +77,47 @@ export const ProfileEdit: FC<IProfileUpdateProps> = () => {
         <div className={styles.edit}>
           <div className={styles.inputs}>
             <Input {...register('email', {
-              required: "Email is required", pattern: {
+              required: "Электронная почта обязательна", pattern: {
                 value: validEmail,
-                message: 'Please enter a valid email address'
+                message: 'Пожалуйста, введите действительный адрес электронной почты'
               }
             })}
                    type={'email'}
                    label={'Email:'}
                    classes={styles.inputItem}
+                   classesError={styles.inputError}
                    value={event.email}
                    onChangeSome={(e) => updateEvent({email: e.currentTarget.value})}
                    error={formState.errors.email}
             />
 
             <Input {...register('firstName', {
-              required: "firstName is required",
+              required: "Имя обязательно",
               minLength: {
                 value: 3,
-                message: "Min length should more 3 symbols"
+                message: "Минимальная длина должна быть больше 3 символов"
               }
             })}
                    type={'text'}
                    label={'Имя:'}
                    classes={styles.inputItem}
+                   classesError={styles.inputError}
                    value={event.firstName}
                    onChangeSome={(e) => updateEvent({firstName: e.currentTarget.value})}
                    error={formState.errors.firstName}
             />
 
             <Input {...register('lastName', {
-              required: "lastName is required",
+              required: "Фамилия обязательна",
               minLength: {
                 value: 3,
-                message: "Min length should more 3 symbols"
+                message: "Минимальная длина должна быть больше 3 символов"
               }
             })}
                    type={'text'}
                    label={'Фамилия:'}
                    classes={styles.inputItem}
+                   classesError={styles.inputError}
                    value={event.lastName}
                    onChangeSome={(e) => updateEvent({lastName: e.currentTarget.value})}
                    error={formState.errors.lastName}
@@ -129,13 +132,7 @@ export const ProfileEdit: FC<IProfileUpdateProps> = () => {
                    error={formState.errors.status}
             />
 
-            <Input {...register('location', {
-              required: "location is required",
-              minLength: {
-                value: 3,
-                message: "Min length should more 3 symbols"
-              }
-            })}
+            <Input {...register('location', )}
                    type={'text'}
                    label={'Родной город:'}
                    classes={styles.inputItem}

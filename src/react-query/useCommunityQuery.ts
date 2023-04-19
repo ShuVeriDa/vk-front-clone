@@ -3,10 +3,12 @@ import {useMemo} from "react";
 import {CommunityService} from "../services/community.service";
 import {useCommunitySearchQuery} from "./useCommunitySearchQuery";
 import {ICreateCommunity} from "../types/community.interface";
+import {useNavigate} from "react-router-dom";
 
 
 export const useCommunityQuery = (communityId?: string ) => {
   const {searchCommunity} = useCommunitySearchQuery()
+  const navigate = useNavigate()
 
   const fetchOne = useQuery({
     queryFn: () => CommunityService.fetchOne(communityId!),
@@ -18,7 +20,8 @@ export const useCommunityQuery = (communityId?: string ) => {
 
   const createCommunity = useMutation({
     mutationFn: (data: ICreateCommunity) => CommunityService.createCommunity(data),
-    onSuccess: () => {
+    onSuccess: ({id}) => {
+      navigate(`/group/${id}`);
       searchCommunity.refetch()
     }
   })

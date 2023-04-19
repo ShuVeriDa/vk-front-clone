@@ -23,16 +23,17 @@ export const CreateCommunityMain: FC<ICreateCommunityMainProps> = ({register, fo
           <div className={styles.edit}>
             <div className={styles.inputs}>
               <Input {...register('name', {
-                required: "Name is required",
+                required: "Название обязательно",
                 minLength: {
                   value: 3,
-                  message: "Min length should more 3 symbols"
+                  message: "Минимальная длина должна быть больше 3 символов"
                 }
               })}
                      type={'text'}
                      value={''}
                      label={'Название:'}
                      classes={styles.inputItem}
+                     classesError={styles.inputError}
                      error={formState.errors.name}
               />
 
