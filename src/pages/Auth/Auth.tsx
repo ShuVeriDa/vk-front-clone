@@ -5,7 +5,7 @@ import {Register} from "../../components/Auth/Register/Register";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useActions} from "../../hooks/useActions";
 import {IAuthInputType} from "../../redux/types";
-import logo from '../../assets/vk.png'
+import logo from '../../assets/img/vk.png'
 import {SubmitButton} from "../../components/SubmitButton/SubmitButton";
 import {useAuth} from "../../hooks/useAuth";
 import {useAuthRedirect} from "../../components/Auth/useAuthRedirect";

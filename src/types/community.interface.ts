@@ -40,3 +40,9 @@ export interface ISearchCommunityParams {
   limit?: number
   take?:  number
 }
+
+export interface ICreateCommunity {
+  name: string
+  category: string
+  description: string
+}

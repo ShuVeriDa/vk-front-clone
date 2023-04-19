@@ -1,7 +1,7 @@
 import {FC, useEffect, useRef, useState} from 'react';
 
 import styles from './PostItem.module.scss'
-import defaultAvatar from '../../../assets/defaultAvatar.png'
+import defaultAvatar from '../../../assets/img/defaultAvatar.png'
 import {Link} from "react-router-dom";
 import {IPost, IPostCommunity} from "../../../types/post.interface";
 import ReactTimeago from "react-timeago";

@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import defaultAvatar from '../../../assets/defaultAvatar.png'
+import defaultAvatar from '../../../assets/img/defaultAvatar.png'
 
 import {avatarUrl} from "../../../utils/avatarUrl";
 import {IFriend} from "../../../types/friend.interface";

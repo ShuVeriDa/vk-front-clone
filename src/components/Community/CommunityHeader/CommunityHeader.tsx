@@ -1,6 +1,6 @@
 import {DetailedHTMLProps, FC, HTMLAttributes, MutableRefObject, useEffect, useRef, useState} from 'react';
 
-import defaultCommunityAvatar from '../../../assets/defaultCommunityAvatar.png'
+import defaultCommunityAvatar from '../../../assets/img/defaultCommunityAvatar.png'
 import styles from './CommunityHeader.module.scss'
 import {IUserFull} from "../../../types/user.interface";
 import {useAuth} from "../../../hooks/useAuth";

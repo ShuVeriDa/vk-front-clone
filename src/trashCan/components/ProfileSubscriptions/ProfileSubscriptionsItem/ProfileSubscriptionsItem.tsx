@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {Link} from "react-router-dom";
 
 import styles from "./ProfileSubscriptionsItem.module.scss";
-import defaultAvatar from "../../../../assets/defaultAvatar.png";
+import defaultAvatar from "../../../../assets/img/defaultAvatar.png";
 
 interface FriendsItemPropsType {
 }

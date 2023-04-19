@@ -5,8 +5,8 @@ import {ProfileFriendsAndSubsItem} from "./ProfileFriendsAndSubsItem/ProfileFrie
 
 import styles from './ProfileFriendsAndSubs.module.scss'
 import {IUserAbbr} from "../../../types/user.interface";
-import defaultAvatar from "../../../assets/defaultAvatar.png";
-import defaultCommunityAvatar from "../../../assets/defaultCommunityAvatar.png";
+import defaultAvatar from "../../../assets/img/defaultAvatar.png";
+import defaultCommunityAvatar from "../../../assets/img/defaultCommunityAvatar.png";
 import {ICommunity, ICommunityFull} from "../../../types/community.interface";
 import {IFriend} from "../../../types/friend.interface";
 import stylesFriendsItem from "./ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss";

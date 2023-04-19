@@ -4,6 +4,7 @@ import {ClearSearchValueSVG} from "../../components/SvgComponent";
 import {SubmitButton} from "../../components/SubmitButton/SubmitButton";
 import {Header} from "../../components/Community/CreateCommunity/Header/CreateCommunityHeader";
 import {Bottom} from "../../components/Community/CreateCommunity/Bottom/CreateCommunityBottom";
+import {CreateCommunityMain} from "../../components/Community/CreateCommunity/Main/CreateCommunityMain";
 
 interface ICreateCommunityProps {
 }
@@ -13,7 +14,7 @@ export const CreateCommunity: FC<ICreateCommunityProps> = () => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Header/>
-
+        <CreateCommunityMain />
         <Bottom/>
       </div>
     </div>

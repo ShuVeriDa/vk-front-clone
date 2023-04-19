@@ -1,6 +1,6 @@
 import {ChangeEvent, FC, useRef, useState} from 'react';
 
-import defaultAvatar from '../../../assets/defaultAvatar.png'
+import defaultAvatar from '../../../assets/img/defaultAvatar.png'
 import styles from './ProfileHeader.module.scss'
 import {IUserFull, IUserUpdate} from "../../../types/user.interface";
 import {useAuth} from "../../../hooks/useAuth";

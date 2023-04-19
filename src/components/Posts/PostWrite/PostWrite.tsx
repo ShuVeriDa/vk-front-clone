@@ -3,7 +3,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 
 import styles from './PostWrite.module.scss'
-import defaultAvatar from '../../../assets/defaultAvatar.png'
+import defaultAvatar from '../../../assets/img/defaultAvatar.png'
 import {SubmitHandler, useForm} from "react-hook-form";
 import {ICreatePost} from "../../../types/post.interface";
 import {usePostsQuery} from "../../../react-query/usePostsQuery";

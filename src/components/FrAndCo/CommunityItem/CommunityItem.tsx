@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import defaultCommunityAvatar from '../../../assets/defaultCommunityAvatar.png'
+import defaultCommunityAvatar from '../../../assets/img/defaultCommunityAvatar.png'
 
 import {avatarUrl} from "../../../utils/avatarUrl";
 import {ICommunitySearchAbbr} from "../../../types/community.interface";

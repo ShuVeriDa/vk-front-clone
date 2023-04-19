@@ -1,7 +1,7 @@
 import {FC, useState} from 'react';
 
-import Logo from './../../assets/logo.png'
-import defaultAvatar from '../../assets/defaultAvatar.png'
+import Logo from '../../assets/img/logo.png'
+import defaultAvatar from '../../assets/img/defaultAvatar.png'
 import styles from './Header.module.scss'
 import {NavLink} from "react-router-dom";
 import {useAuth} from "../../hooks/useAuth";

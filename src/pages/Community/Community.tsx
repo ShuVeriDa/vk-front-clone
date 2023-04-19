@@ -13,7 +13,7 @@ import {ProfileFriendsAndSubs} from "../../components/Profile/ProfileFriendsAndS
 import {
   ProfileFriendsAndSubsItem
 } from "../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsAndSubsItem";
-import defaultCommunityAvatar from "../../assets/defaultCommunityAvatar.png";
+import defaultCommunityAvatar from "../../assets/img/defaultCommunityAvatar.png";
 import stylesFriendsItem
   from "../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss";
 
