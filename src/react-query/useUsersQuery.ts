@@ -2,6 +2,7 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {UserService} from "../services/user.service";
 import {useMemo} from "react";
 import {IUserUpdate} from "../types/user.interface";
+import {useNavigate} from "react-router-dom";
 
 export const useUsersQuery = (userId: string | number) => {
   const getUserById = useQuery({

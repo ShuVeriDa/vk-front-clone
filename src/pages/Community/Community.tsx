@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {CommunityHeader} from "../../components/Community/CommunityHeader/CommunityHeader";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useCommunityQuery} from "../../react-query/useCommunityQuery";
 import {useAuth} from "../../hooks/useAuth";
 import {PostsWrapper} from "../../components/Posts/PostsWrapper";
@@ -21,6 +21,7 @@ interface ICommunityPageProps {
 }
 
 export const CommunityPage: FC<ICommunityPageProps> = () => {
+  const navigate = useNavigate()
   const {id} = useParams()
   const {user} = useAuth()
 
@@ -31,6 +32,10 @@ export const CommunityPage: FC<ICommunityPageProps> = () => {
   const {data: posts, isSuccess: isSuccessPosts} = getCommunityPosts
   // mutate({communityId: id!})
   console.log(posts)
+
+  if(community?.name === undefined ) {
+    navigate('/404')
+  }
 
   return (
     <div className={styles.community}>

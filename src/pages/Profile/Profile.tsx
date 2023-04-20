@@ -7,7 +7,7 @@ import stylesFriendsItem
   from '../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss'
 import stylesSubsItem
   from '../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileSubscriptionsItem.module.scss'
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {usePostsQuery} from "../../react-query/usePostsQuery";
 import {useUsersQuery} from "../../react-query/useUsersQuery";
 import {PostsWrapper} from "../../components/Posts/PostsWrapper";
@@ -16,12 +16,17 @@ interface ProfilePropsType {
 }
 
 export const Profile: FC<ProfilePropsType> = () => {
+  const navigate = useNavigate()
   const {id} = useParams()
 
   const {getMyPosts} = usePostsQuery(id!)
   const {getUserById} = useUsersQuery(id!)
   const {data: user, isSuccess: isSuccessUser} = getUserById
   const {data: posts, isSuccess: isSuccessPosts} = getMyPosts
+
+  if(user?.firstName === undefined || user.lastName === undefined) {
+    navigate('/404')
+  }
 
   return (
     <div className={styles.profile}>
