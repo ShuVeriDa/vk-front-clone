@@ -2,7 +2,7 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {useMemo} from "react";
 import {CommunityService} from "../services/community.service";
 import {useCommunitySearchQuery} from "./useCommunitySearchQuery";
-import {ICreateCommunity} from "../types/community.interface";
+import {ICreateCommunity, IUpdateCommunity} from "../types/community.interface";
 import {useNavigate} from "react-router-dom";
 
 
@@ -22,7 +22,17 @@ export const useCommunityQuery = (communityId?: string ) => {
     mutationFn: (data: ICreateCommunity) => CommunityService.createCommunity(data),
     onSuccess: ({id}) => {
       navigate(`/group/${id}`);
-      searchCommunity.refetch()
+      // searchCommunity.refetch()
+    }
+  })
+
+  const updateCommunity = useMutation({
+    mutationFn: (data: IUpdateCommunity) => CommunityService.updateCommunity(communityId!, data),
+    onSuccess: ({id}) => {
+
+      client.invalidateQueries({queryKey: ['communityOne', communityId]})
+
+      navigate(`/group/${id}`);
     }
   })
 
@@ -47,6 +57,7 @@ export const useCommunityQuery = (communityId?: string ) => {
     searchCommunity,
     addCommunity,
     removeCommunity,
-    createCommunity
-  }), [fetchOne, searchCommunity, addCommunity, removeCommunity, createCommunity])
+    createCommunity,
+    updateCommunity
+  }), [fetchOne, searchCommunity, addCommunity, removeCommunity, createCommunity, updateCommunity])
 }

@@ -25,6 +25,11 @@ const ProfileEdit = lazy(() => import("./pages/ProfileEdit/ProfileEdit")
   .then(({ProfileEdit}) => ({default: ProfileEdit}))
 )
 
+const CommunityEdit = lazy(() => import("./pages/CommunityEdit/CommunityEdit")
+  .then(({CommunityEdit}) => ({default: CommunityEdit}))
+)
+
+
 const NotFound = lazy(() => import(/* webpackChunkName: "NotFound"*/ './pages/NotFound/NotFound')
   .then(({NotFound}) => ({default: NotFound}))
 )
@@ -72,6 +77,11 @@ function App() {
         <Route path={'/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <ProfileEdit />
+          </Suspense>
+        }/>
+        <Route path={'/community/:id/edit'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <CommunityEdit />
           </Suspense>
         }/>
       </Route>

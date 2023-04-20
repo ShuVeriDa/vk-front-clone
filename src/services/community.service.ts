@@ -4,7 +4,7 @@ import {
   ICommunityFull,
   ICommunitySearchResponse,
   ICreateCommunity,
-  ISearchCommunityParams
+  ISearchCommunityParams, IUpdateCommunity
 } from "../types/community.interface";
 
 export const CommunityService = {
@@ -33,7 +33,13 @@ export const CommunityService = {
   },
 
   createCommunity: async (data: ICreateCommunity) => {
-    const res = await instance.post<{id: string}>(getCommunityUrl(''), data)
+    const res = await instance.post<{ id: string }>(getCommunityUrl(''), data)
+
+    return res.data
+  },
+
+  updateCommunity: async (communityId: string, data: IUpdateCommunity) => {
+    const res = await instance.patch<{id: string}>(getCommunityUrl(`/${communityId}`), data)
 
     return res.data
   }

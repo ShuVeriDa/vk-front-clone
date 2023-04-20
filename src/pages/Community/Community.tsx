@@ -10,12 +10,6 @@ import styles from './Community.module.scss';
 import stylesSubsItem
   from "../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileSubscriptionsItem.module.scss";
 import {ProfileFriendsAndSubs} from "../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubs";
-import {
-  ProfileFriendsAndSubsItem
-} from "../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsAndSubsItem";
-import defaultCommunityAvatar from "../../assets/img/defaultCommunityAvatar.png";
-import stylesFriendsItem
-  from "../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss";
 
 interface ICommunityPageProps {
 }

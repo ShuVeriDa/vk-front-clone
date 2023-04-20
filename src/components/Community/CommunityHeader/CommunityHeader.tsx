@@ -29,8 +29,6 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
     subscribe(community?.id!)
   }
 
-  const navigate = useNavigate()
-
   const refOut = useRef(null)
   const [show, setShow] = useState(false)
 
@@ -54,8 +52,6 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
   const membersLength = community?.members.length
   const isFriend = community?.members
     .filter(member => user?.friends.map(friend => friend.id === member.id))
-
-
 
   // const friends = currentUser.friends
   //   .filter((fr1) => user.some((fr2) => fr1.id === fr2.id))

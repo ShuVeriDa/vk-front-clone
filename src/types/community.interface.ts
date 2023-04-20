@@ -46,3 +46,5 @@ export interface ICreateCommunity {
   category: string
   description: string
 }
+
+export interface IUpdateCommunity extends ICreateCommunity{}

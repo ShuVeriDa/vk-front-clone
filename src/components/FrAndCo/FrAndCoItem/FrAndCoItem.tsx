@@ -41,16 +41,17 @@ export const FrAndCoItem: FC<IFrAndCoItemProps> = (
       </div>
       <div className={styles.info}>
         <span>
-          <Link to={`${path}${userAndCommunityId}`}
+          <a href={`${path}${userAndCommunityId}`}
                 className={styles.fullName}>
             {name}
-          </Link>
+          </a>
         </span>
         {isAnotherUsers
           ? isAnotherUsers
             ? <span className={styles.location}>{location}</span>
             : <span>
-            <Link to={'/im'} className={styles.sendMessage}>Написать сообщение</Link>
+            {/*<Link to={'/im'} className={styles.sendMessage}>Написать сообщение</Link>*/}
+            <a href={'/im'} className={styles.sendMessage}>Написать сообщение</a>
           </span>
           : <>
             <span className={styles.location}>{category}</span>
