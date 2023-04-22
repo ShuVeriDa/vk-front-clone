@@ -3,8 +3,8 @@ import {getCommunityUrl} from "../api/api.config";
 import {
   ICommunityFull,
   ICommunitySearchResponse,
-  ICreateCommunity,
-  ISearchCommunityParams, IUpdateCommunity
+  ICommunityCreate,
+  ISearchCommunityParams, ICommunityUpdate
 } from "../types/community.interface";
 
 export const CommunityService = {
@@ -32,13 +32,13 @@ export const CommunityService = {
     return data
   },
 
-  createCommunity: async (data: ICreateCommunity) => {
+  createCommunity: async (data: ICommunityCreate) => {
     const res = await instance.post<{ id: string }>(getCommunityUrl(''), data)
 
     return res.data
   },
 
-  updateCommunity: async (communityId: string, data: IUpdateCommunity) => {
+  updateCommunity: async (communityId: string, data: ICommunityUpdate) => {
     const res = await instance.patch<{id: string}>(getCommunityUrl(`/${communityId}`), data)
 
     return res.data

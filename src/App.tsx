@@ -79,7 +79,7 @@ function App() {
             <ProfileEdit />
           </Suspense>
         }/>
-        <Route path={'/community/:id/edit'} element={
+        <Route path={'/group/:id/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <CommunityEdit />
           </Suspense>

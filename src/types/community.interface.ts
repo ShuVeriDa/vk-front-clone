@@ -41,10 +41,12 @@ export interface ISearchCommunityParams {
   take?:  number
 }
 
-export interface ICreateCommunity {
+export interface ICommunityCreate {
   name: string
   category: string
   description: string
 }
 
-export interface IUpdateCommunity extends ICreateCommunity{}
+export interface ICommunityUpdate extends ICommunityCreate{
+  avatar?: string
+}
