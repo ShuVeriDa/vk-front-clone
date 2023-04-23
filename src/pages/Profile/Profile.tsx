@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 
 import {ProfileHeader} from "../../components/Profile/ProfileHeader/ProfileHeader";
 import {ProfileFriendsAndSubs} from "../../components/Profile/ProfileFriendsAndSubs/ProfileFriendsAndSubs";
@@ -11,6 +11,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {usePostsQuery} from "../../react-query/usePostsQuery";
 import {useUsersQuery} from "../../react-query/useUsersQuery";
 import {PostsWrapper} from "../../components/Posts/PostsWrapper";
+import {useQueryClient} from "@tanstack/react-query";
 
 interface ProfilePropsType {
 }
@@ -27,6 +28,12 @@ export const Profile: FC<ProfilePropsType> = () => {
   if(user?.firstName === undefined || user.lastName === undefined) {
     navigate('/404')
   }
+
+  const client = useQueryClient()
+
+  useEffect(() => {
+    client.invalidateQueries( ['user', 'one'])
+  }, [])
 
   return (
     <div className={styles.profile}>

@@ -1,13 +1,9 @@
 import {ChangeEvent, FC, Reducer, useReducer, useRef} from 'react';
 import styles from './CommunityEdit.module.scss';
 import {Input} from "../../components/Input/Input";
-import {useAuth} from "../../hooks/useAuth";
 import {SubmitButton} from "../../components/SubmitButton/SubmitButton";
-import {IUserUpdate} from "../../types/user.interface";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate, useParams} from "react-router-dom";
-import {useUsersQuery} from "../../react-query/useUsersQuery";
-import {validEmail} from "../../utils/regex";
 import {useUploadQuery} from "../../react-query/useUploadQuery";
 import {avatarUrl} from "../../utils/avatarUrl";
 import {useCommunityQuery} from "../../react-query/useCommunityQuery";

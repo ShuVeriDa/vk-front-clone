@@ -7,17 +7,19 @@ import {useNavigate} from "react-router-dom";
 export const useUsersQuery = (userId: string | number) => {
   const getUserById = useQuery({
     queryFn: () => UserService.fetchUser(userId!),
-    queryKey: ['user', 'one', userId],
-    enabled: !!userId
+    queryKey: ['user', 'one'],
+    enabled: !!userId,
+    // keepPreviousData: false,
+    // refetchOnMount: 'always',
   })
 
   const client = useQueryClient()
 
   const updateUser = useMutation({
     mutationFn: (data: IUserUpdate) => UserService.updateUser(userId, data),
-    onSuccess: () => [
-      client.invalidateQueries({queryKey: ['user', userId]})
-    ]
+    onSuccess: () => {
+      client.invalidateQueries( ['user', 'one'])
+    }
   })
 
   return useMemo(() => ({
