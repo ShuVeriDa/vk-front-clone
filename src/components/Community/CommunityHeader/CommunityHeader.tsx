@@ -6,7 +6,7 @@ import {IUserFull} from "../../../types/user.interface";
 import {useAuth} from "../../../hooks/useAuth";
 import {Link, useNavigate} from "react-router-dom";
 import {ICommunityFull} from "../../../types/community.interface";
-import {CheckMarkSVG} from "../../SvgComponent";
+import {CheckMarkSVG, SettingSvg} from "../../SvgComponent";
 import {CommunityMenu} from "../CommunityMenu/CommunityMenu";
 import {useUsersQuery} from "../../../react-query/useUsersQuery";
 import {SubscribeBtn} from "../../SubscribeBtn/SubscribeBtn";
@@ -17,6 +17,7 @@ interface IProfileHeader {
 }
 
 export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
+  const navigate = useNavigate()
   const {user: authUser} = useAuth()
   const {getUserById} = useUsersQuery(authUser?.id!)
   const {data: user} = getUserById
@@ -26,7 +27,10 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
   const {mutate: unSubscribe} = removeCommunity
 
   const onSubscribe = () => {
-    subscribe(community?.id!)
+    // community?.admins.some(admin => admin.id === user?.id)
+    !isSubscribe
+      ? subscribe(community?.id!)
+      : unSubscribe(community?.id!)
   }
 
   const refOut = useRef(null)
@@ -45,6 +49,10 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
       document.body.addEventListener('click', handleClickOutside)
     }
   }, [])
+
+  const onChangeProfile = () => {
+    navigate(`/group/${community?.id}/edit`)
+  }
 
 
   const fullName = community?.name
@@ -89,12 +97,12 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
         <div className={styles.communityDetails}>
           <div className={styles.communityNameStatusOthers}>
             <span className={styles.name}>{fullName}</span>
-              {isSubscribe && <CommunityMenu
-                refOut={refOut}
-                show={show}
-                setShow={() => setShow(!show)}
-                communityId={community?.id!}
-              />}
+            {isSubscribe && <CommunityMenu
+              refOut={refOut}
+              show={show}
+              setShow={() => setShow(!show)}
+              communityId={community?.id!}
+            />}
 
             {!isSubscribe && <>
            <span className={styles.subscribes}>
@@ -111,28 +119,17 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
            </span>
             </>
             }
-
           </div>
-          {/*<div className={styles.profileBtns}>
-            <button className={styles.btn} onClick={variableBtn}>{buttonsName}</button>
-            {authUser?.id !== user?.id && <button className={styles.btnMessage}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                   strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                   className="feather feather-message-circle">
-                <path
-                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-              </svg>
-            </button>}
-          </div>*/}
+          <div className={styles.communityBtns}>
+            <div className={styles.communitySubscribe}>
+              <SubscribeBtn title={isSubscribe ? 'Отписаться' : "Подписаться"}
+                            classes={styles.subscribe}
+                            onChange={onSubscribe}
+              />
+            </div>
+            <button className={styles.btn}><SettingSvg /> <span>Управление</span></button>
+          </div>
         </div>
-        {
-          !isSubscribe && <div className={styles.communitySubscribe}>
-            <SubscribeBtn title={"Подписаться"}
-                          classes={styles.subscribe}
-                          onChange={onSubscribe}
-            />
-          </div>
-        }
 
       </div>
     </div>
