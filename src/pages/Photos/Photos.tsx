@@ -1,6 +1,7 @@
 import {FC} from 'react';
 import styles from './Photos.module.scss';
-import {Link} from "react-router-dom";
+import {PhotosHeader} from "../../components/Photos/PhotosHeader/PhotosHeader";
+import {PhotoItem} from "../../components/Photos/PhotoItem/PhotoItem";
 
 interface IPhotosProps {
 }
@@ -8,19 +9,11 @@ interface IPhotosProps {
 export const PhotosPage: FC<IPhotosProps> = () => {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.header}>
-        <div className={styles.albomTitle}>
-          <span className={styles.title}>Мои альбомы <span className={styles.count}>count</span></span>
-        </div>
-        <div className={styles.buttons}>
-          <ul>
-            <li>Создать альбом</li>
-            <li>Добавить изображение</li>
-          </ul>
-        </div>
-      </div>
+      <PhotosHeader />
       <div className={styles.main}>
-
+        <PhotoItem />
+        <PhotoItem />
+        <PhotoItem />
       </div>
     </div>
   );
