@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {LocationSVG, MessageBtn, PhotoSVG} from "../../SvgComponent";
 import {useUsersQuery} from "../../../react-query/useUsersQuery";
 import {useUploadQuery} from "../../../react-query/useUploadQuery";
+import {UploadImage} from "../../UploadImage/UploadImage";
 
 interface IProfileHeader {
   user: IUserFull | null | undefined
@@ -71,25 +72,13 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
                alt=""
           />
         </div>
-        {
-          authUser?.id === user?.id
-            ? show
-            && <div className={styles.input}
-                    onClick={() => inputFileRef.current.click()}
-
-            >
-              <div className={styles.info}>
-                <PhotoSVG/>
-                <span>Загрузить фотографию</span>
-              </div>
-              <input type="file"
-                     ref={inputFileRef}
-                     onChange={handleChangeImage}
-                     hidden
-              />
-            </div>
-            : null
-        }
+        <UploadImage show={show}
+                     authUserId={authUser?.id}
+                     userId={user?.id}
+                     inputFileRef={inputFileRef}
+                     onClick={() => inputFileRef.current.click()}
+                     handleChangeImage={handleChangeImage}
+        />
         <div className={styles.profileDetails}>
           <div className={styles.profileNameStatusOthers}>
             <span className={styles.name}>{fullName}</span>

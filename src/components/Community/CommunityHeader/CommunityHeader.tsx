@@ -1,5 +1,4 @@
 import {ChangeEvent, FC, useEffect, useRef, useState} from 'react';
-
 import defaultCommunityAvatar from '../../../assets/img/defaultCommunityAvatar.png'
 import styles from './CommunityHeader.module.scss'
 import {useAuth} from "../../../hooks/useAuth";
@@ -11,7 +10,7 @@ import {useUsersQuery} from "../../../react-query/useUsersQuery";
 import {SubscribeBtn} from "../../SubscribeBtn/SubscribeBtn";
 import {useCommunityQuery} from "../../../react-query/useCommunityQuery";
 import {useUploadQuery} from "../../../react-query/useUploadQuery";
-import {IUserUpdate} from "../../../types/user.interface";
+import {UploadImage} from "../../UploadImage/UploadImage";
 
 interface IProfileHeader {
   community?: ICommunityFull | null | undefined
@@ -38,6 +37,7 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
   const membersLength = community?.members.length
   const isFriend = community?.members
     .filter(member => user?.friends.map(friend => friend.id === member.id))
+  const isAdmin = community?.admins.some(admin => admin.id === authUser?.id)
 
   const uploadAvatar = (url: string) => {
     uploadImage({avatar: url} as ICommunityUpdate)
@@ -93,25 +93,12 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
         >
           <img src={avatar} alt=""/>
         </div>
-        {
-          community?.admins.some(admin => admin.id === authUser?.id)
-            ? visible
-            && <div className={styles.input}
-                    onClick={() => inputFileRef.current.click()}
-
-            >
-              <div className={styles.info}>
-                <PhotoSVG/>
-                <span>Загрузить фотографию</span>
-              </div>
-              <input type="file"
-                     ref={inputFileRef}
-                     onChange={handleChangeImage}
-                     hidden
-              />
-            </div>
-            : null
-        }
+        <UploadImage isAdmin={isAdmin!}
+                     show={visible}
+                     inputFileRef={inputFileRef}
+                     onClick={() => inputFileRef.current.click()}
+                     handleChangeImage={handleChangeImage}
+        />
         <div className={styles.communityDetails}>
           <div className={styles.communityNameStatusOthers}>
             <span className={styles.name}>{fullName}</span>
