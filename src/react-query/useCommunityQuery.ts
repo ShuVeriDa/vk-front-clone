@@ -12,7 +12,7 @@ export const useCommunityQuery = (communityId?: string ) => {
 
   const fetchOne = useQuery({
     queryFn: () => CommunityService.fetchOne(communityId!),
-    queryKey: ['communityOne', 'one'],
+    queryKey: ['communityOne', 'community'],
     enabled: !!communityId
   })
 
@@ -28,11 +28,8 @@ export const useCommunityQuery = (communityId?: string ) => {
 
   const updateCommunity = useMutation({
     mutationFn: (data: ICommunityUpdate) => CommunityService.updateCommunity(communityId!, data),
-    onSuccess: ({id}) => {
-
-      client.invalidateQueries({queryKey: ['communityOne', communityId]})
-
-      navigate(`/group/${id}`);
+    onSuccess: () => {
+      client.invalidateQueries(['communityOne', 'community'])
     }
   })
 
@@ -40,14 +37,14 @@ export const useCommunityQuery = (communityId?: string ) => {
     mutationFn: (communityId: string) => CommunityService.addCommunity(communityId),
     onSuccess: () => {
       client.invalidateQueries({queryKey: ['communities', 'all']})
-      client.invalidateQueries({queryKey: ['communityOne', 'one']})
+      client.invalidateQueries({queryKey: ['communityOne', 'community']})
     }
   })
 
   const removeCommunity = useMutation({
     mutationFn: (communityId: string) => CommunityService.removeCommunity(communityId),
     onSuccess: () => {
-      client.invalidateQueries({queryKey: ['communityOne', 'one']})
+      client.invalidateQueries({queryKey: ['communityOne', 'community']})
       searchCommunity.refetch()
     }
   })

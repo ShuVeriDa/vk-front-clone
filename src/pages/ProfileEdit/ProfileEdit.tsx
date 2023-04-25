@@ -32,7 +32,8 @@ export const ProfileEdit: FC<IProfileUpdateProps> = () => {
     mutate({avatar: url} as IUserUpdate)
   }
 
-  const {uploadFile} = useUploadQuery('avatar', uploadAvatar, user?.id!)
+  // const {uploadFile} = useUploadQuery('avatar', uploadAvatar, user?.id!)
+  const {uploadFile} = useUploadQuery('user', uploadAvatar, 'user', user?.id)
 
   const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     await uploadFile(e)

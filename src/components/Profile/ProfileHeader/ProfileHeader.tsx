@@ -27,7 +27,7 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
 
   const {user: authUser} = useAuth()
 
-  const {updateUser} = useUsersQuery(authUser?.id!)
+  const {updateUser, getUserById} = useUsersQuery(authUser?.id!)
   const {mutate: uploadImage} = updateUser
 
   const avatar = `${process.env.REACT_APP_SERVER_URL}${user?.avatar}`
@@ -41,8 +41,10 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
   const uploadAvatar = (url: string) => {
     uploadImage({avatar: url} as IUserUpdate)
   }
+  //
+  // const {uploadFile} = useUploadQuery('user', uploadAvatar, profileId)
 
-  const {uploadFile} = useUploadQuery('avatar', uploadAvatar, profileId)
+  const {uploadFile} = useUploadQuery('user', uploadAvatar, 'user', profileId)
 
   const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     await uploadFile(e)

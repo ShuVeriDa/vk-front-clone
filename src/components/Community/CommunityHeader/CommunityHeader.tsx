@@ -127,7 +127,9 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
                             onChange={onSubscribe}
               />
             </div>
-            <button className={styles.btn}><SettingSvg /> <span>Управление</span></button>
+            <button className={styles.btn} onClick={onChangeProfile}>
+              <SettingSvg /> <span>Управление</span>
+            </button>
           </div>
         </div>
 

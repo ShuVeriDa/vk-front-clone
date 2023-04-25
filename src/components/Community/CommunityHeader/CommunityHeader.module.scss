@@ -146,6 +146,14 @@
           color: #fff;
           background: #447BBA;
           height: 32px;
+          margin-left: 10px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          span {
+            margin-left: 5px;
+          }
 
           &:hover {
             background: #6597d2;

@@ -1,4 +1,6 @@
 import {ChangeEvent, FC, Reducer, useReducer, useRef} from 'react';
+import defaultCommunityAvatar from '../../assets/img/defaultCommunityAvatar.png'
+
 import styles from './CommunityEdit.module.scss';
 import {Input} from "../../components/Input/Input";
 import {SubmitButton} from "../../components/SubmitButton/SubmitButton";
@@ -20,22 +22,21 @@ export const CommunityEdit: FC<ICommunityEditProps> = () => {
   const {id} = useParams()
   const inputFileRef = useRef<any>(null)
   const navigate = useNavigate()
-  const {fetchOne} = useCommunityQuery(id)
-  const {data: community} = fetchOne
-  const avatar = avatarUrl(community?.avatar!)
+  const {fetchOne} = useCommunityQuery(id!)
+  const {data: community, isLoading, isSuccess} = fetchOne
+  const avatar = community?.avatar ? avatarUrl(community?.avatar!) : defaultCommunityAvatar
   const fullName = `${community?.name}`
 
-  // const {updateUser} = useUsersQuery(user?.id!)
-  // const {mutate} = updateUser
+  console.log(community)
 
-  const {updateCommunity} = useCommunityQuery(id)
+  const {updateCommunity} = useCommunityQuery(community?.id!)
   const {mutate: update} = updateCommunity
 
   const uploadAvatar = (url: string) => {
     update({avatar: url} as ICommunityUpdate)
   }
 
-  const {uploadFile} = useUploadQuery('avatar', uploadAvatar, community?.id!)
+  const {uploadFile} = useUploadQuery('community', uploadAvatar, 'community', undefined, community?.id)
 
   const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     await uploadFile(e)
@@ -58,11 +59,13 @@ export const CommunityEdit: FC<ICommunityEditProps> = () => {
   const onSubmit: SubmitHandler<ICommunityUpdate> = (data) => {
     update(data)
 
-    navigate(`/community/${community?.id}`)
+    navigate(`/group/${community?.id}`)
     reset()
   }
 
   return (
+    isLoading ? <>'Загрузка'</>
+      :
     <div className={styles.wrapper}>
       <div className={styles.userInfo}>
         <div className={styles.img}>
@@ -89,7 +92,7 @@ export const CommunityEdit: FC<ICommunityEditProps> = () => {
                    label={'Имя:'}
                    classes={styles.inputItem}
                    classesError={styles.inputError}
-                   value={event.name}
+                   value={event.name ? event.name : community?.name }
                    onChangeSome={(e) => updateEvent({name: e.currentTarget.value})}
                    error={formState.errors.name}
             />
@@ -105,7 +108,7 @@ export const CommunityEdit: FC<ICommunityEditProps> = () => {
                    label={'Категория:'}
                    classes={styles.inputItem}
                    classesError={styles.inputError}
-                   value={event.category}
+                   value={event.category ? event.category : community?.category}
                    onChangeSome={(e) => updateEvent({category: e.currentTarget.value})}
                    error={formState.errors.category}
             />
@@ -114,18 +117,9 @@ export const CommunityEdit: FC<ICommunityEditProps> = () => {
                    type={'text'}
                    label={'Описание:'}
                    classes={styles.inputItem}
-                   value={event.description}
+                   value={event.description ? event.description : community?.description}
                    onChangeSome={(e) => updateEvent({description: e.currentTarget.value})}
                    error={formState.errors.description}
-            />
-
-            <Input {...register('avatar',)}
-                   type={'text'}
-                   label={'Аватар:'}
-                   classes={styles.inputItem}
-                   value={event.avatar}
-                   onChangeSome={(e) => updateEvent({avatar: e.currentTarget.value})}
-                   error={formState.errors.avatar}
             />
           </div>
         </div>
