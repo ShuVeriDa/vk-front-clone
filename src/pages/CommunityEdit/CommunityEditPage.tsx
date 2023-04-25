@@ -18,7 +18,7 @@ export type EventAction = Partial<ICommunityUpdate>;
 type EventState = ICommunityUpdate;
 type EventReducer = Reducer<EventState, EventAction>;
 
-export const CommunityEdit: FC<ICommunityEditProps> = () => {
+export const CommunityEditPage: FC<ICommunityEditProps> = () => {
   const {id} = useParams()
   const inputFileRef = useRef<any>(null)
   const navigate = useNavigate()

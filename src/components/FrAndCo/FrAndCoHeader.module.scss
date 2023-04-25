@@ -52,6 +52,9 @@
           text-decoration: none;
         }
       }
+      &:last-child:hover {
+        background-color: #5689c0;
+      }
     }
   }
 }

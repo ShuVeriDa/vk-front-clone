@@ -11,14 +11,16 @@ interface IFriendsAndCommunitiesHeaderProps {
   flag?: boolean
 }
 
-export const FrAndCoHeader: FC<IFriendsAndCommunitiesHeaderProps> = ({
-                                                                       itemsLength,
-                                                                       firstText,
-                                                                       secondText,
-                                                                       thirdText,
-                                                                       url,
-                                                                       flag
-                                                                     }) => {
+export const FrAndCoHeader: FC<IFriendsAndCommunitiesHeaderProps> = (
+  {
+    itemsLength,
+    firstText,
+    secondText,
+    thirdText,
+    url,
+    flag
+  }
+) => {
   return (
     <div className={styles.header}>
       <ul>

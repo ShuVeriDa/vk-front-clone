@@ -11,22 +11,27 @@ import Cookies from "js-cookie";
 import {useActions} from "./hooks/useActions";
 import {CommunitySearchPage} from "./pages/CommunitySearchPage/CommunitySearchPage";
 import {CreateCommunity} from "./pages/CreateCommunity/CreateCommunity";
+import {PhotosPage} from "./pages/Photos/Photos";
 
 
-const Profile = lazy(() => import("./pages/Profile/Profile")
-    .then(({Profile}) => ({default: Profile}))
+const Profile = lazy(() => import("./pages/Profile/ProfilePage")
+    .then(({ProfilePage}) => ({default: ProfilePage}))
 )
 
 const Community = lazy(() => import("./pages/Community/Community")
   .then(({CommunityPage}) => ({default: CommunityPage}))
 )
 
-const ProfileEdit = lazy(() => import("./pages/ProfileEdit/ProfileEdit")
-  .then(({ProfileEdit}) => ({default: ProfileEdit}))
+const ProfileEdit = lazy(() => import("./pages/ProfileEdit/ProfileEditPage")
+  .then(({ProfileEditPage}) => ({default: ProfileEditPage}))
 )
 
-const CommunityEdit = lazy(() => import("./pages/CommunityEdit/CommunityEdit")
-  .then(({CommunityEdit}) => ({default: CommunityEdit}))
+const CommunityEdit = lazy(() => import("./pages/CommunityEdit/CommunityEditPage")
+  .then(({CommunityEditPage}) => ({default: CommunityEditPage}))
+)
+
+const Photos = lazy(() => import("./pages/Photos/Photos")
+  .then(({PhotosPage}) => ({default: PhotosPage}))
 )
 
 
@@ -82,6 +87,11 @@ function App() {
         <Route path={'/group/:id/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <CommunityEdit />
+          </Suspense>
+        }/>
+        <Route path={'/photos'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <Photos />
           </Suspense>
         }/>
       </Route>

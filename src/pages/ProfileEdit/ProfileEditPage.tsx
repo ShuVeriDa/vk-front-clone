@@ -18,7 +18,7 @@ export type EventAction = Partial<IUserUpdate>;
 type EventState = IUserUpdate;
 type EventReducer = Reducer<EventState, EventAction>;
 
-export const ProfileEdit: FC<IProfileUpdateProps> = () => {
+export const ProfileEditPage: FC<IProfileUpdateProps> = () => {
   const inputFileRef = useRef<any>(null)
   const navigate = useNavigate()
   const {user} = useAuth()

@@ -5,7 +5,7 @@ import styles from './ProfileHeader.module.scss'
 import {IUserFull, IUserUpdate} from "../../../types/user.interface";
 import {useAuth} from "../../../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
-import {LocationSVG, MessageBtn, PhotoSVG} from "../../SvgComponent";
+import {LocationSVG, MessageBtn} from "../../SvgComponent";
 import {useUsersQuery} from "../../../react-query/useUsersQuery";
 import {useUploadQuery} from "../../../react-query/useUploadQuery";
 import {UploadImage} from "../../UploadImage/UploadImage";

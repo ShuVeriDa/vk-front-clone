@@ -15,7 +15,7 @@ interface IUploadImageProps {
 export const UploadImage: FC<IUploadImageProps> = (
   {userId, authUserId, isAdmin, show, inputFileRef, onClick, handleChangeImage}
 ) => {
-  const shouldShow = isAdmin || (authUserId === userId && show);
+  const shouldShow = isAdmin && show || (authUserId === userId && show);
 
   return shouldShow ? (
     <div

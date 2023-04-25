@@ -3,7 +3,7 @@ import styles from './Input.module.scss';
 import {FieldError} from "react-hook-form";
 
 import cn from 'clsx'
-import {EventAction} from "../../pages/ProfileEdit/ProfileEdit";
+import {EventAction} from "../../pages/ProfileEdit/ProfileEditPage";
 
 interface IInputProps {
   title?: string

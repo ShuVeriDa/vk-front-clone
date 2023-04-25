@@ -30,19 +30,19 @@ export const FrAndCoItem: FC<IFrAndCoItemProps> = (
 ) => {
   const isFriendOrCommunity =
     isFriend ? 'Вы подписаны' : 'Добавить в друзья' ||
-     isCommunity ? 'Вы подписаны' : 'Подписаться'
+    isCommunity ? 'Вы подписаны' : 'Подписаться'
 
   const isSubscribe = isFriend || isCommunity ? styles.removeFriend : ''
 
   return (
     <div className={styles.friendItem}>
-      <div className={styles.avatar}>
-        <img src={avatar} alt=""/>
-      </div>
+        <div className={styles.avatar}>
+          <img src={avatar} alt=""/>
+        </div>
       <div className={styles.info}>
         <span>
           <a href={`${path}${userAndCommunityId}`}
-                className={styles.fullName}>
+             className={styles.fullName}>
             {name}
           </a>
         </span>
@@ -51,7 +51,7 @@ export const FrAndCoItem: FC<IFrAndCoItemProps> = (
             ? <span className={styles.location}>{location}</span>
             : <span>
             {/*<Link to={'/im'} className={styles.sendMessage}>Написать сообщение</Link>*/}
-            <a href={'/im'} className={styles.sendMessage}>Написать сообщение</a>
+              <a href={'/im'} className={styles.sendMessage}>Написать сообщение</a>
           </span>
           : <>
             <span className={styles.location}>{category}</span>

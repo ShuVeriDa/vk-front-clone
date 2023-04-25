@@ -16,7 +16,7 @@ import {useQueryClient} from "@tanstack/react-query";
 interface ProfilePropsType {
 }
 
-export const Profile: FC<ProfilePropsType> = () => {
+export const ProfilePage: FC<ProfilePropsType> = () => {
   const navigate = useNavigate()
   const {id} = useParams()
 
