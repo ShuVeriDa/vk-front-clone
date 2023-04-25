@@ -25,7 +25,6 @@ export const CommunityPage: FC<ICommunityPageProps> = () => {
   const {getCommunityPosts} = usePostsQuery(undefined, undefined, community?.id)
   const {data: posts, isSuccess: isSuccessPosts} = getCommunityPosts
   // mutate({communityId: id!})
-  console.log(posts)
 
   if(community?.name === undefined ) {
     navigate('/404')

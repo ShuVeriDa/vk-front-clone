@@ -30,7 +30,7 @@ export const Register: FC<IRegisterProps> = (
   return (
     <div className={styles.registration}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Впервые ВКонтакте?</h2>
+        <h2 className={styles.title}>Впервые ЗӀенеХь?</h2>
         <p className={styles.description}>Ваш email будет использоваться для входа в аккаунт</p>
       </div>
       <Input {...register('email', {

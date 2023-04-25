@@ -16,7 +16,7 @@ export const Login: FC<ILoginProps> = ({register, isPasswordRequired = false, fo
   return (
     <div className={styles.login}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Вход ВКонтакте</h2>
+        <h2 className={styles.title}>Вход ЗӀенехь</h2>
       </div>
       <Input {...register('email', {
           required: "Электронная почта обязательна", pattern: {

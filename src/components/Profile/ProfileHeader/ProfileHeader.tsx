@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useEffect, useMemo, useRef, useState} from 'react';
+import {ChangeEvent, FC, useMemo, useRef, useState} from 'react';
 
 import defaultAvatar from '../../../assets/img/defaultAvatar.png'
 import styles from './ProfileHeader.module.scss'
@@ -19,10 +19,6 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
   const navigate = useNavigate()
   const fullName = useMemo(() => `${user?.lastName} ${user?.firstName}`, [user])
 
-  useEffect(() => {
-    console.log("user log2:", user)
-  }, [user])
-
   const [show, setShow] = useState(false)
 
   const {user: authUser} = useAuth()
@@ -41,8 +37,6 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
   const uploadAvatar = (url: string) => {
     uploadImage({avatar: url} as IUserUpdate)
   }
-  //
-  // const {uploadFile} = useUploadQuery('user', uploadAvatar, profileId)
 
   const {uploadFile} = useUploadQuery('user', uploadAvatar, 'user', profileId)
 

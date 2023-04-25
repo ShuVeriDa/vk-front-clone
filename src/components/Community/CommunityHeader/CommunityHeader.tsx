@@ -1,40 +1,66 @@
-import {DetailedHTMLProps, FC, HTMLAttributes, MutableRefObject, useEffect, useRef, useState} from 'react';
+import {ChangeEvent, FC, useEffect, useRef, useState} from 'react';
 
 import defaultCommunityAvatar from '../../../assets/img/defaultCommunityAvatar.png'
 import styles from './CommunityHeader.module.scss'
-import {IUserFull} from "../../../types/user.interface";
 import {useAuth} from "../../../hooks/useAuth";
-import {Link, useNavigate} from "react-router-dom";
-import {ICommunityFull} from "../../../types/community.interface";
-import {CheckMarkSVG, SettingSvg} from "../../SvgComponent";
+import {useNavigate} from "react-router-dom";
+import {ICommunityFull, ICommunityUpdate} from "../../../types/community.interface";
+import {PhotoSVG, SettingSvg} from "../../SvgComponent";
 import {CommunityMenu} from "../CommunityMenu/CommunityMenu";
 import {useUsersQuery} from "../../../react-query/useUsersQuery";
 import {SubscribeBtn} from "../../SubscribeBtn/SubscribeBtn";
 import {useCommunityQuery} from "../../../react-query/useCommunityQuery";
+import {useUploadQuery} from "../../../react-query/useUploadQuery";
+import {IUserUpdate} from "../../../types/user.interface";
 
 interface IProfileHeader {
   community?: ICommunityFull | null | undefined
 }
 
 export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
+  const inputFileRef = useRef<any>(null)
+  const refOut = useRef(null)
+  const [show, setShow] = useState(false)
+  const [visible, setVisible] = useState(false)
+
   const navigate = useNavigate()
   const {user: authUser} = useAuth()
   const {getUserById} = useUsersQuery(authUser?.id!)
   const {data: user} = getUserById
 
-  const {addCommunity, removeCommunity} = useCommunityQuery(community?.id)
+  const {addCommunity, removeCommunity, updateCommunity} = useCommunityQuery(community?.id)
   const {mutate: subscribe} = addCommunity
   const {mutate: unSubscribe} = removeCommunity
+  const {mutate: uploadImage} = updateCommunity
+
+  const fullName = community?.name
+  const avatar = community?.avatar ? `${process.env.REACT_APP_SERVER_URL}${community?.avatar}` : defaultCommunityAvatar
+  const membersLength = community?.members.length
+  const isFriend = community?.members
+    .filter(member => user?.friends.map(friend => friend.id === member.id))
+
+  const uploadAvatar = (url: string) => {
+    uploadImage({avatar: url} as ICommunityUpdate)
+  }
+
+  const {uploadFile} = useUploadQuery('community', uploadAvatar, 'community', undefined, community?.id)
+
+  const isSubscribe = community?.members.some(member => member.id === authUser?.id)
 
   const onSubscribe = () => {
-    // community?.admins.some(admin => admin.id === user?.id)
     !isSubscribe
       ? subscribe(community?.id!)
       : unSubscribe(community?.id!)
   }
 
-  const refOut = useRef(null)
-  const [show, setShow] = useState(false)
+  const onChangeProfile = () => {
+    navigate(`/group/${community?.id}/edit`)
+  }
+
+  const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    await uploadFile(e)
+  }
+
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -50,50 +76,42 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
     }
   }, [])
 
-  const onChangeProfile = () => {
-    navigate(`/group/${community?.id}/edit`)
-  }
-
-
-  const fullName = community?.name
-  const avatar = community?.avatar ? `${process.env.REACT_APP_SERVER_URL}${community?.avatar}` : defaultCommunityAvatar
-  const membersLength = community?.members.length
-  const isFriend = community?.members
-    .filter(member => user?.friends.map(friend => friend.id === member.id))
-
-  // const friends = currentUser.friends
-  //   .filter((fr1) => user.some((fr2) => fr1.id === fr2.id))
-  //   .map((friend) => returnUserData(friend));
-
-  // const onChangeProfile = () => {
-  //   navigate(`/edit`)
-  // }
-  // const onAddFriend = () => {
-  // }
-  //
-  // const variableBtn = () => {
-  //   authUser?.id === user?.id
-  //     ? onChangeProfile()
-  //     : onAddFriend()
-  //
-  // }
-  //
-  // const buttonsName = authUser?.id === user?.id ? 'Редактировать профиль' : 'Добавить в друзья'
-  //
-  // console.log(authUser?.id)
-  // console.log(user)
-
-  const isSubscribe = community?.members.some(member => member.id === authUser?.id)
-
   return (
     <div className={styles.communityHeader}>
       <div className={styles.communityBackground}>
         <img src="" alt=""/>
       </div>
-      <div className={styles.communityInfo}>
-        <div className={styles.communityPhoto}>
+      <div className={styles.communityInfo}
+           onMouseLeave={() => {
+             setVisible(false)
+           }}
+      >
+        <div className={styles.communityPhoto}
+             onMouseEnter={() => {
+               setVisible(true)
+             }}
+        >
           <img src={avatar} alt=""/>
         </div>
+        {
+          community?.admins.some(admin => admin.id === authUser?.id)
+            ? visible
+            && <div className={styles.input}
+                    onClick={() => inputFileRef.current.click()}
+
+            >
+              <div className={styles.info}>
+                <PhotoSVG/>
+                <span>Загрузить фотографию</span>
+              </div>
+              <input type="file"
+                     ref={inputFileRef}
+                     onChange={handleChangeImage}
+                     hidden
+              />
+            </div>
+            : null
+        }
         <div className={styles.communityDetails}>
           <div className={styles.communityNameStatusOthers}>
             <span className={styles.name}>{fullName}</span>
@@ -128,7 +146,7 @@ export const CommunityHeader: FC<IProfileHeader> = ({community}) => {
               />
             </div>
             <button className={styles.btn} onClick={onChangeProfile}>
-              <SettingSvg /> <span>Управление</span>
+              <SettingSvg/> <span>Управление</span>
             </button>
           </div>
         </div>

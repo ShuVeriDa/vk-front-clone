@@ -22,7 +22,7 @@ export const Header: FC<HeaderPropsType> = () => {
         <div className={styles.logo}>
           <NavLink to={"/"}>
             <img className={styles.logoImg} src={Logo} alt=""/>
-            <span className={styles.logoText}>вконтакте</span>
+            <span className={styles.logoText}>зӀенехь</span>
           </NavLink>
         </div>
         <div className={styles.search}>
