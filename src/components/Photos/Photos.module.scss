@@ -1,6 +1,6 @@
 .wrapper {
   min-width: 755px;
-  max-width: 990px;
+  max-width: 860px;
   width: 100%;
   box-sizing: border-box;
 
@@ -8,9 +8,10 @@
 
   .main {
     display: flex;
+    flex-wrap: wrap;
 
     min-height: 175px;
-    padding: 15px;
+    padding: 20px;
     box-sizing: border-box;
     background-color: #fff;
     border-bottom-left-radius: 12px;

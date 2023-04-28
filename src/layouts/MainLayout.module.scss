@@ -4,9 +4,11 @@
 
 
   .content {
+    box-sizing: border-box;
     margin: 15px auto 0;
     width: 100%;
-    max-width: 1076px;
+    //max-width: 1076px;
+    max-width: 1106px;
     padding: 0 15px;
 
     display: flex;

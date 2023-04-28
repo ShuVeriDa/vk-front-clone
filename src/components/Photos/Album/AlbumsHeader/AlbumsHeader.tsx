@@ -1,13 +1,13 @@
 import {FC} from 'react';
-import styles from './PhotosHeader.module.scss';
+import styles from './AlbumsHeader.module.scss';
 
 interface IPhotosHeaderProps {
 }
 
-export const PhotosHeader: FC<IPhotosHeaderProps> = () => {
+export const AlbumsHeader: FC<IPhotosHeaderProps> = () => {
   return (
     <div className={styles.header}>
-      <div className={styles.albomTitle}>
+      <div className={styles.albumTitle}>
         <span className={styles.title}>Мои альбомы <span className={styles.count}>count</span></span>
       </div>
       <div className={styles.buttons}>

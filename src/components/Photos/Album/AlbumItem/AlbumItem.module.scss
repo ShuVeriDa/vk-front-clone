@@ -1,0 +1,64 @@
+.albumItem {
+  margin: 5px;
+  width: 245px;
+  height: 165px;
+  box-sizing: border-box;
+
+  &:hover {
+    cursor: pointer;
+
+   .item {
+     .description {
+       transform: translateY(-10px);
+     }
+   }
+  }
+
+
+  .item {
+    width: inherit;
+    height: inherit;
+    .img {
+      img {
+        width: 245px;
+        height: 165px;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .description {
+      box-sizing: border-box;
+      position: relative;
+      bottom: 65px;
+      width: inherit;
+      height: 67px;
+      padding: 35px 12px 9px 12px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+
+
+      transition: .2s ease;
+
+
+      div {
+        color: #fff;
+      }
+
+      .title {
+        font-size: 12.5px;
+        font-weight: 700;
+        line-height: 15px;
+      }
+
+      .count {
+        font-size: 13px;
+        line-height: 14px;
+      }
+    }
+
+
+  }
+
+}

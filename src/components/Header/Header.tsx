@@ -3,7 +3,7 @@ import {FC, useState} from 'react';
 import Logo from '../../assets/img/logo.png'
 import defaultAvatar from '../../assets/img/defaultAvatar.png'
 import styles from './Header.module.scss'
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation, useParams} from "react-router-dom";
 import {useAuth} from "../../hooks/useAuth";
 import {useAppSelector} from "../../redux/store";
 import {avatarUrl} from "../../utils/avatarUrl";
@@ -12,13 +12,16 @@ interface HeaderPropsType {
 }
 
 export const Header: FC<HeaderPropsType> = () => {
+  const {pathname} = useLocation()
   const {user} = useAuth()
   const avatar = avatarUrl(user?.avatar!) || defaultAvatar
+
+  console.log(pathname)
 
   const [shiftDown, setShiftDown] = useState(false)
   return (
     <div className={styles.header}>
-      <div className={styles.container}>
+      <div style={pathname === '/photos' ? {maxWidth: '990px'} : {}} className={styles.container}>
         <div className={styles.logo}>
           <NavLink to={"/"}>
             <img className={styles.logoImg} src={Logo} alt=""/>
