@@ -1,24 +1,28 @@
 
   .header {
-    border-radius: 12px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 54px;
     background-color: #FAFBFC;
+    padding-left: 30px;
+
 
     &::after {
       content: '';
       position: absolute;
       left: 0;
-      top: 50.5px;
-      width: 525px;
+      top: 52.5px;
+      width: 520px;
       height: 1px;
       background-color: #dce1e6;
     }
 
     .title {
       font-size: 14px;
+      color: #333333;
     }
 
     .svg {

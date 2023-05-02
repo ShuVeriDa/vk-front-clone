@@ -1,0 +1,94 @@
+.main {
+  min-width: inherit;
+  min-height: 345px;
+
+  padding: 20px 30px;
+
+  .input {
+    div {
+      display: flex;
+      flex-direction: column;
+
+      div {
+        label {
+          font-size: 13px;
+          font-weight: 500;
+          line-height: 13px;
+          color: #333;
+          height: 13px;
+          margin-bottom: 12px;
+        }
+      }
+
+      input {
+        font-size: 13px;
+        height: 30px;
+        border: 1px solid #dce1e6;
+        background: #fff;
+        width: 460px;
+        padding: 5px 9px 7px 9px;
+      }
+    }
+  }
+
+  .textarea {
+    .label {
+      margin: 18px 0 12px 0;
+
+      label {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 19px;
+        color: #333333;
+      }
+    }
+
+    .textareaField {
+      border: 1px solid #dce1e6;
+      border-radius: 8px;
+
+      //margin-left: 28px;
+      width: 460px;
+      min-height: 140px;
+
+      textarea {
+        min-width: 440px;
+        max-width: 440px;
+        min-height: 140px;
+        font-size: 13px;
+        outline: none;
+        border: none;
+        box-sizing: border-box;
+        padding: 5px 9px 7px 9px;
+        color: #000;
+        //resize: none;
+        overflow: hidden;
+        line-height: 19px;
+        word-wrap: break-word;
+
+
+        &::placeholder {
+          color: #818C99;
+        }
+
+        //&:focus {
+        //  min-height: 80px;
+        //  height: 100%;
+        //}
+      }
+    }
+  }
+
+  .turnOff {
+    min-height: 19px;
+    width: 460px;
+    padding: 15px 0;
+    font-size: 13px;
+    line-height: 19px;
+
+    .select {
+
+    }
+
+  }
+}

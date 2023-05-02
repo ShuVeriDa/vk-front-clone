@@ -37,7 +37,7 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
     }
 
     return (
-      <div className={cn(styles.input, classes)}>
+      <div className={cn(classes, styles.input,)}>
         <div className={styles.inputLabel}>
           {label && <div><label>{label}</label></div>}
           <input className={cn(fieldValue ? styles.isValue : '')}

@@ -1,0 +1,44 @@
+.wrapper {
+  //display: flex;
+  //justify-content: space-between;
+
+  .title {
+    font-size: 13px;
+    line-height: 19px;
+    padding: 4px 1px;
+  }
+
+  select {
+    color: #2a5885;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    font-size: 13px;
+    line-height: 19px;
+    padding: 4px;
+    width: 184px;
+
+    &:focus {
+      background: #DAE2EA;
+      border: none;
+      outline: none;
+      //background: none;
+      color: #3F70A9;
+    }
+  }
+
+  select > option {
+    cursor: pointer;
+    background: #fff;
+    &:hover {
+      background: #DAE2EA;
+    }
+  }
+
+  select > option {
+    &:focus {
+      background: #DAE2EA;
+    }
+  }
+}
