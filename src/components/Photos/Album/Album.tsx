@@ -35,7 +35,8 @@ export const Album: FC<IAlbumProps> = () => {
         </div>
 
         {open && <ModalWindow onClickClose={onClickClose} open={open}>
-         <CreateAlbum onClickClose={onClickClose}/>
+         <CreateAlbum onClickClose={onClickClose}
+         />
         </ModalWindow>}
       </div>
 

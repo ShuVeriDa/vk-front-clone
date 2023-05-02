@@ -3,6 +3,7 @@ import {PostService} from "../services/post.service";
 import {useMemo} from "react";
 import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../types/post.interface";
 import {AlbumService} from "../services/album.service";
+import {ICreatePhotoAlbum} from "../types/photoAlbum.interface";
 
 export const usePhotoAlbumQuery = (album?: string) => {
   const getMyAlbums = useQuery({
@@ -12,12 +13,13 @@ export const usePhotoAlbumQuery = (album?: string) => {
 
   const client = useQueryClient()
 
-  // const createPost = useMutation({
-  //   mutationFn: (data:ICreatePost) => PostService.createPost(data),
-  //   onSuccess: () => {
-  //     client.invalidateQueries({queryKey: ['myPosts', 'allMyPosts']})
-  //   }
-  // })
+
+  const createAlbum = useMutation({
+    mutationFn: (data:ICreatePhotoAlbum) => AlbumService.createAlbum(data),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['myAlbums', 'allMyAlbums']})
+    }
+  })
   //
   // const updatePost = useMutation({
   //   mutationFn: (data:IUpdatePost) => PostService.updatePost(postId!, data),
@@ -42,6 +44,7 @@ export const usePhotoAlbumQuery = (album?: string) => {
   // })
 
   return useMemo(() => ({
-    getMyAlbums
-  }), [getMyAlbums])
+    getMyAlbums,
+    createAlbum
+  }), [getMyAlbums, createAlbum])
 }

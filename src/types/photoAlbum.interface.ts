@@ -15,7 +15,7 @@ export interface IPhotoAlbum {
 export interface ICreatePhotoAlbum {
   title: string,
   description?: string,
-  turnOffWatching?: "friend" | "me" | "all"
+  turnOffWatching?: "all" | "friends" | "me"
 }
 
 export interface IUpdatePhotoAlbum{

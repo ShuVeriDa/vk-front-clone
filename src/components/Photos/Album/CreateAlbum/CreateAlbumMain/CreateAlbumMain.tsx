@@ -1,19 +1,22 @@
-import {FC} from 'react';
+import {ChangeEvent, FC} from 'react';
 import styles from './CreateAlbumMain.module.scss';
 import {Input} from "../../../../Input/Input";
 import TextareaAutosize from "react-textarea-autosize";
-import {FormState, UseFormRegister} from "react-hook-form";
+import {UseFormRegister} from "react-hook-form";
 import {Select} from "../../../../Select/Select";
+
 interface ICreateAlbumMainProps {
   register: UseFormRegister<any>
+  selectValue: string
+  onChangeSelectValue: (e: ChangeEvent<HTMLSelectElement>) => void
 }
 
 const options = ['Все пользователи', 'Друзья', 'Только я']
 
-export const CreateAlbumMain: FC<ICreateAlbumMainProps> = ({register}) => {
+export const CreateAlbumMain: FC<ICreateAlbumMainProps> = ({register, selectValue, onChangeSelectValue}) => {
   return (
     <div className={styles.main}>
-        <Input {...register('text', {
+        <Input {...register('title', {
           required: "Title is required",
           minLength: {
             value: 3,
@@ -32,7 +35,7 @@ export const CreateAlbumMain: FC<ICreateAlbumMainProps> = ({register}) => {
           </div>
           <div className={styles.textareaField}>
             <TextareaAutosize
-              {...register('text')}
+              {...register('description')}
             />
           </div>
         </div>
@@ -42,6 +45,8 @@ export const CreateAlbumMain: FC<ICreateAlbumMainProps> = ({register}) => {
                 type={'turnOffWatching'}
                 title={'Кто может просматривать  этот альбом?'}
                 options={options}
+                value={selectValue}
+                onChange={onChangeSelectValue}
                 classes={styles.select}
         />
       </div>
