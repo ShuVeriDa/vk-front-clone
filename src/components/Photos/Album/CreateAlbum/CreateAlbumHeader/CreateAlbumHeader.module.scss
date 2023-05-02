@@ -1,0 +1,45 @@
+
+  .header {
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 54px;
+    background-color: #FAFBFC;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50.5px;
+      width: 525px;
+      height: 1px;
+      background-color: #dce1e6;
+    }
+
+    .title {
+      font-size: 14px;
+    }
+
+    .svg {
+      width: 24px;
+      height: 24px;
+      padding: 15px 20px 15px 15px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      svg {
+        fill: #808994;
+
+
+      }
+
+      &:hover {
+        svg {
+          fill: #595e64;
+        }
+      }
+    }
+  }

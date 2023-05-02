@@ -34,6 +34,12 @@ const Photos = lazy(() => import("./pages/Photos/Photos")
   .then(({PhotosPage}) => ({default: PhotosPage}))
 )
 
+const CreateAlbum = lazy(() => import("./components/ModalWindow/ModalWindow")
+  .then(({ModalWindow}) => ({default: ModalWindow}))
+)
+
+
+
 
 const NotFound = lazy(() => import(/* webpackChunkName: "NotFound"*/ './pages/NotFound/NotFound')
   .then(({NotFound}) => ({default: NotFound}))

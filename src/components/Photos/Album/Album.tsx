@@ -1,22 +1,46 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 import styles from '../Photos.module.scss';
 import {AlbumsHeader} from "./AlbumsHeader/AlbumsHeader";
 import {AlbumItem} from "./AlbumItem/AlbumItem";
+import {usePhotoAlbumQuery} from "../../../react-query/usePhotoAlbumQuery";
+import {useNavigate} from "react-router-dom";
+import {ModalWindow} from "../../ModalWindow/ModalWindow";
+import {CreateAlbum} from "./CreateAlbum/CreateAlbum";
 
 interface IAlbumProps {
 }
 
 export const Album: FC<IAlbumProps> = () => {
-  return (
-    <div className={styles.wrapper}>
-      <AlbumsHeader />
-      <div className={styles.main}>
-        <AlbumItem />
-        <AlbumItem />
-        <AlbumItem />
-        <AlbumItem />
-        <AlbumItem />
+    const navigate = useNavigate()
+    const [open, setOpen] = useState<boolean>(false)
+
+    const onClickOpen = () => {
+      setOpen(true)
+    }
+
+    const onClickClose = () => {
+      setOpen(false)
+    }
+
+    const {getMyAlbums} = usePhotoAlbumQuery()
+    const {data: albums, isSuccess} = getMyAlbums
+
+    console.log(albums)
+    return (
+
+      <div className={styles.wrapper}>
+        <AlbumsHeader onClickOpen={onClickOpen}/>
+        <div className={styles.main}>
+          {isSuccess && albums.map(album => <AlbumItem key={album.id} album={album}/>)}
+        </div>
+
+        {open && <ModalWindow onClickClose={onClickClose} open={open}>
+         <CreateAlbum onClickClose={onClickClose}/>
+        </ModalWindow>}
       </div>
-    </div>
-  );
-};
+
+
+    )
+
+  }
+;

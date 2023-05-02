@@ -6,3 +6,8 @@ export interface IPhotoAbbr {
   createdAt: string,
   updatedAt: string
 }
+
+export interface IPhotoForAlbum {
+  id: string
+  photoUrl: string,
+}

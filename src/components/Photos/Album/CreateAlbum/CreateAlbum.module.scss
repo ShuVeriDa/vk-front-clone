@@ -1,0 +1,13 @@
+.wrapper {
+  min-width: 441px;
+  min-height: 461px;
+  //border-radius: 12px;s
+  padding: 0 0 0 25px;
+
+  .main {
+    min-width: inherit;
+    min-height: 345px;
+
+    padding: 20px 30px;
+  }
+}

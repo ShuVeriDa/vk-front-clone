@@ -2,9 +2,10 @@ import {FC} from 'react';
 import styles from './AlbumsHeader.module.scss';
 
 interface IPhotosHeaderProps {
+  onClickOpen: () => void
 }
 
-export const AlbumsHeader: FC<IPhotosHeaderProps> = () => {
+export const AlbumsHeader: FC<IPhotosHeaderProps> = ({onClickOpen}) => {
   return (
     <div className={styles.header}>
       <div className={styles.albumTitle}>
@@ -12,7 +13,7 @@ export const AlbumsHeader: FC<IPhotosHeaderProps> = () => {
       </div>
       <div className={styles.buttons}>
         <ul>
-          <li>Создать альбом</li>
+          <li onClick={onClickOpen}>Создать альбом</li>
           <li>Добавить изображение</li>
         </ul>
       </div>
