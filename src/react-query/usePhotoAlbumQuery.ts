@@ -5,13 +5,20 @@ import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../t
 import {AlbumService} from "../services/album.service";
 import {ICreatePhotoAlbum} from "../types/photoAlbum.interface";
 
-export const usePhotoAlbumQuery = (album?: string) => {
+export const usePhotoAlbumQuery = (albumId?: string) => {
   const getMyAlbums = useQuery({
     queryFn: () => AlbumService.fetchMyAlbums(),
     queryKey: ['myAlbums', 'allMyAlbums']
+
   })
 
   const client = useQueryClient()
+
+  const getOneAlbum = useQuery({
+    queryFn: () => AlbumService.fetchOneAlbum(albumId!),
+    queryKey: ['myAlbum', 'one'],
+    enabled:!!albumId
+  })
 
 
   const createAlbum = useMutation({
@@ -45,6 +52,7 @@ export const usePhotoAlbumQuery = (album?: string) => {
 
   return useMemo(() => ({
     getMyAlbums,
-    createAlbum
-  }), [getMyAlbums, createAlbum])
+    createAlbum,
+    getOneAlbum
+  }), [getMyAlbums, getOneAlbum, createAlbum])
 }

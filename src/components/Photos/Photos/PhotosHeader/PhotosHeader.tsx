@@ -4,10 +4,11 @@ import ArrowRight from '../../../../assets/img/rightArrow.png'
 import {Link} from "react-router-dom";
 
 interface IPhotosHeaderProps {
-
+  title: string
+  count: number
 }
 
-export const PhotosHeader: FC<IPhotosHeaderProps> = () => {
+export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count}) => {
 
   return (
     <div className={styles.header}>
@@ -18,9 +19,9 @@ export const PhotosHeader: FC<IPhotosHeaderProps> = () => {
           </span>
           <img src={ArrowRight} alt=""/>
           <span className={styles.albumName}>
-            Мой первый альбом
+            {title}
           </span>
-          <span className={styles.count}>count</span></div>
+          <span className={styles.count}>{count}</span></div>
       </div>
       <div className={styles.buttons}>
         <ul>

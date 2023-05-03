@@ -9,6 +9,11 @@ export const AlbumService = {
     return res.data
   },
 
+  fetchOneAlbum: async (albumId: string) => {
+    const res = await instance.get<IPhotoAlbum>(getPhotoAlbumsUrl(`/${albumId}`))
+    return res.data
+  },
+
   createAlbum: async (data: ICreatePhotoAlbum) => {
     const res = await instance.post<IPhotoAlbum>(getPhotoAlbumsUrl(''), data)
     return res.data

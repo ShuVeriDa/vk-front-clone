@@ -3,35 +3,39 @@ import styles from './AlbumItemPage.module.scss';
 import {Link, useParams} from "react-router-dom";
 import {PhotosHeader} from "../../components/Photos/Photos/PhotosHeader/PhotosHeader";
 import {PhotoItem} from "../../components/Photos/Photos/PhotoItem/PhotoItem";
+import {usePhotoAlbumQuery} from "../../react-query/usePhotoAlbumQuery";
+
 interface IPhotosProps {
 }
 
 export const AlbumItemPage: FC<IPhotosProps> = () => {
   const {id} = useParams()
+  const {getOneAlbum} = usePhotoAlbumQuery(id!)
+  const {data: album, isSuccess} = getOneAlbum
+
+  console.log(album)
   return (
     <div className={styles.wrapper}>
-      <PhotosHeader />
+      <PhotosHeader title={album?.title!}
+                    count={album?.photos?.length!}
+      />
       <div className={styles.main}>
         <div className={styles.titleAndDescription}>
-          <span className={styles.title}>Album title</span>
-          <span className={styles.description}>Album description</span>
+          <span className={styles.title}>{album?.title}</span>
+          <span className={styles.description}>{album?.description}</span>
         </div>
         <div className={styles.menu}>
           <ul>
-            <li>3 фотографии</li>
-            <li> <Link to={""} >Редактировать альбом </Link></li>
+            <li>{isSuccess && album.photos?.length} фотографии</li>
+            <li><Link to={""}>Редактировать альбом </Link></li>
           </ul>
         </div>
         <div className={styles.photoItems}>
-          <PhotoItem />
-          <PhotoItem />
-          <PhotoItem />
-          <PhotoItem />
-          <PhotoItem />
-          <PhotoItem />
-          <PhotoItem />
-          <PhotoItem />
-          <PhotoItem />
+          {isSuccess && album.photos?.map(photo => {
+            return <PhotoItem photo={photo}
+                              key={photo.id}
+            />
+          })}
         </div>
 
       </div>

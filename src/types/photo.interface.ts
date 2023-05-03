@@ -10,4 +10,5 @@ export interface IPhotoAbbr {
 export interface IPhotoForAlbum {
   id: string
   photoUrl: string,
+  description: string
 }
