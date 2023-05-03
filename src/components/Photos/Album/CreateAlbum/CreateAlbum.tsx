@@ -2,7 +2,6 @@ import {ChangeEvent, FC, useState} from 'react';
 import styles from './CreateAlbum.module.scss';
 import {CreateAlbumHeader} from "./CreateAlbumHeader/CreateAlbumHeader";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {ICreatePost} from "../../../../types/post.interface";
 import {CreateAlbumMain} from "./CreateAlbumMain/CreateAlbumMain";
 import {CreateAlbumFooter} from "./CreateAlbumFooter/CreateAlbumFooter";
 import {usePhotoAlbumQuery} from "../../../../react-query/usePhotoAlbumQuery";

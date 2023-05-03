@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 import {useActions} from "./hooks/useActions";
 import {CommunitySearchPage} from "./pages/CommunitySearchPage/CommunitySearchPage";
 import {CreateCommunity} from "./pages/CreateCommunity/CreateCommunity";
-import {PhotosPage} from "./pages/Photos/Photos";
+import {AlbumsPage} from "./pages/Albums/Albums";
 
 
 const Profile = lazy(() => import("./pages/Profile/ProfilePage")
@@ -30,16 +30,13 @@ const CommunityEdit = lazy(() => import("./pages/CommunityEdit/CommunityEditPage
   .then(({CommunityEditPage}) => ({default: CommunityEditPage}))
 )
 
-const Photos = lazy(() => import("./pages/Photos/Photos")
-  .then(({PhotosPage}) => ({default: PhotosPage}))
+const Photos = lazy(() => import("./pages/Albums/Albums")
+  .then(({AlbumsPage}) => ({default: AlbumsPage}))
 )
 
-const CreateAlbum = lazy(() => import("./components/ModalWindow/ModalWindow")
-  .then(({ModalWindow}) => ({default: ModalWindow}))
+const AlbumItemPage = lazy(() => import("./pages/AlbumItemPage/AlbumItemPage")
+  .then(({AlbumItemPage}) => ({default: AlbumItemPage}))
 )
-
-
-
 
 const NotFound = lazy(() => import(/* webpackChunkName: "NotFound"*/ './pages/NotFound/NotFound')
   .then(({NotFound}) => ({default: NotFound}))
@@ -95,9 +92,14 @@ function App() {
             <CommunityEdit />
           </Suspense>
         }/>
-        <Route path={'/photos'} element={
+        <Route path={'/albums'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <Photos />
+          </Suspense>
+        }/>
+        <Route path={'/album/:id'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <AlbumItemPage />
           </Suspense>
         }/>
       </Route>

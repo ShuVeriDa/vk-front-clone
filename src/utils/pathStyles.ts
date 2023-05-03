@@ -1,0 +1,1 @@
+export const pathStyles = (pathname: string) => pathname === '/albums' || pathname.includes('/album/') ? {maxWidth: '990px'} : {}

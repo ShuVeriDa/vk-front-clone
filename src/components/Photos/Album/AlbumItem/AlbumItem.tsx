@@ -5,17 +5,21 @@ import {IPhotoAlbum} from "../../../../types/photoAlbum.interface";
 import {avatarUrl} from "../../../../utils/avatarUrl";
 import cn from "clsx";
 import {LockSvg} from "../../../SvgComponent";
+import {useNavigate} from "react-router-dom";
 
 interface IPhotoItemProps {
   album: IPhotoAlbum
 }
 
 export const AlbumItem: FC<IPhotoItemProps> = ({album}) => {
+  const navigate = useNavigate()
   const isPhotos = album.photos.length > 0
   const blackColor = !isPhotos ? {color: "#1d3a5c"} : {}
   const albumImg = avatarUrl(album.photos[0]?.photoUrl)
   return (
-    <div className={styles.albumItem}>
+    <div className={styles.albumItem}
+         onClick={() => navigate(`/album/${album.id}`)}
+      >
       <div className={styles.item}>
         <div className={cn(isPhotos ? styles.img : styles.imgBackground)}>
           {isPhotos && <img src={albumImg} alt=""/>}
