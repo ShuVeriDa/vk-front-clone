@@ -13,7 +13,6 @@ export const AlbumItemPage: FC<IPhotosProps> = () => {
   const {getOneAlbum} = usePhotoAlbumQuery(id!)
   const {data: album, isSuccess} = getOneAlbum
 
-  console.log(album)
   return (
     <div className={styles.wrapper}>
       <PhotosHeader title={album?.title!}
@@ -36,6 +35,14 @@ export const AlbumItemPage: FC<IPhotosProps> = () => {
                               key={photo.id}
             />
           })}
+          {!album?.photos.length
+            && <div className={styles.noPhotos}>
+             <span>
+            В этом альбоме ещё нет фотографий
+          </span>
+            </div>
+          }
+
         </div>
 
       </div>

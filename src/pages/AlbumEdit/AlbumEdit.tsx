@@ -14,10 +14,13 @@ interface IAlbumEditProps {
 
 export const AlbumEdit: FC<IAlbumEditProps> = () => {
   const navigate = useNavigate()
+  const url = () => navigate('/albums')
   const {id} = useParams()
-  const {getOneAlbum, deleteAlbum} = usePhotoAlbumQuery(id)
+  const {getOneAlbum, deleteAlbum, updateAlbum} = usePhotoAlbumQuery(id)
   const {mutate: remove} = deleteAlbum
-  const {data: album} = getOneAlbum
+  const {mutate: update} = updateAlbum
+  const {data: album, isSuccess} = getOneAlbum
+
 
   const turnOff = album?.turnOffWatching === 'all'
     ? "0"
@@ -26,8 +29,6 @@ export const AlbumEdit: FC<IAlbumEditProps> = () => {
       : '2'
 
   const [selectValue, setSelectValue] = useState(turnOff)
-  // const {createAlbum} = usePhotoAlbumQuery()
-  // const {mutate: create} = createAlbum
 
   const onChangeSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectValue(e.currentTarget.value)
@@ -44,26 +45,18 @@ export const AlbumEdit: FC<IAlbumEditProps> = () => {
 
   const onDeleteAlbum = () => {
     remove(id!)
-    navigate('/albums')
+    url()
   }
 
   const onSubmit: SubmitHandler<IUpdatePhotoAlbum> = async (data) => {
-    // create({
-    //   title: data.title!,
-    //   description: data.description,
-    //   turnOffWatching: valueSelect
-    // })
-
-    console.log({
+    update({
       title: data.title!,
-        description: data.description,
-        turnOffWatching: valueSelect
+      description: data.description,
+      turnOffWatching: valueSelect
     })
+    url()
     reset()
   }
-
-
-  console.log(album?.turnOffWatching)
 
   return (
     <div className={styles.wrapper}>

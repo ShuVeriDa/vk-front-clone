@@ -73,6 +73,16 @@
 
       //min-height: 175px;
       //box-sizing: border-box;
+
+      .noPhotos {
+        display: flex;
+        justify-content: center;
+        //align-self: center;
+        font-size: 13px;
+        width: 100%;
+        padding: 60px 20px;
+        color: #818c99;
+      }
     }
   }
 }

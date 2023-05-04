@@ -27,7 +27,6 @@ export const Album: FC<IAlbumProps> = () => {
 
     console.log(albums)
     return (
-
       <div className={styles.wrapper}>
         <AlbumsHeader onClickOpen={onClickOpen}/>
         <div className={styles.main}>
