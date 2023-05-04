@@ -1,7 +1,7 @@
 import {ChangeEvent, FC, useState} from 'react';
 import styles from './AlbumEdit.module.scss';
 import {PhotosHeader} from "../../components/Photos/Photos/PhotosHeader/PhotosHeader";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {usePhotoAlbumQuery} from "../../react-query/usePhotoAlbumQuery";
 import {CreateAlbumMain} from "../../components/Photos/Album/CreateAlbum/CreateAlbumMain/CreateAlbumMain";
 import {CreateAlbumFooter} from "../../components/Photos/Album/CreateAlbum/CreateAlbumFooter/CreateAlbumFooter";
@@ -13,8 +13,10 @@ interface IAlbumEditProps {
 }
 
 export const AlbumEdit: FC<IAlbumEditProps> = () => {
+  const navigate = useNavigate()
   const {id} = useParams()
-  const {getOneAlbum} = usePhotoAlbumQuery(id)
+  const {getOneAlbum, deleteAlbum} = usePhotoAlbumQuery(id)
+  const {mutate: remove} = deleteAlbum
   const {data: album} = getOneAlbum
 
   const turnOff = album?.turnOffWatching === 'all'
@@ -40,6 +42,11 @@ export const AlbumEdit: FC<IAlbumEditProps> = () => {
         ? 'friends'
         : 'me'
 
+  const onDeleteAlbum = () => {
+    remove(id!)
+    navigate('/albums')
+  }
+
   const onSubmit: SubmitHandler<IUpdatePhotoAlbum> = async (data) => {
     // create({
     //   title: data.title!,
@@ -61,6 +68,7 @@ export const AlbumEdit: FC<IAlbumEditProps> = () => {
   return (
     <div className={styles.wrapper}>
       <PhotosHeader title={album?.title!}
+                    onClickDelete={onDeleteAlbum}
                     edit={true}
       />
       <div className={styles.main}>

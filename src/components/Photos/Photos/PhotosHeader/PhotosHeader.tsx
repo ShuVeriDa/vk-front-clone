@@ -8,9 +8,21 @@ interface IPhotosHeaderProps {
   title: string
   count?: number
   edit?: boolean
+  onClickDelete?: () => void
+  onClickAddPhoto?: () => void
 }
 
-export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit}) => {
+export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit, onClickDelete, onClickAddPhoto}) => {
+
+  // const onClickHandler = () => {
+  //   if (onClickAddPhoto) {
+  //     if (onClickDelete) {
+  //       edit ? onClickDelete() : onClickAddPhoto()
+  //     }
+  //   }
+  // }\
+
+  console.log(onClickDelete)
 
   return (
     <div className={styles.header}>
@@ -31,7 +43,8 @@ export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit}) => {
       </div>
       <div className={styles.buttons}>
         <ul>
-          <li className={cn(edit ? styles.remove : styles.add)}>
+          <li onClick={edit ? onClickDelete : onClickAddPhoto}
+            className={cn(edit ? styles.remove : styles.add)}>
             {edit ? 'Удалить альбом' : 'Добавить изображение'}
           </li>
         </ul>

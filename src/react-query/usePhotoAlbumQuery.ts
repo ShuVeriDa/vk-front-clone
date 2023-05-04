@@ -12,14 +12,13 @@ export const usePhotoAlbumQuery = (albumId?: string) => {
 
   })
 
-  const client = useQueryClient()
-
   const getOneAlbum = useQuery({
     queryFn: () => AlbumService.fetchOneAlbum(albumId!),
     queryKey: ['myAlbum', 'one'],
     enabled:!!albumId
   })
 
+  const client = useQueryClient()
 
   const createAlbum = useMutation({
     mutationFn: (data:ICreatePhotoAlbum) => AlbumService.createAlbum(data),
@@ -35,13 +34,13 @@ export const usePhotoAlbumQuery = (albumId?: string) => {
   //   }
   // })
   //
-  // const deletePost = useMutation({
-  //   mutationFn: (postId: string) => PostService.deletePost(postId),
-  //   onSuccess: () => {
-  //     client.invalidateQueries({queryKey: ['myPosts', 'allMyPosts']})
-  //     getMyPosts.refetch()
-  //   }
-  // })
+  const deleteAlbum = useMutation({
+    mutationFn: (albumId: string) => AlbumService.deleteAlbum(albumId),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['myAlbums', 'allMyAlbums']})
+      getMyAlbums.refetch()
+    }
+  })
   //
   // //community
   // const getCommunityPosts = useQuery({
@@ -53,6 +52,7 @@ export const usePhotoAlbumQuery = (albumId?: string) => {
   return useMemo(() => ({
     getMyAlbums,
     createAlbum,
-    getOneAlbum
-  }), [getMyAlbums, getOneAlbum, createAlbum])
+    getOneAlbum,
+    deleteAlbum
+  }), [getMyAlbums, getOneAlbum, createAlbum, deleteAlbum])
 }
