@@ -96,15 +96,25 @@
         //  }
         //}
 
-        &:nth-child(1) {
-          margin-left: 10px;
-          background-color: #447bba;
-          color: #fff;
 
-          &:hover {
-            opacity: .7;
+      }
 
-          }
+      .add {
+        margin-left: 10px;
+        background-color: #447bba;
+        color: #fff;
+
+        &:hover {
+          opacity: .7;
+
+        }
+      }
+
+      .remove {
+        background-color: #dae2ea;
+
+        &:hover {
+          background-color: #d0d8e0;
         }
       }
 

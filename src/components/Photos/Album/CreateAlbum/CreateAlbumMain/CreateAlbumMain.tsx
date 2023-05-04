@@ -9,11 +9,13 @@ interface ICreateAlbumMainProps {
   register: UseFormRegister<any>
   selectValue: string
   onChangeSelectValue: (e: ChangeEvent<HTMLSelectElement>) => void
+  title?: string
+  description?: string
 }
 
 const options = ['Все пользователи', 'Друзья', 'Только я']
 
-export const CreateAlbumMain: FC<ICreateAlbumMainProps> = ({register, selectValue, onChangeSelectValue}) => {
+export const CreateAlbumMain: FC<ICreateAlbumMainProps> = ({register, selectValue, onChangeSelectValue, title, description}) => {
   return (
     <div className={styles.main}>
         <Input {...register('title', {
@@ -24,10 +26,10 @@ export const CreateAlbumMain: FC<ICreateAlbumMainProps> = ({register, selectValu
           }
         })}
                label={'Название'}
-               value={''}
+               value={title ? title : ''}
                type={'text'}
                classes={styles.input}
-          // error={errors.text}
+          // error={errors.title}
         />
         <div className={styles.textarea}>
           <div className={styles.label}>
@@ -36,6 +38,7 @@ export const CreateAlbumMain: FC<ICreateAlbumMainProps> = ({register, selectValu
           <div className={styles.textareaField}>
             <TextareaAutosize
               {...register('description')}
+             defaultValue={description}
             />
           </div>
         </div>

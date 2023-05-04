@@ -27,7 +27,7 @@ export const AlbumItemPage: FC<IPhotosProps> = () => {
         <div className={styles.menu}>
           <ul>
             <li>{isSuccess && album.photos?.length} фотографии</li>
-            <li><Link to={""}>Редактировать альбом </Link></li>
+            <li><Link to={`/album/${id}/edit`}>Редактировать альбом </Link></li>
           </ul>
         </div>
         <div className={styles.photoItems}>

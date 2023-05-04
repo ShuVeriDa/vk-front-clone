@@ -30,7 +30,7 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
   const avatar = `${process.env.REACT_APP_SERVER_URL}${user?.avatar}`
 
   const onChangeProfile = () => {
-    navigate(`/edit`)
+    navigate(`/profile/edit`)
   }
   const onAddFriend = () => {
   }

@@ -38,6 +38,10 @@ const AlbumItemPage = lazy(() => import("./pages/AlbumItemPage/AlbumItemPage")
   .then(({AlbumItemPage}) => ({default: AlbumItemPage}))
 )
 
+const AlbumEdit = lazy(() => import("./pages/AlbumEdit/AlbumEdit")
+  .then(({AlbumEdit}) => ({default: AlbumEdit}))
+)
+
 const NotFound = lazy(() => import(/* webpackChunkName: "NotFound"*/ './pages/NotFound/NotFound')
   .then(({NotFound}) => ({default: NotFound}))
 )
@@ -82,7 +86,7 @@ function App() {
         <Route path={'/friends'} element={<FriendPage />}/>
         <Route path={'/groups'} element={<CommunitySearchPage />}/>
 
-        <Route path={'/edit'} element={
+        <Route path={'/profile/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <ProfileEdit />
           </Suspense>
@@ -100,6 +104,12 @@ function App() {
         <Route path={'/album/:id'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <AlbumItemPage />
+          </Suspense>
+        }/>
+
+        <Route path={'/album/:id/edit'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <AlbumEdit />
           </Suspense>
         }/>
       </Route>
