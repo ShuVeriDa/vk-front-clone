@@ -66,7 +66,9 @@ export const useUploadQuery = (
       if (entityType === 'user') {
         client.invalidateQueries({queryKey: ['user', 'one']});
         getUserById.refetch();
-      } else {
+      }
+
+      if (entityType === 'community') {
         client.invalidateQueries({queryKey: ['communityOne', 'community']});
         fetchOne.refetch();
       }

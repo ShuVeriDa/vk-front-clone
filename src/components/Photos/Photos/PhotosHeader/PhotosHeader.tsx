@@ -13,9 +13,10 @@ interface IPhotosHeaderProps {
   onClickDelete?: () => void
   onClick?:() => void
   onClickAddPhoto?: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
+
 }
 
-export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit, add, onClickDelete, onClickAddPhoto, inputFileRef, onClick}) => {
+export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit, add, onClickDelete, onClickAddPhoto, inputFileRef, onClick, }) => {
 
 
 
@@ -49,7 +50,13 @@ export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit, add, o
             className={cn(edit ? styles.remove : styles.add)}
           >
             {edit ? 'Удалить альбом' : 'Добавить изображение'}
-            {!edit && <input type="file" ref={inputFileRef} onChange={onClickAddPhoto} hidden/>}
+            {!edit && <input type="file"
+                             ref={inputFileRef}
+                             onChange={onClickAddPhoto}
+                             hidden
+
+            />
+            }
           </li>
         </ul>
       </div>

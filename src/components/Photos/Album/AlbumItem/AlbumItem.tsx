@@ -25,12 +25,15 @@ export const AlbumItem: FC<IPhotoItemProps> = ({album}) => {
           {isPhotos && <img src={albumImg} alt=""/>}
         </div>
         <div className={styles.description}>
-          <span className={styles.titleAndSvg}
+          <div className={styles.titleAndSvg}
                 style={blackColor}
           >
-            {album.turnOffWatching !== 'all' && <LockSvg styles={isPhotos ? styles.svg : styles.svgBlack}/>}
-            <span className={styles.title}>{album.title}</span>
-          </span>
+            <span className={styles.title}>
+              {album.turnOffWatching !== 'all' && <LockSvg styles={isPhotos ? styles.svg : styles.svgBlack}/>}
+              {album.title}
+            </span>
+            <span className={styles.imgDescription}>{album.description}</span>
+          </div>
           <span className={styles.count} style={blackColor}> {album.photos.length}</span>
         </div>
       </div>

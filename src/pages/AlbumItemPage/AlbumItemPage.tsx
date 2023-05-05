@@ -39,7 +39,6 @@ export const AlbumItemPage: FC<IPhotosProps> = () => {
                     inputFileRef={inputFileRef}
                     onClick={() => inputFileRef.current.click()}
       />
-      <button onClick={() => navigate(`/album/${id}/add`)}>button</button>
       <div className={styles.main}>
         <div className={styles.titleAndDescription}>
           <span className={styles.title}>{album?.title}</span>

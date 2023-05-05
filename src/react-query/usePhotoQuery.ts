@@ -5,7 +5,7 @@ import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../t
 import {AlbumService} from "../services/album.service";
 import {ICreatePhotoAlbum, IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
 import {PhotoService} from "../services/photo.service";
-import {ICreatePhoto} from "../types/photo.interface";
+import {ICreatePhoto, IUpdatePhoto} from "../types/photo.interface";
 
 export const usePhotoQuery = (photoId?: string) => {
   // const getOneAlbum = useQuery({
@@ -28,12 +28,12 @@ export const usePhotoQuery = (photoId?: string) => {
     }
   })
 
-  // const updateAlbum = useMutation({
-  //   mutationFn: (data:IUpdatePhotoAlbum) => AlbumService.updateAlbum(albumId!, data),
-  //   onSuccess: () => {
-  //     client.invalidateQueries(['myAlbums', 'allMyAlbums'])
-  //   }
-  // })
+  const updatePhoto = useMutation({
+    mutationFn: (data:IUpdatePhoto) => PhotoService.updatePhoto(photoId!, data),
+    onSuccess: () => {
+      client.invalidateQueries(['myPhoto', 'photoOne'])
+    }
+  })
   //
   // const deleteAlbum = useMutation({
   //   mutationFn: (albumId: string) => AlbumService.deleteAlbum(albumId),
@@ -51,6 +51,6 @@ export const usePhotoQuery = (photoId?: string) => {
   // })
 
   return useMemo(() => ({
-    createPhoto,
-  }), [createPhoto])
+    createPhoto, updatePhoto
+  }), [createPhoto, updatePhoto])
 }

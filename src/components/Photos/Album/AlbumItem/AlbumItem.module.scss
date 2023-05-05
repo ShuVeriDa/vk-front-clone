@@ -7,21 +7,28 @@
   &:hover {
     cursor: pointer;
 
-   .item {
-     .description {
-       transform: translateY(-10px);
-     }
-   }
+    .item {
+      .description {
+        transform: translateY(-20px);
+
+        .titleAndSvg {
+          .imgDescription {
+            display: block;
+          }
+        }
+      }
+    }
   }
 
 
   .item {
     width: inherit;
     height: inherit;
-    
+
     .img {
       width: inherit;
       height: inherit;
+
       img {
         width: 245px;
         height: 165px;
@@ -52,31 +59,40 @@
       transition: .2s ease;
 
       .titleAndSvg {
+        display: flex;
+        flex-direction: column;
         color: #fff;
-        .svg {
-          position: relative;
-          top: 2px;
-          fill: #fff;
-        }
-
-        .svgBlack {
-          fill: #1d3a5c;
-        }
 
         .title {
           font-size: 12.5px;
           font-weight: 700;
           line-height: 15px;
           margin-left: 5px;
+          //padding: px 0;
+
+          .svg {
+            position: relative;
+            top: 2px;
+            fill: #fff;
+            margin-right: 5px;
+          }
+
+          .svgBlack {
+            fill: #1d3a5c;
+            margin-right: 5px;
+          }
         }
 
-       //.count {
-       //  color: #fff;
-       //}
-      }
-
-      span {
-        //color: #fff;
+        .imgDescription {
+          display: none;
+          font-size: 12.5px;
+          font-weight: 700;
+          line-height: 15px;
+          padding: 6px 0;
+          white-space: nowrap;
+          //overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
 
       .count {
@@ -84,9 +100,8 @@
         font-size: 13px;
         line-height: 14px;
       }
+
     }
-
-
   }
 
 }

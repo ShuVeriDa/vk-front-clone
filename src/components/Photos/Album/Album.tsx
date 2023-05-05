@@ -25,7 +25,6 @@ export const Album: FC<IAlbumProps> = () => {
     const {getMyAlbums} = usePhotoAlbumQuery()
     const {data: albums, isSuccess} = getMyAlbums
 
-    console.log(albums)
     return (
       <div className={styles.wrapper}>
         <AlbumsHeader onClickOpen={onClickOpen}/>
