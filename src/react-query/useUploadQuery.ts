@@ -5,6 +5,7 @@ import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../t
 import {UploadFileService} from "../services/uploadFile.services";
 import {useUsersQuery} from "./useUsersQuery";
 import {useCommunityQuery} from "./useCommunityQuery";
+import {usePhotoAlbumQuery} from "./usePhotoAlbumQuery";
 // export const useUploadQuery = (folder: string, setUrl: (url: string) => void, userId: string | number) => {
 //   const {getUserById} = useUsersQuery(userId)
 //
@@ -38,12 +39,14 @@ import {useCommunityQuery} from "./useCommunityQuery";
 export const useUploadQuery = (
   folder: string,
   setUrl: (url: string) => void,
-  entityType: 'user' | 'community',
+  entityType: 'user' | 'community' | 'img',
   userId?: string | number,
   communityId?: string,
+  albumId?: string
 
 ) => {
   const {getUserById} = useUsersQuery(userId!);
+  const {getOneAlbum} = usePhotoAlbumQuery(albumId)
   const {fetchOne} = useCommunityQuery(communityId);
 
   const client = useQueryClient();
@@ -53,6 +56,11 @@ export const useUploadQuery = (
     onSuccess: ({data}) => {
       if (setUrl) {
         setUrl(data[0].url);
+      }
+
+      if(entityType === 'img') {
+        client.invalidateQueries({queryKey: ['myAlbum', 'albumOne']});
+        getOneAlbum.refetch();
       }
 
       if (entityType === 'user') {

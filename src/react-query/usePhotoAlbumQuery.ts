@@ -3,12 +3,12 @@ import {PostService} from "../services/post.service";
 import {useMemo} from "react";
 import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../types/post.interface";
 import {AlbumService} from "../services/album.service";
-import {ICreatePhotoAlbum, IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
+import {ICreatePhotoAlbum, ICreatePhotoInAlbum, IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
 
 export const usePhotoAlbumQuery = (albumId?: string) => {
   const getOneAlbum = useQuery({
     queryFn: () => AlbumService.fetchOneAlbum(albumId!),
-    queryKey: ['myAlbum', 'one'],
+    queryKey: ['myAlbum', 'albumOne'],
     enabled: !!albumId
   })
 
@@ -23,6 +23,13 @@ export const usePhotoAlbumQuery = (albumId?: string) => {
     mutationFn: (data:ICreatePhotoAlbum) => AlbumService.createAlbum(data),
     onSuccess: () => {
       client.invalidateQueries({queryKey: ['myAlbums', 'allMyAlbums']})
+    }
+  })
+
+  const createPhotoInAlbum = useMutation({
+    mutationFn: (data:ICreatePhotoInAlbum) => AlbumService.createPhotoInAlbum(albumId!, data),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['myAlbum', 'albumOne']})
     }
   })
 
@@ -51,8 +58,9 @@ export const usePhotoAlbumQuery = (albumId?: string) => {
   return useMemo(() => ({
     getMyAlbums,
     createAlbum,
+    createPhotoInAlbum,
     getOneAlbum,
     updateAlbum,
     deleteAlbum
-  }), [getMyAlbums, getOneAlbum, createAlbum, deleteAlbum, updateAlbum])
+  }), [getMyAlbums, getOneAlbum, createAlbum, createPhotoInAlbum, deleteAlbum, updateAlbum])
 }

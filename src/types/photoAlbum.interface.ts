@@ -12,6 +12,10 @@ export interface IPhotoAlbum {
   user: IUserAbbr
 }
 
+export interface ICreatePhotoInAlbum {
+  photoUrl :string
+}
+
 export interface ICreatePhotoAlbum {
   title: string,
   description?: string,

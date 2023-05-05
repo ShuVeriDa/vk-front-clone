@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {ChangeEvent, FC, MutableRefObject} from 'react';
 import styles from './PhotosHeader.module.scss';
 import ArrowRight from '../../../../assets/img/rightArrow.png'
 import {Link} from "react-router-dom";
@@ -8,21 +8,18 @@ interface IPhotosHeaderProps {
   title: string
   count?: number
   edit?: boolean
+  add?: boolean
+  inputFileRef?: MutableRefObject<any>
   onClickDelete?: () => void
-  onClickAddPhoto?: () => void
+  onClick?:() => void
+  onClickAddPhoto?: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
 }
 
-export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit, onClickDelete, onClickAddPhoto}) => {
+export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit, add, onClickDelete, onClickAddPhoto, inputFileRef, onClick}) => {
 
-  // const onClickHandler = () => {
-  //   if (onClickAddPhoto) {
-  //     if (onClickDelete) {
-  //       edit ? onClickDelete() : onClickAddPhoto()
-  //     }
-  //   }
-  // }\
 
-  console.log(onClickDelete)
+
+  const editOfAdd = edit && 'Редактирование альбома' || add && "Добавление фотографий"
 
   return (
     <div className={styles.header}>
@@ -37,15 +34,22 @@ export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit, onClic
           </span>
           {edit && <>
             <img src={ArrowRight} alt=""/>
-            <span>Редактирование альбома</span>
+            <span>{editOfAdd}</span>
           </>}
+          {add && <>
+            <img src={ArrowRight} alt=""/>
+            <span>{editOfAdd}</span>
+          </>}
+
           <span className={styles.count}>{count}</span></div>
       </div>
       <div className={styles.buttons}>
         <ul>
-          <li onClick={edit ? onClickDelete : onClickAddPhoto}
-            className={cn(edit ? styles.remove : styles.add)}>
+          <li onClick={edit ? onClickDelete : onClick}
+            className={cn(edit ? styles.remove : styles.add)}
+          >
             {edit ? 'Удалить альбом' : 'Добавить изображение'}
+            {!edit && <input type="file" ref={inputFileRef} onChange={onClickAddPhoto} hidden/>}
           </li>
         </ul>
       </div>

@@ -1,0 +1,37 @@
+.wrapper {
+  min-width: 755px;
+  max-width: 860px;
+  width: 100%;
+  box-sizing: border-box;
+
+  .main {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 175px;
+    padding: 20px;
+    //box-sizing: border-box;
+    background-color: #fff;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    .photoItems {
+
+      display: flex;
+      flex-wrap: wrap;
+
+      //min-height: 175px;
+      //box-sizing: border-box;
+
+      .noPhotos {
+        display: flex;
+        justify-content: center;
+        //align-self: center;
+        font-size: 13px;
+        width: 100%;
+        padding: 60px 20px;
+        color: #818c99;
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@ import {AlbumsPage} from "./pages/Albums/Albums";
 
 
 const Profile = lazy(() => import("./pages/Profile/ProfilePage")
-    .then(({ProfilePage}) => ({default: ProfilePage}))
+  .then(({ProfilePage}) => ({default: ProfilePage}))
 )
 
 const Community = lazy(() => import("./pages/Community/Community")
@@ -40,6 +40,10 @@ const AlbumItemPage = lazy(() => import("./pages/AlbumItemPage/AlbumItemPage")
 
 const AlbumEdit = lazy(() => import("./pages/AlbumEdit/AlbumEdit")
   .then(({AlbumEdit}) => ({default: AlbumEdit}))
+)
+
+const CreatePhotoInAlbum = lazy(() => import("./pages/CreatePhotoInAlbum/CreatePhotoInAlbum")
+  .then(({CreatePhotoInAlbum}) => ({default: CreatePhotoInAlbum}))
 )
 
 const NotFound = lazy(() => import(/* webpackChunkName: "NotFound"*/ './pages/NotFound/NotFound')
@@ -70,56 +74,64 @@ function App() {
   return (
     <Routes>
       <Route path={'/auth'} element={<Auth/>}/>
-      <Route path={'/groups/create'} element={<CreateCommunity />}/>
+      <Route path={'/groups/create'} element={<CreateCommunity/>}/>
       <Route path="/" element={<MainLayout/>}>
         <Route path={"/"} element={<Home/>}/>
         <Route path={'/profile/:id'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
-            <Profile />
+            <Profile/>
           </Suspense>
         }/>
         <Route path={'/group/:id'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
-            <Community />
+            <Community/>
           </Suspense>
         }/>
-        <Route path={'/friends'} element={<FriendPage />}/>
-        <Route path={'/groups'} element={<CommunitySearchPage />}/>
+        <Route path={'/friends'} element={<FriendPage/>}/>
+
+        <Route path={'/groups'} element={<CommunitySearchPage/>}/>
 
         <Route path={'/profile/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
-            <ProfileEdit />
+            <ProfileEdit/>
           </Suspense>
         }/>
         <Route path={'/group/:id/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
-            <CommunityEdit />
+            <CommunityEdit/>
           </Suspense>
         }/>
         <Route path={'/albums'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
-            <Photos />
+            <Photos/>
           </Suspense>
         }/>
         <Route path={'/album/:id'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
-            <AlbumItemPage />
+            <AlbumItemPage/>
           </Suspense>
         }/>
 
         <Route path={'/album/:id/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
-            <AlbumEdit />
+            <AlbumEdit/>
+          </Suspense>
+        }/>
+
+        <Route path={'/album/:id/add'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <CreatePhotoInAlbum/>
           </Suspense>
         }/>
       </Route>
+
       <Route path={'/404'}
              element={
                <Suspense fallback={<div>Идет загрузка...</div>}>
                  <NotFound/>
                </Suspense>}
       />
-      <Route path="*" element={ <Navigate to="/404" replace />} />
+      <Route path="*" element={<Navigate to="/404" replace/>}/>
 
     </Routes>
   );

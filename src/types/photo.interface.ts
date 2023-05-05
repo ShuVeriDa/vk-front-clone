@@ -12,3 +12,7 @@ export interface IPhotoForAlbum {
   photoUrl: string,
   description: string
 }
+
+export interface ICreatePhoto {
+  photoUrl: string
+}

@@ -1,6 +1,6 @@
 import {instance} from "../api/api.interceptor";
 import {getPhotoAlbumsUrl} from "../api/api.config";
-import {ICreatePhotoAlbum, IPhotoAlbum, IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
+import {ICreatePhotoAlbum, ICreatePhotoInAlbum, IPhotoAlbum, IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
 
 
 export const AlbumService = {
@@ -16,6 +16,11 @@ export const AlbumService = {
 
   createAlbum: async (data: ICreatePhotoAlbum) => {
     const res = await instance.post<IPhotoAlbum>(getPhotoAlbumsUrl(''), data)
+    return res.data
+  },
+
+  createPhotoInAlbum: async (albumId: string, data: ICreatePhotoInAlbum) => {
+    const res = await instance.post<IPhotoAlbum>(getPhotoAlbumsUrl(`/add/photo/${albumId}`), data)
     return res.data
   },
 

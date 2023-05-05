@@ -1,6 +1,7 @@
 import {ICreatePost, IPost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../types/post.interface";
 import {axiosClassic, instance} from "../api/api.interceptor";
-import {getPostsCommunityUrl, getPostsUrl} from "../api/api.config";
+import {getPhotosUrl, getPostsCommunityUrl, getPostsUrl} from "../api/api.config";
+import {ICreatePhoto, IPhotoForAlbum} from "../types/photo.interface";
 
 
 export const PhotoService =  {
@@ -9,8 +10,8 @@ export const PhotoService =  {
     return res.data
   },
 
-  createPhoto: async (data: ICreatePost) => {
-    const res = await instance.post<IPost>(getPostsUrl(''), data)
+  createPhoto: async (data: ICreatePhoto) => {
+    const res = await instance.post<IPhotoForAlbum>(getPhotosUrl(''), data)
     return res.data
   },
 

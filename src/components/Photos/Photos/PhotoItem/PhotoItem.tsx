@@ -3,12 +3,14 @@ import styles from './PhotoItem.module.scss';
 import {useNavigate} from "react-router-dom";
 import {IPhotoForAlbum} from "../../../../types/photo.interface";
 import {avatarUrl} from "../../../../utils/avatarUrl";
+import {Input} from "../../../Input/Input";
 
 interface IPhotoItemProps {
   photo: IPhotoForAlbum
+  input?: boolean
 }
 
-export const PhotoItem: FC<IPhotoItemProps> = ({photo}) => {
+export const PhotoItem: FC<IPhotoItemProps> = ({photo, input}) => {
   const navigate = useNavigate()
   // const isPhotos = album.photos.length > 0
   // const blackColor = !isPhotos ? {color: "#1d3a5c"} : {}
@@ -23,6 +25,11 @@ export const PhotoItem: FC<IPhotoItemProps> = ({photo}) => {
           <div className={styles.img}>
             <img src={photoImg} alt=""/>
           </div>
+          {input && <Input type={'text'}
+                           classes={styles.input}
+                           placeholder={'Добавьте описание...'}
+          />
+          }
         </div>
       </div>
 
