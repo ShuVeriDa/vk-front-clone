@@ -14,10 +14,11 @@ export const usePhotoQuery = (photoId?: string) => {
   //   enabled: !!albumId
   // })
   //
-  // const getMyAlbums = useQuery({
-  //   queryFn: () => AlbumService.fetchMyAlbums(),
-  //   queryKey: ['myAlbums', 'allMyAlbums']
-  // })
+
+  const getMyPhotos = useQuery({
+    queryFn: () => PhotoService.fetchMyPhotos(),
+    queryKey: ['myPhotos', 'allMyPhotos']
+  })
 
   const client = useQueryClient()
 
@@ -51,6 +52,6 @@ export const usePhotoQuery = (photoId?: string) => {
   // })
 
   return useMemo(() => ({
-    createPhoto, updatePhoto
-  }), [createPhoto, updatePhoto])
+    getMyPhotos, createPhoto, updatePhoto,
+  }), [getMyPhotos, createPhoto, updatePhoto])
 }

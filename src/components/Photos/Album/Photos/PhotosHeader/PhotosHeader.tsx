@@ -1,6 +1,6 @@
 import {ChangeEvent, FC, MutableRefObject} from 'react';
 import styles from './PhotosHeader.module.scss';
-import ArrowRight from '../../../../assets/img/rightArrow.png'
+import ArrowRight from '../../../../../assets/img/rightArrow.png'
 import {Link} from "react-router-dom";
 import cn from "clsx";
 

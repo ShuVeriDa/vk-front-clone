@@ -1,9 +1,9 @@
 import {ChangeEvent, FC, useEffect, useRef, useState} from 'react';
 import styles from './CreatePhotoInAlbum.module.scss';
-import {PhotosHeader} from "../../components/Photos/Photos/PhotosHeader/PhotosHeader";
+import {PhotosHeader} from "../../components/Photos/Album/Photos/PhotosHeader/PhotosHeader";
 import {usePhotoAlbumQuery} from "../../react-query/usePhotoAlbumQuery";
 import {useParams} from "react-router-dom";
-import {PhotoItem} from "../../components/Photos/Photos/PhotoItem/PhotoItem";
+import {PhotoItem} from "../../components/Photos/Album/Photos/PhotoItem/PhotoItem";
 import {ICreatePhotoInAlbum} from "../../types/photoAlbum.interface";
 import {useUploadQuery} from "../../react-query/useUploadQuery";
 import {usePhotoQuery} from "../../react-query/usePhotoQuery";

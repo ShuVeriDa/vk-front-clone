@@ -15,8 +15,6 @@
   }
 
   .container {
-
-
     .item {
       width: inherit;
       height: inherit;
@@ -49,6 +47,42 @@
               outline: none;
               background: #fff;
             }
+        }
+      }
+
+    }
+  }
+}
+
+.myPhotoItem {
+  margin: 3.6px;
+  max-width: 370px;
+  min-width: 222px;
+  max-height: 222px;
+  min-height: 222px;
+  box-sizing: border-box;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .container {
+
+
+    .item {
+      width: inherit;
+      height: inherit;
+
+      .img {
+        width: inherit;
+        height: inherit;
+        img {
+          min-width: 222px;
+          max-width: 370px;
+          max-height: 222px;
+          min-height: 222px;
+          background-position: 50% 35%;
+          background-repeat: no-repeat;
         }
       }
 

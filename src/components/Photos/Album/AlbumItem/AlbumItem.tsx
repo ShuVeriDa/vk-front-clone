@@ -4,7 +4,7 @@ import cameraIMG from '../../../../assets/img/camera_big.png'
 import {IPhotoAlbum} from "../../../../types/photoAlbum.interface";
 import {avatarUrl} from "../../../../utils/avatarUrl";
 import cn from "clsx";
-import {LockSvg} from "../../../SvgComponent";
+import {EditFoodSVG, LockSvg} from "../../../SvgComponent";
 import {useNavigate} from "react-router-dom";
 
 interface IPhotoItemProps {
@@ -13,14 +13,22 @@ interface IPhotoItemProps {
 
 export const AlbumItem: FC<IPhotoItemProps> = ({album}) => {
   const navigate = useNavigate()
+  const urlEdit = () => navigate(`/album/${album.id}/edit`)
+  const url = () => navigate(`/album/${album.id}`)
   const isPhotos = album.photos.length > 0
   const blackColor = !isPhotos ? {color: "#1d3a5c"} : {}
   const albumImg = avatarUrl(album.photos[0]?.photoUrl)
   return (
     <div className={styles.albumItem}
-         onClick={() => navigate(`/album/${album.id}`)}
+         onClick={url}
       >
       <div className={styles.item}>
+        <div className={styles.edit} onClick={urlEdit}>
+          <div className={styles.editSvg}>
+            <EditFoodSVG />
+          </div>
+
+        </div>
         <div className={cn(isPhotos ? styles.img : styles.imgBackground)}>
           {isPhotos && <img src={albumImg} alt=""/>}
         </div>

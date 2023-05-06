@@ -1,5 +1,5 @@
 .albumItem {
-  margin: 5.21px;
+  margin: 4px;
   width: 245px;
   height: 165px;
   box-sizing: border-box;
@@ -8,6 +8,11 @@
     cursor: pointer;
 
     .item {
+
+      .edit {
+        display: flex;
+      }
+
       .description {
         transform: translateY(-20px);
 
@@ -24,6 +29,43 @@
   .item {
     width: inherit;
     height: inherit;
+
+    .edit {
+      width: inherit;
+      display: none;
+      justify-content: end;
+
+      .editSvg {
+        border-radius: 3px;
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        margin: 8px;
+        //left: px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        background: rgba(0, 0, 0, 0.3);
+        //opacity: .3;
+        //box-sizing: border-box;
+
+        svg {
+          //width: 40px;
+          //height: 40px;
+          fill: #fff;
+          opacity: .5;
+
+          &:hover {
+            opacity: 1;
+
+          }
+
+        }
+      }
+
+
+    }
 
     .img {
       width: inherit;

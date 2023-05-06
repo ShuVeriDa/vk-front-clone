@@ -1,8 +1,8 @@
 import {ChangeEvent, FC, useRef} from 'react';
 import styles from './AlbumItemPage.module.scss';
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {PhotosHeader} from "../../components/Photos/Photos/PhotosHeader/PhotosHeader";
-import {PhotoItem} from "../../components/Photos/Photos/PhotoItem/PhotoItem";
+import {PhotosHeader} from "../../components/Photos/Album/Photos/PhotosHeader/PhotosHeader";
+import {PhotoItem} from "../../components/Photos/Album/Photos/PhotoItem/PhotoItem";
 import {usePhotoAlbumQuery} from "../../react-query/usePhotoAlbumQuery";
 import {ICommunityUpdate} from "../../types/community.interface";
 import {useUploadQuery} from "../../react-query/useUploadQuery";

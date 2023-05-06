@@ -1,6 +1,6 @@
 import {ChangeEvent, FC, useState} from 'react';
 import styles from './AlbumEdit.module.scss';
-import {PhotosHeader} from "../../components/Photos/Photos/PhotosHeader/PhotosHeader";
+import {PhotosHeader} from "../../components/Photos/Album/Photos/PhotosHeader/PhotosHeader";
 import {useNavigate, useParams} from "react-router-dom";
 import {usePhotoAlbumQuery} from "../../react-query/usePhotoAlbumQuery";
 import {CreateAlbumMain} from "../../components/Photos/Album/CreateAlbum/CreateAlbumMain/CreateAlbumMain";
