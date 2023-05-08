@@ -30,7 +30,7 @@ const CommunityEdit = lazy(() => import("./pages/CommunityEdit/CommunityEditPage
   .then(({CommunityEditPage}) => ({default: CommunityEditPage}))
 )
 
-const Photos = lazy(() => import("./pages/Albums/Albums")
+const Albums = lazy(() => import("./pages/Albums/Albums")
   .then(({AlbumsPage}) => ({default: AlbumsPage}))
 )
 
@@ -103,9 +103,15 @@ function App() {
         }/>
         <Route path={'/albums'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
-            <Photos/>
+            <Albums/>
           </Suspense>
         }/>
+
+        {/*<Route path={'/albums/photo/:id'} element={*/}
+        {/*  <Suspense fallback={<div>Идет загрузка...</div>}>*/}
+        {/*    <Albums/>*/}
+        {/*  </Suspense>*/}
+        {/*}/>*/}
         <Route path={'/album/:id'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <AlbumItemPage/>

@@ -12,9 +12,11 @@ interface IPhotoItemProps {
   onBlur?: () => void
   onChangeValue?: (e: ChangeEvent<HTMLInputElement>) => void
   isMyPhoto?:boolean
+  setToggler?: (slide: number) => void
+  index?: number
 }
 
-export const PhotoItem: FC<IPhotoItemProps> = ({photo, input, onBlur, onChangeValue, isMyPhoto}) => {
+export const PhotoItem: FC<IPhotoItemProps> = ({photo, input, onBlur, onChangeValue, isMyPhoto ,setToggler, index}) => {
   const navigate = useNavigate()
   // const isPhotos = album.photos.length > 0
   // const blackColor = !isPhotos ? {color: "#1d3a5c"} : {}
@@ -27,7 +29,7 @@ export const PhotoItem: FC<IPhotoItemProps> = ({photo, input, onBlur, onChangeVa
       <div className={styles.container}>
         <div className={styles.item}>
           <div className={styles.img}>
-            <img src={photoImg} alt=""/>
+            <img src={photoImg} onClick={() => setToggler ? setToggler(index!) : () => {}} alt=""/>
           </div>
           {input && <Input type={'text'}
                            classes={styles.input}

@@ -1,0 +1,220 @@
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  box-sizing: border-box;
+  //border: 1px solid;
+  border-radius: 12px;
+  width: 1800px;
+  height: 910px;
+  background: #222222;
+
+  .image {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 1530px;
+    max-height: 860px;
+
+    .imageItem {
+      img {
+        max-width: 1530px;
+        max-height: 860px;
+      }
+    }
+
+
+  }
+
+  .leftSlide {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background: #fff;
+    width: 310px;
+    height: 100%;
+
+    .header {
+      border-top-right-radius: 12px;
+      height: 40px;
+      padding: 13px 20px 10px 15px;
+      display: flex;
+      flex-direction: row;
+      border-bottom: 1px solid #DCE1E6;
+      background: #FAFBFC;
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        padding: 3px 0 0 10px;
+
+        .name {
+          font-size: 13px;
+          color: #2a5885;
+        }
+
+        .created {
+          margin-top: 4px;
+          font-size: 13px;
+          color: #818c99;
+        }
+      }
+    }
+
+    .main {
+      padding: 0 15px;
+      min-height: 60px;
+      border-bottom: 1px solid #DCE1E6;
+
+      .favoritesAndRepost {
+        padding: 17px 0 0 0;
+        margin-bottom: 8px;
+        display: flex;
+        align-content: center;
+        align-self: center;
+        align-items: center;
+
+        .svg {
+          width: 85px;
+          display: flex;
+          justify-content: space-between;
+          svg {
+            width: 28px;
+            height: 28px;
+            color: #A1A7B3;
+
+            &:hover {
+              cursor: pointer;
+              color: #828A99;
+            }
+          }
+
+        }
+      }
+
+      .description {
+        margin-bottom: 15px;
+
+        .edit {
+          border-radius: 8px;
+          width: 100%;
+          padding: 5px;
+
+          height: 18px;
+          font-size: 13px;
+          color: #939393;
+          &:hover {
+            background: #F5F6F8;
+            cursor: pointer;
+          }
+        }
+
+        .textareaField {
+          border: 1px solid #dce1e6;
+          border-radius: 8px;
+          //margin-left: 28px;
+
+          textarea {
+            height: 25px;
+            min-height: 35px;
+            font-size: 13px;
+            outline: none;
+            border: none;
+            box-sizing: border-box;
+            padding: 5px;
+            color: #000;
+            resize: none;
+            overflow: hidden;
+            line-height: 19px;
+            word-wrap: break-word;
+
+
+            &::placeholder {
+              color: #a5a9af;
+            }
+
+            //&:focus {
+            //  min-height: 80px;
+            //  height: 100%;
+            //}
+          }
+        }
+      }
+    }
+
+    .comments {
+
+      //height: 600px;
+      //min-height: 100%;
+
+      .commentsList {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 690px;
+
+        svg {
+          width: 56px;
+          height: 56px;
+          margin-bottom: 15px;
+        }
+        .noComments {
+          height: 113px;
+          padding: 0 30px;
+          color: #AEB7C2;;
+        }
+      }
+
+      .commentsWrite {
+        height: 52px;
+        border-top: 1px solid #DCE1E6;
+        display: flex;
+
+        .commentUserAvatar {
+          display: flex;
+          justify-content: center;
+          align-self: center;
+          width: 55px;
+          padding-left: 10px;
+          //height: 28px;
+          border-radius: 50%;
+
+          img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid;
+          }
+        }
+
+        .setDescription {
+
+          .edit {
+            color: #858E99;
+            font-size: 13px;
+            line-height: 19px;
+            padding: 16px 20px 16px 5px;
+          }
+
+          .textareaField {
+
+          }
+        }
+      }
+    }
+  }
+}
