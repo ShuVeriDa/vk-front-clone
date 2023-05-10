@@ -1,0 +1,25 @@
+.favoritesAndRepost {
+  padding: 17px 0 0 0;
+  margin-bottom: 8px;
+  display: flex;
+  align-content: center;
+  align-self: center;
+  align-items: center;
+
+  .svg {
+    width: 85px;
+    display: flex;
+    justify-content: space-between;
+    svg {
+      width: 28px;
+      height: 28px;
+      color: #A1A7B3;
+
+      &:hover {
+        cursor: pointer;
+        color: #828A99;
+      }
+    }
+
+  }
+}

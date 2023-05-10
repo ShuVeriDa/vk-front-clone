@@ -1,0 +1,50 @@
+.description {
+  margin-bottom: 15px;
+
+  .edit {
+    border-radius: 8px;
+    width: 100%;
+    padding: 5px;
+
+    height: 18px;
+    font-size: 13px;
+    color: #939393;
+    &:hover {
+      background: #F5F6F8;
+      cursor: pointer;
+    }
+  }
+
+  .textareaField {
+    border: 1px solid #dce1e6;
+    border-radius: 8px;
+    //display: none;
+    //margin-left: 28px;
+
+    textarea {
+
+      height: 25px;
+      min-height: 35px;
+      font-size: 13px;
+      outline: none;
+      border: none;
+      box-sizing: border-box;
+      padding: 5px;
+      color: #000;
+      resize: none;
+      overflow: hidden;
+      line-height: 19px;
+      word-wrap: break-word;
+
+
+      &::placeholder {
+        color: #a5a9af;
+      }
+
+      //&:focus {
+      //  min-height: 80px;
+      //  height: 100%;
+      //}
+    }
+  }
+}

@@ -3,6 +3,7 @@ import cn from "clsx";
 import {FC} from "react";
 
 import styles from './SubmitButton.module.scss';
+import {Simulate} from "react-dom/test-utils";
 
 interface ISubmitButtonProps {
   title: string

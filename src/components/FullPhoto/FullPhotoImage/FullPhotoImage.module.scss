@@ -1,0 +1,14 @@
+.image {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 1530px;
+  max-height: 860px;
+
+  .imageItem {
+    img {
+      max-width: 1530px;
+      max-height: 860px;
+    }
+  }
+}
