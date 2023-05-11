@@ -1,6 +1,6 @@
 .header {
   border-top-right-radius: 12px;
-  height: 40px;
+ height: 40px;
   padding: 13px 20px 10px 15px;
   display: flex;
   flex-direction: row;
@@ -23,10 +23,18 @@
     display: flex;
     flex-direction: column;
     padding: 3px 0 0 10px;
+    }
 
     .name {
-      font-size: 13px;
-      color: #2a5885;
+      a {
+        font-size: 13px;
+        color: #2a5885;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     .created {
@@ -35,4 +43,3 @@
       color: #818c99;
     }
   }
-}

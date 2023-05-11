@@ -1,0 +1,57 @@
+.editText {
+  position: relative;
+  min-height: 80px;
+
+  .textArea {
+    resize: none;
+    box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 233px;
+    min-height: 48px;
+    max-height: 200px;
+    border: 1px solid #dce1e6;
+    border-radius: 8px;
+    padding: 5px 21px 7px 9px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .btnDiv {
+    position: relative;
+    left: 47px;
+  }
+
+  .btn {
+    min-width: 78px;
+    height: 30px;
+    padding: 0 16px;
+    font-size: 13px;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    color: #245385;
+    margin: 8px 0;
+    background: none;
+
+    &:hover {
+      background: #e5ebf1;
+      color: #346297;
+      cursor: pointer;
+    }
+
+    &:nth-of-type(1) {
+      margin: 0 10px 0 0;
+    }
+  }
+
+  .btnSave {
+    background: #447bba;
+    color: #fff;
+
+    &:hover {
+      background: #5a85c4;
+      color: #fff;
+    }
+  }
+}

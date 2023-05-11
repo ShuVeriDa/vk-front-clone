@@ -195,7 +195,7 @@ export const SettingSvg: FC<ISvgComponentProps> = ({styles, onClick}) => {
   );
 };
 
-export const EditFoodSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
+export const EditSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
   return (
     <svg onClick={onClick} className={styles} xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 32 32" width="25px" height="25px">

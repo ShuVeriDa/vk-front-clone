@@ -1,15 +1,35 @@
 .comments {
-
+  min-height: 600px;
+  max-height: 690px;
   //height: 600px;
   //min-height: 100%;
 
+
   .commentsList {
-    background: green;
     display: flex;
     justify-content: center;
-    align-items: center;
+    //align-items: center;
     text-align: center;
     min-height: 690px;
+
+    .noCommentsWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      //min-height: 690px;
+
+      .noComments {
+        height: 113px;
+        padding: 0 30px;
+        color: #AEB7C2;;
+      }
+    }
+
+    .commentItem {
+      padding: 0 20px 0 15px;
+
+    }
 
 
     svg {
@@ -17,15 +37,11 @@
       height: 56px;
       margin-bottom: 15px;
     }
-    .noComments {
-      height: 113px;
-      padding: 0 30px;
-      color: #AEB7C2;;
-    }
+
+
   }
 
   .commentsWrite {
-    background: #6f7958;
     min-height: 52px;
     border-top: 1px solid #DCE1E6;
     display: flex;
@@ -48,7 +64,6 @@
     }
 
     .setComment {
-
       .edit {
         color: #858E99;
         font-size: 13px;
@@ -59,14 +74,15 @@
       .textareaField {
 
         textarea {
+          border: 0;
           min-height: 80px;
-          max-height: 200px;
-          width: 250px;
+          max-height: 80px;
+          width: 239px;
+          max-width: 239px;
           font-size: 13px;
           outline: none;
-          border: 1px solid #ff5c5c;
           box-sizing: border-box;
-          padding: 5px;
+          padding: 15px 10px;
           color: #000;
           //resize: vertical;
           overflow: hidden;
@@ -87,6 +103,11 @@
 
   .commentsWriteEditing {
     position: relative;
+
+    img {
+      position: relative;
+      bottom: 17px;
+    }
     //bottom: 100px;
   }
 }

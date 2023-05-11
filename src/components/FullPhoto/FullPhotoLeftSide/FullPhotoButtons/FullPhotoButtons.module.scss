@@ -1,34 +1,39 @@
-.btns {
-  background: #ff5c5c;
-  height: 32px;
-  border-top: 1px solid #DCE1E6;
+
+.wrapperBtns {
   display: flex;
-
-  button {
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .cancel {
-    width: 90px;
+  justify-content: right;
+  .btns {
+    position: relative;
     height: 32px;
-    padding: 0 16px;
-    margin-right: 10px;
-    color: #407BB7;
-    background: #DAE2EA;
-    text-align: center;
+    border-top: 1px solid #DCE1E6;
+    display: flex;
 
-    &:hover {
-      background: #c7ced5;
+    button {
+      &:hover {
+        cursor: pointer;
+      }
     }
-  }
 
-  .submit {
-    text-align: center;
-    width:110px;
-    height: 32px;
-    padding: 0 16px;
-    margin-right: 10px;
+    .cancel {
+      width: 90px;
+      height: 32px;
+      padding: 0 16px;
+      margin-right: 10px;
+      color: #407BB7;
+      background: #DAE2EA;
+      text-align: center;
+
+      &:hover {
+        background: #c7ced5;
+      }
+    }
+
+    .submit {
+      text-align: center;
+      width: 110px;
+      height: 32px;
+      padding: 0 16px;
+      margin-right: 10px;
+    }
   }
 }

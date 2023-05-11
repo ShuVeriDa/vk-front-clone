@@ -15,7 +15,7 @@ export const FullPhotoDescription: FC<IFullPhotoFavoritesAndRepostProps> = (
   return (
     <div className={styles.description} onClick={onClickRef}>
       {!isEditDescription
-        ? <div className={styles.edit}>{description ? description : 'Редактировать описание'}</div>
+        ? <div className={styles.edit} style={description ? {color: "black"} : {}}>{description ? description : 'Редактировать описание'}</div>
         : <div className={styles.textareaField}>
           <TextareaAutosize
             ref={inputRef}

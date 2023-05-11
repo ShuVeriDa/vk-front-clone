@@ -4,7 +4,7 @@ import cameraIMG from '../../../../assets/img/camera_big.png'
 import {IPhotoAlbum} from "../../../../types/photoAlbum.interface";
 import {avatarUrl} from "../../../../utils/avatarUrl";
 import cn from "clsx";
-import {EditFoodSVG, LockSvg} from "../../../SvgComponent";
+import {EditSVG, LockSvg} from "../../../SvgComponent";
 import {useNavigate} from "react-router-dom";
 
 interface IPhotoItemProps {
@@ -25,7 +25,7 @@ export const AlbumItem: FC<IPhotoItemProps> = ({album}) => {
       <div className={styles.item}>
         <div className={styles.edit} onClick={urlEdit}>
           <div className={styles.editSvg}>
-            <EditFoodSVG />
+            <EditSVG />
           </div>
 
         </div>

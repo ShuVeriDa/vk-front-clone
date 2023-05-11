@@ -1,20 +1,13 @@
-import {FC, RefObject, useRef, useState} from 'react';
+import {FC, useState} from 'react';
 import styles from './FullPhoto.module.scss';
+import stylesPhotoHeader from './FullPhotoLeftSide/FullPhotoHeader/FullPhotoHeader.module.scss';
+
 import {IPhotoFull} from "../../types/photo.interface";
-import {avatarUrl} from "../../utils/avatarUrl";
-import {CommentsSvg, FavoritePostSVG, RepostPostSVG} from "../SvgComponent";
-import {Input} from "../Input/Input";
-import TextareaAutosize from "react-textarea-autosize";
-import cn from "clsx";
-import {SubmitButton} from "../SubmitButton/SubmitButton";
 import {useCommentQuery} from "../../react-query/useCommentQuery";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {IUpdatePhotoAlbum} from "../../types/photoAlbum.interface";
 import {ICreateComment} from "../../types/comments.interface";
 import {FullPhotoImage} from "./FullPhotoImage/FullPhotoImage";
 import {FullPhotoHeader} from "./FullPhotoLeftSide/FullPhotoHeader/FullPhotoHeader";
-import {FullPhotoFavoritesAndRepost} from "./FullPhotoLeftSide/FullPhotoFavoritesAndRepost/FullPhotoFavoritesAndRepost";
-import {FullPhotoDescription} from "./FullPhotoLeftSide/FullPhotoDescription/FullPhotoDescription";
 import {FullPhotoComments} from "./FullPhotoLeftSide/FullPhotoComments/FullPhotoComments";
 import {FullPhotoMain} from "./FullPhotoLeftSide/FullPhotoMain/FullPhotoMain";
 import {FullPhotoButtons} from "./FullPhotoLeftSide/FullPhotoButtons/FullPhotoButtons";
@@ -35,8 +28,6 @@ export const FullPhoto: FC<IFullPhotoProps> = ({slide, photos}) => {
   const {data: comments, isSuccess} = getPhotoComments
   const {mutate: create} = createComment
 
-
-
   const {register, handleSubmit, formState, reset} = useForm<ICreateComment>({mode: "onChange"})
 
   const onSubmit: SubmitHandler<ICreateComment> = async (data) => {
@@ -50,7 +41,13 @@ export const FullPhoto: FC<IFullPhotoProps> = ({slide, photos}) => {
     <div className={styles.wrapper}>
       <FullPhotoImage photoUrl={photo.photoUrl}/>
       <div className={styles.leftSlide}>
-        <FullPhotoHeader fullName={fullName} avatar={photo.user.avatar} createdAt={photo.createdAt}/>
+        <FullPhotoHeader fullName={fullName}
+                         avatar={photo.user.avatar}
+                         createdAt={photo.createdAt}
+                         styles={stylesPhotoHeader}
+                         id={photo.user.id}
+
+        />
         <FullPhotoMain description={photo.description!} />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FullPhotoComments register={register}

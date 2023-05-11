@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import styles from "../FullPhoto.module.scss";
+import styles from './FullPhotoImage.module.scss';
 import {avatarUrl} from "../../../utils/avatarUrl";
 
 interface IFullPhotoImageProps {

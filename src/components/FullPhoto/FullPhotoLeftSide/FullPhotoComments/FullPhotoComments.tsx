@@ -1,10 +1,14 @@
 import {FC} from 'react';
 import styles from './FullPhotoComments.module.scss';
+import stylesCommentItem from './../FullPhotoHeader/FullPhotoCommentItem.module.scss';
 import {CommentsSvg} from "../../../SvgComponent";
 import cn from "clsx";
 import TextareaAutosize from "react-textarea-autosize";
 import {ICommentsFull, ICreateComment} from "../../../../types/comments.interface";
 import {UseFormRegister} from "react-hook-form";
+import {FullPhotoHeader} from "../FullPhotoHeader/FullPhotoHeader";
+import {useAuth} from "../../../../hooks/useAuth";
+import {avatarUrl} from "../../../../utils/avatarUrl";
 
 interface IFullPhotoCommentsProps {
   register: UseFormRegister<ICreateComment>
@@ -18,25 +22,43 @@ interface IFullPhotoCommentsProps {
 export const FullPhotoComments: FC<IFullPhotoCommentsProps> = (
   {isCreateComment, comments, isSuccess, setCreateComment, description, register}
 ) => {
+  const {user} = useAuth()
   return (
     <div className={styles.comments}>
-      <div className={styles.commentsList} style={isCreateComment ? {minHeight: '600px'} : {}}>
-        {!comments?.length && <div className={styles.noComments}>
-          <CommentsSvg/>
-          <div className={styles.title}>Будье первым, кто оставит комментарий к этой фотографии</div>
-        </div>}
-        <ul>
-          {isSuccess && comments.map(comment => <li key={comment.id}>
-            {comment.text}
-          </li>)}
-        </ul>
+      <div className={styles.commentsList}
+           style={isCreateComment ? {minHeight: '600px'} : {}}
+      >
+        <div className={styles.noCommentsWrapper}>
+          {!comments?.length && <div className={styles.noComments}>
+            <CommentsSvg/>
+            <div className={styles.title}>Будье первым, кто оставит комментарий к этой фотографии</div>
+          </div>}
+        </div>
+        {
+          comments?.length > 0 && <div className={styles.commentItem}>
+            {isSuccess && comments.map(comment => {
+                const fullName = comment.user.firstName + ' ' + comment.user.lastName
+                return <FullPhotoHeader key={comment.id}
+                                        id={user?.id}
+                                        fullName={fullName}
+                                        comment={comment}
+                                        createdAt={comment.createdAt}
+                                        avatar={comment.user?.avatar!}
+                                        isComment={true}
+                                        styles={stylesCommentItem}
+                />
+              }
+            )}
+          </div>
+        }
+
 
       </div>
       <div className={cn(styles.commentsWrite, {
         [styles.commentsWriteEditing]: isCreateComment,
       })}>
         <div className={styles.commentUserAvatar}>
-          <img src="" alt=""/>
+          <img src={avatarUrl(user?.avatar!)} alt=""/>
         </div>
         <div className={cn(styles.setComment)}>
           {!isCreateComment
@@ -46,7 +68,6 @@ export const FullPhotoComments: FC<IFullPhotoCommentsProps> = (
               >
                 <TextareaAutosize {...register('text')}
                                   defaultValue={description}
-                                  placeholder={'Введите описание'}
                 />
               </div>
             </>

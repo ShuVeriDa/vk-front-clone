@@ -64,5 +64,5 @@ export const useCommentQuery = (commentId?: string, postId?: string, photoId?: s
   //   enabled: !!communityId
   // })
 
-  return useMemo(() => ({createComment, getPhotoComments}), [createComment, getPhotoComments])
+  return useMemo(() => ({createComment, getPhotoComments, updateComment}), [createComment, getPhotoComments, updateComment])
 }
