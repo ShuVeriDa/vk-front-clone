@@ -8,6 +8,7 @@ import {CommentEdit} from "../../../CommentEdit/CommentEdit";
 import {ICommentsFull} from "../../../../types/comments.interface";
 import cn from "clsx";
 import styles from "../FullPhotoComments/FullPhotoComments.module.scss";
+import {useCommentQuery} from "../../../../react-query/useCommentQuery";
 
 interface IFullPhotoHeaderProps {
   avatar: string
@@ -25,7 +26,16 @@ export const FullPhotoHeader: FC<IFullPhotoHeaderProps> = (
     styles, id, comment
   }
 ) => {
+
+  const {deleteComment} = useCommentQuery(comment?.id)
+  const {mutate: remove} = deleteComment
+
   const [isEdit, setIsEdit] = useState(false)
+
+  const onClickDelete = () => {
+    setIsEdit(false)
+    remove(comment?.id!)
+  }
 
   return (
     <div className={styles?.wrapper}>
@@ -37,6 +47,8 @@ export const FullPhotoHeader: FC<IFullPhotoHeaderProps> = (
         </div>
         <div className={styles?.info}>
           <span className={styles?.name}><Link to={`/profile/${id}`}>{fullName}</Link></span>
+          {isEdit && <><span className={styles?.editComment}>редактирование комментария</span> </>}
+
           {isComment
             ? <div className={styles?.commentItem}>
               {isEdit ? <CommentEdit comment={comment!}
@@ -55,7 +67,7 @@ export const FullPhotoHeader: FC<IFullPhotoHeaderProps> = (
           [styles?.editAndCancelActive!]: isEdit,
         })}>
           {!isEdit && <EditSVG styles={styles?.edit} onClick={() => setIsEdit(true)}/>}
-          <ClearSearchValueSVG styles={styles?.cancel}/>
+          <ClearSearchValueSVG styles={styles?.cancel} onClick={onClickDelete}/>
         </div>}
       </div>
 

@@ -23,8 +23,6 @@ export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts, prof
     borderTopRightRadius: "0",
   }
 
-  console.log(profileId, ": profileId")
-
   return (
     <div className={styles.profilePosts}>
       <ProfileWall/>

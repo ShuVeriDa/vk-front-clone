@@ -27,11 +27,8 @@ export const Photos: FC<IPhotosProps> = () => {
 
   const images2 = imagesUrl?.map(image => {
     const url = avatarUrl(image)
-    console.log(url)
     return url
   })
-
-  console.log(images2)
 
   const onChangeToggler = (slide: number) => {
     setSlide(slide)

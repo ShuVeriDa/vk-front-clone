@@ -27,8 +27,6 @@ export const CommunityEditPage: FC<ICommunityEditProps> = () => {
   const avatar = community?.avatar ? avatarUrl(community?.avatar!) : defaultCommunityAvatar
   const fullName = `${community?.name}`
 
-  console.log(community)
-
   const {updateCommunity} = useCommunityQuery(community?.id!)
   const {mutate: update} = updateCommunity
 

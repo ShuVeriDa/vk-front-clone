@@ -4,15 +4,15 @@ import {CommentService} from "../services/comment.service";
 import {ICreateComment, IUpdateComment} from "../types/comments.interface";
 
 export const useCommentQuery = (commentId?: string, postId?: string, photoId?: string, videoId?: string) => {
-  const getOneComment = useQuery({
-    queryFn: () => CommentService.fetchOneComment(commentId!),
-    queryKey: ['commentOne'],
-    enabled: !!commentId
-  })
+  // const getOneComment = useQuery({
+  //   queryFn: () => CommentService.fetchOneComment(commentId!),
+  //   queryKey: ['commentOne'],
+  //   enabled: !!commentId
+  // })
 
   const getPhotoComments = useQuery({
     queryFn: () => CommentService.fetchPhotoComments(photoId!),
-    queryKey: ['photoComments', 'allPhotoComments', photoId],
+    queryKey: ['photoComments', 'allPhotoComments'],
     enabled: !!photoId
   })
 
@@ -41,19 +41,19 @@ export const useCommentQuery = (commentId?: string, postId?: string, photoId?: s
   const updateComment = useMutation({
     mutationFn: (data: IUpdateComment) => CommentService.updateComment(commentId!, data),
     onSuccess: () => {
-      client.invalidateQueries(['commentOne'])
+      client.invalidateQueries(['photoComments', 'allPhotoComments'])
     }
   })
 
   const deleteComment = useMutation({
     mutationFn: (commentId: string) => CommentService.deleteComment(commentId),
     onSuccess: () => {
-      client.invalidateQueries({queryKey: ['photoComments', 'allPhotoComments', photoId]})
-      client.invalidateQueries({queryKey: ['videoComments', 'allVideoComments', videoId]})
-      client.invalidateQueries({queryKey: ['postComments', 'allPostComments', postId]})
-      // if (photoId) getPhotoComments.refetch()
-      // if (videoId) getVideoComments.refetch()
-      // if (postId) getPostComments.refetch()
+      client.invalidateQueries({queryKey: ['photoComments', 'allPhotoComments']})
+      client.invalidateQueries({queryKey: ['videoComments', 'allVideoComments']})
+      client.invalidateQueries({queryKey: ['postComments', 'allPostComments']})
+      if (photoId) getPhotoComments.refetch()
+      if (videoId) getVideoComments.refetch()
+      if (postId) getPostComments.refetch()
     }
   })
   //
@@ -64,5 +64,5 @@ export const useCommentQuery = (commentId?: string, postId?: string, photoId?: s
   //   enabled: !!communityId
   // })
 
-  return useMemo(() => ({createComment, getPhotoComments, updateComment}), [createComment, getPhotoComments, updateComment])
+  return useMemo(() => ({createComment, getPhotoComments, updateComment, deleteComment}), [createComment, getPhotoComments, updateComment, deleteComment])
 }
