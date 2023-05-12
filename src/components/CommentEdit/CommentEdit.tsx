@@ -32,7 +32,7 @@ export const CommentEdit: FC<ICommentEditProps> = ({comment, authorizedUserId, s
                           onChange={onChangeValue}
         />
         <div className={styles.btnDiv}>
-          <button className={styles.btn}>Отмена</button>
+          <button className={styles.btn} onClick={() => setIsEdit(false)}>Отмена</button>
           <button
                   className={`${styles.btn} ${styles.btnSave}`} onClick={onClickSubmit}
           >

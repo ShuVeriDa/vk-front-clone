@@ -1,12 +1,12 @@
 import {FC} from 'react';
 import styles from './FullPhotoComments.module.scss';
-import stylesCommentItem from './../FullPhotoHeader/FullPhotoCommentItem.module.scss';
+import stylesCommentItem from '../../../FullPhotoHeaderAndCommentItem/FullPhotoCommentItem.module.scss';
 import {CommentsSvg} from "../../../SvgComponent";
 import cn from "clsx";
 import TextareaAutosize from "react-textarea-autosize";
 import {ICommentsFull, ICreateComment} from "../../../../types/comments.interface";
 import {UseFormRegister} from "react-hook-form";
-import {FullPhotoHeader} from "../FullPhotoHeader/FullPhotoHeader";
+import {FullPhotoHeaderAndCommentItem} from "../../../FullPhotoHeaderAndCommentItem/FullPhotoHeaderAndCommentItem";
 import {useAuth} from "../../../../hooks/useAuth";
 import {avatarUrl} from "../../../../utils/avatarUrl";
 
@@ -38,14 +38,14 @@ export const FullPhotoComments: FC<IFullPhotoCommentsProps> = (
           comments?.length > 0 && <div className={styles.commentItem}>
             {isSuccess && comments.map(comment => {
                 const fullName = comment.user.firstName + ' ' + comment.user.lastName
-                return <FullPhotoHeader key={comment.id}
-                                        id={user?.id}
-                                        fullName={fullName}
-                                        comment={comment}
-                                        createdAt={comment.createdAt}
-                                        avatar={comment.user?.avatar!}
-                                        isComment={true}
-                                        styles={stylesCommentItem}
+                return <FullPhotoHeaderAndCommentItem key={comment.id}
+                                                      id={user?.id}
+                                                      fullName={fullName}
+                                                      comment={comment}
+                                                      createdAt={comment.createdAt}
+                                                      avatar={comment.user?.avatar!}
+                                                      isComment={true}
+                                                      styles={stylesCommentItem}
                 />
               }
             )}

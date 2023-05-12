@@ -2,10 +2,13 @@
 .wrapperBtns {
   display: flex;
   justify-content: right;
+  margin-top: 10px;
+  //border-top: 1px solid #DCE1E6;
   .btns {
     position: relative;
+    bottom: 12px;
     height: 32px;
-    border-top: 1px solid #DCE1E6;
+
     display: flex;
 
     button {

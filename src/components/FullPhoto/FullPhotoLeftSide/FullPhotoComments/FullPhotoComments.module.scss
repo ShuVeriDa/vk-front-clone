@@ -1,5 +1,5 @@
 .comments {
-  min-height: 600px;
+  min-height: 690px;
   max-height: 690px;
   //height: 600px;
   //min-height: 100%;
@@ -10,7 +10,9 @@
     justify-content: center;
     //align-items: center;
     text-align: center;
-    min-height: 690px;
+    min-height: inherit;
+    max-height: inherit;
+    overflow: scroll;
 
     .noCommentsWrapper {
       display: flex;
@@ -28,17 +30,13 @@
 
     .commentItem {
       padding: 0 20px 0 15px;
-
     }
-
 
     svg {
       width: 56px;
       height: 56px;
       margin-bottom: 15px;
     }
-
-
   }
 
   .commentsWrite {
@@ -72,20 +70,21 @@
       }
 
       .textareaField {
-
+        padding-top: 15px;
         textarea {
           border: 0;
           min-height: 80px;
           max-height: 80px;
           width: 239px;
+          min-width: 239px;
           max-width: 239px;
           font-size: 13px;
           outline: none;
           box-sizing: border-box;
-          padding: 15px 10px;
+          padding: 0 10px 15px 10px;
           color: #000;
           //resize: vertical;
-          overflow: hidden;
+          overflow: auto;
           line-height: 19px;
           word-wrap: break-word;
 

@@ -5,7 +5,6 @@
     border-radius: 8px;
     width: 100%;
     padding: 5px;
-
     height: 18px;
     font-size: 13px;
     color: #939393;
@@ -16,18 +15,20 @@
   }
 
   .textareaField {
-    border: 1px solid #dce1e6;
-    border-radius: 8px;
+
+
     //display: none;
     //margin-left: 28px;
 
     textarea {
-
+      border-radius: 8px;
+      border: 1px solid #dce1e6;
       height: 25px;
       min-height: 35px;
+      width: 100%;
       font-size: 13px;
       outline: none;
-      border: none;
+      //border: none;
       box-sizing: border-box;
       padding: 5px;
       color: #000;

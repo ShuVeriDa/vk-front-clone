@@ -34,7 +34,7 @@ export const useCommentQuery = (commentId?: string, postId?: string, photoId?: s
   const createComment = useMutation({
     mutationFn: (data: ICreateComment) => CommentService.createComment(data),
     onSuccess: () => {
-      client.invalidateQueries({queryKey: ['commentOne']})
+      client.invalidateQueries(['photoComments', 'allPhotoComments'])
     }
   })
 

@@ -1,13 +1,13 @@
 import {FC, useState} from 'react';
 import styles from './FullPhoto.module.scss';
-import stylesPhotoHeader from './FullPhotoLeftSide/FullPhotoHeader/FullPhotoHeader.module.scss';
+import stylesPhotoHeader from '../FullPhotoHeaderAndCommentItem/FullPhotoHeader.module.scss';
 
 import {IPhotoFull} from "../../types/photo.interface";
 import {useCommentQuery} from "../../react-query/useCommentQuery";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {ICreateComment} from "../../types/comments.interface";
 import {FullPhotoImage} from "./FullPhotoImage/FullPhotoImage";
-import {FullPhotoHeader} from "./FullPhotoLeftSide/FullPhotoHeader/FullPhotoHeader";
+import {FullPhotoHeaderAndCommentItem} from "../FullPhotoHeaderAndCommentItem/FullPhotoHeaderAndCommentItem";
 import {FullPhotoComments} from "./FullPhotoLeftSide/FullPhotoComments/FullPhotoComments";
 import {FullPhotoMain} from "./FullPhotoLeftSide/FullPhotoMain/FullPhotoMain";
 import {FullPhotoButtons} from "./FullPhotoLeftSide/FullPhotoButtons/FullPhotoButtons";
@@ -41,14 +41,14 @@ export const FullPhoto: FC<IFullPhotoProps> = ({slide, photos}) => {
     <div className={styles.wrapper}>
       <FullPhotoImage photoUrl={photo.photoUrl}/>
       <div className={styles.leftSlide}>
-        <FullPhotoHeader fullName={fullName}
-                         avatar={photo.user.avatar}
-                         createdAt={photo.createdAt}
-                         styles={stylesPhotoHeader}
-                         id={photo.user.id}
+        <FullPhotoHeaderAndCommentItem fullName={fullName}
+                                       avatar={photo.user.avatar}
+                                       createdAt={photo.createdAt}
+                                       styles={stylesPhotoHeader}
+                                       id={photo.user.id}
 
         />
-        <FullPhotoMain description={photo.description!} />
+        <FullPhotoMain description={photo.description!}/>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FullPhotoComments register={register}
                              isCreateComment={isCreateComment}
@@ -56,8 +56,10 @@ export const FullPhoto: FC<IFullPhotoProps> = ({slide, photos}) => {
                              isSuccess={isSuccess}
                              setCreateComment={setCreateComment}
                              description={photo.description!}
-                             />
-          <FullPhotoButtons isCreateComment={isCreateComment} />
+          />
+          <FullPhotoButtons isCreateComment={isCreateComment}
+                            setCreateComment={setCreateComment}
+          />
         </form>
       </div>
     </div>

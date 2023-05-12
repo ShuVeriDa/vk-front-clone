@@ -1,14 +1,13 @@
 import {FC, useState} from 'react';
 
-import {avatarUrl} from "../../../../utils/avatarUrl";
+import {avatarUrl} from "../../utils/avatarUrl";
 import ReactTimeago from "react-timeago";
 import {Link} from "react-router-dom";
-import {ClearSearchValueSVG, EditSVG} from "../../../SvgComponent";
-import {CommentEdit} from "../../../CommentEdit/CommentEdit";
-import {ICommentsFull} from "../../../../types/comments.interface";
+import {ClearSearchValueSVG, EditSVG} from "../SvgComponent";
+import {CommentEdit} from "../CommentEdit/CommentEdit";
+import {ICommentsFull} from "../../types/comments.interface";
 import cn from "clsx";
-import styles from "../FullPhotoComments/FullPhotoComments.module.scss";
-import {useCommentQuery} from "../../../../react-query/useCommentQuery";
+import {useCommentQuery} from "../../react-query/useCommentQuery";
 
 interface IFullPhotoHeaderProps {
   avatar: string
@@ -20,7 +19,7 @@ interface IFullPhotoHeaderProps {
   id?: string | number
 }
 
-export const FullPhotoHeader: FC<IFullPhotoHeaderProps> = (
+export const FullPhotoHeaderAndCommentItem: FC<IFullPhotoHeaderProps> = (
   {
     fullName, avatar, createdAt, isComment,
     styles, id, comment
@@ -70,8 +69,6 @@ export const FullPhotoHeader: FC<IFullPhotoHeaderProps> = (
           <ClearSearchValueSVG styles={styles?.cancel} onClick={onClickDelete}/>
         </div>}
       </div>
-
     </div>
-
   );
 };
