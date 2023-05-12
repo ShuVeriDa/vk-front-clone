@@ -2,7 +2,7 @@
   border-top-right-radius: 12px;
   min-height: 68px;
   max-height: 300px;
-  width: 270px;
+  width: 260px;
   padding: 10px 0 8px 0;
   display: flex;
   flex-direction: row;
@@ -35,7 +35,7 @@
 
       .text {
         font-size: 13px;
-        width: 180px;
+        width: 233px;
         word-wrap: break-word;
         //line-height: 17px;
       }
@@ -50,6 +50,7 @@
 
   .name {
     margin-bottom: 2px;
+    position: relative;
 
     a {
       font-size: 13px;
@@ -60,6 +61,44 @@
         text-decoration: underline;
       }
     }
+
+    .editAndCancel {
+      //display: inline-block;
+      position: absolute;
+      top: 0px;
+      left: 200px;
+      display: none;
+      width: 38px;
+      height: 16px;
+
+      .edit {
+      }
+
+      .cancel {
+        margin-left: 5px;
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+        opacity: .3;
+
+        &:hover {
+          opacity: .6;
+        }
+      }
+    }
+
+    .editAndCancelActive {
+      //display: flex;
+      position: absolute;
+      top:0;
+      left: 210px;
+      //right: 0;
+      //height: 16px;
+      //display: flex;
+    }
+
   }
 
   .editComment {
@@ -73,7 +112,7 @@
 }
 
 .wrapper {
-  padding: 0 20px 0 15px;
+  //padding: 0 20px 0 15px;
   position: relative;
 
   &:hover {
@@ -83,40 +122,9 @@
     }
   }
 
-  .editAndCancel {
-    //display: inline-block;
-    position: relative;
-    top: 5px;
-    left: 15px;
-    display: none;
 
-    .edit {
-    }
 
-    .cancel {
-      margin-left: 5px;
-    }
 
-    svg {
-      width: 16px;
-      height: 16px;
-      opacity: .3;
-
-      &:hover {
-        opacity: .6;
-      }
-    }
-  }
-
-  .editAndCancelActive {
-    //display: flex;
-    position: absolute;
-    top:18px;
-    left: 268px;
-    //right: 0;
-    //height: 16px;
-    //display: flex;
-  }
 }
 
 

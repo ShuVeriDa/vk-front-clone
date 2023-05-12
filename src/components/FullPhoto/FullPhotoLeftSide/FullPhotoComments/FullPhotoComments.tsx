@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useEffect, useRef} from 'react';
 import styles from './FullPhotoComments.module.scss';
 import stylesCommentItem from '../../../FullPhotoHeaderAndCommentItem/FullPhotoCommentItem.module.scss';
 import {CommentsSvg} from "../../../SvgComponent";
@@ -23,8 +23,9 @@ export const FullPhotoComments: FC<IFullPhotoCommentsProps> = (
   {isCreateComment, comments, isSuccess, setCreateComment, description, register}
 ) => {
   const {user} = useAuth()
+
   return (
-    <div className={styles.comments}>
+    <div className={styles.comments} >
       <div className={styles.commentsList}
            style={isCreateComment ? {minHeight: '600px'} : {}}
       >

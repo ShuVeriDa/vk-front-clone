@@ -23,7 +23,6 @@ export const FullPhoto: FC<IFullPhotoProps> = ({slide, photos}) => {
   const photo = photos[slide]
   const fullName = photo.user.firstName + " " + photo.user.lastName
 
-
   const {createComment, getPhotoComments} = useCommentQuery(undefined, undefined, photo.id)
   const {data: comments, isSuccess} = getPhotoComments
   const {mutate: create} = createComment
@@ -48,7 +47,9 @@ export const FullPhoto: FC<IFullPhotoProps> = ({slide, photos}) => {
                                        id={photo.user.id}
 
         />
-        <FullPhotoMain description={photo.description!}/>
+        <FullPhotoMain description={photo.description!}
+                       photoId={photo.id}
+        />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FullPhotoComments register={register}
                              isCreateComment={isCreateComment}

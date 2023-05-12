@@ -32,7 +32,7 @@ export const usePhotoQuery = (photoId?: string) => {
   const updatePhoto = useMutation({
     mutationFn: (data:IUpdatePhoto) => PhotoService.updatePhoto(photoId!, data),
     onSuccess: () => {
-      client.invalidateQueries(['myPhoto', 'photoOne'])
+      client.invalidateQueries(['myPhotos', 'allMyPhotos'])
     }
   })
   //

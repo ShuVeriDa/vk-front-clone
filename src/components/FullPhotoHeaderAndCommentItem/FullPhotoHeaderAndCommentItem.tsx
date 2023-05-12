@@ -45,7 +45,13 @@ export const FullPhotoHeaderAndCommentItem: FC<IFullPhotoHeaderProps> = (
           <img src={avatarUrl(avatar)} alt=""/>
         </div>
         <div className={styles?.info}>
-          <span className={styles?.name}><Link to={`/profile/${id}`}>{fullName}</Link></span>
+          <span className={styles?.name}> <Link to={`/profile/${id}`}>{fullName}</Link>
+            {isComment && <div className={cn(styles?.editAndCancel, {
+              [styles?.editAndCancelActive!]: isEdit,
+            })}>
+              {!isEdit && <EditSVG styles={styles?.edit} onClick={() => setIsEdit(true)}/>}
+              <ClearSearchValueSVG styles={styles?.cancel} onClick={onClickDelete}/>
+            </div>}</span>
           {isEdit && <><span className={styles?.editComment}>редактирование комментария</span> </>}
 
           {isComment
@@ -62,12 +68,7 @@ export const FullPhotoHeaderAndCommentItem: FC<IFullPhotoHeaderProps> = (
             : <span className={styles?.created}><ReactTimeago date={createdAt}/></span>
           }
         </div>
-        {isComment && <div className={cn(styles?.editAndCancel, {
-          [styles?.editAndCancelActive!]: isEdit,
-        })}>
-          {!isEdit && <EditSVG styles={styles?.edit} onClick={() => setIsEdit(true)}/>}
-          <ClearSearchValueSVG styles={styles?.cancel} onClick={onClickDelete}/>
-        </div>}
+
       </div>
     </div>
   );

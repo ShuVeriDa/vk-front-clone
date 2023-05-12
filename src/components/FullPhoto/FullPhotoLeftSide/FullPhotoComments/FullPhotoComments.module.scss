@@ -1,18 +1,22 @@
 .comments {
   min-height: 690px;
   max-height: 690px;
+  //width: 300px;
+  flex: 0;
   //height: 600px;
   //min-height: 100%;
 
 
   .commentsList {
     display: flex;
+    flex: 0;
     justify-content: center;
     //align-items: center;
     text-align: center;
     min-height: inherit;
     max-height: inherit;
     overflow: scroll;
+    //width: 390px;
 
     .noCommentsWrapper {
       display: flex;

@@ -7,13 +7,16 @@ interface IFullPhotoFavoritesAndRepostProps {
   inputRef: MutableRefObject<HTMLTextAreaElement | null>
   description: string
   onClickRef: () => void
+  containerRef: MutableRefObject<HTMLDivElement | null>
 }
 
 export const FullPhotoDescription: FC<IFullPhotoFavoritesAndRepostProps> = (
-  {isEditDescription, inputRef, description, onClickRef}
+  {isEditDescription, inputRef, description, onClickRef, containerRef}
 ) => {
+
+
   return (
-    <div className={styles.description} onClick={onClickRef}>
+    <div className={styles.description} onClick={onClickRef} ref={containerRef}>
       {!isEditDescription
         ? <div className={styles.edit} style={description ? {color: "black"} : {}}>{description ? description : 'Редактировать описание'}</div>
         : <div className={styles.textareaField}>

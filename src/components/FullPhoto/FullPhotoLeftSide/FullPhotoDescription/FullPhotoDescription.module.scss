@@ -1,5 +1,6 @@
 .description {
   margin-bottom: 15px;
+  flex: 1;
 
   .edit {
     border-radius: 8px;
@@ -8,6 +9,10 @@
     height: 18px;
     font-size: 13px;
     color: #939393;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis;
+
     &:hover {
       background: #F5F6F8;
       cursor: pointer;
@@ -24,7 +29,8 @@
       border-radius: 8px;
       border: 1px solid #dce1e6;
       height: 25px;
-      min-height: 35px;
+      min-height: 30px;
+      max-height: 30px;
       width: 100%;
       font-size: 13px;
       outline: none;
