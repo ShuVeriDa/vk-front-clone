@@ -27,7 +27,7 @@ export const FullPhotoComments: FC<IFullPhotoCommentsProps> = (
   return (
     <div className={styles.comments} >
       <div className={styles.commentsList}
-           style={isCreateComment ? {minHeight: '600px'} : {}}
+           style={isCreateComment ? {minHeight: '600px', maxHeight: "600px"} : {}}
       >
         <div className={styles.noCommentsWrapper}>
           {!comments?.length && <div className={styles.noComments}>
@@ -52,8 +52,6 @@ export const FullPhotoComments: FC<IFullPhotoCommentsProps> = (
             )}
           </div>
         }
-
-
       </div>
       <div className={cn(styles.commentsWrite, {
         [styles.commentsWriteEditing]: isCreateComment,
@@ -68,7 +66,6 @@ export const FullPhotoComments: FC<IFullPhotoCommentsProps> = (
               <div className={cn(styles.textareaField)}
               >
                 <TextareaAutosize {...register('text')}
-                                  defaultValue={description}
                 />
               </div>
             </>

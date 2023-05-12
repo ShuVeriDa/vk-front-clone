@@ -11,7 +11,6 @@ interface IAlbumProps {
 }
 
 export const Album: FC<IAlbumProps> = () => {
-    const navigate = useNavigate()
     const [open, setOpen] = useState<boolean>(false)
 
     const onClickOpen = () => {

@@ -14,22 +14,36 @@ interface IPhotoItemProps {
   isMyPhoto?:boolean
   setToggler?: (slide: number) => void
   index?: number
+  setVisible?: (visible: boolean) => void
+  visible?: boolean
 }
 
-export const PhotoItem: FC<IPhotoItemProps> = ({photo, input, onBlur, onChangeValue, isMyPhoto ,setToggler, index}) => {
+export const PhotoItem: FC<IPhotoItemProps> = ({photo, input, onBlur, onChangeValue, isMyPhoto ,setToggler, index, visible , setVisible}) => {
   const navigate = useNavigate()
   // const isPhotos = album.photos.length > 0
   // const blackColor = !isPhotos ? {color: "#1d3a5c"} : {}
   // const albumImg = avatarUrl(album.photos[0]?.photoUrl)
   const photoImg = avatarUrl(photo?.photoUrl)
+
+  const onClickHandler = () => {
+    if (setVisible) {
+      setVisible(!visible)
+    }
+
+    if (setToggler) {
+      setToggler(index!)
+    }
+  }
+
   return (
-    <div className={cn(!isMyPhoto ? styles.photoItem : styles.myPhotoItem)}
-      /*onClick={() => navigate(`/album/${photo.id}`)}*/
-    >
-      <div className={styles.container}>
+    <div className={cn(!isMyPhoto ? styles.photoItem : styles.myPhotoItem)}>
+      <div className={styles.container}
+        onClick={onClickHandler}
+      >
         <div className={styles.item}>
           <div className={styles.img}>
-            <img src={photoImg} onClick={() => setToggler ? setToggler(index!) : () => {}} alt=""/>
+            <img src={photoImg}
+                 alt={photo.description!}/>
           </div>
           {input && <Input type={'text'}
                            classes={styles.input}

@@ -3,6 +3,8 @@ import {FC} from 'react';
 interface ISvgComponentProps {
   styles?: string
   onClick?: () => void
+  width?: string
+  height?: string
 }
 
 export const ShowPostMenuSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
@@ -92,13 +94,13 @@ export const SearchLoaderSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
   </>
 }
 
-export const ClearSearchValueSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
+export const ClearSearchValueSVG: FC<ISvgComponentProps> = ({styles, onClick, height , width}) => {
   return (
     <svg className={styles}
          onClick={onClick}
-         height="22"
+         height={height ? height : '22'}
          viewBox="0 0 48 48"
-         width="22"
+         width={width ? width : '22'}
          xmlns="http://www.w3.org/2000/svg"
     >
       <path
