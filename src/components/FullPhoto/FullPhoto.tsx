@@ -13,14 +13,18 @@ import {FullPhotoMain} from "./FullPhotoLeftSide/FullPhotoMain/FullPhotoMain";
 import {FullPhotoButtons} from "./FullPhotoLeftSide/FullPhotoButtons/FullPhotoButtons";
 
 interface IFullPhotoProps {
-  slide: number
-  photos: IPhotoFull[]
+  current: number
+  // photos: IPhotoFull[]
+  photo: IPhotoFull
+  prevSlide: () => void
+  nextSlide: () => void
 }
 
-export const FullPhoto: FC<IFullPhotoProps> = ({slide, photos}) => {
+export const FullPhoto: FC<IFullPhotoProps> = ({current, photo,
+                                               prevSlide, nextSlide, }) => {
   const [isCreateComment, setCreateComment] = useState(false)
 
-  const photo = photos[slide]
+  // const photo = photos[current]
   const fullName = photo.user.firstName + " " + photo.user.lastName
 
   const {createComment, getPhotoComments} = useCommentQuery(undefined, undefined, photo.id)
@@ -36,9 +40,14 @@ export const FullPhoto: FC<IFullPhotoProps> = ({slide, photos}) => {
     reset()
   }
 
+
   return (
     <div className={styles.wrapper}>
-      <FullPhotoImage photoUrl={photo.photoUrl}/>
+      <FullPhotoImage photoUrl={photo.photoUrl}
+                      current={current}
+                      prevSlide={prevSlide}
+                      nextSlide={nextSlide}
+      />
       <div className={styles.leftSlide}>
         <FullPhotoHeaderAndCommentItem fullName={fullName}
                                        avatar={photo.user.avatar}

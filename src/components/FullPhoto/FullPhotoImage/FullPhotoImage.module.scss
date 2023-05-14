@@ -12,3 +12,38 @@
     }
   }
 }
+
+.arrow {
+  position: relative;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .svg {
+    position: absolute;
+    bottom: 0;
+    //opacity: 0;
+    color: #fff;
+    outline: none;
+    background: none;
+    width: 50px;
+    height: 50px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+}
+
+.leftArrow {
+  left: 10px;
+}
+
+.rightArrow {
+  //right: -100px;
+  left: 1430px;
+}

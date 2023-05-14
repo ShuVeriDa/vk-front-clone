@@ -213,4 +213,19 @@ export const CommentsSvg: FC<ISvgComponentProps> = ({styles, onClick}) => {
   )
 }
 
+export const LeftArrow: FC<ISvgComponentProps> = ({styles, onClick, width = "50px", height = "50px"}) => {
+  return (
+    <svg onClick={onClick} className={styles} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none" stroke={"#fff"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width={width} height={height} role="img" aria-label="Left Arrow">
+      <path d="M35 10l-15 15 15 15" />
+    </svg>
+  );
+};
+
+export const RightArrow: FC<ISvgComponentProps> = ({ styles, onClick, width = "50px", height = "50px" }) => {
+  return (
+    <svg onClick={onClick} className={styles}  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none" stroke={"#fff"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width={width} height={height} role="img" aria-label="Right Arrow">
+      <path d="M15 10l15 15-15 15" />
+    </svg>
+  );
+};
 

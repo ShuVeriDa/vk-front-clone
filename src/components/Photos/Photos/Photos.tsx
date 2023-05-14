@@ -4,10 +4,8 @@ import {MyPhotosHeader} from "./MyPhotosHeader/MyPhotosHeader";
 import {usePhotoQuery} from "../../../react-query/usePhotoQuery";
 import {PhotoItem} from "../Album/Photos/PhotoItem/PhotoItem";
 import {avatarUrl} from "../../../utils/avatarUrl";
-import FsLightbox from "fslightbox-react";
 import {FullPhoto} from "../../FullPhoto/FullPhoto";
 import {ModalWindow} from "../../ModalWindow/ModalWindow";
-import {CreateAlbum} from "../Album/CreateAlbum/CreateAlbum";
 import {ClearSearchValueSVG} from "../../SvgComponent";
 
 interface IPhotosProps {
@@ -16,10 +14,27 @@ interface IPhotosProps {
 export const Photos: FC<IPhotosProps> = () => {
   const [visible, setVisible] = useState(false)
 
+  const [toggler, setToggler] = useState(false);
+
   const {getMyPhotos} = usePhotoQuery()
   const {data: photos, isSuccess} = getMyPhotos
-  const [slide, setSlide] = useState(1)
-  const [toggler, setToggler] = useState(false);
+
+  //////////////
+  const [current, setCurrent] = useState(1)
+  const length = photos?.length;
+  if (!Array.isArray(photos) || photos?.length <= 0) {
+    return null;
+  }
+
+  const nextSlide = () => {
+    setCurrent(current === length! - 1 ? 0 : current + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? length! - 1 : current - 1);
+  };
+/////////////////
+
 
   const imagesUrl = photos?.map(photo => {
     return photo.photoUrl
@@ -31,27 +46,39 @@ export const Photos: FC<IPhotosProps> = () => {
   })
 
   const onChangeToggler = (slide: number) => {
-    setSlide(slide)
+    setCurrent(slide)
     setToggler(!toggler)
   }
 
   return (
     <div className={styles.wrapper}>
       <MyPhotosHeader count={2}/>
-
       <div className={styles.main}>
-        {/*{ photos && photos.map((photo, i) => {*/}
-        {/*  const images = avatarUrl(photo.photoUrl)*/}
-        {/*  return <FsLightbox toggler={toggler} sources={[photo.photoUrl]}/>}*/}
-        {/*)}*/}
         {visible
           ? <>
             <ModalWindow onClickClose={() => setVisible(false)}
                          open={visible}
             >
-              <FullPhoto slide={slide}
-                         photos={photos!}
-              />
+              {photos.map((slide, index) => {
+                return (
+                  <div key={slide.id}>
+                    {index === current && <FullPhoto current={current}
+                                                     photo={slide}
+                      // photos={photos!}
+                                                     nextSlide={nextSlide}
+                                                     prevSlide={prevSlide}
+
+                    />}
+                  </div>
+                )
+              })}
+
+              {/*<FullPhoto current={current}*/}
+              {/*           photos={photos!}*/}
+              {/*           nextSlide={nextSlide}*/}
+              {/*           prevSlide={prevSlide}*/}
+              {/*/>*/}
+
               <div className={styles.svg}>
                 <ClearSearchValueSVG styles={styles.close}
                                      width={'30'}
@@ -74,7 +101,6 @@ export const Photos: FC<IPhotosProps> = () => {
               />
             })
             }
-
           </>
         }
       </div>
