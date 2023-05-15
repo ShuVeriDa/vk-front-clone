@@ -46,7 +46,7 @@ export const FullPhotoMain: FC<IFullPhotoMainProps> = ({description, photoId}) =
 
   return (
     <div className={styles.main}>
-      <FullPhotoFavoritesAndRepost/>
+      <FullPhotoFavoritesAndRepost photoId={photoId}/>
       <FullPhotoDescription isEditDescription={isEditDescription}
                             inputRef={inputRef}
                             description={description}

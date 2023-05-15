@@ -1,9 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {PostService} from "../services/post.service";
 import {useMemo} from "react";
-import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../types/post.interface";
-import {AlbumService} from "../services/album.service";
-import {ICreatePhotoAlbum, IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
 import {PhotoService} from "../services/photo.service";
 import {ICreatePhoto, IUpdatePhoto} from "../types/photo.interface";
 
@@ -35,6 +31,13 @@ export const usePhotoQuery = (photoId?: string) => {
       client.invalidateQueries(['myPhotos', 'allMyPhotos'])
     }
   })
+
+  const toggleFavoritesPhoto = useMutation({
+    mutationFn: (photoId: string) => PhotoService.toggleFavoritesPhoto(photoId),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['myPhotos', 'allMyPhotos']})
+    }
+  })
   //
   // const deleteAlbum = useMutation({
   //   mutationFn: (albumId: string) => AlbumService.deleteAlbum(albumId),
@@ -52,6 +55,6 @@ export const usePhotoQuery = (photoId?: string) => {
   // })
 
   return useMemo(() => ({
-    getMyPhotos, createPhoto, updatePhoto,
-  }), [getMyPhotos, createPhoto, updatePhoto])
+    getMyPhotos, createPhoto, updatePhoto, toggleFavoritesPhoto
+  }), [getMyPhotos, createPhoto, updatePhoto, toggleFavoritesPhoto])
 }

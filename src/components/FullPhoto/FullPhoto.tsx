@@ -40,6 +40,8 @@ export const FullPhoto: FC<IFullPhotoProps> = ({current, photo,
     reset()
   }
 
+  console.log(photo.photoFavorites)
+
 
   return (
     <div className={styles.wrapper}>
