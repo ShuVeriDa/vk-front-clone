@@ -8,19 +8,15 @@ export interface IPhotoAbbr {
   description: null | string,
   photoUrl: string,
   turnOffComments: boolean,
-  photoFavorites: number,
   createdAt: string,
   updatedAt: string
+  photoFavoriteAdders: IUserAbbr[]
 }
 
 export interface IPhotoFull extends IPhotoAbbr {
   community: ICommunitySearchAbbr,
   user: IUserAbbr,
   comments: ICommentsAbbr[]
-}
-
-export interface IPhotoFullToggleFavorites extends IPhotoFull {
-  favoritePhotoUsers: IUserAbbr[]
 }
 
 export interface IPhotoForAlbum {

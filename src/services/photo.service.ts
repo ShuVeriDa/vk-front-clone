@@ -1,13 +1,7 @@
-import {ICreatePost, IPost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../types/post.interface";
+import {IPostCommunity} from "../types/post.interface";
 import {axiosClassic, instance} from "../api/api.interceptor";
 import {getPhotosUrl, getPostsCommunityUrl, getPostsUrl} from "../api/api.config";
-import {
-  ICreatePhoto,
-  IPhotoForAlbum,
-  IPhotoFull,
-  IPhotoFullToggleFavorites,
-  IUpdatePhoto
-} from "../types/photo.interface";
+import {ICreatePhoto, IPhotoForAlbum, IPhotoFull, IUpdatePhoto} from "../types/photo.interface";
 
 
 export const PhotoService =  {
@@ -33,7 +27,7 @@ export const PhotoService =  {
   },
 
   toggleFavoritesPhoto: async (photoId:string) => {
-    const res = await instance.post<{favorites: IPhotoFullToggleFavorites}>(getPhotosUrl(`/${photoId}/favorites`))
+    const res = await instance.post< IPhotoFull>(getPhotosUrl(`/${photoId}/favorites`))
     return res.data
   },
 

@@ -10,16 +10,49 @@
     width: 85px;
     display: flex;
     justify-content: space-between;
-    svg {
-      width: 28px;
-      height: 28px;
-      color: #A1A7B3;
+
+    .favorites {
+      position: relative;
+      display: flex;
+      align-items: center;
 
       &:hover {
         cursor: pointer;
-        color: #828A99;
+      }
+
+      .favoritesLength {
+        margin-left: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16px;
+        color: #e64646;
+      }
+
+      .heartIcon {
+        width: 22px;
+        font-size: 24px;
+        color: gray;
+        transition: color 0.3s ease;
+        cursor: pointer;
+      }
+
+      .favorite {
+        color: #e64646;
+        animation: heartbeat 0.5s;
       }
     }
+  }
+}
 
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+    color: #e64646;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }

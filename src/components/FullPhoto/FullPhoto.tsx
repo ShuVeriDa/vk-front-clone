@@ -40,8 +40,6 @@ export const FullPhoto: FC<IFullPhotoProps> = ({current, photo,
     reset()
   }
 
-  console.log(photo.photoFavorites)
-
 
   return (
     <div className={styles.wrapper}>
@@ -60,6 +58,7 @@ export const FullPhoto: FC<IFullPhotoProps> = ({current, photo,
         />
         <FullPhotoMain description={photo.description!}
                        photoId={photo.id}
+                       photoFavoriteAdders={photo.photoFavoriteAdders}
         />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FullPhotoComments register={register}
