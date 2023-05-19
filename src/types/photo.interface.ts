@@ -1,7 +1,6 @@
 import {ICommunitySearchAbbr} from "./community.interface";
 import {IUserAbbr} from "./user.interface";
 import {ICommentsAbbr} from "./comments.interface";
-import exp from "constants";
 
 export interface IPhotoAbbr {
   id: string

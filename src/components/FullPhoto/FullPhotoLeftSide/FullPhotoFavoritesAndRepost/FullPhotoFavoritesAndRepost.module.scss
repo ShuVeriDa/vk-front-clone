@@ -18,28 +18,50 @@
 
       &:hover {
         cursor: pointer;
+        .favoriteAdders {
+          display: block;
+        }
       }
+    }
 
-      .favoritesLength {
-        margin-left: 6px;
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 16px;
-        color: #e64646;
-      }
 
-      .heartIcon {
-        width: 22px;
-        font-size: 24px;
-        color: gray;
-        transition: color 0.3s ease;
-        cursor: pointer;
-      }
+    .heartIcon {
+      width: 22px;
+      font-size: 24px;
+      color: gray;
+      transition: color 0.3s ease;
+      cursor: pointer;
 
-      .favorite {
-        color: #e64646;
-        animation: heartbeat 0.5s;
+      &:hover {
+        .favoriteAdders {
+          display: block;
+        }
       }
+    }
+
+    .favoriteAdders {
+      display: none;
+      position: absolute;
+      bottom: 40px;
+
+      &:after {
+
+      }
+    }
+
+
+    .favoritesLength {
+      margin-left: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
+      color: #e64646;
+    }
+
+
+    .favorite {
+      color: #e64646;
+      animation: heartbeat 0.5s;
     }
   }
 }

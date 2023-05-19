@@ -1,10 +1,13 @@
 import {FC, useState} from 'react';
+import defaultPhoto from '../../../../assets/img/defaultAvatar.png'
 import {FavoritePostSVG, RepostPostSVG} from "../../../SvgComponent";
 import styles from './FullPhotoFavoritesAndRepost.module.scss';
 import {usePhotoQuery} from "../../../../react-query/usePhotoQuery";
 import {FaHeart} from "react-icons/fa";
 import {IUserAbbr} from "../../../../types/user.interface";
 import {useAuth} from "../../../../hooks/useAuth";
+import {FullPhotoFavoriteAdders} from "./FullPhotoFavoriteAdders/FullPhotoFavoriteAdders";
+import {avatarUrl} from "../../../../utils/avatarUrl";
 
 interface IFullPhotoFavoritesAndRepostProps {
   photoId: string
@@ -20,7 +23,7 @@ export const FullPhotoFavoritesAndRepost: FC<IFullPhotoFavoritesAndRepostProps> 
   // const [isFavorite, setIsFavorite] = useState(false)
 
   const {toggleFavoritesPhoto} = usePhotoQuery(photoId)
-  const {mutate: toggleFavorites} = toggleFavoritesPhoto
+  const {mutate: toggleFavorites, data: favorites, isSuccess} = toggleFavoritesPhoto
 
   const onClickToggle = () => {
     toggleFavorites(photoId)
@@ -31,12 +34,16 @@ export const FullPhotoFavoritesAndRepost: FC<IFullPhotoFavoritesAndRepostProps> 
     <div className={styles.favoritesAndRepost}>
       <div className={styles.svg}>
         <div className={styles.favorites} onClick={onClickToggle}>
+          <div className={styles.favoriteAdders}>
+            {
+              photoFavoriteAdders.length > 0 && <FullPhotoFavoriteAdders users={photoFavoriteAdders}/>
+            }
+          </div>
           <FaHeart className={`${styles.heartIcon} ${isFavorite ? `${styles.favorite}` : ''}`}
-
           />
-          <span className={styles.favoritesLength}>{photoFavoriteAdders.length > 0 ? photoFavoriteAdders.length  : ''}</span>
+          <span
+            className={styles.favoritesLength}>{photoFavoriteAdders.length > 0 ? photoFavoriteAdders.length : ''}</span>
         </div>
-
         <RepostPostSVG/>
       </div>
     </div>

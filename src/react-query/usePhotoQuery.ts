@@ -34,8 +34,9 @@ export const usePhotoQuery = (photoId?: string) => {
 
   const toggleFavoritesPhoto = useMutation({
     mutationFn: (photoId: string) => PhotoService.toggleFavoritesPhoto(photoId),
-    onSuccess: () => {
+    onSuccess: (data) => {
       client.invalidateQueries({queryKey: ['myPhotos', 'allMyPhotos']})
+      return data
     }
   })
   //

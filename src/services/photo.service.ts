@@ -27,7 +27,7 @@ export const PhotoService =  {
   },
 
   toggleFavoritesPhoto: async (photoId:string) => {
-    const res = await instance.post< IPhotoFull>(getPhotosUrl(`/${photoId}/favorites`))
+    const res = await instance.post<IPhotoFull>(getPhotosUrl(`/${photoId}/favorites`))
     return res.data
   },
 
