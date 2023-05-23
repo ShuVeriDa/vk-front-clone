@@ -8,6 +8,8 @@ import {IUserAbbr} from "../../../../types/user.interface";
 import {useAuth} from "../../../../hooks/useAuth";
 import {FullPhotoFavoriteAdders} from "./FullPhotoFavoriteAdders/FullPhotoFavoriteAdders";
 import {avatarUrl} from "../../../../utils/avatarUrl";
+import {ModalWindow} from "../../../ModalWindow/ModalWindow";
+import {Repost} from "../../../Repost/Repost";
 
 interface IFullPhotoFavoritesAndRepostProps {
   photoId: string
@@ -17,6 +19,7 @@ interface IFullPhotoFavoritesAndRepostProps {
 export const FullPhotoFavoritesAndRepost: FC<IFullPhotoFavoritesAndRepostProps> = (
   {photoId, photoFavoriteAdders}
 ) => {
+  const [isRepost, setRepost] = useState(false)
   const {user} = useAuth()
   const isFavorite = photoFavoriteAdders.some(adder => adder.id === user?.id)
 
@@ -44,7 +47,11 @@ export const FullPhotoFavoritesAndRepost: FC<IFullPhotoFavoritesAndRepostProps> 
           <span
             className={styles.favoritesLength}>{photoFavoriteAdders.length > 0 ? photoFavoriteAdders.length : ''}</span>
         </div>
-        <RepostPostSVG/>
+        <RepostPostSVG styles={styles.repost} onClick={() => setRepost(true)}/>
+
+        <ModalWindow open={isRepost}>
+          <Repost onClose={() => setRepost(false)}/>
+        </ModalWindow>
       </div>
     </div>
   );

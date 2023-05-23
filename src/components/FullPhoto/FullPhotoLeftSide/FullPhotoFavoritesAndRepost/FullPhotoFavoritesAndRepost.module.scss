@@ -24,7 +24,6 @@
       }
     }
 
-
     .heartIcon {
       width: 22px;
       font-size: 24px;
@@ -49,7 +48,6 @@
       }
     }
 
-
     .favoritesLength {
       margin-left: 6px;
       font-size: 14px;
@@ -58,10 +56,17 @@
       color: #e64646;
     }
 
-
     .favorite {
       color: #e64646;
       animation: heartbeat 0.5s;
+    }
+
+    .repost {
+      color: #828A99;
+      &:hover {
+        cursor: pointer;
+        color: #656870;
+      }
     }
   }
 }

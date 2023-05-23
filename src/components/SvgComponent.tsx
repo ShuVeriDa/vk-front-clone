@@ -55,7 +55,7 @@ export const CommentPostSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
 };
 
 export const RepostPostSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
-  return <svg onClick={onClick} height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  return <svg onClick={onClick} className={styles} height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
     <g fill="none"
        fillRule="evenodd">
       <path

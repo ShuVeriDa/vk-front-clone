@@ -1,0 +1,137 @@
+.wrapper {
+  background: #fff;
+  width: 450px;
+  border-radius: 20px;
+
+  .header {
+    height: 54px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 54px;
+      left: 0;
+      background-color: #dce1e6;
+      width: 450px;
+      height: 1px;
+    }
+
+    .title {
+      padding-left: 25px;
+      span {
+        font-size: 14px;
+      }
+    }
+
+    .close {
+      width: 59px;
+      height: 52px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .closeSVG {
+        width: 21px;
+        height: 21px;
+
+        fill: #6f7985;
+
+        &:hover {
+          cursor: pointer;
+          fill: #515860;
+        }
+      }
+    }
+  }
+
+  .main {
+    box-sizing: border-box;
+    min-height: 320px;
+    padding: 15px 25px 20px;
+
+    .radio {
+      display: flex;
+      flex-direction: column;
+
+      .radioItem {
+        margin-bottom: 10px;
+        display: flex;
+        
+        &:hover {
+          cursor: pointer;
+        }
+        
+        input {
+          position: relative;
+          bottom: 2px;
+          margin-right: 7px;
+          height: 14px;
+        }
+
+        input[type="radio"] {
+          background-color: blue;
+        }
+
+        input[type="radio"]:checked {
+          background-color: blue;
+        }
+
+        span {
+          font-size: 13px;
+          line-height: 16px;
+        }
+      }
+    }
+
+    .textRepost {
+
+      .title {
+        font-size: 13px;
+        font-weight: 500;
+
+        margin-bottom: 10px;
+      }
+
+      .textarea {
+
+        textarea {
+          box-sizing: border-box;
+          width: 400px;
+          min-height: 80px;
+          border-radius: 8px;
+          padding: 5px 27px 7px 9px;
+
+          border: 1px solid #dce1e6;
+          outline: none;
+          font-size: 13px;
+        }
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+
+        .btn {
+          .sharePhoto {
+            width: 190px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+input[type="radio"] {
+  background-color: blue;
+}
+
+input[type="radio"]:checked {
+  background-color: blue;
+}

@@ -34,6 +34,8 @@ export const usePostsQuery = (userId?: string | number, postId?: string, communi
     }
   })
 
+  
+
   //community
   const getCommunityPosts = useQuery({
     queryFn: () => PostService.getPostsCommunityUrl(communityId!),

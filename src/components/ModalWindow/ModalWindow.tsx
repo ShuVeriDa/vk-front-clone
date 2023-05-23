@@ -2,7 +2,7 @@ import {FC, ReactNode} from 'react';
 import styles from './ModalWindow.module.scss';
 interface IModuleWindowProps {
   open: boolean
-  onClickClose: () => void
+  onClickClose?: () => void
   children: ReactNode
 }
 
