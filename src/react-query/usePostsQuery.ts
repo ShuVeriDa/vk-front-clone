@@ -3,7 +3,7 @@ import {PostService} from "../services/post.service";
 import {useMemo} from "react";
 import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../types/post.interface";
 
-export const usePostsQuery = (userId?: string | number, postId?: string, communityId?: string) => {
+export const usePostsQuery = (userId?: string | number, id?: string, communityId?: string) => {
   const getMyPosts = useQuery({
     queryFn: () => PostService.fetchMyPosts(userId!),
     queryKey: ['myPosts', 'allMyPosts', userId],
@@ -19,8 +19,15 @@ export const usePostsQuery = (userId?: string | number, postId?: string, communi
     }
   })
 
+  const repost = useMutation({
+    mutationFn: (data: ICreatePost) => PostService.repost(data, id!),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['myPosts', 'allMyPosts']})
+    }
+  })
+
   const updatePost = useMutation({
-    mutationFn: (data:IUpdatePost) => PostService.updatePost(postId!, data),
+    mutationFn: (data:IUpdatePost) => PostService.updatePost(id!, data),
     onSuccess: () => {
       client.invalidateQueries({queryKey: ['myPosts', 'allMyPosts']})
     }
@@ -48,6 +55,7 @@ export const usePostsQuery = (userId?: string | number, postId?: string, communi
     createPost,
     updatePost,
     deletePost,
+    repost,
     getCommunityPosts,
-  }), [getMyPosts, createPost, deletePost, updatePost, getCommunityPosts])
+  }), [getMyPosts, createPost, deletePost, updatePost, repost, getCommunityPosts])
 }

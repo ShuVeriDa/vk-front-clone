@@ -50,7 +50,9 @@ export const FullPhotoFavoritesAndRepost: FC<IFullPhotoFavoritesAndRepostProps> 
         <RepostPostSVG styles={styles.repost} onClick={() => setRepost(true)}/>
 
         <ModalWindow open={isRepost}>
-          <Repost onClose={() => setRepost(false)}/>
+          <Repost id={photoId}
+            onClose={() => setRepost(false)}
+          />
         </ModalWindow>
       </div>
     </div>

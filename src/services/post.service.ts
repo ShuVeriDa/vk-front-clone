@@ -14,6 +14,12 @@ export const PostService =  {
     return res.data
   },
 
+  repost: async (data: ICreatePost, id: string) => {
+    const res = await instance.post(getPostsUrl(`/${id}/repost`), data)
+
+    return res.data
+  },
+
   updatePost: async (postId: string, data: IUpdatePost) => {
     const res = await instance.put<IPost>(getPostsUrl(`/${postId}`), data)
 

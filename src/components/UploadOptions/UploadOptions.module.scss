@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
   bottom: -13px;
-  right: 160px;
+  right: 148px;
 
   &Active {
     height: 32px;
@@ -42,19 +42,22 @@
   }
 
 
-
-  .btnSubmit {
-    border-radius: 8px;
-    padding: 0 16px;
-    border: none;
-    color: #fff;
-    background: #447BBA;
+  .button {
     position: relative;
     right: -232px;
+    .btnSubmit {
+      border-radius: 8px;
+      padding: 0 16px;
+      height: 32px;
+      border: none;
+      color: #fff;
+      background: #447BBA;
 
-    &:hover {
-      background: #6597d2;
-      cursor: pointer;
+
+      &:hover {
+        background: #6597d2;
+        cursor: pointer;
+      }
     }
   }
 }

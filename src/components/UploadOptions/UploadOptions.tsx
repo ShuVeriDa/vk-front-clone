@@ -1,5 +1,6 @@
 import {FC, MutableRefObject, useEffect, useRef, useState} from 'react';
 import styles from './UploadOptions.module.scss';
+import cn from "clsx";
 
 const buttons = [
   {
@@ -51,30 +52,52 @@ const buttons = [
 ]
 
 interface IDownloadOptionsProps {
-  inputOutRef: MutableRefObject<null>
+  title: string
+  inputOutRef?: MutableRefObject<null>
   show?: boolean
+  onClick?: () => void
+  isRepost?: boolean
 }
 
-export const UploadOptions: FC<IDownloadOptionsProps> = ({inputOutRef, show}) => {
+export const UploadOptions: FC<IDownloadOptionsProps> = (
+  {inputOutRef, show, title, onClick, isRepost}
+) => {
 
   const inputFileRef = useRef<HTMLInputElement>(null)
 
   return (
-    <div className={show ? `${styles.buttonComponentActive} ${styles.buttonComponent} ` : styles.buttonComponent}>
+    <div className={show ? `${styles.buttonComponentActive} ${styles.buttonComponent} ` : styles.buttonComponent}
+        style={isRepost ? {borderTop: 'none', left: '13px'}: {}}
+    >
       <div ref={inputOutRef}
-           className={show ? `${styles.fileInputsActive} ${styles.fileInputs}` : styles.fileInputs}
+           className={cn(show ? `${styles.fileInputsActive} ${styles.fileInputs}` : styles.fileInputs)}
       >
         {buttons.map((obj, i) => {
           return <div key={i}
                       className={styles.btn}
                       onClick={() => inputFileRef.current?.click()}
+                      style={isRepost && i === 4 ? {display: 'none'} : {}}
           >
             {obj.svg}
-            <input ref={inputFileRef} type="file" accept={obj.type} hidden/>
+            <input ref={inputFileRef}
+                   type="file"
+                   accept={obj.type}
+                   hidden
+            />
           </div>
         })}
       </div>
-      {show && <button className={styles.btnSubmit}>Опубликовать</button>}
+      <div className={styles.button}
+           style={isRepost ? {left: '93px'}: {}}
+      >
+        {(show || isRepost) && <button className={styles.btnSubmit}
+                                       onClick={onClick}
+        >
+          {title}
+        </button>
+        }
+      </div>
+
     </div>
   );
 };

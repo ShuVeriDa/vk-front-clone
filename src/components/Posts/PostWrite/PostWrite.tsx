@@ -74,7 +74,8 @@ export const PostWrite: FC<IPostProps> = ({avatar}) => {
           </div>
         </div>
 
-        <UploadOptions inputOutRef={inputOutRef}
+        <UploadOptions title={'Опубликовать'}
+                       inputOutRef={inputOutRef}
                        show={show}
         />
 

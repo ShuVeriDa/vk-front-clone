@@ -1,23 +1,33 @@
 import {ChangeEvent, FC, useState} from 'react';
 import styles from './Repost.module.scss';
 import {ClearSearchValueSVG} from "../SvgComponent";
-import {Input} from "../Input/Input";
 import TextareaAutosize from "react-textarea-autosize";
-import {SubmitButton} from "../SubmitButton/SubmitButton";
-
+import {UploadOptions} from "../UploadOptions/UploadOptions";
+import {usePostsQuery} from "../../react-query/usePostsQuery";
 
 const list = ['На своей стене', "В сообществе", "В истории", "В личном сообщении"]
 
 interface IRepostProps {
   onClose: () => void
+  id: string
 }
 
-export const Repost: FC<IRepostProps> = ({onClose}) => {
+export const Repost: FC<IRepostProps> = ({onClose, id}) => {
   const [selectedOption, setSelectedOption] = useState('На своей стене');
+
+  const {repost} = usePostsQuery(undefined, id)
+  const {mutate} = repost
 
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(e.currentTarget.value);
   };
+
+  const option = () => {
+    if(selectedOption === 'На своей стене') {
+      
+    }
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -56,13 +66,9 @@ export const Repost: FC<IRepostProps> = ({onClose}) => {
             <TextareaAutosize />
           </div>
           <div className={styles.footer}>
-            <div>
-              sdadas
-            </div>
-            <div className={styles.btn}>
-              <SubmitButton title={"Поделиться фотографией"} classes={styles.sharePhoto} />
-            </div>
-
+              <UploadOptions title={'Поделиться записью'}
+                             isRepost={true}
+              />
           </div>
         </div>
 
