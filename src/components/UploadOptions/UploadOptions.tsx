@@ -1,4 +1,4 @@
-import {FC, MutableRefObject, useEffect, useRef, useState} from 'react';
+import {ChangeEvent, FC, MutableRefObject, useEffect, useRef, useState} from 'react';
 import styles from './UploadOptions.module.scss';
 import cn from "clsx";
 
@@ -57,17 +57,18 @@ interface IDownloadOptionsProps {
   show?: boolean
   onClick?: () => void
   isRepost?: boolean
+  uploadFiles?: (e: string, i: number) => void
 }
 
 export const UploadOptions: FC<IDownloadOptionsProps> = (
-  {inputOutRef, show, title, onClick, isRepost}
+  {inputOutRef, show, title, onClick, isRepost, uploadFiles}
 ) => {
 
   const inputFileRef = useRef<HTMLInputElement>(null)
 
   return (
     <div className={show ? `${styles.buttonComponentActive} ${styles.buttonComponent} ` : styles.buttonComponent}
-        style={isRepost ? {borderTop: 'none', left: '13px'}: {}}
+         style={isRepost ? {borderTop: 'none', left: '13px'} : {}}
     >
       <div ref={inputOutRef}
            className={cn(show ? `${styles.fileInputsActive} ${styles.fileInputs}` : styles.fileInputs)}
@@ -82,13 +83,14 @@ export const UploadOptions: FC<IDownloadOptionsProps> = (
             <input ref={inputFileRef}
                    type="file"
                    accept={obj.type}
+                   onChange={(e) => uploadFiles ? uploadFiles(e.currentTarget.value, i) : () => {}}
                    hidden
             />
           </div>
         })}
       </div>
       <div className={styles.button}
-           style={isRepost ? {left: '93px'}: {}}
+           style={isRepost ? {left: '93px'} : {}}
       >
         {(show || isRepost) && <button className={styles.btnSubmit}
                                        onClick={onClick}
