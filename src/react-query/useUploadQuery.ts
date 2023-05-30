@@ -6,48 +6,20 @@ import {UploadFileService} from "../services/uploadFile.services";
 import {useUsersQuery} from "./useUsersQuery";
 import {useCommunityQuery} from "./useCommunityQuery";
 import {usePhotoAlbumQuery} from "./usePhotoAlbumQuery";
-// export const useUploadQuery = (folder: string, setUrl: (url: string) => void, userId: string | number) => {
-//   const {getUserById} = useUsersQuery(userId)
-//
-//   const client = useQueryClient()
-//
-//   const {mutate} = useMutation({
-//     mutationFn: (data: FormData) => UploadFileService.uploadFile(data, folder),
-//     onSuccess: ({data}) => {
-//       setUrl(data[0].url)
-//       client.invalidateQueries({queryKey: ['user', 'one']})
-//       getUserById.refetch()
-//       // client.invalidateQueries({queryKey: ['user', 'one']})
-//     }
-//   })
-//
-//   const uploadFile = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-//
-//     const files = e.target.files
-//     if (!files?.length) return
-//
-//     const formData = new FormData()
-//     formData.append('file', files[0])
-//
-//     await mutate(formData)
-//   }, [mutate])
-//
-//   return useMemo(() => ({
-//     uploadFile,
-//   }), [uploadFile])
-// }
+import {usePhotoQuery} from "./usePhotoQuery";
+
 export const useUploadQuery = (
   folder: string,
   setUrl: (url: string) => void,
-  entityType: 'user' | 'community' | 'img',
+  entityType: 'user' | 'community' | 'img' | 'repost' | "singleImg",
   userId?: string | number,
   communityId?: string,
   albumId?: string
-
 ) => {
   const {getUserById} = useUsersQuery(userId!);
   const {getOneAlbum} = usePhotoAlbumQuery(albumId)
   const {fetchOne} = useCommunityQuery(communityId);
+  const {getMyPhotos, getOnePhoto} = usePhotoQuery()
 
   const client = useQueryClient();
 
@@ -58,9 +30,21 @@ export const useUploadQuery = (
         setUrl(data[0].url);
       }
 
-      if(entityType === 'img') {
+      if (entityType === 'img') {
         client.invalidateQueries({queryKey: ['myAlbum', 'albumOne']});
         getOneAlbum.refetch();
+      }
+
+      if (entityType === 'singleImg') {
+        // client.invalidateQueries({queryKey: ['photo', 'photoOne']});
+        // getOnePhoto.refetch();
+        client.invalidateQueries({queryKey: ['myPhotos', 'allMyPhotos']});
+        getMyPhotos.refetch();
+      }
+
+      if (entityType === 'repost') {
+        client.invalidateQueries({queryKey: ['myPhotos', 'allMyPhotos']});
+        getMyPhotos.refetch();
       }
 
       if (entityType === 'user') {
@@ -77,6 +61,7 @@ export const useUploadQuery = (
 
   const uploadFile = useCallback(
     async (e: ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
       const files = e.target.files;
       if (!files?.length) return;
       const formData = new FormData();

@@ -19,30 +19,31 @@ interface IRepostProps {
 }
 
 export const Repost: FC<IRepostProps> = ({onClose, id}) => {
-  const [images, setImages] = useState<string[]>([])
-  const [videos, setVideos] = useState<string[]>([])
-  const [music, setMusic] = useState<string[]>([])
-  const [files, setFiles] = useState<string[]>([])
+  // const [images, setImages] = useState<string[]>([])
+  // const [videos, setVideos] = useState<string[]>([])
+  // const [music, setMusic] = useState<string[]>([])
+  // const [files, setFiles] = useState<string[]>([])
   const [selectedOption, setSelectedOption] = useState('На своей стене');
 
   const {repost} = usePostsQuery(undefined, id)
+
   const {mutate} = repost
 
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(e.currentTarget.value);
   };
 
-  const uploadFiles = (url: string ,i: number) => {
-    if(i === 0) setImages((prev) => [...prev, url])
-    if(i === 1) setVideos((prev) => [...prev, url])
-    if(i === 2) setMusic((prev) => [...prev, url])
-    if(i === 3) setFiles((prev) => [...prev, url])
-  }
+  // const uploadFiles = async (url: string ,i: number) => {
+  //   setImages((prev) => [...prev, url])
+  //   // if(i === 1) setVideos((prev) => [...prev, url])
+  //   // if(i === 2) setMusic((prev) => [...prev, url])
+  //   // if(i === 3) setFiles((prev) => [...prev, url])
+  // }
 
-  console.log("images: ", images)
-  console.log('videos: ', videos)
-  console.log("music: ", music)
-  console.log("files: ", files)
+  // console.log("images: ", images)
+  // console.log('videos: ', videos)
+  // console.log("music: ", music)
+  // console.log("files: ", files)
 
   const {register, handleSubmit, formState, reset} = useForm<ICreatePost>({mode: "onChange"})
 
@@ -102,7 +103,7 @@ export const Repost: FC<IRepostProps> = ({onClose, id}) => {
             <div className={styles.footer}>
               <UploadOptions title={'Поделиться записью'}
                              isRepost={true}
-                             uploadFiles={uploadFiles}
+                             // uploadFiles={uploadFiles}
               />
             </div>
           </div>

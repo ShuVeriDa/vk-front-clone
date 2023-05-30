@@ -46,9 +46,14 @@ const CreatePhotoInAlbum = lazy(() => import("./pages/CreatePhotoInAlbum/CreateP
   .then(({CreatePhotoInAlbum}) => ({default: CreatePhotoInAlbum}))
 )
 
+const CreatePhoto = lazy(() => import("./pages/CreatePhoto/CreatePhoto")
+  .then(({CreatePhoto}) => ({default: CreatePhoto}))
+)
+
 const NotFound = lazy(() => import(/* webpackChunkName: "NotFound"*/ './pages/NotFound/NotFound')
   .then(({NotFound}) => ({default: NotFound}))
 )
+
 
 function App() {
   const navigate = useNavigate()
@@ -91,6 +96,7 @@ function App() {
 
         <Route path={'/groups'} element={<CommunitySearchPage/>}/>
 
+
         <Route path={'/profile/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <ProfileEdit/>
@@ -121,6 +127,14 @@ function App() {
         <Route path={'/album/:id/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <AlbumEdit/>
+          </Suspense>
+        }/>
+
+
+
+        <Route path={'/album/photo/add'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <CreatePhoto/>
           </Suspense>
         }/>
 

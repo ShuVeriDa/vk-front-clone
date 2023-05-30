@@ -5,6 +5,11 @@ import {ICreatePhoto, IPhotoForAlbum, IPhotoFull, IUpdatePhoto} from "../types/p
 
 
 export const PhotoService =  {
+  fetchPhoto: async (photoId: string) => {
+    const res = await instance.get<IPhotoFull>(getPhotosUrl(`/${photoId}`))
+    return res.data
+  },
+
   fetchMyPhotos: async () => {
     const res = await instance.get<IPhotoFull[]>(getPhotosUrl(``))
     return res.data

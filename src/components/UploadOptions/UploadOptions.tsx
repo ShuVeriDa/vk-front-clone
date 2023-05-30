@@ -1,6 +1,9 @@
 import {ChangeEvent, FC, MutableRefObject, useEffect, useRef, useState} from 'react';
 import styles from './UploadOptions.module.scss';
 import cn from "clsx";
+import {usePhotoQuery} from "../../react-query/usePhotoQuery";
+import {ICreatePhoto} from "../../types/photo.interface";
+import {useUploadQuery} from "../../react-query/useUploadQuery";
 
 const buttons = [
   {
@@ -63,8 +66,22 @@ interface IDownloadOptionsProps {
 export const UploadOptions: FC<IDownloadOptionsProps> = (
   {inputOutRef, show, title, onClick, isRepost, uploadFiles}
 ) => {
-
   const inputFileRef = useRef<HTMLInputElement>(null)
+  // const {createPhoto} = usePhotoQuery()
+  // const {mutate: uploadPhoto} = createPhoto
+  // const uploadAvatar = (url: string) => {
+  //   uploadPhoto({photoUrl: url} as ICreatePhoto)
+  // }
+  //
+  // const {uploadFile} = useUploadQuery('images', uploadAvatar, 'img')
+
+  // const onChange = async (e: ChangeEvent<HTMLInputElement>, i: number) => {
+  //   e.preventDefault();
+  //   if (uploadFiles) {
+  //     uploadFiles(e.currentTarget.value, i)
+  //   }
+  //   await uploadFile(e)
+  // }
 
   return (
     <div className={show ? `${styles.buttonComponentActive} ${styles.buttonComponent} ` : styles.buttonComponent}
@@ -83,7 +100,7 @@ export const UploadOptions: FC<IDownloadOptionsProps> = (
             <input ref={inputFileRef}
                    type="file"
                    accept={obj.type}
-                   onChange={(e) => uploadFiles ? uploadFiles(e.currentTarget.value, i) : () => {}}
+                   // onChange={(e) => onChange(e, i)}
                    hidden
             />
           </div>

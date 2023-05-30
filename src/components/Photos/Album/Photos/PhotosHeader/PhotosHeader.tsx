@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import cn from "clsx";
 
 interface IPhotosHeaderProps {
-  title: string
+  title?: string
   count?: number
   edit?: boolean
   add?: boolean
@@ -29,10 +29,13 @@ export const PhotosHeader: FC<IPhotosHeaderProps> = ({title, count, edit, add, o
           <span className={styles.myPhotos}>
             <Link to={'/albums'}>Мои фотографии </Link>
           </span>
-          <img src={ArrowRight} alt=""/>
-          <span className={styles.albumName}>
+
+          {title && <>
+            <img src={ArrowRight} alt=""/>
+            <span className={styles.albumName}>
             {title}
           </span>
+          </>}
           {edit && <>
             <img src={ArrowRight} alt=""/>
             <span>{editOfAdd}</span>

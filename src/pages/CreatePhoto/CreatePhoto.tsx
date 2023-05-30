@@ -1,35 +1,33 @@
 import {ChangeEvent, FC, useRef, useState} from 'react';
-import styles from './CreatePhotoInAlbum.module.scss';
+import styles from './CreatePhoto.module.scss';
 import {PhotosHeader} from "../../components/Photos/Album/Photos/PhotosHeader/PhotosHeader";
-import {usePhotoAlbumQuery} from "../../react-query/usePhotoAlbumQuery";
-import {useParams} from "react-router-dom";
 import {PhotoItem} from "../../components/Photos/Album/Photos/PhotoItem/PhotoItem";
-import {ICreatePhotoInAlbum} from "../../types/photoAlbum.interface";
 import {useUploadQuery} from "../../react-query/useUploadQuery";
 import {usePhotoQuery} from "../../react-query/usePhotoQuery";
+import {ICreatePhoto} from "../../types/photo.interface";
 
 interface ICreatePhotoProps {
 }
 
-export const CreatePhotoInAlbum: FC<ICreatePhotoProps> = () => {
-  const {id} = useParams()
-  const {getOneAlbum, createPhotoInAlbum} = usePhotoAlbumQuery(id)
+export const CreatePhoto: FC<ICreatePhotoProps> = () => {
+  const {getMyPhotos, createPhoto}= usePhotoQuery()
+
   const [description, setDescription] = useState('')
 
-  const {mutate: uploadImage} = createPhotoInAlbum
-  const {data: album, isSuccess} = getOneAlbum
-
-  const lastPhoto = album?.photos[album?.photos?.length - 1]
-  const lastPhotoLength = album?.photos?.length! - 1
+  const {mutate: uploadImage} = createPhoto
+  const {data: photos, isSuccess} = getMyPhotos
+  // const {data: photo} = getOnePhoto
+  const lastPhotoLength = photos?.length! - 1
+  const lastPhoto = photos?.reverse()[lastPhotoLength]!
   const {updatePhoto} = usePhotoQuery(lastPhoto?.id)
   const {mutate: UpdatePhoto} = updatePhoto
 
   const inputFileRef = useRef<any>(null)
   const uploadAvatar = (url: string) => {
-    uploadImage({photoUrl: url} as ICreatePhotoInAlbum)
+    uploadImage({photoUrl: url} as ICreatePhoto)
   }
 
-  const {uploadFile} = useUploadQuery('images', uploadAvatar, 'img', undefined, undefined, id)
+  const {uploadFile} = useUploadQuery('images', uploadAvatar, 'singleImg')
 
   const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
     await uploadFile(e)
@@ -43,31 +41,24 @@ export const CreatePhotoInAlbum: FC<ICreatePhotoProps> = () => {
     UpdatePhoto({description: description})
   }
 
+  console.log(photos?.reverse()[lastPhotoLength])
+
   return (
     <div className={styles.wrapper}>
-      <PhotosHeader title={album?.title!}
-                    add={true}
+      <PhotosHeader add={true}
                     onClickAddPhoto={handleChangeImage}
                     inputFileRef={inputFileRef}
                     onClick={() => inputFileRef.current.click()}
-
       />
       <div className={styles.main}>
         <div className={styles.photoItems}>
           {isSuccess &&
-            <PhotoItem photo={album.photos[lastPhotoLength]}
+            <PhotoItem photo={lastPhoto}
                        input={true}
                        onBlur={onChangeDescription}
                        onChangeValue={onChangeValue}
 
             />
-          }
-          {!album?.photos.length
-            && <div className={styles.noPhotos}>
-             <span>
-            В этом альбоме ещё нет фотографий
-          </span>
-            </div>
           }
         </div>
       </div>

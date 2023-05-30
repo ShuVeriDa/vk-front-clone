@@ -4,12 +4,12 @@ import {PhotoService} from "../services/photo.service";
 import {ICreatePhoto, IUpdatePhoto} from "../types/photo.interface";
 
 export const usePhotoQuery = (photoId?: string) => {
-  // const getOneAlbum = useQuery({
-  //   queryFn: () => AlbumService.fetchOneAlbum(albumId!),
-  //   queryKey: ['myAlbum', 'one'],
-  //   enabled: !!albumId
-  // })
-  //
+  const getOnePhoto = useQuery({
+    queryFn: () => PhotoService.fetchPhoto(photoId!),
+    queryKey: ['photo', 'photoOne'],
+    enabled: !!photoId
+  })
+
 
   const getMyPhotos = useQuery({
     queryFn: () => PhotoService.fetchMyPhotos(),
@@ -19,14 +19,14 @@ export const usePhotoQuery = (photoId?: string) => {
   const client = useQueryClient()
 
   const createPhoto = useMutation({
-    mutationFn: (data:ICreatePhoto) => PhotoService.createPhoto(data),
+    mutationFn: (data: ICreatePhoto) => PhotoService.createPhoto(data),
     onSuccess: () => {
-      client.invalidateQueries({queryKey: ['myPhotos', 'allMyPhotos']})
+      client.invalidateQueries(['myPhotos', 'allMyPhotos'])
     }
   })
 
   const updatePhoto = useMutation({
-    mutationFn: (data:IUpdatePhoto) => PhotoService.updatePhoto(photoId!, data),
+    mutationFn: (data: IUpdatePhoto) => PhotoService.updatePhoto(photoId!, data),
     onSuccess: () => {
       client.invalidateQueries(['myPhotos', 'allMyPhotos'])
     }
@@ -56,6 +56,6 @@ export const usePhotoQuery = (photoId?: string) => {
   // })
 
   return useMemo(() => ({
-    getMyPhotos, createPhoto, updatePhoto, toggleFavoritesPhoto
-  }), [getMyPhotos, createPhoto, updatePhoto, toggleFavoritesPhoto])
+    getMyPhotos, getOnePhoto, createPhoto, updatePhoto, toggleFavoritesPhoto
+  }), [getMyPhotos, getOnePhoto, createPhoto, updatePhoto, toggleFavoritesPhoto])
 }
