@@ -4,12 +4,13 @@ import {PhotosHeader} from "../../components/Photos/Album/Photos/PhotosHeader/Ph
 import {PhotoItem} from "../../components/Photos/Album/Photos/PhotoItem/PhotoItem";
 import {useUploadQuery} from "../../react-query/useUploadQuery";
 import {usePhotoQuery} from "../../react-query/usePhotoQuery";
-import {ICreatePhoto} from "../../types/photo.interface";
+import {ICreatePhoto, IPhotoFull} from "../../types/photo.interface";
 
 interface ICreatePhotoProps {
 }
 
 export const CreatePhoto: FC<ICreatePhotoProps> = () => {
+
   const {getMyPhotos, createPhoto}= usePhotoQuery()
 
   const [description, setDescription] = useState('')

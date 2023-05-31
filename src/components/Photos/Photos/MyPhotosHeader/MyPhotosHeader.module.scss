@@ -11,13 +11,14 @@
   padding: 0 20px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  position: relative;
 
   //border-bottom: 1px solid #dce1e6;
 
   &::after {
     content: '';
     position: absolute;
-    top: 945.5px;
+    top: 55px;
     width: 765px;
     height: 1px;
     background-color: #dce1e6;

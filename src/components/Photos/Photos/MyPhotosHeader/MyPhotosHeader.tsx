@@ -17,7 +17,6 @@ export const MyPhotosHeader: FC<IPhotosHeaderProps> = ({count}) => {
           <span className={styles.myPhotos}>Мои фотографии </span>
           <span className={styles.count}> {count}</span>
         </div>
-
       </div>
     </div>
   );

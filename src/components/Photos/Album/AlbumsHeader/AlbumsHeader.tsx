@@ -1,4 +1,4 @@
-import {ChangeEvent, FC} from 'react';
+import {ChangeEvent, FC, useRef} from 'react';
 import styles from './AlbumsHeader.module.scss';
 import {useNavigate} from "react-router-dom";
 import {ICreatePhotoInAlbum} from "../../../../types/photoAlbum.interface";
@@ -12,7 +12,7 @@ interface IPhotosHeaderProps {
 
 export const AlbumsHeader: FC<IPhotosHeaderProps> = ({onClickOpen}) => {
   const navigate = useNavigate()
-
+  const inputFileRef = useRef<any>(null)
   const {createPhoto} = usePhotoQuery()
   const {mutateAsync: uploadImage, data: photo} = createPhoto
 
@@ -35,8 +35,12 @@ export const AlbumsHeader: FC<IPhotosHeaderProps> = ({onClickOpen}) => {
       <div className={styles.buttons}>
         <ul>
           <li onClick={onClickOpen}>Создать альбом</li>
-          <li >
-            <input onChange={handleChangeImage} type="file"/>
+          <li onClick={() => inputFileRef.current.click()}>
+            <input ref={inputFileRef}
+                   onChange={handleChangeImage}
+                   type="file"
+                   hidden
+            />
             Добавить изображение
           </li>
         </ul>
