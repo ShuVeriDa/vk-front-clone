@@ -1,1 +1,0 @@
-export const avatarUrl = (avatar: string) => `${process.env.REACT_APP_SERVER_URL}${avatar}`

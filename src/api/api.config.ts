@@ -3,5 +3,6 @@ export const getPostsCommunityUrl = (communityId: string, string: string) => `/p
 export const getUsersUrl = (string: string) => `/users${string}`
 export const getCommunityUrl = (string: string) => `/community${string}`
 export const getPhotosUrl = (string: string) => `/photos${string}`
+export const getMusicUrl = (string: string) => `/music${string}`
 export const getCommentsUrl = (string: string) => `/comments${string}`
 export const getPhotoAlbumsUrl = (string: string) => `/photos/albums${string}`

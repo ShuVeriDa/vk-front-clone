@@ -1,6 +1,6 @@
 import {FC, useState} from 'react';
 
-import {avatarUrl} from "../../utils/avatarUrl";
+import {serverUrl} from "../../utils/serverUrl";
 import ReactTimeago from "react-timeago";
 import {Link} from "react-router-dom";
 import {ClearSearchValueSVG, EditSVG} from "../SvgComponent";
@@ -42,7 +42,7 @@ export const FullPhotoHeaderAndCommentItem: FC<IFullPhotoHeaderProps> = (
         [styles?.headerEdit!]: isEdit,
       })}>
         <div className={styles?.avatar}>
-          <img src={avatarUrl(avatar)} alt=""/>
+          <img src={serverUrl(avatar)} alt=""/>
         </div>
         <div className={styles?.info}>
           <span className={styles?.name}> <Link to={`/profile/${id}`}>{fullName}</Link>

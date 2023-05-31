@@ -6,7 +6,7 @@ import styles from './Header.module.scss'
 import {NavLink, useLocation, useParams} from "react-router-dom";
 import {useAuth} from "../../hooks/useAuth";
 import {useAppSelector} from "../../redux/store";
-import {avatarUrl} from "../../utils/avatarUrl";
+import {serverUrl} from "../../utils/serverUrl";
 import {pathStyles} from "../../utils/pathStyles";
 
 interface HeaderPropsType {
@@ -15,7 +15,7 @@ interface HeaderPropsType {
 export const Header: FC<HeaderPropsType> = () => {
   const {pathname} = useLocation()
   const {user} = useAuth()
-  const avatar = avatarUrl(user?.avatar!) || defaultAvatar
+  const avatar = serverUrl(user?.avatar!) || defaultAvatar
 
   const path = pathStyles(pathname)
 

@@ -7,7 +7,7 @@ import {FaHeart} from "react-icons/fa";
 import {IUserAbbr} from "../../../../types/user.interface";
 import {useAuth} from "../../../../hooks/useAuth";
 import {FullPhotoFavoriteAdders} from "./FullPhotoFavoriteAdders/FullPhotoFavoriteAdders";
-import {avatarUrl} from "../../../../utils/avatarUrl";
+import {serverUrl} from "../../../../utils/serverUrl";
 import {ModalWindow} from "../../../ModalWindow/ModalWindow";
 import {Repost} from "../../../Repost/Repost";
 

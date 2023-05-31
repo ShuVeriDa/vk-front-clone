@@ -8,7 +8,7 @@ import ReactTimeago from "react-timeago";
 import {CommentPostSVG, FavoritePostSVG, RepostPostSVG, ViewsPostSVG} from "../../SvgComponent";
 import {PostMenu} from "../PostMenu/PostMenu";
 import {PostUpdate} from "../PostUpdate/PostUpdate";
-import {avatarUrl} from "../../../utils/avatarUrl";
+import {serverUrl} from "../../../utils/serverUrl";
 import {ICommunitySearchAbbr, ICommunitySearchResponse} from "../../../types/community.interface";
 
 
@@ -22,7 +22,7 @@ interface IPostProps {
 
 export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId}) => {
   const refOut = useRef(null)
-  const avatar = avatarUrl(post.user.avatar) || defaultAvatar
+  const avatar = serverUrl(post.user.avatar) || defaultAvatar
 
   const [show, setShow] = useState(false)
   const [isEdit, setIsEdit] = useState(false)

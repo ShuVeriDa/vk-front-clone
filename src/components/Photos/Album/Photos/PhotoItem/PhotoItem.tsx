@@ -2,7 +2,7 @@ import {ChangeEvent, FC} from 'react';
 import styles from './PhotoItem.module.scss';
 import {useNavigate} from "react-router-dom";
 import {IPhotoForAlbum, IPhotoFull} from "../../../../../types/photo.interface";
-import {avatarUrl} from "../../../../../utils/avatarUrl";
+import {serverUrl} from "../../../../../utils/serverUrl";
 import {Input} from "../../../../Input/Input";
 import cn from "clsx";
 
@@ -23,7 +23,7 @@ export const PhotoItem: FC<IPhotoItemProps> = ({photo, input, onBlur, onChangeVa
   // const isPhotos = album.photos.length > 0
   // const blackColor = !isPhotos ? {color: "#1d3a5c"} : {}
   // const albumImg = avatarUrl(album.photos[0]?.photoUrl)
-  const photoImg = avatarUrl(photo?.photoUrl)
+  const photoImg = serverUrl(photo?.photoUrl)
 
   const onClickHandler = () => {
     if (setVisible) {

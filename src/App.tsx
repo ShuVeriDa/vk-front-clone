@@ -34,6 +34,10 @@ const Albums = lazy(() => import("./pages/Albums/Albums")
   .then(({AlbumsPage}) => ({default: AlbumsPage}))
 )
 
+const MusicPage = lazy(() => import("./pages/Music/MusicPage")
+  .then(({MusicPage}) => ({default: MusicPage}))
+)
+
 const AlbumItemPage = lazy(() => import("./pages/AlbumItemPage/AlbumItemPage")
   .then(({AlbumItemPage}) => ({default: AlbumItemPage}))
 )
@@ -113,6 +117,12 @@ function App() {
           </Suspense>
         }/>
 
+        <Route path={'/music'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <MusicPage/>
+          </Suspense>
+        }/>
+
         {/*<Route path={'/albums/photo/:id'} element={*/}
         {/*  <Suspense fallback={<div>Идет загрузка...</div>}>*/}
         {/*    <Albums/>*/}
@@ -129,7 +139,6 @@ function App() {
             <AlbumEdit/>
           </Suspense>
         }/>
-
 
 
         <Route path={'/album/photo/add'} element={

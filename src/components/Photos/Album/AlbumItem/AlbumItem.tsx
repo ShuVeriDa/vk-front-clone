@@ -2,7 +2,7 @@ import {FC} from 'react';
 import styles from './AlbumItem.module.scss';
 import cameraIMG from '../../../../assets/img/camera_big.png'
 import {IPhotoAlbum} from "../../../../types/photoAlbum.interface";
-import {avatarUrl} from "../../../../utils/avatarUrl";
+import {serverUrl} from "../../../../utils/serverUrl";
 import cn from "clsx";
 import {EditSVG, LockSvg} from "../../../SvgComponent";
 import {useNavigate} from "react-router-dom";
@@ -17,7 +17,7 @@ export const AlbumItem: FC<IPhotoItemProps> = ({album}) => {
   const url = () => navigate(`/album/${album.id}`)
   const isPhotos = album.photos.length > 0
   const blackColor = !isPhotos ? {color: "#1d3a5c"} : {}
-  const albumImg = avatarUrl(album.photos[0]?.photoUrl)
+  const albumImg = serverUrl(album.photos[0]?.photoUrl)
   return (
     <div className={styles.albumItem}
          onClick={url}

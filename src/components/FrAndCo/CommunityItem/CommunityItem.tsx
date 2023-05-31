@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import defaultCommunityAvatar from '../../../assets/img/defaultCommunityAvatar.png'
 
-import {avatarUrl} from "../../../utils/avatarUrl";
+import {serverUrl} from "../../../utils/serverUrl";
 import {ICommunitySearchAbbr} from "../../../types/community.interface";
 import {FrAndCoItem} from "../FrAndCoItem/FrAndCoItem";
 import {useCommunityQuery} from "../../../react-query/useCommunityQuery";
@@ -17,7 +17,7 @@ export const CommunityItem: FC<ICommunityItemProps> = (
   }
 ) => {
 
-  const avatar = community.avatar !== null ? avatarUrl(community.avatar) : defaultCommunityAvatar
+  const avatar = community.avatar !== null ? serverUrl(community.avatar) : defaultCommunityAvatar
   const name = community.name
   const path = '../group/'
 

@@ -10,7 +10,7 @@ import defaultCommunityAvatar from "../../../assets/img/defaultCommunityAvatar.p
 import {ICommunity, ICommunityFull} from "../../../types/community.interface";
 import {IFriend} from "../../../types/friend.interface";
 import stylesFriendsItem from "./ProfileFriendsAndSubsItem/ProfileFriendsItem.module.scss";
-import {avatarUrl} from "../../../utils/avatarUrl";
+import {serverUrl} from "../../../utils/serverUrl";
 
 interface ProfileFriendsAndSubsPropsType {
   itemStyles: any
@@ -66,7 +66,7 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
         }
         {
          title === 'Подписчики' && members?.map(member => {
-           const avatar = member.avatar !== null ? avatarUrl(member.avatar): defaultAvatar
+           const avatar = member.avatar !== null ? serverUrl(member.avatar): defaultAvatar
             return <ProfileFriendsAndSubsItem key={member.id}
                                               id={member.id}
                                               name={member.firstName}

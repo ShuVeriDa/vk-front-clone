@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import styles from './FullPhotoFavoriteAdders.module.scss';
 import {IUserAbbr} from "../../../../../types/user.interface";
-import {avatarUrl} from "../../../../../utils/avatarUrl";
+import {serverUrl} from "../../../../../utils/serverUrl";
 
 interface IFullPhotoFavoriteAddersProps {
 
@@ -20,7 +20,7 @@ export const FullPhotoFavoriteAdders: FC<IFullPhotoFavoriteAddersProps> = ({user
       <div className={styles.img}>
       {users.map(user =>
           <img key={user.id}
-               src={avatarUrl(user.avatar)}
+               src={serverUrl(user.avatar)}
                alt={user.firstName}
           />
         )

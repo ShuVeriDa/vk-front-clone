@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {useUsersQuery} from "../../react-query/useUsersQuery";
 import {validEmail} from "../../utils/regex";
 import {useUploadQuery} from "../../react-query/useUploadQuery";
-import {avatarUrl} from "../../utils/avatarUrl";
+import {serverUrl} from "../../utils/serverUrl";
 
 interface IProfileUpdateProps {
 }
@@ -22,7 +22,7 @@ export const ProfileEditPage: FC<IProfileUpdateProps> = () => {
   const inputFileRef = useRef<any>(null)
   const navigate = useNavigate()
   const {user} = useAuth()
-  const avatar = avatarUrl(user?.avatar!)
+  const avatar = serverUrl(user?.avatar!)
   const fullName = `${user?.lastName} ${user?.firstName}`
 
   const {updateUser} = useUsersQuery(user?.id!)

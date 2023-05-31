@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import defaultAvatar from '../../../assets/img/defaultAvatar.png'
 
-import {avatarUrl} from "../../../utils/avatarUrl";
+import {serverUrl} from "../../../utils/serverUrl";
 import {IFriend} from "../../../types/friend.interface";
 import {useFriendsQuery} from "../../../react-query/useFriendsQuery";
 import {IUserAbbr} from "../../../types/user.interface";
@@ -24,7 +24,7 @@ export const FriendItem: FC<IFriendItemProps> = (
   const {mutate: remove} = removeFriend
   const {mutate: add} = addFriend
 
-  const avatar = user.avatar !== null ? avatarUrl(user.avatar) : defaultAvatar
+  const avatar = user.avatar !== null ? serverUrl(user.avatar) : defaultAvatar
   const fullName = `${user.firstName} ${user.lastName}`
   const path = '../profile/'
 

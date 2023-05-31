@@ -7,7 +7,7 @@ import {SubmitButton} from "../../components/SubmitButton/SubmitButton";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate, useParams} from "react-router-dom";
 import {useUploadQuery} from "../../react-query/useUploadQuery";
-import {avatarUrl} from "../../utils/avatarUrl";
+import {serverUrl} from "../../utils/serverUrl";
 import {useCommunityQuery} from "../../react-query/useCommunityQuery";
 import {ICommunityUpdate} from "../../types/community.interface";
 
@@ -24,7 +24,7 @@ export const CommunityEditPage: FC<ICommunityEditProps> = () => {
   const navigate = useNavigate()
   const {fetchOne} = useCommunityQuery(id!)
   const {data: community, isLoading, isSuccess} = fetchOne
-  const avatar = community?.avatar ? avatarUrl(community?.avatar!) : defaultCommunityAvatar
+  const avatar = community?.avatar ? serverUrl(community?.avatar!) : defaultCommunityAvatar
   const fullName = `${community?.name}`
 
   const {updateCommunity} = useCommunityQuery(community?.id!)

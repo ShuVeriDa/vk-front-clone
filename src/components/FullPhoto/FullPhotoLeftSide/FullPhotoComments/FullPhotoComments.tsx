@@ -8,7 +8,7 @@ import {ICommentsFull, ICreateComment} from "../../../../types/comments.interfac
 import {UseFormRegister} from "react-hook-form";
 import {FullPhotoHeaderAndCommentItem} from "../../../FullPhotoHeaderAndCommentItem/FullPhotoHeaderAndCommentItem";
 import {useAuth} from "../../../../hooks/useAuth";
-import {avatarUrl} from "../../../../utils/avatarUrl";
+import {serverUrl} from "../../../../utils/serverUrl";
 
 interface IFullPhotoCommentsProps {
   register: UseFormRegister<ICreateComment>
@@ -57,7 +57,7 @@ export const FullPhotoComments: FC<IFullPhotoCommentsProps> = (
         [styles.commentsWriteEditing]: isCreateComment,
       })}>
         <div className={styles.commentUserAvatar}>
-          <img src={avatarUrl(user?.avatar!)} alt=""/>
+          <img src={serverUrl(user?.avatar!)} alt=""/>
         </div>
         <div className={cn(styles.setComment)}>
           {!isCreateComment

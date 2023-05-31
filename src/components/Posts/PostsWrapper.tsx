@@ -7,7 +7,7 @@ import {PostItem} from "./PostItem/PostItem";
 import {IUserFull} from "../../types/user.interface";
 import {IPost, IPostCommunity} from "../../types/post.interface";
 import {useAuth} from "../../hooks/useAuth";
-import {avatarUrl} from "../../utils/avatarUrl";
+import {serverUrl} from "../../utils/serverUrl";
 interface IPostsProps {
   user: IUserFull
   posts: IPost[] | IPostCommunity[]
@@ -17,7 +17,7 @@ interface IPostsProps {
 
 export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts, profileId}) => {
   const {user: authorizedUser} = useAuth()
-  const avatar = avatarUrl(user?.avatar)
+  const avatar = serverUrl(user?.avatar)
   const borderRadius = {
     borderTopLeftRadius: "0",
     borderTopRightRadius: "0",

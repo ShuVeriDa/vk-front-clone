@@ -3,7 +3,7 @@ import styles from '../Photos.module.scss';
 import {MyPhotosHeader} from "./MyPhotosHeader/MyPhotosHeader";
 import {usePhotoQuery} from "../../../react-query/usePhotoQuery";
 import {PhotoItem} from "../Album/Photos/PhotoItem/PhotoItem";
-import {avatarUrl} from "../../../utils/avatarUrl";
+import {serverUrl} from "../../../utils/serverUrl";
 import {FullPhoto} from "../../FullPhoto/FullPhoto";
 import {ModalWindow} from "../../ModalWindow/ModalWindow";
 import {ClearSearchValueSVG} from "../../SvgComponent";
@@ -41,7 +41,7 @@ export const Photos: FC<IPhotosProps> = () => {
   })
 
   const images2 = imagesUrl?.map(image => {
-    const url = avatarUrl(image)
+    const url = serverUrl(image)
     return url
   })
 

@@ -229,3 +229,39 @@ export const RightArrow: FC<ISvgComponentProps> = ({ styles, onClick, width = "5
   );
 };
 
+export const PlayMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick, width = "50px", height = "50px" }) => {
+  return (
+    <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd" d="M28 14a14 14 0 1 1-28 0 14 14 0 0 1 28 0zm-8.98.87c.64-.39.64-1.36 0-1.74l-6.6-4c-.64-.38-1.42.1-1.42.87v8c0 .76.78 1.25 1.41.87z" fill="currentColor" fillRule="evenodd"></path></svg>
+  );
+};
+
+export const PauseMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick, width = "50px", height = "50px" }) => {
+  return (
+    <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd" d="M28 14a14 14 0 1 1-28 0 14 14 0 0 1 28 0zM10 9.6c0-.33.27-.6.6-.6h1.8c.33 0 .6.27.6.6v8.8a.6.6 0 0 1-.6.6h-1.8a.6.6 0 0 1-.6-.6zm5 0c0-.33.27-.6.6-.6h1.8c.33 0 .6.27.6.6v8.8a.6.6 0 0 1-.6.6h-1.8a.6.6 0 0 1-.6-.6z" fill="currentColor" fillRule="evenodd"></path></svg>
+  );
+};
+
+export const PrevMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick, width = "50px", height = "50px" }) => {
+  return (
+    <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 15c.41 0 .75-.34.75-.75v-3.18l7.12 3.82a.94.94 0 0 0 1.38-.83V5.94a.94.94 0 0 0-1.38-.83L6.5 8.93V5.75a.75.75 0 0 0-1.5 0v8.5c0 .41.34.75.75.75z" fill="currentColor"></path></svg>
+  );
+};
+export const NextMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick, width = "50px", height = "50px" }) => {
+  return (
+    <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M14.25 5a.75.75 0 0 0-.75.75v3.18L6.38 5.1A.94.94 0 0 0 5 5.94v8.12a.94.94 0 0 0 1.38.83l7.12-3.82v3.18a.75.75 0 0 0 1.5 0v-8.5a.75.75 0 0 0-.75-.75z" fill="currentColor"></path></svg>
+  );
+};
+
+export const AudioIconSVG: FC<ISvgComponentProps> = ({ styles, onClick, width = "50px", height = "50px" }) => {
+  return (
+
+    <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fillRule="evenodd"><path d="m0 0h24v24h-24z" opacity=".4"/><path d="m13 11.4849987v5.6482897c0 4.5123987-.8747233 5.3834431-4.37440289 5.8421935-1.6682259.2186769-3.62559711-.5384568-3.62559711-3.1617096 0-1.2814037.80181302-2.498263 2.46114282-2.8162494 1.26723039-.2428462-.09078118.0181935 2.77607228-.5140396.6959753-.1292083.7748413-.3782301.7748413-.908791 0-.2664094-.0013183-2.5951438-.0022416-4.1936475l-.0073943-.0003862v-4.31781414s-.0054461-2.05827203 0-3.08739758c.0065136-1.23086488.6796458-1.68321833 2.6637921-2.08397579 0 0 3.0232113-.57396781 4.6852252-.87541989.367783-.06670761.6485622.07018054.6485622.49202579 0 0-.0106774 2.62210108 0 4.05433854.0031006.41590408-.168424.60420104-.5899711.67902227-1.6816987.29848801-4.8649278.86036181-4.8649278.86036181-.3738792.09182758-.5451011.35499958-.5451011.73329156z" fill="#6f99c8" fillRule="nonzero"/></g></svg>
+  );
+};
+
+export const RepeatMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick, width = "50px", height = "50px" }) => {
+  return (
+    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="M2 12a5.9 5.9 0 0 1 5.9-5.9h10.03l-.56-.56a.9.9 0 1 1 1.27-1.28l2.1 2.1a.9.9 0 0 1 0 1.28l-2.1 2.1a.9.9 0 0 1-1.27-1.28l.56-.56H7.91A4.1 4.1 0 0 0 3.8 12v.1a.9.9 0 0 1-1.8 0zm19.1-1c.5 0 .9.4.9.9v.1a5.9 5.9 0 0 1-5.9 5.9H6.07l.57.56a.9.9 0 1 1-1.28 1.28l-2.1-2.1a.9.9 0 0 1 0-1.28l2.1-2.1a.9.9 0 0 1 1.28 1.28l-.57.56H16.1a4.1 4.1 0 0 0 4.1-4.1v-.1c0-.5.4-.9.9-.9z"></path></g></svg>
+  );
+};
+

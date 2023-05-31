@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import styles from './FullPhotoImage.module.scss';
-import {avatarUrl} from "../../../utils/avatarUrl";
+import {serverUrl} from "../../../utils/serverUrl";
 import {LeftArrow, RightArrow} from "../../SvgComponent";
 import cn from "clsx";
 
@@ -23,7 +23,7 @@ export const FullPhotoImage: FC<IFullPhotoImageProps> = ({photoUrl, nextSlide, p
 
       <div className={styles.image}>
         <div className={styles.imageItem}>
-          <img src={avatarUrl(photoUrl)} alt={avatarUrl(photoUrl)}/>
+          <img src={serverUrl(photoUrl)} alt={serverUrl(photoUrl)}/>
         </div>
       </div>
     </>
