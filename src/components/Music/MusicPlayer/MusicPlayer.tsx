@@ -2,13 +2,21 @@ import { FC, useEffect, useRef, useState } from 'react';
 import styles from './MusicPlayer.module.scss';
 import { useMusicQuery } from "../../../react-query/useMusicQuery";
 import { serverUrl } from "../../../utils/serverUrl";
-import {NextMusicSVG, PauseMusicSVG, PlayMusicSVG, PrevMusicSVG} from "../../SvgComponent";
+import {
+  AudioIconSVG,
+  NextMusicSVG,
+  PauseMusicSVG,
+  PlayMusicSVG,
+  PrevMusicSVG,
+  RepeatMusicSVG
+} from "../../SvgComponent";
 
 interface IMusicPlayerProps {}
 
 export const MusicPlayer: FC<IMusicPlayerProps> = () => {
   const [currentAudio, setCurrentAudio] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isRandom, setIsRandom] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const { getMyMusic } = useMusicQuery();
@@ -30,36 +38,71 @@ export const MusicPlayer: FC<IMusicPlayerProps> = () => {
     };
   }, []);
 
+  const pauseAudio = async () => {
+    await audioRef.current?.pause();
+    setIsPlaying(false);
+  }
+
+  const playAudio = async () => {
+    await audioRef.current?.play();
+    setIsPlaying(true);
+  }
+
 
   const playOrPauseAudio = async () => {
     if (isPlaying) {
-      await audioRef.current?.pause();
-      setIsPlaying(false);
+      await pauseAudio()
     } else {
-      await audioRef.current?.play();
-      setIsPlaying(true);
+     await playAudio()
     }
   };
 
-  const nextAudio = async () => {
-    setCurrentAudio((prev) => prev === myMusic?.length! - 1 ? 0 : prev + 1)
+  const getRandomMusicIndex = () => {
+    return Math.floor(Math.random() * myMusic?.length!);
+  };
+
+  const randomAudio = () => {
+    const random = getRandomMusicIndex();
+    setCurrentAudio(random);
     audioRef.current?.load();
+  };
+
+  const nextAudio = async () => {
+    if(!isRandom) {
+      setCurrentAudio((prev) => prev === myMusic?.length! - 1 ? 0 : prev + 1)
+      audioRef.current?.load();
+    }
+
+    if(isRandom) {
+      randomAudio()
+    }
 
     if(isPlaying) {
-      await audioRef.current?.play();
-      setIsPlaying(true);
+      await playAudio()
     }
   }
 
   const prevAudio = async () => {
-    setCurrentAudio((prev) => prev === 0 ? myMusic?.length! - 1 : prev - 1)
-    audioRef.current?.load();
+    if(!isRandom) {
+      setCurrentAudio((prev) => prev === 0 ? myMusic?.length! - 1 : prev - 1)
+      audioRef.current?.load();
+    }
+
+    if(isRandom) {
+      randomAudio()
+    }
 
     if(isPlaying) {
-      await audioRef.current?.play();
-      setIsPlaying(true);
+      await playAudio()
     }
   }
+
+  const handleRepeat = async () => {
+    audioRef.current!.currentTime = 0;
+    await playAudio();
+  };
+
+
 
   console.log(isSuccess && myMusic[currentAudio]?.musicUrl);
   console.log(isPlaying);
@@ -75,14 +118,18 @@ export const MusicPlayer: FC<IMusicPlayerProps> = () => {
         <button onClick={nextAudio}><NextMusicSVG /></button>
       </div>
      <div className={styles.musicItem}>
-       <div><img src="" alt=""/></div>
-       <div>
-         <span>{myMusic![currentAudio].title}</span>
-         <span>{myMusic![currentAudio].artist}</span>
+       <div className={styles.icon}><AudioIconSVG /></div>
+       <div className={styles.info}>
+         <span>{isSuccess && myMusic![currentAudio].title}</span>
+         <span>{isSuccess && myMusic![currentAudio].artist}</span>
        </div>
      </div>
-
-      <h2>{isSuccess && myMusic![currentAudio].title}</h2>
+      <div className={styles.options}>
+        <button onClick={handleRepeat}><RepeatMusicSVG /></button>
+      </div>
+      <div>
+        <button onClick={() => setIsRandom(!isRandom)}>random</button>
+      </div>
 
     </div>
   );
