@@ -1,0 +1,28 @@
+.wrapper {
+
+  .title {
+    h2 {
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+
+  .musicItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 185px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 10px 0;
+    z-index: 1;
+    overflow: hidden;
+
+    .musicItem {
+      width: 404px;
+      margin-bottom: 15px;
+      margin-right: 15px;
+      box-sizing: border-box;
+    }
+  }
+}

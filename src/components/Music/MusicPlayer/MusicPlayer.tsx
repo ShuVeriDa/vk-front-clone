@@ -1,30 +1,36 @@
-import {ChangeEvent, FC, useEffect, useRef, useState} from 'react';
+import {FC, MutableRefObject, useEffect, useState} from 'react';
 import styles from './MusicPlayer.module.scss';
-import {useMusicQuery} from "../../../react-query/useMusicQuery";
 import {serverUrl} from "../../../utils/serverUrl";
 import {
-  AudioIconSVG,
   NextMusicSVG,
   PauseMusicSVG,
   PlayMusicSVG,
-  PrevMusicSVG, RandomMusicSVG,
+  PrevMusicSVG,
+  RandomMusicSVG,
   RepeatMusicSVG
 } from "../../SvgComponent";
+import {MusicItem} from "../Music/MusicItems/MusicItem/MusicItem";
+import {IMusicFull} from "../../../types/music.interface";
 
 interface IMusicPlayerProps {
+  myMusic: IMusicFull[]
+  isSuccess:boolean
+  audioRef: MutableRefObject<HTMLAudioElement | null>
+  currentAudio: number
+  duration: number
+  currentTime: number
+  setCurrentAudio: (currentAudio: number | ((prev: number) => number)) => void;
+  setCurrentTime: (currentTime: number) => void
+  setDuration: (duration: number) => void
 }
 
-export const MusicPlayer: FC<IMusicPlayerProps> = () => {
-  const [currentAudio, setCurrentAudio] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+export const MusicPlayer: FC<IMusicPlayerProps> = ({myMusic, isSuccess, audioRef, setCurrentAudio, currentAudio, duration, currentTime, setDuration, setCurrentTime}) => {
+
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [isRandom, setIsRandom] = useState(false)
-  const [duration, setDuration] = useState(0);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const progressBarRef = useRef<HTMLInputElement>(null);
 
-  const {getMyMusic} = useMusicQuery();
-  const {data: myMusic, isSuccess} = getMyMusic;
+
 
   const handleAudioEnded = () => {
     setIsPlaying(false);
@@ -105,13 +111,6 @@ export const MusicPlayer: FC<IMusicPlayerProps> = () => {
     await playAudio();
   };
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    const formattedMinutes = String(minutes).padStart(1, '0');
-    const formattedSeconds = String(seconds).padStart(2, '0');
-    return `${formattedMinutes}:${formattedSeconds}`;
-  };
   useEffect(() => {
     const updateTime = () => {
       setCurrentTime(audioRef.current?.currentTime || 0);
@@ -130,11 +129,6 @@ export const MusicPlayer: FC<IMusicPlayerProps> = () => {
     };
   }, []);
 
-  const handleProgressBarChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const time = Number(e.currentTarget.value);
-    setCurrentTime(time);
-    audioRef.current!.currentTime = time;
-  };
 
   return (
     <div className={styles.wrapper}>
@@ -156,39 +150,23 @@ export const MusicPlayer: FC<IMusicPlayerProps> = () => {
                     className={styles.next}
             ><NextMusicSVG/></button>
           </div>
-
         </div>
-        <div className={styles.musicItem}>
-          <div className={styles.icon}><AudioIconSVG/></div>
-          <div className={styles.info}>
-            <span className={styles.title}>{isSuccess && myMusic![currentAudio].title}</span>
-            <span className={styles.artist}>{isSuccess && myMusic![currentAudio].artist}</span>
-            <div className={styles.input}>
-              <input
-                className={styles.duration}
-                type="range"
-                min={0}
-                max={duration}
-                value={currentTime}
-                onChange={handleProgressBarChange}
-                ref={progressBarRef}
-                style={{
-                  background: `linear-gradient(to right,  #447BBA ${currentTime / duration * 100}%, #edeef0 ${currentTime / duration * 100}%)`
-                }}
-              />
-            </div>
 
-          </div>
-          <div className={styles.time}>
-            <span>{formatTime(currentTime)}</span>
-          </div>
-        </div>
+        <MusicItem myMusic={myMusic!}
+                   setCurrentTime={setCurrentTime}
+                   duration={duration}
+                   currentAudio={currentAudio}
+                   audioRef={audioRef}
+                   isSuccess={isSuccess}
+                   currentTime={currentTime}
+        />
+
         <div className={styles.options}>
           <button onClick={() => setIsRandom(!isRandom)}
-            className={styles.random}
+                  className={styles.random}
           ><RandomMusicSVG/></button>
           <button onClick={handleRepeat}
-          className={styles.repeat}
+                  className={styles.repeat}
           ><RepeatMusicSVG/></button>
         </div>
       </div>

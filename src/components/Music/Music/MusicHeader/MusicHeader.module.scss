@@ -1,0 +1,72 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+
+  .nav {
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      padding: 0;
+
+      .categoryItem {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        height: 28px;
+        margin-right: 6px;
+        padding: 2px 8px;
+        color: #818C99;
+        font-size: 14px;
+        font-weight: 500;
+        box-sizing: border-box;
+        border: 1px solid transparent;
+
+        &:hover {
+          cursor: pointer;
+          border-radius: 8px;
+          box-shadow: rgba(0, 0, 0, 0.04) 0 4px 8px 0, rgba(0, 0, 0, 0.06) 0 0 4px 0;
+          color: #346297;
+          border: 1px solid #e7e8ec;
+        }
+      }
+
+      .active {
+        cursor: pointer;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.04) 0 4px 8px 0, rgba(0, 0, 0, 0.06) 0 0 4px 0;
+        color: #346297;
+        border: 1px solid #e7e8ec;
+      }
+    }
+
+
+  }
+
+  .uploadAndPlaylist {
+
+
+    .playListSVG,
+    .uploadSVG {
+      width: 24px;
+      height: 24px;
+      color: #b6bec7;
+
+      &:hover {
+        cursor: pointer;
+        color: #99a2ad;
+      }
+    }
+
+    svg {
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
