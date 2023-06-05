@@ -14,22 +14,29 @@ import {IMusicFull} from "../../../types/music.interface";
 
 interface IMusicPlayerProps {
   myMusic: IMusicFull[]
-  isSuccess:boolean
+  isSuccess: boolean
   audioRef: MutableRefObject<HTMLAudioElement | null>
   currentAudio: number
   duration: number
   currentTime: number
+  isPlaying: boolean
   setCurrentAudio: (currentAudio: number | ((prev: number) => number)) => void;
   setCurrentTime: (currentTime: number) => void
   setDuration: (duration: number) => void
+  setIsPlaying: (isPlaying: boolean) => void
+  playAudio: () => void
+  pauseAudio: () => void
 }
 
-export const MusicPlayer: FC<IMusicPlayerProps> = ({myMusic, isSuccess, audioRef, setCurrentAudio, currentAudio, duration, currentTime, setDuration, setCurrentTime}) => {
+export const MusicPlayer: FC<IMusicPlayerProps> = (
+  {
+    myMusic, isSuccess, audioRef, setCurrentAudio, currentAudio, duration, currentTime, setDuration, setCurrentTime, playAudio, pauseAudio, setIsPlaying, isPlaying
+  }
+) => {
 
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  // const [isPlaying, setIsPlaying] = useState(false);
   const [isRandom, setIsRandom] = useState(false)
-
 
 
   const handleAudioEnded = () => {
@@ -47,16 +54,6 @@ export const MusicPlayer: FC<IMusicPlayerProps> = ({myMusic, isSuccess, audioRef
       }
     };
   }, []);
-
-  const pauseAudio = async () => {
-    await audioRef.current?.pause();
-    setIsPlaying(false);
-  }
-
-  const playAudio = async () => {
-    await audioRef.current?.play();
-    setIsPlaying(true);
-  }
 
   const playOrPauseAudio = async () => {
     if (isPlaying) {
@@ -159,6 +156,7 @@ export const MusicPlayer: FC<IMusicPlayerProps> = ({myMusic, isSuccess, audioRef
                    audioRef={audioRef}
                    isSuccess={isSuccess}
                    currentTime={currentTime}
+                   isPlayer={true}
         />
 
         <div className={styles.options}>

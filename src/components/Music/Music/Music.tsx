@@ -8,11 +8,16 @@ import {IMusicFull} from "../../../types/music.interface";
 interface IMusicProps {
   myMusic: IMusicFull[]
   setCurrentTime: (number: number) => void
+  setCurrentAudio: (number: number) => void
   audioRef: MutableRefObject<HTMLAudioElement | null>
   currentAudio: number
   duration: number
   currentTime: number
   isSuccess: boolean
+  isPlaying: boolean
+  setIsPlaying: (isPlaying: boolean) => void
+  playAudio: () => void
+  pauseAudio: () => void
 }
 
 export const Music: FC<IMusicProps> = (
@@ -23,7 +28,9 @@ export const Music: FC<IMusicProps> = (
     audioRef,
     duration,
     isSuccess,
-    setCurrentTime
+    setCurrentTime,
+    setCurrentAudio,
+    pauseAudio, playAudio, setIsPlaying, isPlaying
   }
 ) => {
   return (
@@ -37,7 +44,12 @@ export const Music: FC<IMusicProps> = (
                   duration={duration}
                   currentTime={currentTime}
                   isSuccess={isSuccess}
+                  isPlaying={isPlaying}
                   setCurrentTime={setCurrentTime}
+                  setCurrentAudio={setCurrentAudio}
+                  setIsPlaying={setIsPlaying}
+                  playAudio={playAudio}
+                  pauseAudio={pauseAudio}
       />
     </div>
   );

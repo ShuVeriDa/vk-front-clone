@@ -11,12 +11,18 @@
     background: #EBEDF0;
     border-radius: 10px;
     margin-right: 10px;
-
-
     svg {
       padding: 10px 9px;
       background: #EBEDF0;
       border-radius: 10px;
+    }
+  }
+
+
+  .iconActive {
+    //background: rgba(0, 0, 0, 0.5);
+    svg {
+      background: rgba(0, 0, 0, 0.5);
     }
   }
 
@@ -80,3 +86,4 @@
     padding: 12px 0 0 8px;
   }
 }
+

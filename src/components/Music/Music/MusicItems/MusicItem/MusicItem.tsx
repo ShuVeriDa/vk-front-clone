@@ -1,11 +1,12 @@
 import {ChangeEvent, FC, MutableRefObject, useRef} from 'react';
 import styles from './MusicItem.module.scss';
-import {AudioIconSVG} from "../../../../SvgComponent";
+import {AudioIconSVG, PlayMusicSVG} from "../../../../SvgComponent";
 import {IMusicFull} from "../../../../../types/music.interface";
 import cn from "clsx";
 
 interface IMusicItemProps {
   setCurrentTime: (number: number) => void
+  setCurrentAudio?: (number: number) => void
   audioRef: MutableRefObject<HTMLAudioElement | null>
   currentAudio: number
   duration?: number
@@ -14,10 +15,25 @@ interface IMusicItemProps {
   myMusic?: IMusicFull[]
   musicItem?: IMusicFull
   classes?: string
+  index?: number
+  isPlayer?: boolean
 }
 
 export const MusicItem: FC<IMusicItemProps> = (
-  {setCurrentTime, audioRef, currentAudio, duration, currentTime, isSuccess, myMusic, musicItem, classes}
+  {
+    setCurrentTime,
+    audioRef,
+    currentAudio,
+    duration,
+    currentTime,
+    isSuccess,
+    myMusic,
+    musicItem,
+    classes,
+    setCurrentAudio,
+    index,
+    isPlayer
+  }
 ) => {
   const progressBarRef = useRef<HTMLInputElement>(null);
 
@@ -36,8 +52,12 @@ export const MusicItem: FC<IMusicItemProps> = (
   };
 
   return (
-    <div className={cn(styles.musicItem, classes)}>
-      <div className={styles.icon}><AudioIconSVG/></div>
+    <div className={cn(styles.musicItem, classes, index === currentAudio && styles.active)}>
+      <div className={cn(styles.icon, index === currentAudio && styles.iconActive)}
+      >
+        <AudioIconSVG fill={!isPlayer ? 'rgba(129,140,153,0.6)' : '#6f99c8'}/>
+
+      </div>
       <div className={styles.info}>
             <span className={styles.title}>
               {myMusic && <> {isSuccess && myMusic![currentAudio].title}</>}
@@ -47,7 +67,7 @@ export const MusicItem: FC<IMusicItemProps> = (
           {myMusic && <>{isSuccess && myMusic![currentAudio].artist} </>}
           {musicItem?.artist}
             </span>
-        {duration && <div className={styles.input}>
+        {isPlayer && <div className={styles.input}>
           <input
             className={styles.duration}
             type="range"
@@ -57,10 +77,11 @@ export const MusicItem: FC<IMusicItemProps> = (
             onChange={handleProgressBarChange}
             ref={progressBarRef}
             style={{
-              background: `linear-gradient(to right,  #447BBA ${currentTime / duration * 100}%, #edeef0 ${currentTime / duration * 100}%)`
+              background: `linear-gradient(to right,  #447BBA ${currentTime / duration! * 100}%, #edeef0 ${currentTime / duration! * 100}%)`
             }}
           />
-        </div>}
+        </div>
+        }
       </div>
       <div className={styles.time}>
         <span>{formatTime(currentTime)}</span>
