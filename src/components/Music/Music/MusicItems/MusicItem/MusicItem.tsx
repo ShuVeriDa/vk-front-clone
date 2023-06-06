@@ -1,8 +1,10 @@
-import {ChangeEvent, FC, MutableRefObject, useRef} from 'react';
+import {FC, MutableRefObject} from 'react';
 import styles from './MusicItem.module.scss';
-import {AudioIconSVG, PlayMusicSVG} from "../../../../SvgComponent";
+import {AudioIconSVG, PauseMusicSVG, PlayMusicSVG} from "../../../../SvgComponent";
 import {IMusicFull} from "../../../../../types/music.interface";
 import cn from "clsx";
+import {MusicInfo} from "./MusicInfo/MusicInfo";
+import {MusicTime} from "./MusicTime/MusicTime";
 
 interface IMusicItemProps {
   setCurrentTime: (number: number) => void
@@ -17,6 +19,7 @@ interface IMusicItemProps {
   classes?: string
   index?: number
   isPlayer?: boolean
+  isPlaying?: boolean
 }
 
 export const MusicItem: FC<IMusicItemProps> = (
@@ -32,60 +35,48 @@ export const MusicItem: FC<IMusicItemProps> = (
     classes,
     setCurrentAudio,
     index,
-    isPlayer
+    isPlayer,
+    isPlaying
   }
 ) => {
-  const progressBarRef = useRef<HTMLInputElement>(null);
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    const formattedMinutes = String(minutes).padStart(1, '0');
-    const formattedSeconds = String(seconds).padStart(2, '0');
-    return `${formattedMinutes}:${formattedSeconds}`;
-  };
 
-  const handleProgressBarChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const time = Number(e.currentTarget.value);
-    setCurrentTime(time);
-    audioRef.current!.currentTime = time;
-  };
+
+
 
   return (
     <div className={cn(styles.musicItem, classes, index === currentAudio && styles.active)}>
       <div className={cn(styles.icon, index === currentAudio && styles.iconActive)}
       >
-        <AudioIconSVG fill={!isPlayer ? 'rgba(129,140,153,0.6)' : '#6f99c8'}/>
+        {!isPlayer && <div className={cn(index === currentAudio ? styles.playOrPauseActive : styles.playOrPause)}
+        >
+          {isPlaying && currentAudio === index
+            ? <PauseMusicSVG styles={styles.pause}/>
+            : <PlayMusicSVG styles={styles.play}/>
+          }
+        </div>}
+        <AudioIconSVG styles={cn(!isPlayer && styles.audioIcon)}
+                      fill={!isPlayer ? 'rgba(129,140,153,0.6)' : '#6f99c8'}
+        />
 
       </div>
-      <div className={styles.info}>
-            <span className={styles.title}>
-              {myMusic && <> {isSuccess && myMusic![currentAudio].title}</>}
-              {musicItem?.title}
-            </span>
-        <span className={styles.artist}>
-          {myMusic && <>{isSuccess && myMusic![currentAudio].artist} </>}
-          {musicItem?.artist}
-            </span>
-        {isPlayer && <div className={styles.input}>
-          <input
-            className={styles.duration}
-            type="range"
-            min={0}
-            max={duration}
-            value={currentTime}
-            onChange={handleProgressBarChange}
-            ref={progressBarRef}
-            style={{
-              background: `linear-gradient(to right,  #447BBA ${currentTime / duration! * 100}%, #edeef0 ${currentTime / duration! * 100}%)`
-            }}
-          />
-        </div>
-        }
-      </div>
-      <div className={styles.time}>
-        <span>{formatTime(currentTime)}</span>
-      </div>
+      {/*<MusicIcon index={index!} */}
+      {/*           currentAudio={currentAudio} */}
+      {/*           isPlayer={isPlayer!} */}
+      {/*           isPlaying={isPlaying!} */}
+      {/*/>*/}
+      <MusicInfo setCurrentTime={setCurrentTime}
+                 audioRef={audioRef}
+                 currentAudio={currentAudio}
+                 currentTime={currentTime}
+                 isSuccess={isSuccess}
+                 musicItem={musicItem!}
+                 myMusic={myMusic!}
+                 isPlayer={isPlayer!}
+                 duration={duration}
+
+      />
+      <MusicTime currentTime={currentTime} />
     </div>
   );
 };

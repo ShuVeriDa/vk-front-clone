@@ -75,6 +75,7 @@ export const MusicItems: FC<IMusicItemsProps> = (
                          classes={styles.musicItem}
                          index={i}
                          isPlayer={false}
+                         isPlaying={isPlaying}
               />
             </div>
           }
