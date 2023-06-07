@@ -35,6 +35,8 @@ export const ProfilePage: FC<ProfilePropsType> = () => {
     client.invalidateQueries( ['user', 'one'])
   }, [])
 
+  console.log(user)
+
   return (
     <div className={styles.profile}>
       <ProfileHeader user={isSuccessUser ? user : undefined} profileId={id!}/>

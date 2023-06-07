@@ -31,6 +31,7 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
   }) => {
   const friendsLength = friends?.length
   const communityLength = communities?.length
+
   return (
     <div className={styles.profileFrAndSubs}>
       <div className={styles.profileFrAndSubsHeader}>
@@ -46,7 +47,7 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
             return <ProfileFriendsAndSubsItem key={friend.id}
                                               id={friend.id}
                                               styles={itemStyles}
-                                              avatar={friend.avatar || defaultAvatar}
+                                              avatar={friend.avatar ? serverUrl(friend.avatar) : defaultAvatar}
                                               name={friend.firstName}
                                               title={title}
 
@@ -57,7 +58,7 @@ export const ProfileFriendsAndSubs: FC<ProfileFriendsAndSubsPropsType> = (
             return <ProfileFriendsAndSubsItem key={community.id}
                                               id={community.id}
                                               name={community.name}
-                                              avatar={community.avatar || defaultCommunityAvatar}
+                                              avatar={community.avatar ? serverUrl(community.avatar) : defaultCommunityAvatar}
                                               styles={itemStyles}
                                               description={community.description}
                                               title={title}

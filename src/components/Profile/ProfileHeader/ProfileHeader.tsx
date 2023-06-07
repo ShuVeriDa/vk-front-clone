@@ -18,7 +18,7 @@ interface IProfileHeader {
 export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
   const inputFileRef = useRef<any>(null)
   const navigate = useNavigate()
-  const fullName = useMemo(() => `${user?.lastName} ${user?.firstName}`, [user])
+  const fullName = `${user?.lastName} ${user?.firstName}`
 
   const [show, setShow] = useState(false)
 

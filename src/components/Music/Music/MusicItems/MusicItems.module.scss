@@ -1,10 +1,46 @@
 .wrapper {
-
+  padding: 0 0 0 20px;
+  position: relative;
   .title {
     h2 {
       font-size: 15px;
       font-weight: 500;
     }
+  }
+
+  .leftArrow, .rightArrow {
+    width: 26px;
+    height: 26px;
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 0 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      color: #99a2ad;
+      width: 12px;
+      height: 16px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      box-shadow:0 0 15px 0;
+      background: #fff;
+    }
+  }
+  
+  .leftArrow {
+    position: relative;
+    top: 105px;
+    z-index: 1;
+  }
+
+  .rightArrow {
+    position: relative;
+    //top: 105px;
+    bottom: 28px;
+    z-index: 1;
   }
 
   .musicItems {
@@ -28,7 +64,7 @@
         background: #F2F3F5;
       }
       .musicItem {
-        width: 404px;
+        width: 385px;
 
         margin-right: 15px;
         box-sizing: border-box;

@@ -282,5 +282,19 @@ export const UploadMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick}) => {
   );
 };
 
+export const RightArrowMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick}) => {
+  return (
+    <svg onClick={onClick} className={styles} xmlns="http://www.w3.org/2000/svg" width="12" height="16" fill="none" viewBox="0 0 12 16"><path fill="currentColor" d="M7.23 8 3.86 4.64a.9.9 0 0 1 1.28-1.28l4 4a.9.9 0 0 1 0 1.28l-4 4a.9.9 0 0 1-1.28-1.28L7.23 8Z"></path></svg>
+  );
+};
+
+export const LeftArrowMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick}) => {
+  return (
+    <svg  onClick={onClick} className={styles} fill="none" height="16" viewBox="0 0 12 16" width="12" xmlns="http://www.w3.org/2000/svg"><path d="m4.77 8 3.37 3.36a.9.9 0 1 1-1.28 1.28l-4-4a.9.9 0 0 1 0-1.28l4-4a.9.9 0 1 1 1.28 1.28z" fill="currentColor"></path></svg>
+  );
+};
+
+
+
 
 
