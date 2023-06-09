@@ -5,6 +5,7 @@ import {MusicItems} from "./MusicItems/MusicItems";
 import styles from './Music.module.scss';
 import {IMusicFull} from "../../../types/music.interface";
 import {useMusicQuery} from "../../../react-query/useMusicQuery";
+import {MusicNotFound} from "./MusicNotFound/MusicNotFound";
 
 interface IMusicProps {
   myMusic: IMusicFull[]
@@ -49,20 +50,22 @@ export const Music: FC<IMusicProps> = (
                    setValue={setValue}
                    status={status}
       />
-      <MusicItems title={title}
-                  music={isFoundMusic}
-                  audioRef={audioRef}
-                  currentAudio={currentAudio}
-                  duration={duration}
-                  currentTime={currentTime}
-                  isSuccess={isSuccess}
-                  isPlaying={isPlaying}
-                  setCurrentTime={setCurrentTime}
-                  setCurrentAudio={setCurrentAudio}
-                  setIsPlaying={setIsPlaying}
-                  playAudio={playAudio}
-                  pauseAudio={pauseAudio}
-      />
+      {isSuccessFoundMusic && foundMusic.length === 0 && value.length > 0 ? <MusicNotFound title={value}/> :
+        <MusicItems title={title}
+                    music={isFoundMusic}
+                    audioRef={audioRef}
+                    currentAudio={currentAudio}
+                    duration={duration}
+                    currentTime={currentTime}
+                    isSuccess={isSuccess}
+                    isPlaying={isPlaying}
+                    setCurrentTime={setCurrentTime}
+                    setCurrentAudio={setCurrentAudio}
+                    setIsPlaying={setIsPlaying}
+                    playAudio={playAudio}
+                    pauseAudio={pauseAudio}
+        />}
+
     </div>
   );
 };

@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 50px;
+  box-sizing: border-box;
+
+  .info, .svg {
+    color: #AEB7C2;
+  }
+
+  .info {
+    font-size: 14px;
+  }
+}

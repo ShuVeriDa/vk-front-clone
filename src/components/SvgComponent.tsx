@@ -294,6 +294,12 @@ export const LeftArrowMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick}) =>
   );
 };
 
+export const NotFoundMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick}) => {
+  return (
+    <svg onClick={onClick} className={styles} width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><g id="music_outline_56__Icons-56/music_outline_56" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="music_outline_56__music_outline_56"><path opacity=".4" d="M0 0h56v56H0z"></path><path d="M45 33.93c0 4.55-1.94 7.97-5.07 9.62-2.84 1.5-6.24 1.22-8.22-.76-1.98-1.98-2.25-5.38-.76-8.22 1.65-3.13 5.07-5.07 9.62-5.07H42V18.84l-21 4.38v15.7c0 4.56-1.94 7.98-5.07 9.63-2.84 1.5-6.24 1.22-8.22-.76-1.98-1.98-2.25-5.38-.76-8.22 1.65-3.13 5.07-5.07 9.62-5.07H18V17.52c.02-1.5.15-2.36.5-3.2l.08-.19a5.55 5.55 0 0 1 1.84-2.26c.86-.62 1.72-.95 3.5-1.32l14.46-3.02A5.5 5.5 0 0 1 45 12.92v21ZM18 37.5h-1.43c-3.46 0-5.85 1.35-6.96 3.47-.92 1.74-.76 3.72.22 4.7s2.96 1.14 4.7.22c2.12-1.11 3.47-3.5 3.47-6.96V37.5Zm24-5h-1.43c-3.46 0-5.85 1.35-6.96 3.47-.92 1.74-.76 3.72.22 4.7s2.96 1.14 4.7.22c2.12-1.11 3.47-3.5 3.47-6.96V32.5Zm-.05-20.1a2.5 2.5 0 0 0-2.96-1.93L24.3 13.53c-1.06.23-1.54.4-1.94.65l-.18.12c-.39.28-.67.62-.86 1.06-.24.53-.32 1.04-.32 2.47v2.33l21-4.38v-2.86c0-.11 0-.23-.02-.34Z" id="music_outline_56__Icon-Color" fill="currentColor" fillRule="nonzero"></path></g></g></svg>
+  );
+};
+
 
 
 
