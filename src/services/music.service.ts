@@ -22,7 +22,8 @@ export const MusicService =  {
   },
 
   searchMusic: async (query?: ISearchMusic) => {
-    const res = await axiosClassic.get<IMusicFull[]>(getMusicUrl(`/search?title=${query?.title}&artist=${query?.artist}`))
+    const res = await axiosClassic.get<IMusicFull[]>(getMusicUrl(`/search?title=${query?.title}`))
+    // const res = await axiosClassic.get<IMusicFull[]>(getMusicUrl(`/search?title=${query?.title}&artist=${query?.artist}`))
     return res.data
   },
 

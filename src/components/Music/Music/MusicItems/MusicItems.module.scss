@@ -1,6 +1,12 @@
 .wrapper {
   padding: 0 0 0 20px;
   position: relative;
+
+  &:hover {
+    .leftArrow, .rightArrow {
+      display: flex;
+    }
+  }
   .title {
     h2 {
       font-size: 15px;
@@ -9,11 +15,12 @@
   }
 
   .leftArrow, .rightArrow {
+    display: none;
     width: 26px;
     height: 26px;
     border-radius: 100%;
     box-shadow: rgba(0, 0, 0, 0.16) 0 0 15px 0;
-    display: flex;
+    //display: flex;
     justify-content: center;
     align-items: center;
 
@@ -31,15 +38,16 @@
   }
   
   .leftArrow {
-    position: relative;
+    position: absolute;
     top: 105px;
     z-index: 1;
   }
 
   .rightArrow {
-    position: relative;
+    position: absolute;
     //top: 105px;
-    bottom: 28px;
+    bottom: 85px;
+    right: 17px;
     z-index: 1;
   }
 

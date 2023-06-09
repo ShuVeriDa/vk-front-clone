@@ -1,9 +1,10 @@
-import {FC, MutableRefObject} from 'react';
+import {FC, MutableRefObject, useState} from 'react';
 import {MusicHeader} from "./MusicHeader/MusicHeader";
 import {MusicSearch} from "./MusicSearch/MusicSearch";
 import {MusicItems} from "./MusicItems/MusicItems";
 import styles from './Music.module.scss';
 import {IMusicFull} from "../../../types/music.interface";
+import {useMusicQuery} from "../../../react-query/useMusicQuery";
 
 interface IMusicProps {
   myMusic: IMusicFull[]
@@ -33,12 +34,23 @@ export const Music: FC<IMusicProps> = (
     pauseAudio, playAudio, setIsPlaying, isPlaying
   }
 ) => {
+  const [value, setValue] = useState('')
+  const {searchMusic} = useMusicQuery(undefined, {title: value})
+  const {data: foundMusic, isSuccess: isSuccessFoundMusic, status} = searchMusic
+
+  const isFoundMusic = isSuccessFoundMusic && foundMusic.length > 0 && value.length > 0 ? foundMusic : myMusic
+  const title = isSuccessFoundMusic && foundMusic.length > 0 && value.length > 0 ? 'Все аудиозаписи' : 'Мои треки'
+
+
   return (
     <div className={styles.wrapper}>
       <MusicHeader/>
-      <MusicSearch/>
-      <MusicItems title={'Мои треки'}
-                  music={myMusic}
+      <MusicSearch value={value}
+                   setValue={setValue}
+                   status={status}
+      />
+      <MusicItems title={title}
+                  music={isFoundMusic}
                   audioRef={audioRef}
                   currentAudio={currentAudio}
                   duration={duration}

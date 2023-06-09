@@ -8,9 +8,11 @@ interface ISearchProps {
   placeholder?: string
   status?: "error" | "success" | "loading"
   classes?: string
+  classesClear?: string
+  classesSpinner?: string
 }
 
-export const Search: FC<ISearchProps> = ({updateSearch, status, placeholder, classes}) => {
+export const Search: FC<ISearchProps> = ({updateSearch, status, placeholder, classes, classesClear, classesSpinner}) => {
 
   const [searchName, setSearchName] = useState('')
 
@@ -41,8 +43,8 @@ export const Search: FC<ISearchProps> = ({updateSearch, status, placeholder, cla
         <MagnifierSVG />
       </button>
       {status === 'loading'
-        ? <div className={styles.spinner}><SearchLoaderSVG/></div>
-        : searchName && <div className={styles.clear}><ClearSearchValueSVG onClick={onClear}/> </div>
+        ? <div className={cn(styles.spinner, classesSpinner)}><SearchLoaderSVG/></div>
+        : searchName && <div className={cn(styles.clear, classesClear)}><ClearSearchValueSVG onClick={onClear}/> </div>
       }
     </div>
   );

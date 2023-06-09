@@ -38,7 +38,7 @@
     }
   }
   
-  .spinner {
+  .spinner, .clear {
     position: absolute;
     top: 21px;
     left: 425px;
@@ -46,9 +46,6 @@
   }
 
   .clear {
-    position: absolute;
-    top: 21px;
-    left: 425px;
     z-index: 3;
 
     &:hover {

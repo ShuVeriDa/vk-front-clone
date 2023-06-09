@@ -6,7 +6,7 @@ import cn from "clsx";
 import {LeftArrowMusicSVG, RightArrowMusicSVG} from "../../../SvgComponent";
 
 interface IMusicItemsProps {
-  title: 'Мои треки' | "Недавно прослушанные"
+  title: 'Мои треки' | "Недавно прослушанные" | "Все аудиозаписи"
   music: IMusicFull[]
   audioRef: MutableRefObject<HTMLAudioElement | null>
   currentAudio: number
@@ -59,14 +59,12 @@ export const MusicItems: FC<IMusicItemsProps> = (
   const [pixel, setPixel] = useState(0)
 
   const translateLeft = () => {
-      setPixel(pixel + 300)
+    if (pixel < 0)setPixel(pixel + 300)
   }
 
   const translateRight = () => {
-    setPixel(pixel - 300)
+     setPixel(pixel - 300)
   }
-
-  console.log(pixel)
 
   return (
     <div className={styles.wrapper}>
