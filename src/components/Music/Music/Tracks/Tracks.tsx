@@ -15,9 +15,13 @@ export const Tracks: FC<IMyTracksProps> = ({page, value, setValue}) => {
   const title = page === "allTracks" ? "Все аудиозаписи" : "Мои треки"
   return (
     <div className={styles.wrapper}>
-      <TracksHeader title={title} />
-      <MusicSearch value={value} setValue={setValue} />
-      <TrackItems />
+      <TracksHeader title={title}
+                    setValue={setValue}
+      />
+      <MusicSearch value={value}
+                   setValue={setValue}
+      />
+      {page === "myTracks" && <TrackItems/>}
     </div>
   );
 };

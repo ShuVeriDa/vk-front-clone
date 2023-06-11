@@ -123,6 +123,11 @@ function App() {
             <MusicPage page={'myTracks'}/>
           </Suspense>
         }/>
+        <Route path={'/music/alltracks'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <MusicPage page={'allTracks'}/>
+          </Suspense>
+        }/>
         <Route path={'/album/:id'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <AlbumItemPage/>

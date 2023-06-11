@@ -4,23 +4,33 @@ import ArrowRight from '../../../../../assets/img/rightArrow.png'
 import {Link, useNavigate} from "react-router-dom";
 
 interface IPhotosHeaderProps {
-  title?: string
+  title?: "Все аудиозаписи" | "Мои треки"
+  setValue: (value: string) => void
 }
 
 export const TracksHeader: FC<IPhotosHeaderProps> = (
   {
     title,
-
+    setValue
   }
 ) => {
   const navigate = useNavigate()
-  const onSetPage = () => navigate("/music")
+  const onSetPage = () => {
+    setValue('')
+    navigate("/music")
+  }
   return (
     <div className={styles.header}>
       <div className={styles.musicTitle}>
         <div className={styles.title}>
           <span className={styles.main}>
-            <span onClick={onSetPage}>Главная</span>
+            <span onClick={onSetPage}>
+              {
+                title === "Мои треки"
+                ? "Главная"
+                : "Результаты поиска"
+              }
+            </span>
           </span>
           <>
             <img src={ArrowRight} alt=""/>

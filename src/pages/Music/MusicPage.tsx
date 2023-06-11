@@ -34,6 +34,9 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  console.log(value)
+
+
   return (
     <div className={styles.wrapper}>
       <MusicPlayer myMusic={myMusic!}
@@ -79,6 +82,27 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
                             currentAudio={currentAudio}
                             currentTime={currentTime}
                             isSuccess={isSuccess}
+                            isPlaying={isPlaying}
+                            setCurrentTime={setCurrentTime}
+                            setCurrentAudio={setCurrentAudio}
+                            setIsPlaying={setIsPlaying}
+                            playAudio={playAudio}
+                            pauseAudio={pauseAudio}
+                            styles={styles}
+          />
+        </div>
+      }
+      {page === "allTracks" &&
+        <div className={styles.myTracks}>
+          <Tracks page={page}
+                  value={value}
+                  setValue={setValue}
+          />
+          <MusicItemWrapper music={foundMusic!}
+                            audioRef={audioRef}
+                            currentAudio={currentAudio}
+                            currentTime={currentTime}
+                            isSuccess={isSuccessFoundMusic}
                             isPlaying={isPlaying}
                             setCurrentTime={setCurrentTime}
                             setCurrentAudio={setCurrentAudio}
