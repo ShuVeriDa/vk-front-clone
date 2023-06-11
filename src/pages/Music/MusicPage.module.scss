@@ -14,10 +14,32 @@
       padding: 0 20px 5px;
       margin-left: -8px;
 
+      .active {
+        cursor: pointer;
+        background: #F2F3F5;
+      }
+
+      .musicItemWrapper {
+        margin-bottom: 3px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        //padding: 7px 2px 5px;
+        &:hover {
+          cursor: pointer;
+          background: #F2F3F5;
+        }
+        .musicItem {
+          width: 385px;
+
+          margin-right: 15px;
+          box-sizing: border-box;
+        }
+      }
+
       .musicItem {
         box-sizing: border-box;
         margin-bottom: 5px;
-        padding: 7px 5px 5px;
+        padding: 7px 2px 5px;
         border-radius: 8px;
         &:hover {
           cursor: pointer;
@@ -27,7 +49,7 @@
 
         .time {
           position: relative;
-          left: 332px;
+          left: 375px;
         }
       }
     }

@@ -4,11 +4,7 @@ import {MusicPlayer} from "../../components/Music/MusicPlayer/MusicPlayer";
 import {Music} from "../../components/Music/Music/Music";
 import {useMusicQuery} from "../../react-query/useMusicQuery";
 import {Tracks} from "../../components/Music/Music/Tracks/Tracks";
-import {MusicItems} from "../../components/Music/Music/MusicItems/MusicItems";
-import {MusicSearch} from "../../components/Music/Music/MusicSearch/MusicSearch";
-import {TrackItems} from "../../components/Music/Music/Tracks/TrackItems/TrackItems";
-import {MusicItem} from "../../components/Music/Music/MusicItems/MusicItem/MusicItem";
-import cn from "clsx";
+import {MusicItemWrapper} from "../../components/Music/Music/MusicItems/MusicItemWrapper/MusicItems";
 
 interface IMusicPageProps {
   page: 'main' | 'allTracks' | 'myTracks'
@@ -34,25 +30,6 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   const playAudio = async () => {
     await audioRef.current?.play();
     setIsPlaying(true);
-  }
-
-  const onClickHandler = (i: number) => {
-    if (currentAudio !== i) {
-      setIsPlaying(true)
-      setCurrentAudio(i)
-      audioRef.current?.load();
-      playAudio()
-    }
-
-    if (currentAudio === i) {
-      setCurrentAudio(i)
-      if (isPlaying) {
-        pauseAudio()
-      }
-      if (!isPlaying) {
-        playAudio()
-      }
-    }
   }
 
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -97,32 +74,21 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
                   value={value}
                   setValue={setValue}
           />
-          <div className={styles.musicItems}>
-            {isSuccess && myMusic.map((m, i) => <div key={m.id}
-               className={cn(styles.musicItemWrapper, i === currentAudio && styles.active)}
-               onClick={() => onClickHandler(i)}
-          >
-            <MusicItem
-              setCurrentTime={setCurrentTime}
-              setCurrentAudio={setCurrentAudio}
-              audioRef={audioRef}
-              currentAudio={currentAudio}
-              currentTime={currentTime}
-              isSuccess={isSuccess}
-              musicItem={m}
-              classes={styles.musicItem}
-              index={i}
-              isPlayer={false}
-              isPlaying={isPlaying}
-            />
-          </div>)
-          }
+          <MusicItemWrapper music={myMusic!}
+                            audioRef={audioRef}
+                            currentAudio={currentAudio}
+                            currentTime={currentTime}
+                            isSuccess={isSuccess}
+                            isPlaying={isPlaying}
+                            setCurrentTime={setCurrentTime}
+                            setCurrentAudio={setCurrentAudio}
+                            setIsPlaying={setIsPlaying}
+                            playAudio={playAudio}
+                            pauseAudio={pauseAudio}
+                            styles={styles}
+          />
         </div>
-
-        </div>
-
       }
-
     </div>
   );
 };

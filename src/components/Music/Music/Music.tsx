@@ -1,10 +1,9 @@
-import {FC, MutableRefObject, useState} from 'react';
+import {FC, MutableRefObject} from 'react';
 import {MusicHeader} from "./MusicHeader/MusicHeader";
 import {MusicSearch} from "./MusicSearch/MusicSearch";
 import {MusicItems} from "./MusicItems/MusicItems";
 import styles from './Music.module.scss';
 import {IMusicFull} from "../../../types/music.interface";
-import {useMusicQuery} from "../../../react-query/useMusicQuery";
 import {MusicNotFound} from "./MusicNotFound/MusicNotFound";
 
 interface IMusicProps {

@@ -5,6 +5,7 @@ import {MusicItem} from "./MusicItem/MusicItem";
 import cn from "clsx";
 import {LeftArrowMusicSVG, RightArrow, RightArrowMusicSVG} from "../../../SvgComponent";
 import {Link, useNavigate} from "react-router-dom";
+import {MusicItemWrapper} from "./MusicItemWrapper/MusicItems";
 
 interface IMusicItemsProps {
   title?: 'Мои треки' | "Недавно прослушанные" | "Все аудиозаписи"
@@ -32,24 +33,6 @@ export const MusicItems: FC<IMusicItemsProps> = (
   }
 ) => {
   const navigate=useNavigate()
-  const onClickHandler = (i: number) => {
-    if (currentAudio !== i) {
-      setIsPlaying(true)
-      setCurrentAudio(i)
-      audioRef.current?.load();
-      playAudio()
-    }
-
-    if (currentAudio === i) {
-      setCurrentAudio(i)
-      if (isPlaying) {
-        pauseAudio()
-      }
-      if (!isPlaying) {
-        playAudio()
-      }
-    }
-  }
 
   const [pixel, setPixel] = useState(0)
 
@@ -75,31 +58,22 @@ export const MusicItems: FC<IMusicItemsProps> = (
         </span>
       </div>
       {pixel !== 0 && <div onClick={translateLeft} className={styles.leftArrow}><LeftArrowMusicSVG/></div>}
-      <div className={styles.musicItems}>
-        {music?.map((m, i) => {
-            return <div key={m.id}
-                        className={cn(styles.musicItemWrapper, i === currentAudio && styles.active,)}
-                        onClick={() => onClickHandler(i)}
-                        style={{transform: `translateX(${pixel}px)`, transition: 'transform 0.3s ease'}}
-            >
-              <MusicItem
-                setCurrentTime={setCurrentTime}
-                setCurrentAudio={setCurrentAudio}
-                audioRef={audioRef}
-                currentAudio={currentAudio}
-                currentTime={currentTime}
-                isSuccess={isSuccess}
-                musicItem={m}
-                classes={styles.musicItem}
-                index={i}
-                isPlayer={false}
-                isPlaying={isPlaying}
-              />
-            </div>
-          }
-        )}
+      <MusicItemWrapper music={music}
+                        audioRef={audioRef}
+                        currentAudio={currentAudio}
+                        currentTime={currentTime}
+                        isSuccess={isSuccess}
+                        isPlaying={isPlaying}
+                        pixel={pixel}
+                        setCurrentTime={setCurrentTime}
+                        setCurrentAudio={setCurrentAudio}
+                        setIsPlaying={setIsPlaying}
+                        playAudio={playAudio}
+                        pauseAudio={pauseAudio}
+                        styles={styles}
+      />
+
         <div onClick={translateRight} className={styles.rightArrow}><RightArrowMusicSVG/></div>
-      </div>
     </div>
   );
 };
