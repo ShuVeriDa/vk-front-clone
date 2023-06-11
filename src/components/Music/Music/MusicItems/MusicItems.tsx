@@ -32,22 +32,42 @@ export const MusicItems: FC<IMusicItemsProps> = (
     playAudio, setIsPlaying, isPlaying
   }
 ) => {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const [pixel, setPixel] = useState(0)
 
-  const translateLeft = () => {
-    if (pixel < 0) setPixel(pixel + 300)
+  const totalColumns = Math.ceil(music?.length / 3);
+
+  let maxPixel = 0;
+
+  if (totalColumns > 2) {
+    const lastColumnWidth = music?.length % 3 * 100;
+    if (lastColumnWidth !== 0) {
+      maxPixel = -(totalColumns - 2) * 300 - 403;
+    } else {
+      maxPixel = -(totalColumns - 2) * 300;
+    }
   }
 
-  const translateRight = () => {
-    setPixel(pixel - 300)
+  const translateLeft = () => {
+    if (pixel < 0) setPixel(pixel + 403)
   }
+
+
+  const translateRight = () => {
+    if (pixel > maxPixel) setPixel(pixel - 403);
+    if (pixel < maxPixel) setPixel(pixel - 403);
+  }
+
+
+
+  console.log(maxPixel)
 
   const onSetPage = () => {
     if (title === 'Мои треки') navigate('/music/mytracks')
     if (title === 'Все аудиозаписи') navigate('/music/alltracks')
   }
+
 
   return (
     <div className={styles.wrapper}>
@@ -58,6 +78,8 @@ export const MusicItems: FC<IMusicItemsProps> = (
         </span>
       </div>
       {pixel !== 0 && <div onClick={translateLeft} className={styles.leftArrow}><LeftArrowMusicSVG/></div>}
+
+
       <MusicItemWrapper music={music}
                         audioRef={audioRef}
                         currentAudio={currentAudio}
@@ -73,7 +95,11 @@ export const MusicItems: FC<IMusicItemsProps> = (
                         styles={styles}
       />
 
-        <div onClick={translateRight} className={styles.rightArrow}><RightArrowMusicSVG/></div>
+      {pixel > maxPixel - 403 && (
+        <div onClick={translateRight} className={styles.rightArrow}>
+          <RightArrowMusicSVG/>
+        </div>
+      )}
     </div>
   );
 };

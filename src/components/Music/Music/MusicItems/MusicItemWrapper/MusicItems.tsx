@@ -53,7 +53,7 @@ export const MusicItemWrapper: FC<IMusicItemsProps> = (
             return <div key={m.id}
                         className={cn(styles?.musicItemWrapper, i === currentAudio && styles?.active)}
                         onClick={() => onClickHandler(i)}
-                        style={pixel ? {transform: `translateX(${pixel}px)`, transition: 'transform 0.3s ease'}: {}}
+                        style={{transform: `translateX(${pixel}px)`, transition: 'transform 0.3s ease'}}
             >
               <MusicItem
                 setCurrentTime={setCurrentTime}
