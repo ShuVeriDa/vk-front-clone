@@ -270,6 +270,25 @@ export const RandomMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick, width 
     <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="M2.9 6.1a.9.9 0 0 0 0 1.8c2.63 0 4.5 1.61 6.38 3.7-1 1.19-1.95 2.28-2.97 3.11a5.34 5.34 0 0 1-3.4 1.39.9.9 0 0 0 0 1.8c1.78 0 3.26-.76 4.53-1.8 1.1-.88 2.1-2.02 3.04-3.12a25.34 25.34 0 0 0 3.04 3.16A6.98 6.98 0 0 0 18 17.9h.93l-.57.56a.9.9 0 1 0 1.28 1.28l2.1-2.1a.9.9 0 0 0 0-1.28l-2.1-2.1a.9.9 0 1 0-1.28 1.28l.57.56H18a5.2 5.2 0 0 1-3.34-1.36c-1-.81-1.91-1.88-2.92-3.05l-.23-.28C9.4 8.96 6.87 6.1 2.9 6.1zm9.42 2.3A8.84 8.84 0 0 1 18 6.1h.93l-.57-.56a.9.9 0 1 1 1.28-1.28l2.1 2.1a.9.9 0 0 1 0 1.28l-2.1 2.1a.9.9 0 0 1-1.28-1.28l.57-.56H18c-1.72 0-3.22.79-4.52 1.89a.9.9 0 1 1-1.16-1.38z"></path></g></svg>
   );
 };
+
+export const ShuffleMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick}) => {
+  return (
+    <div className="audio_page_shuffle_all_icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <g id="shuffle_24__Page-2" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+          <g id="shuffle_24__shuffle_24">
+            <path id="shuffle_24__Shape" d="M0 0h24v24H0z"></path>
+            <path
+              d="M19 15v-1.23a.5.5 0 0 1 .8-.4l2.93 2.23a.5.5 0 0 1 0 .8l-2.92 2.23a.5.5 0 0 1-.81-.4V17h-3.5c-1.7 0-2.75-.84-4.5-3.26C9.25 16.16 8.2 17 6.5 17H4a1 1 0 0 1 0-2h2.5c.9 0 1.7-.76 3.28-3C8.21 9.76 7.4 9 6.5 9H4a1 1 0 1 1 0-2h2.5c1.7 0 2.75.84 4.5 3.26C12.75 7.84 13.8 7 15.5 7H19V5.77a.5.5 0 0 1 .8-.4l2.93 2.23a.5.5 0 0 1 0 .8l-2.92 2.23a.5.5 0 0 1-.81-.4V9h-3.5c-.9 0-1.7.76-3.28 3 1.57 2.24 2.39 3 3.28 3H19Z"
+              id="shuffle_24__Mask" fill="currentColor"></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+  );
+};
+
+
 export const PlaylistMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick}) => {
   return (
     <svg className={styles} fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="M17.9 11.9a.9.9 0 1 0-1.8 0v3.2h-3.2a.9.9 0 1 0 0 1.8h3.2v3.2a.9.9 0 0 0 1.8 0v-3.2h3.2a.9.9 0 0 0 0-1.8h-3.2zm-14-5h14.2a.9.9 0 1 0 0-1.8H3.9a.9.9 0 1 0 0 1.8zm0 3.2a.9.9 0 1 0 0 1.8h9.2a.9.9 0 0 0 0-1.8zm0 5a.9.9 0 1 0 0 1.8h5.2a.9.9 0 0 0 0-1.8z"></path></g></svg>

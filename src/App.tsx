@@ -97,10 +97,7 @@ function App() {
           </Suspense>
         }/>
         <Route path={'/friends'} element={<FriendPage/>}/>
-
         <Route path={'/groups'} element={<CommunitySearchPage/>}/>
-
-
         <Route path={'/profile/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <ProfileEdit/>
@@ -116,44 +113,37 @@ function App() {
             <Albums/>
           </Suspense>
         }/>
-
         <Route path={'/music'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
-            <MusicPage/>
+            <MusicPage page={'main'}/>
           </Suspense>
         }/>
-
-        {/*<Route path={'/albums/photo/:id'} element={*/}
-        {/*  <Suspense fallback={<div>Идет загрузка...</div>}>*/}
-        {/*    <Albums/>*/}
-        {/*  </Suspense>*/}
-        {/*}/>*/}
+        <Route path={'/music/mytracks'} element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <MusicPage page={'myTracks'}/>
+          </Suspense>
+        }/>
         <Route path={'/album/:id'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <AlbumItemPage/>
           </Suspense>
         }/>
-
         <Route path={'/album/:id/edit'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <AlbumEdit/>
           </Suspense>
         }/>
-
-
         <Route path={'/album/photo/add'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <CreatePhoto/>
           </Suspense>
         }/>
-
         <Route path={'/album/:id/add'} element={
           <Suspense fallback={<div>Идет загрузка...</div>}>
             <CreatePhotoInAlbum/>
           </Suspense>
         }/>
       </Route>
-
       <Route path={'/404'}
              element={
                <Suspense fallback={<div>Идет загрузка...</div>}>
@@ -161,7 +151,6 @@ function App() {
                </Suspense>}
       />
       <Route path="*" element={<Navigate to="/404" replace/>}/>
-
     </Routes>
   );
 }

@@ -8,9 +8,38 @@
     }
   }
   .title {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding-right: 20px;
     h2 {
       font-size: 15px;
       font-weight: 500;
+    }
+
+    span {
+      align-self: center;
+      font-size: 13px;
+      color: #2a5885;
+      text-decoration: none;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+
+        .smallRightArrow {
+          transform: translateX(2px);
+          animation: transform 1s ease;
+        }
+      }
+
+      .smallRightArrow {
+        position: relative;
+        color: #AEB7C2;
+        top: 2px;
+        width: 13px;
+        height: 13px;
+      }
     }
   }
 
@@ -66,7 +95,7 @@
       margin-bottom: 3px;
       box-sizing: border-box;
       border-radius: 8px;
-      padding: 7px 2px 5px;
+      //padding: 7px 2px 5px;
       &:hover {
         cursor: pointer;
         background: #F2F3F5;

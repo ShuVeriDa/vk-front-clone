@@ -17,6 +17,7 @@ interface IMusicItemProps {
   myMusic?: IMusicFull[]
   musicItem?: IMusicFull
   classes?: string
+  classesTime?: string
   index?: number
   isPlayer?: boolean
   isPlaying?: boolean
@@ -36,13 +37,10 @@ export const MusicItem: FC<IMusicItemProps> = (
     setCurrentAudio,
     index,
     isPlayer,
-    isPlaying
+    isPlaying,
+    classesTime
   }
 ) => {
-
-
-
-
 
   return (
     <div className={cn(styles.musicItem, classes, index === currentAudio && styles.active)}>
@@ -60,11 +58,6 @@ export const MusicItem: FC<IMusicItemProps> = (
         />
 
       </div>
-      {/*<MusicIcon index={index!} */}
-      {/*           currentAudio={currentAudio} */}
-      {/*           isPlayer={isPlayer!} */}
-      {/*           isPlaying={isPlaying!} */}
-      {/*/>*/}
       <MusicInfo setCurrentTime={setCurrentTime}
                  audioRef={audioRef}
                  currentAudio={currentAudio}
@@ -76,7 +69,7 @@ export const MusicItem: FC<IMusicItemProps> = (
                  duration={duration}
 
       />
-      <MusicTime currentTime={currentTime} />
+      <MusicTime currentTime={currentTime} classesTime={classesTime!}/>
     </div>
   );
 };

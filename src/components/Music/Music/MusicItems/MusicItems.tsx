@@ -3,10 +3,11 @@ import styles from './MusicItems.module.scss';
 import {IMusicFull} from "../../../../types/music.interface";
 import {MusicItem} from "./MusicItem/MusicItem";
 import cn from "clsx";
-import {LeftArrowMusicSVG, RightArrowMusicSVG} from "../../../SvgComponent";
+import {LeftArrowMusicSVG, RightArrow, RightArrowMusicSVG} from "../../../SvgComponent";
+import {Link, useNavigate} from "react-router-dom";
 
 interface IMusicItemsProps {
-  title: 'Мои треки' | "Недавно прослушанные" | "Все аудиозаписи"
+  title?: 'Мои треки' | "Недавно прослушанные" | "Все аудиозаписи"
   music: IMusicFull[]
   audioRef: MutableRefObject<HTMLAudioElement | null>
   currentAudio: number
@@ -24,19 +25,13 @@ interface IMusicItemsProps {
 
 export const MusicItems: FC<IMusicItemsProps> = (
   {
-    title,
-    music,
-    myMusic,
-    currentTime,
-    currentAudio,
-    audioRef,
-    duration,
-    isSuccess,
-    setCurrentTime,
-    setCurrentAudio, pauseAudio, playAudio, setIsPlaying, isPlaying
+    title, music,
+    myMusic, currentTime, currentAudio,
+    audioRef, duration, isSuccess, setCurrentTime, setCurrentAudio, pauseAudio,
+    playAudio, setIsPlaying, isPlaying
   }
 ) => {
-
+  const navigate=useNavigate()
   const onClickHandler = (i: number) => {
     if (currentAudio !== i) {
       setIsPlaying(true)
@@ -59,20 +54,27 @@ export const MusicItems: FC<IMusicItemsProps> = (
   const [pixel, setPixel] = useState(0)
 
   const translateLeft = () => {
-    if (pixel < 0)setPixel(pixel + 300)
+    if (pixel < 0) setPixel(pixel + 300)
   }
 
   const translateRight = () => {
-     setPixel(pixel - 300)
+    setPixel(pixel - 300)
+  }
+
+  const onSetPage = () => {
+    if (title === 'Мои треки') navigate('/music/mytracks')
+    if (title === 'Все аудиозаписи') navigate('/music/alltracks')
   }
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
         <h2>{title}</h2>
+        <span onClick={onSetPage}>
+          Показать все <RightArrowMusicSVG styles={styles.smallRightArrow}/>
+        </span>
       </div>
-      <div onClick={translateLeft} className={styles.leftArrow}><LeftArrowMusicSVG /></div>
-
+      {pixel !== 0 && <div onClick={translateLeft} className={styles.leftArrow}><LeftArrowMusicSVG/></div>}
       <div className={styles.musicItems}>
         {music?.map((m, i) => {
             return <div key={m.id}
@@ -96,7 +98,7 @@ export const MusicItems: FC<IMusicItemsProps> = (
             </div>
           }
         )}
-        <div onClick={translateRight} className={styles.rightArrow}><RightArrowMusicSVG /></div>
+        <div onClick={translateRight} className={styles.rightArrow}><RightArrowMusicSVG/></div>
       </div>
     </div>
   );

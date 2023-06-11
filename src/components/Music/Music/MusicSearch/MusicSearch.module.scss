@@ -1,9 +1,10 @@
 .wrapper {
   box-sizing: border-box;
   padding: 0 20px;
-  .search {
 
+  .search {
     width: 100%;
+    padding: 0;
 
     input {
       width: 100%;
@@ -11,6 +12,7 @@
   }
 
   .spinner, .clear {
+    top: 5px;
     left: 785px;
   }
 }

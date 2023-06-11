@@ -1,10 +1,12 @@
 import {FC} from 'react';
 import styles from './MusicTime.module.scss';
+import cn from "clsx";
 interface IMusicIconProps {
   currentTime: number
+  classesTime: string
 }
 
-export const MusicTime: FC<IMusicIconProps> = ({currentTime}) => {
+export const MusicTime: FC<IMusicIconProps> = ({currentTime, classesTime}) => {
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -13,7 +15,7 @@ export const MusicTime: FC<IMusicIconProps> = ({currentTime}) => {
     return `${formattedMinutes}:${formattedSeconds}`;
   };
   return (
-    <div className={styles.time}>
+    <div className={cn(styles.time, classesTime)}>
       <span>{formatTime(currentTime)}</span>
     </div>
   );

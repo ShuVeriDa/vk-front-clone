@@ -8,18 +8,24 @@ import {useMusicQuery} from "../../../react-query/useMusicQuery";
 import {MusicNotFound} from "./MusicNotFound/MusicNotFound";
 
 interface IMusicProps {
-  myMusic: IMusicFull[]
+  myMusic?: IMusicFull[]
+  foundMusic?: IMusicFull[]
   setCurrentTime: (number: number) => void
   setCurrentAudio: (number: number) => void
   audioRef: MutableRefObject<HTMLAudioElement | null>
   currentAudio: number
   duration: number
+  value: string
+  status?: "error" | "success" | "loading"
   currentTime: number
   isSuccess: boolean
+  isSuccessFoundMusic: boolean
   isPlaying: boolean
   setIsPlaying: (isPlaying: boolean) => void
+  setValue: (value: string) => void
   playAudio: () => void
   pauseAudio: () => void
+
 }
 
 export const Music: FC<IMusicProps> = (
@@ -32,16 +38,13 @@ export const Music: FC<IMusicProps> = (
     isSuccess,
     setCurrentTime,
     setCurrentAudio,
-    pauseAudio, playAudio, setIsPlaying, isPlaying
+    pauseAudio, playAudio, setIsPlaying, isPlaying, setValue, value, foundMusic, isSuccessFoundMusic, status
   }
 ) => {
-  const [value, setValue] = useState('')
-  const {searchMusic} = useMusicQuery(undefined, {title: value})
-  const {data: foundMusic, isSuccess: isSuccessFoundMusic, status} = searchMusic
 
-  const isFoundMusic = isSuccessFoundMusic && foundMusic.length > 0 && value.length > 0 ? foundMusic : myMusic
-  const title = isSuccessFoundMusic && foundMusic.length > 0 && value.length > 0 ? 'Все аудиозаписи' : 'Мои треки'
-
+  const isFound = isSuccessFoundMusic && foundMusic?.length! > 0 && value.length > 0
+  const isFoundMusic = isFound ? foundMusic! : myMusic
+  const title = isSuccessFoundMusic && isFound ? 'Все аудиозаписи' : 'Мои треки'
 
   return (
     <div className={styles.wrapper}>
@@ -50,20 +53,21 @@ export const Music: FC<IMusicProps> = (
                    setValue={setValue}
                    status={status}
       />
-      {isSuccessFoundMusic && foundMusic.length === 0 && value.length > 0 ? <MusicNotFound title={value}/> :
-        <MusicItems title={title}
-                    music={isFoundMusic}
-                    audioRef={audioRef}
-                    currentAudio={currentAudio}
-                    duration={duration}
-                    currentTime={currentTime}
-                    isSuccess={isSuccess}
-                    isPlaying={isPlaying}
-                    setCurrentTime={setCurrentTime}
-                    setCurrentAudio={setCurrentAudio}
-                    setIsPlaying={setIsPlaying}
-                    playAudio={playAudio}
-                    pauseAudio={pauseAudio}
+      {isSuccessFoundMusic && foundMusic?.length! === 0 && value.length > 0
+        ? <MusicNotFound title={value}/>
+        : <MusicItems title={title}
+                      music={isFoundMusic!}
+                      audioRef={audioRef}
+                      currentAudio={currentAudio}
+                      duration={duration}
+                      currentTime={currentTime}
+                      isSuccess={isSuccess}
+                      isPlaying={isPlaying}
+                      setCurrentTime={setCurrentTime}
+                      setCurrentAudio={setCurrentAudio}
+                      setIsPlaying={setIsPlaying}
+                      playAudio={playAudio}
+                      pauseAudio={pauseAudio}
         />}
 
     </div>

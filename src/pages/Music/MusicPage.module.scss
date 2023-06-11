@@ -1,5 +1,35 @@
 .wrapper {
- display: flex;
+  display: flex;
   flex-direction: column;
   gap: 15px;
+
+  .myTracks {
+    width: 909px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #dbdbdc;
+    min-height: 300px;
+
+    .musicItems {
+      padding: 0 20px 5px;
+      margin-left: -8px;
+
+      .musicItem {
+        box-sizing: border-box;
+        margin-bottom: 5px;
+        padding: 7px 5px 5px;
+        border-radius: 8px;
+        &:hover {
+          cursor: pointer;
+          background: #F5F6F8;
+
+        }
+
+        .time {
+          position: relative;
+          left: 332px;
+        }
+      }
+    }
+  }
 }

@@ -26,6 +26,7 @@ interface IMusicPlayerProps {
   setIsPlaying: (isPlaying: boolean) => void
   playAudio: () => void
   pauseAudio: () => void
+
 }
 
 export const MusicPlayer: FC<IMusicPlayerProps> = (
