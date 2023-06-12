@@ -3,13 +3,16 @@ import styles from './MusicHeader.module.scss';
 import {PlaylistMusicSVG, UploadMusicSVG} from "../../../SvgComponent";
 import cn from "clsx";
 
-const list = ['Главная', "Моя музыка", "Обзор", "Обновления"]
+type ListType = 'Главная' | "Моя музыка" | "Обзор" | "Обновления"
+
+const list: ListType[] = ['Главная', "Моя музыка", "Обзор", "Обновления"]
 
 interface IMusicHeaderProps {
 }
 
 export const MusicHeader: FC<IMusicHeaderProps> = () => {
-  const [active, setActive] = useState<string | null>('Главная');
+  const [active, setActive] = useState<ListType | null>('Главная');
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.nav}>

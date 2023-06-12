@@ -41,15 +41,29 @@
         margin-bottom: 5px;
         padding: 7px 2px 5px;
         border-radius: 8px;
+
         &:hover {
           cursor: pointer;
           background: #F5F6F8;
 
+          .time {
+            display: none;
+          }
+
+          .removeAndEdit {
+            display: flex;
+          }
         }
 
         .time {
           position: relative;
-          left: 375px;
+          left: 335px;
+        }
+
+        .removeAndEdit {
+          //display: none;
+          position: relative;
+          left: 335px;
         }
       }
     }

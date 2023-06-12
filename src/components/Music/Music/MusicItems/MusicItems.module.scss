@@ -91,6 +91,8 @@
     z-index: 1;
     overflow: hidden;
 
+
+
     .musicItemWrapper {
       margin-bottom: 3px;
       box-sizing: border-box;
@@ -105,6 +107,18 @@
 
         margin-right: 15px;
         box-sizing: border-box;
+
+        &:hover {
+          .time {
+            display: none;
+          }
+        }
+
+        .removeAndEdit {
+          position: relative;
+          right: 140px;
+        }
+
       }
     }
   }

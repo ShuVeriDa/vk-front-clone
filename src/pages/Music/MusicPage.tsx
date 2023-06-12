@@ -5,6 +5,7 @@ import {Music} from "../../components/Music/Music/Music";
 import {useMusicQuery} from "../../react-query/useMusicQuery";
 import {Tracks} from "../../components/Music/Music/Tracks/Tracks";
 import {MusicItemWrapper} from "../../components/Music/Music/MusicItems/MusicItemWrapper/MusicItems";
+import {MusicNotFound} from "../../components/Music/Music/MusicNotFound/MusicNotFound";
 
 interface IMusicPageProps {
   page: 'main' | 'allTracks' | 'myTracks'
@@ -33,8 +34,6 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   }
 
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  console.log(value)
 
 
   return (
@@ -77,19 +76,23 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
                   value={value}
                   setValue={setValue}
           />
-          <MusicItemWrapper music={myMusic!}
-                            audioRef={audioRef}
-                            currentAudio={currentAudio}
-                            currentTime={currentTime}
-                            isSuccess={isSuccess}
-                            isPlaying={isPlaying}
-                            setCurrentTime={setCurrentTime}
-                            setCurrentAudio={setCurrentAudio}
-                            setIsPlaying={setIsPlaying}
-                            playAudio={playAudio}
-                            pauseAudio={pauseAudio}
-                            styles={styles}
-          />
+          {isSuccess && myMusic.length
+            ? <MusicItemWrapper music={myMusic}
+                                audioRef={audioRef}
+                                currentAudio={currentAudio}
+                                currentTime={currentTime}
+                                isSuccess={isSuccess}
+                                isPlaying={isPlaying}
+                                setCurrentTime={setCurrentTime}
+                                setCurrentAudio={setCurrentAudio}
+                                setIsPlaying={setIsPlaying}
+                                playAudio={playAudio}
+                                pauseAudio={pauseAudio}
+                                styles={styles}
+            />
+            : <MusicNotFound text={value}/>
+          }
+
         </div>
       }
       {page === "allTracks" &&
@@ -98,19 +101,21 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
                   value={value}
                   setValue={setValue}
           />
-          <MusicItemWrapper music={foundMusic!}
-                            audioRef={audioRef}
-                            currentAudio={currentAudio}
-                            currentTime={currentTime}
-                            isSuccess={isSuccessFoundMusic}
-                            isPlaying={isPlaying}
-                            setCurrentTime={setCurrentTime}
-                            setCurrentAudio={setCurrentAudio}
-                            setIsPlaying={setIsPlaying}
-                            playAudio={playAudio}
-                            pauseAudio={pauseAudio}
-                            styles={styles}
-          />
+          {isSuccessFoundMusic && foundMusic.length > 0
+            ? <MusicItemWrapper music={foundMusic!}
+                                audioRef={audioRef}
+                                currentAudio={currentAudio}
+                                currentTime={currentTime}
+                                isSuccess={isSuccessFoundMusic}
+                                isPlaying={isPlaying}
+                                setCurrentTime={setCurrentTime}
+                                setCurrentAudio={setCurrentAudio}
+                                setIsPlaying={setIsPlaying}
+                                playAudio={playAudio}
+                                pauseAudio={pauseAudio}
+                                styles={styles}
+            />
+            : <MusicNotFound text={value}/>}
         </div>
       }
     </div>

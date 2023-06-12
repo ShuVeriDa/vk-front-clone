@@ -1,6 +1,6 @@
 import {FC, MutableRefObject} from 'react';
 import styles from './MusicItem.module.scss';
-import {AudioIconSVG, PauseMusicSVG, PlayMusicSVG} from "../../../../SvgComponent";
+import {AudioIconSVG, ClearSearchValueSVG, EditSVG, PauseMusicSVG, PlayMusicSVG} from "../../../../SvgComponent";
 import {IMusicFull} from "../../../../../types/music.interface";
 import cn from "clsx";
 import {MusicInfo} from "./MusicInfo/MusicInfo";
@@ -18,6 +18,7 @@ interface IMusicItemProps {
   musicItem?: IMusicFull
   classes?: string
   classesTime?: string
+  classesRE?: string
   index?: number
   isPlayer?: boolean
   isPlaying?: boolean
@@ -38,7 +39,7 @@ export const MusicItem: FC<IMusicItemProps> = (
     index,
     isPlayer,
     isPlaying,
-    classesTime
+    classesTime, classesRE
   }
 ) => {
 
@@ -67,9 +68,14 @@ export const MusicItem: FC<IMusicItemProps> = (
                  myMusic={myMusic!}
                  isPlayer={isPlayer!}
                  duration={duration}
-
       />
-      <MusicTime currentTime={currentTime} classesTime={classesTime!}/>
+      {!isPlayer && <div className={cn(styles.editAndRemove, classesRE)}>
+        <EditSVG styles={styles.edit}/>
+        <ClearSearchValueSVG styles={styles.remove}/>
+      </div>}
+      <MusicTime currentTime={currentTime}
+                 classesTime={classesTime!}
+      />
     </div>
   );
 };

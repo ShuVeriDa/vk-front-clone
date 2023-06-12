@@ -21,6 +21,32 @@
     }
   }
 
+  .editAndRemove {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .edit, .remove {
+      position: relative;
+      bottom: 4px;
+      fill: #AEB7C2;
+      width: 22px;
+      height: 22px;
+
+      &:hover {
+        cursor: pointer;
+        fill: #99a2ad;
+      }
+    }
+
+    .remove {
+      position: relative;
+      left: 5px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
   .icon {
     position: relative;
     bottom: 3px;

@@ -53,7 +53,7 @@ export const Music: FC<IMusicProps> = (
                    status={status}
       />
       {isSuccessFoundMusic && foundMusic?.length! === 0 && value.length > 0
-        ? <MusicNotFound title={value}/>
+        ? <MusicNotFound text={value}/>
         : <MusicItems title={title}
                       music={isFoundMusic!}
                       audioRef={audioRef}
