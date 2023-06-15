@@ -8,11 +8,13 @@
       display: flex;
     }
   }
+
   .title {
     display: flex;
     align-content: center;
     justify-content: space-between;
     padding-right: 20px;
+
     h2 {
       font-size: 15px;
       font-weight: 500;
@@ -62,11 +64,11 @@
 
     &:hover {
       cursor: pointer;
-      box-shadow:0 0 15px 0;
+      box-shadow: 0 0 15px 0;
       background: #fff;
     }
   }
-  
+
   .leftArrow {
     position: absolute;
     top: 117px;
@@ -91,6 +93,11 @@
     z-index: 1;
     overflow: hidden;
 
+    &:hover {
+      .removeAndEdit {
+        display: flex;
+      }
+    }
 
 
     .musicItemWrapper {
@@ -102,6 +109,7 @@
         cursor: pointer;
         background: #F2F3F5;
       }
+
       .musicItem {
         width: 385px;
 
@@ -112,9 +120,14 @@
           .time {
             display: none;
           }
+
+          .removeAndEdit {
+            display: flex;
+          }
         }
 
         .removeAndEdit {
+          display: none;
           position: relative;
           right: 140px;
         }

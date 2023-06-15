@@ -20,6 +20,7 @@ interface IMusicItemsProps {
   setCurrentTime: (number: number) => void
   setCurrentAudio: (number: number) => void
   setIsPlaying: (isPlaying: boolean) => void
+  onClickEdit: () => void
   playAudio: () => void
   pauseAudio: () => void
 }
@@ -29,7 +30,7 @@ export const MusicItems: FC<IMusicItemsProps> = (
     title, music,
     myMusic, currentTime, currentAudio,
     audioRef, duration, isSuccess, setCurrentTime, setCurrentAudio, pauseAudio,
-    playAudio, setIsPlaying, isPlaying
+    playAudio, setIsPlaying, isPlaying, onClickEdit
   }
 ) => {
   const navigate = useNavigate()
@@ -92,6 +93,7 @@ export const MusicItems: FC<IMusicItemsProps> = (
                         setIsPlaying={setIsPlaying}
                         playAudio={playAudio}
                         pauseAudio={pauseAudio}
+                        onClickEdit={onClickEdit}
                         styles={styles}
       />
 

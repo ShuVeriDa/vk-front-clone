@@ -21,6 +21,7 @@ interface IMusicProps {
   isSuccessFoundMusic: boolean
   isPlaying: boolean
   setIsPlaying: (isPlaying: boolean) => void
+  onClickEdit: () => void
   setValue: (value: string) => void
   playAudio: () => void
   pauseAudio: () => void
@@ -37,7 +38,7 @@ export const Music: FC<IMusicProps> = (
     isSuccess,
     setCurrentTime,
     setCurrentAudio,
-    pauseAudio, playAudio, setIsPlaying, isPlaying, setValue, value, foundMusic, isSuccessFoundMusic, status
+    pauseAudio, playAudio, setIsPlaying, isPlaying, setValue, value, foundMusic, isSuccessFoundMusic, status, onClickEdit
   }
 ) => {
 
@@ -67,6 +68,7 @@ export const Music: FC<IMusicProps> = (
                       setIsPlaying={setIsPlaying}
                       playAudio={playAudio}
                       pauseAudio={pauseAudio}
+                      onClickEdit={onClickEdit}
         />}
 
     </div>

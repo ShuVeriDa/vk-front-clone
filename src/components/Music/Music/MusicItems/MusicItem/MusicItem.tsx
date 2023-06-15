@@ -9,6 +9,7 @@ import {MusicTime} from "./MusicTime/MusicTime";
 interface IMusicItemProps {
   setCurrentTime: (number: number) => void
   setCurrentAudio?: (number: number) => void
+  onClickEdit?: () => void
   audioRef: MutableRefObject<HTMLAudioElement | null>
   currentAudio: number
   duration?: number
@@ -39,7 +40,7 @@ export const MusicItem: FC<IMusicItemProps> = (
     index,
     isPlayer,
     isPlaying,
-    classesTime, classesRE
+    classesTime, classesRE, onClickEdit
   }
 ) => {
 
@@ -70,7 +71,7 @@ export const MusicItem: FC<IMusicItemProps> = (
                  duration={duration}
       />
       {!isPlayer && <div className={cn(styles.editAndRemove, classesRE)}>
-        <EditSVG styles={styles.edit}/>
+        <EditSVG styles={styles.edit} onClick={onClickEdit}/>
         <ClearSearchValueSVG styles={styles.remove}/>
       </div>}
       <MusicTime currentTime={currentTime}

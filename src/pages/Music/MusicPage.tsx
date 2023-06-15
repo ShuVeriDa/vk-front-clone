@@ -6,17 +6,25 @@ import {useMusicQuery} from "../../react-query/useMusicQuery";
 import {Tracks} from "../../components/Music/Music/Tracks/Tracks";
 import {MusicItemWrapper} from "../../components/Music/Music/MusicItems/MusicItemWrapper/MusicItems";
 import {MusicNotFound} from "../../components/Music/Music/MusicNotFound/MusicNotFound";
+import {ModalWindow} from "../../components/ModalWindow/ModalWindow";
+import {MusicEdit} from "../../components/Music/Music/MusicEdit/MusicEdit";
 
 interface IMusicPageProps {
   page: 'main' | 'allTracks' | 'myTracks'
 }
 
 export const MusicPage: FC<IMusicPageProps> = ({page}) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [open, setOpen] = useState(false)
   const [value, setValue] = useState('')
   const [currentAudio, setCurrentAudio] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const onClickClose = () => setOpen(false)
+  const onClickEdit = () => setOpen(true)
+
 
 
   const {searchMusic, getMyMusic} = useMusicQuery(undefined, {title: value})
@@ -33,7 +41,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
     setIsPlaying(true);
   }
 
-  const audioRef = useRef<HTMLAudioElement>(null);
+
 
 
   return (
@@ -66,6 +74,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
                                  setCurrentTime={setCurrentTime}
                                  setCurrentAudio={setCurrentAudio}
                                  setIsPlaying={setIsPlaying}
+                                 onClickEdit={onClickEdit}
                                  setValue={setValue}
                                  playAudio={playAudio}
                                  pauseAudio={pauseAudio}
@@ -80,6 +89,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
             ? <MusicItemWrapper music={myMusic}
                                 audioRef={audioRef}
                                 currentAudio={currentAudio}
+                                onClickEdit={onClickEdit}
                                 currentTime={currentTime}
                                 isSuccess={isSuccess}
                                 isPlaying={isPlaying}
@@ -111,12 +121,21 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
                                 setCurrentTime={setCurrentTime}
                                 setCurrentAudio={setCurrentAudio}
                                 setIsPlaying={setIsPlaying}
+                                onClickEdit={onClickEdit}
                                 playAudio={playAudio}
                                 pauseAudio={pauseAudio}
                                 styles={styles}
             />
             : <MusicNotFound text={value}/>}
         </div>
+      }
+
+      {
+        <ModalWindow open={open}
+                     onClickClose={onClickClose}
+        >
+          <MusicEdit/>
+        </ModalWindow>
       }
     </div>
   );
