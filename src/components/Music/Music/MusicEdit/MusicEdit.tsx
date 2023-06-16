@@ -9,10 +9,9 @@ interface IMusicEditProps {
 }
 
 export const MusicEdit: FC<IMusicEditProps> = ({musicId, onClickClose}) => {
-  console.log(musicId)
   const {getOneMusic} = useMusicQuery(musicId)
-  const {data: music, isSuccess} = getOneMusic
-  console.log(music)
+
+  const {data: music} = getOneMusic
 
   return (
     <div className={styles.wrapper}>

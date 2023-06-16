@@ -31,22 +31,18 @@ export const MusicService =  {
     const res = await instance.put<IMusicFull>(getMusicUrl(`/${musicId}`), data)
 
     return res.data
-  }
+  },
+
+  deleteMusic: async (musicId: string) => {
+    const res = await instance.delete(getMusicUrl(`/${musicId}`))
+    return res.data
+  },
 
   // createPhoto: async (data: ICreatePhoto) => {
   //   const res = await instance.post<IPhotoForAlbum>(getPhotosUrl(''), data)
   //   return res.data
   // },
   //
-  // updatePhoto: async (photoId: string, data: IUpdatePhoto) => {
-  //   const res = await instance.put<IPhotoFull>(getPhotosUrl(`/${photoId}`), data)
-  //
-  //   return res.data
-  // },
-  //
-  // deletePhoto: async (postId: string) => {
-  //   const res = await instance.delete(getPostsUrl(`/${postId}`))
-  //   return res.data
   // },
   //
   // toggleFavoritesPhoto: async (photoId:string) => {

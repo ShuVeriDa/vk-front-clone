@@ -22,7 +22,7 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
     queryKey: ['allMusic']
   })
 
-  const searchMusic=useQuery({
+  const searchMusic = useQuery({
     queryFn: () => MusicService.searchMusic(query!),
     queryKey: ['searchMusic', query]
   })
@@ -30,9 +30,17 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   const client = useQueryClient()
 
   const updateMusic = useMutation({
-    mutationFn: (data:IUpdatePhotoAlbum) => MusicService.updateMusic(musicId!, data),
+    mutationFn: (data: IUpdatePhotoAlbum) => MusicService.updateMusic(musicId!, data),
     onSuccess: () => {
       client.invalidateQueries(['myMusic'])
+    }
+  })
+
+  const deleteMusic = useMutation({
+    mutationFn: (musicId: string) => MusicService.deleteMusic(musicId),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['myMusic']})
+      getMyMusic.refetch()
     }
   })
   //
@@ -49,21 +57,9 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   //     client.invalidateQueries({queryKey: ['myAlbum', 'albumOne']})
   //   }
   // })
+
   //
-  // const updateAlbum = useMutation({
-  //   mutationFn: (data:IUpdatePhotoAlbum) => AlbumService.updateAlbum(albumId!, data),
-  //   onSuccess: () => {
-  //     client.invalidateQueries(['myAlbums', 'allMyAlbums'])
-  //   }
-  // })
-  //
-  // const deleteAlbum = useMutation({
-  //   mutationFn: (albumId: string) => AlbumService.deleteAlbum(albumId),
-  //   onSuccess: () => {
-  //     client.invalidateQueries({queryKey: ['myAlbums', 'allMyAlbums']})
-  //     getMyAlbums.refetch()
-  //   }
-  // })
+
   //
   // //community
   // const getCommunityPosts = useQuery({
@@ -73,6 +69,7 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   // })
 
   return useMemo(() => ({
-    getOneMusic, getMyMusic, getAllMusic, searchMusic,updateMusic
-  }), [getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic])
+    getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic
+
+  }), [getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic])
 }

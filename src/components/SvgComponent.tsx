@@ -96,10 +96,10 @@ export const SearchLoaderSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
   </>
 }
 
-export const ClearSearchValueSVG: FC<ISvgComponentProps> = ({styles, onClick, height , width}) => {
+export const ClearSearchValueSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent, height , width}) => {
   return (
     <svg className={styles}
-         onClick={onClick}
+         onClick={onClickEvent}
          height={height ? height : '22'}
          viewBox="0 0 48 48"
          width={width ? width : '22'}
