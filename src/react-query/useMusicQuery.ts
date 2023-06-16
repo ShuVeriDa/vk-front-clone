@@ -8,7 +8,7 @@ import {ISearchMusic} from "../types/music.interface";
 export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   const getOneMusic = useQuery({
     queryFn: () => MusicService.fetchOneMusic(musicId!),
-    queryKey: ['oneMusic'],
+    queryKey: ['oneMusic', musicId],
     enabled: !!musicId
   })
 
