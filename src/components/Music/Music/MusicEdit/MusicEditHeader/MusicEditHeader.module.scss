@@ -1,0 +1,44 @@
+.header {
+  width: 460px;
+  height: 54px;
+  padding-left: 25px;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 54px;
+    left: 0px;
+    width: inherit;
+    height: 1px;
+    background-color: #dce1e6;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .svg {
+    padding: 13px 20px 13px 13px;
+
+    &:hover {
+      cursor: pointer;
+      svg {
+        fill: #626d7a;
+      }
+    }
+
+    svg {
+      height: 24px;
+      width: 24px;
+      fill: #6f7985;
+
+    }
+  }
+}

@@ -20,7 +20,7 @@ interface IMusicItemsProps {
   setCurrentTime: (number: number) => void
   setCurrentAudio: (number: number) => void
   setIsPlaying: (isPlaying: boolean) => void
-  onClickEdit: () => void
+  onClickEdit: (musicId: string) => void
   playAudio: () => void
   pauseAudio: () => void
 }
@@ -102,6 +102,7 @@ export const MusicItems: FC<IMusicItemsProps> = (
           <RightArrowMusicSVG/>
         </div>
       )}
+
     </div>
   );
 };

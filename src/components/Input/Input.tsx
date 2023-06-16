@@ -11,6 +11,7 @@ interface IInputProps {
   error?: FieldError | undefined | any
   step?: string
   classes?: string
+  stylesInput?: { readonly [key: string]: string }
   classesError?: string
   onChangeSome?: (el: any) => void
   value?: number | string
@@ -22,7 +23,7 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
   (
     {
       type, title, style, error,
-      value, step, classes, classesError,placeholder, label,onChangeSome, ...rest
+      value, step, classes, classesError,placeholder, label,onChangeSome, stylesInput, ...rest
     }, ref
   ) => {
 
@@ -37,8 +38,8 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
     }
 
     return (
-      <div className={cn(classes, styles.input,)}>
-        <div className={styles.inputLabel}>
+      <div className={cn(classes, styles.input, stylesInput?.input)}>
+        <div className={cn(styles.inputLabel, stylesInput?.inputLabel)}>
           {label && <div><label>{label}</label></div>}
           <input className={cn(fieldValue ? styles.isValue : '')}
                  type={type}
@@ -50,8 +51,8 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
                  placeholder={placeholder}
           />
         </div>
-        <div className={cn(styles.errorWrapper, classesError)}>
-          {error && error.type && <div className={styles.error}>{error.message}</div>}
+        <div className={cn(styles.errorWrapper, classesError, stylesInput?.errorWrapper)}>
+          {error && error.type && <div className={cn(styles.error, stylesInput?.error)}>{error.message}</div>}
         </div>
 
       </div>

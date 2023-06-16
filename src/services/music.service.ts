@@ -2,7 +2,7 @@ import {IPostCommunity} from "../types/post.interface";
 import {axiosClassic, instance} from "../api/api.interceptor";
 import {getMusicUrl, getPhotosUrl, getPostsCommunityUrl, getPostsUrl} from "../api/api.config";
 import {ICreatePhoto, IPhotoForAlbum, IPhotoFull, IUpdatePhoto} from "../types/photo.interface";
-import {IMusicFull, ISearchMusic} from "../types/music.interface";
+import {IMusicFull, ISearchMusic, IUpdateMusic} from "../types/music.interface";
 
 
 export const MusicService =  {
@@ -26,6 +26,12 @@ export const MusicService =  {
     // const res = await axiosClassic.get<IMusicFull[]>(getMusicUrl(`/search?title=${query?.title}&artist=${query?.artist}`))
     return res.data
   },
+
+  updateMusic: async (musicId: string, data: IUpdateMusic) => {
+    const res = await instance.put<IMusicFull>(getMusicUrl(`/${musicId}`), data)
+
+    return res.data
+  }
 
   // createPhoto: async (data: ICreatePhoto) => {
   //   const res = await instance.post<IPhotoForAlbum>(getPhotosUrl(''), data)

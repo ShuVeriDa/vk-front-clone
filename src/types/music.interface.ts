@@ -22,3 +22,8 @@ export interface ISearchMusic {
   limit?: number
   take?: number
 }
+
+export interface IUpdateMusic {
+  title?: string
+  artist?: string
+}

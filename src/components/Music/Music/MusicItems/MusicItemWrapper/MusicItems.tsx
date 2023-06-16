@@ -15,6 +15,7 @@ interface IMusicItemsProps {
   setCurrentTime: (number: number) => void
   setCurrentAudio: (number: number) => void
   setIsPlaying: (isPlaying: boolean) => void
+  onClickEdit: (musicId: string) => void
   playAudio: () => void
   pauseAudio: () => void
   styles: { readonly [key: string]: string }
@@ -25,7 +26,7 @@ export const MusicItemWrapper: FC<IMusicItemsProps> = (
     music,
     currentTime, currentAudio,
     audioRef, isSuccess, setCurrentTime, setCurrentAudio, pauseAudio,
-    playAudio, setIsPlaying, isPlaying, pixel, styles
+    playAudio, setIsPlaying, isPlaying, pixel, styles, onClickEdit
   }
 ) => {
   const onClickHandler = (i: number) => {
@@ -58,6 +59,7 @@ export const MusicItemWrapper: FC<IMusicItemsProps> = (
             <MusicItem
               setCurrentTime={setCurrentTime}
               setCurrentAudio={setCurrentAudio}
+              onClickEdit={onClickEdit}
               audioRef={audioRef}
               currentAudio={currentAudio}
               currentTime={currentTime}

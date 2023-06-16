@@ -150,7 +150,7 @@ export const MusicPlayer: FC<IMusicPlayerProps> = (
           </div>
         </div>
 
-        <MusicItem myMusic={myMusic!}
+        <MusicItem music={myMusic!}
                    setCurrentTime={setCurrentTime}
                    duration={duration}
                    currentAudio={currentAudio}

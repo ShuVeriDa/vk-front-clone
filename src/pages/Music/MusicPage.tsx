@@ -15,6 +15,7 @@ interface IMusicPageProps {
 
 export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [selectedMusicId, setSelectedMusicId] = useState<string | null>(null)
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState('')
   const [currentAudio, setCurrentAudio] = useState(0);
@@ -23,8 +24,10 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const onClickClose = () => setOpen(false)
-  const onClickEdit = () => setOpen(true)
-
+  const onClickEdit = (musicId: string) => {
+    setSelectedMusicId(musicId)
+    setOpen(true)
+  }
 
 
   const {searchMusic, getMyMusic} = useMusicQuery(undefined, {title: value})
@@ -132,9 +135,12 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
 
       {
         <ModalWindow open={open}
-                     onClickClose={onClickClose}
         >
-          <MusicEdit/>
+          {
+             selectedMusicId && <MusicEdit musicId={selectedMusicId}
+                        onClickClose={onClickClose}
+            />
+        }
         </ModalWindow>
       }
     </div>

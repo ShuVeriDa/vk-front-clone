@@ -27,7 +27,14 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
     queryKey: ['searchMusic', query]
   })
 
-  // const client = useQueryClient()
+  const client = useQueryClient()
+
+  const updateMusic = useMutation({
+    mutationFn: (data:IUpdatePhotoAlbum) => MusicService.updateMusic(musicId!, data),
+    onSuccess: () => {
+      client.invalidateQueries(['myMusic'])
+    }
+  })
   //
   // const createMusic = useMutation({
   //   mutationFn: (data:ICreatePhotoAlbum) => AlbumService.createAlbum(data),
@@ -66,6 +73,6 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   // })
 
   return useMemo(() => ({
-    getOneMusic, getMyMusic, getAllMusic, searchMusic
-  }), [getOneMusic, getMyMusic, getAllMusic, searchMusic])
+    getOneMusic, getMyMusic, getAllMusic, searchMusic,updateMusic
+  }), [getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic])
 }

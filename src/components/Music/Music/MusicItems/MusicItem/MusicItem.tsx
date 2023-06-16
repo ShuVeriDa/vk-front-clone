@@ -1,4 +1,4 @@
-import {FC, MutableRefObject} from 'react';
+import {FC, MutableRefObject, MouseEvent} from 'react';
 import styles from './MusicItem.module.scss';
 import {AudioIconSVG, ClearSearchValueSVG, EditSVG, PauseMusicSVG, PlayMusicSVG} from "../../../../SvgComponent";
 import {IMusicFull} from "../../../../../types/music.interface";
@@ -9,13 +9,13 @@ import {MusicTime} from "./MusicTime/MusicTime";
 interface IMusicItemProps {
   setCurrentTime: (number: number) => void
   setCurrentAudio?: (number: number) => void
-  onClickEdit?: () => void
+  onClickEdit?: (musicId: string) => void
   audioRef: MutableRefObject<HTMLAudioElement | null>
   currentAudio: number
   duration?: number
   currentTime: number
   isSuccess: boolean
-  myMusic?: IMusicFull[]
+  music?: IMusicFull[]
   musicItem?: IMusicFull
   classes?: string
   classesTime?: string
@@ -33,7 +33,7 @@ export const MusicItem: FC<IMusicItemProps> = (
     duration,
     currentTime,
     isSuccess,
-    myMusic,
+    music,
     musicItem,
     classes,
     setCurrentAudio,
@@ -43,6 +43,13 @@ export const MusicItem: FC<IMusicItemProps> = (
     classesTime, classesRE, onClickEdit
   }
 ) => {
+
+  const handleEditClick = (e: MouseEvent<SVGSVGElement, MouseEvent>) => {
+    e.stopPropagation(); // Prevent the click event from bubbling up to the parent elements
+    if (onClickEdit) {
+      onClickEdit(musicItem?.id!); // Open the ModalWindow
+    }
+  };
 
   return (
     <div className={cn(styles.musicItem, classes, index === currentAudio && styles.active)}>
@@ -66,12 +73,12 @@ export const MusicItem: FC<IMusicItemProps> = (
                  currentTime={currentTime}
                  isSuccess={isSuccess}
                  musicItem={musicItem!}
-                 myMusic={myMusic!}
+                 music={music!}
                  isPlayer={isPlayer!}
                  duration={duration}
       />
       {!isPlayer && <div className={cn(styles.editAndRemove, classesRE)}>
-        <EditSVG styles={styles.edit} onClick={onClickEdit}/>
+        <EditSVG styles={styles.edit} onClickEvent={(e) => handleEditClick(e)}/>
         <ClearSearchValueSVG styles={styles.remove}/>
       </div>}
       <MusicTime currentTime={currentTime}

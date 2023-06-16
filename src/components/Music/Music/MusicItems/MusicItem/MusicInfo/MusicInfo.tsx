@@ -10,7 +10,7 @@ interface IMusicInfoProps {
   duration?: number
   currentTime: number
   isSuccess: boolean
-  myMusic: IMusicFull[]
+  music: IMusicFull[]
   musicItem: IMusicFull
   isPlayer: boolean
 }
@@ -18,7 +18,7 @@ interface IMusicInfoProps {
 export const MusicInfo: FC<IMusicInfoProps> = (
   {
     musicItem,
-    myMusic,
+    music,
     isSuccess,
     audioRef,
     currentAudio,
@@ -40,11 +40,11 @@ export const MusicInfo: FC<IMusicInfoProps> = (
   return (
     <div className={styles.info}>
             <span className={styles.title}>
-              {myMusic && <> {isSuccess && myMusic![currentAudio].title}</>}
+              {music && <> {isSuccess && music![currentAudio].title}</>}
               {musicItem?.title}
             </span>
       <span className={styles.artist}>
-          {myMusic && <>{isSuccess && myMusic![currentAudio].artist} </>}
+          {music && <>{isSuccess && music![currentAudio].artist} </>}
         {musicItem?.artist}
             </span>
       {isPlayer && <div className={styles.input}>

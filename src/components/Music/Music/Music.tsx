@@ -21,7 +21,7 @@ interface IMusicProps {
   isSuccessFoundMusic: boolean
   isPlaying: boolean
   setIsPlaying: (isPlaying: boolean) => void
-  onClickEdit: () => void
+  onClickEdit: (musicId: string) => void
   setValue: (value: string) => void
   playAudio: () => void
   pauseAudio: () => void

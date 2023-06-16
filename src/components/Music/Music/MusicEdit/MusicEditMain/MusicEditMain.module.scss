@@ -1,0 +1,48 @@
+.main {
+  height: 178px;
+  box-sizing: border-box;
+  padding: 20px;
+
+  .input {
+
+    .inputLabel {
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        box-sizing: border-box;
+        width: 110px;
+        padding: 7px 10px 0;
+        display: flex;
+        justify-content: end;
+
+        label {
+          font-size: 13px;
+          color: #555555;
+        }
+      }
+
+      input {
+        background: #fff;
+        height: 30px;
+        padding: 7px 5px 8px;
+        width: 305px;
+      }
+    }
+
+    .errorWrapper {
+      .error {
+
+      }
+    }
+  }
+
+  .submitButton {
+    display: flex;
+    justify-content: end;
+    .button {
+      width: 110px;
+      padding: 7px 16px 8px;
+    }
+  }
+}
