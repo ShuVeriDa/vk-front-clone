@@ -1,11 +1,9 @@
-import {IPostCommunity} from "../types/post.interface";
 import {axiosClassic, instance} from "../api/api.interceptor";
-import {getMusicUrl, getPhotosUrl, getPostsCommunityUrl, getPostsUrl} from "../api/api.config";
-import {ICreatePhoto, IPhotoForAlbum, IPhotoFull, IUpdatePhoto} from "../types/photo.interface";
-import {IMusicFull, ISearchMusic, IUpdateMusic} from "../types/music.interface";
+import {getMusicUrl, getPhotosUrl} from "../api/api.config";
+import {ICreateMusic, IMusicFull, ISearchMusic, IUpdateMusic} from "../types/music.interface";
 
 
-export const MusicService =  {
+export const MusicService = {
   fetchOneMusic: async (musicId: string) => {
     const res = await axiosClassic.get<IMusicFull>(getMusicUrl(`/${musicId}`))
     return res.data
@@ -24,6 +22,11 @@ export const MusicService =  {
   searchMusic: async (query?: ISearchMusic) => {
     const res = await axiosClassic.get<IMusicFull[]>(getMusicUrl(`/search?title=${query?.title}`))
     // const res = await axiosClassic.get<IMusicFull[]>(getMusicUrl(`/search?title=${query?.title}&artist=${query?.artist}`))
+    return res.data
+  },
+
+  createMusic: async (data: ICreateMusic) => {
+    const res = await instance.post<IMusicFull>(getMusicUrl(''), data)
     return res.data
   },
 

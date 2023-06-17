@@ -97,9 +97,15 @@ export const SearchLoaderSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
 }
 
 export const ClearSearchValueSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent, height , width}) => {
+
+  const handlerClick = (e: any) => {
+    if(onClick) onClick()
+    if(onClickEvent) onClickEvent(e)
+  }
+
   return (
     <svg className={styles}
-         onClick={onClickEvent}
+         onClick={handlerClick}
          height={height ? height : '22'}
          viewBox="0 0 48 48"
          width={width ? width : '22'}
@@ -298,7 +304,7 @@ export const PlaylistMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick}) => 
 
 export const UploadMusicSVG: FC<ISvgComponentProps> = ({ styles, onClick}) => {
   return (
-    <svg className={styles} fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="M19 19a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2zm-7-2a1 1 0 0 1-1-1V5.41l-4.3 4.3a1 1 0 0 1-1.31.08l-.1-.08a1 1 0 0 1 0-1.42l6-6a1 1 0 0 1 1.42 0l6 6a1 1 0 0 1-1.42 1.42L13 5.4V16a1 1 0 0 1-1 1z"></path></g></svg>
+    <svg onClick={onClick} className={styles} fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="M19 19a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2zm-7-2a1 1 0 0 1-1-1V5.41l-4.3 4.3a1 1 0 0 1-1.31.08l-.1-.08a1 1 0 0 1 0-1.42l6-6a1 1 0 0 1 1.42 0l6 6a1 1 0 0 1-1.42 1.42L13 5.4V16a1 1 0 0 1-1 1z"></path></g></svg>
   );
 };
 

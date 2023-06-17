@@ -27,3 +27,7 @@ export interface IUpdateMusic {
   title?: string
   artist?: string
 }
+export interface ICreateMusic {
+  musicUrl: string
+}
+

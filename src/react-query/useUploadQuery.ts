@@ -1,25 +1,18 @@
-import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {PostService} from "../services/post.service";
-import {ChangeEvent, useCallback, useMemo, useState} from "react";
-import {ICreatePost, IPostCommunity, IPostCommunityData, IUpdatePost} from "../types/post.interface";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {ChangeEvent, useCallback, useMemo} from "react";
 import {UploadFileService} from "../services/uploadFile.services";
-import {useUsersQuery} from "./useUsersQuery";
-import {useCommunityQuery} from "./useCommunityQuery";
-import {usePhotoAlbumQuery} from "./usePhotoAlbumQuery";
-import {usePhotoQuery} from "./usePhotoQuery";
 
 export const useUploadQuery = (
   folder: string,
   setUrl: (url: string) => void,
-  entityType: 'user' | 'community' | 'img' | 'repost' | "singleImg",
+  entityType: 'user' | 'community' | 'img' | 'repost' | "singleImg" | 'music',
   userId?: string | number,
   communityId?: string,
-  albumId?: string
+  albumId?: string,
+  fetch?: {
+    refetch: () => Promise<any>;
+  }
 ) => {
-  const {getUserById} = useUsersQuery(userId!);
-  const {getOneAlbum} = usePhotoAlbumQuery(albumId)
-  const {fetchOne} = useCommunityQuery(communityId);
-  const {getMyPhotos, getOnePhoto} = usePhotoQuery()
 
   const client = useQueryClient();
 
@@ -32,29 +25,34 @@ export const useUploadQuery = (
 
       if (entityType === 'img') {
         client.invalidateQueries({queryKey: ['myAlbum', 'albumOne']});
-        getOneAlbum.refetch();
+        fetch?.refetch();
       }
 
       if (entityType === 'singleImg') {
         // client.invalidateQueries({queryKey: ['photo', 'photoOne']});
         // getOnePhoto.refetch();
         client.invalidateQueries({queryKey: ['myPhotos', 'allMyPhotos']});
-        getMyPhotos.refetch();
+        fetch?.refetch();
       }
 
       if (entityType === 'repost') {
         client.invalidateQueries({queryKey: ['myPhotos', 'allMyPhotos']});
-        getMyPhotos.refetch();
+        fetch?.refetch();
       }
 
       if (entityType === 'user') {
         client.invalidateQueries({queryKey: ['user', 'one']});
-        getUserById.refetch();
+        fetch?.refetch();
       }
 
       if (entityType === 'community') {
         client.invalidateQueries({queryKey: ['communityOne', 'community']});
-        fetchOne.refetch();
+        fetch?.refetch();
+      }
+
+      if(entityType === 'music') {
+        client.invalidateQueries({queryKey: ['myMusic']})
+        fetch?.refetch()
       }
     },
   });

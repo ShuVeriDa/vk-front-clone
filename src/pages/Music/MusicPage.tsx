@@ -8,6 +8,7 @@ import {MusicItemWrapper} from "../../components/Music/Music/MusicItems/MusicIte
 import {MusicNotFound} from "../../components/Music/Music/MusicNotFound/MusicNotFound";
 import {ModalWindow} from "../../components/ModalWindow/ModalWindow";
 import {MusicEdit} from "../../components/Music/Music/MusicEdit/MusicEdit";
+import {MusicUpload} from "../../components/Music/Music/MusicUpload/MusicUpload";
 
 interface IMusicPageProps {
   page: 'main' | 'allTracks' | 'myTracks'
@@ -16,18 +17,21 @@ interface IMusicPageProps {
 export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [selectedMusicId, setSelectedMusicId] = useState<string | null>(null)
-  const [open, setOpen] = useState(false)
+  const [openEdit, setOpenEdit] = useState(false)
+  const [openUpload, setOpenUpload] = useState(false)
   const [value, setValue] = useState('')
   const [currentAudio, setCurrentAudio] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const onClickClose = () => setOpen(false)
+  const onClickCloseEdit = () => setOpenEdit(false)
   const onClickEdit = (musicId: string) => {
     setSelectedMusicId(musicId)
-    setOpen(true)
+    setOpenEdit(true)
   }
+
+  const onClickCloseUpload = () => setOpenUpload(false)
 
 
   const {searchMusic, getMyMusic} = useMusicQuery(undefined, {title: value})
@@ -44,8 +48,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
     setIsPlaying(true);
   }
 
-
-
+  console.log(openUpload)
 
   return (
     <div className={styles.wrapper}>
@@ -77,6 +80,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
                                  setCurrentTime={setCurrentTime}
                                  setCurrentAudio={setCurrentAudio}
                                  setIsPlaying={setIsPlaying}
+                                 setOpenUpload={setOpenUpload}
                                  onClickEdit={onClickEdit}
                                  setValue={setValue}
                                  playAudio={playAudio}
@@ -134,15 +138,18 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
       }
 
       {
-        <ModalWindow open={open}
+        <ModalWindow open={openEdit}
         >
           {
-             selectedMusicId && <MusicEdit musicId={selectedMusicId}
-                        onClickClose={onClickClose}
+            selectedMusicId && <MusicEdit musicId={selectedMusicId}
+                                          onClickClose={onClickCloseEdit}
             />
-        }
+          }
         </ModalWindow>
       }
+      {<ModalWindow open={openUpload}>
+        <MusicUpload onClickClose={onClickCloseUpload}/>
+      </ModalWindow>}
     </div>
   );
 };

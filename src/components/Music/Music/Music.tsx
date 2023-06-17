@@ -21,6 +21,7 @@ interface IMusicProps {
   isSuccessFoundMusic: boolean
   isPlaying: boolean
   setIsPlaying: (isPlaying: boolean) => void
+  setOpenUpload: (openUpload: boolean) => void
   onClickEdit: (musicId: string) => void
   setValue: (value: string) => void
   playAudio: () => void
@@ -30,15 +31,9 @@ interface IMusicProps {
 
 export const Music: FC<IMusicProps> = (
   {
-    myMusic,
-    currentAudio,
-    currentTime,
-    audioRef,
-    duration,
-    isSuccess,
-    setCurrentTime,
-    setCurrentAudio,
-    pauseAudio, playAudio, setIsPlaying, isPlaying, setValue, value, foundMusic, isSuccessFoundMusic, status, onClickEdit
+    myMusic, currentAudio, currentTime,
+    audioRef, duration, isSuccess,
+    setCurrentTime, setCurrentAudio, pauseAudio, playAudio, setIsPlaying, isPlaying, setValue, value, foundMusic, isSuccessFoundMusic, status, onClickEdit, setOpenUpload
   }
 ) => {
 
@@ -48,7 +43,7 @@ export const Music: FC<IMusicProps> = (
 
   return (
     <div className={styles.wrapper}>
-      <MusicHeader/>
+      <MusicHeader setOpenUpload={setOpenUpload}/>
       <MusicSearch value={value}
                    setValue={setValue}
                    status={status}

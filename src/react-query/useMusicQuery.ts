@@ -3,7 +3,7 @@ import {useMemo} from "react";
 import {AlbumService} from "../services/album.service";
 import {ICreatePhotoAlbum, ICreatePhotoInAlbum, IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
 import {MusicService} from "../services/music.service";
-import {ISearchMusic} from "../types/music.interface";
+import {ICreateMusic, ISearchMusic} from "../types/music.interface";
 
 export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   const getOneMusic = useQuery({
@@ -43,13 +43,13 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
       getMyMusic.refetch()
     }
   })
-  //
-  // const createMusic = useMutation({
-  //   mutationFn: (data:ICreatePhotoAlbum) => AlbumService.createAlbum(data),
-  //   onSuccess: () => {
-  //     client.invalidateQueries({queryKey: ['myAlbums', 'allMyAlbums']})
-  //   }
-  // })
+
+  const createMusic = useMutation({
+    mutationFn: (data:ICreateMusic) => MusicService.createMusic(data),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['myMusic']})
+    }
+  })
   //
   // const createPhotoInAlbum = useMutation({
   //   mutationFn: (data:ICreatePhotoInAlbum) => AlbumService.createPhotoInAlbum(albumId!, data),
@@ -69,7 +69,7 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   // })
 
   return useMemo(() => ({
-    getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic
+    getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic, createMusic
 
-  }), [getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic])
+  }), [getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic, createMusic])
 }

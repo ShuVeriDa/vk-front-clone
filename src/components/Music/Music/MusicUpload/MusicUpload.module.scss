@@ -1,0 +1,65 @@
+.wrapper {
+  width: 460px;
+  //height: 325px;
+  box-sizing: border-box;
+
+  .main {
+    padding: 2px 25px;
+    height: 180px;
+    box-sizing: border-box;
+
+    .restrictions {
+      font-size: 13px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    ul {
+      //padding-left: -40px;
+      li {
+
+        font-size: 12.5px;
+        line-height: 20px;
+      }
+    }
+
+    .uploadMusic {
+      display: flex;
+      justify-content: center;
+      .upload {
+        width: 130px;
+        height: 30px;
+        margin: 0;
+      }
+    }
+  }
+
+  .footer {
+    background: #FAFBFC;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    height: 61px;
+    padding: 14px 23px 14px 25px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: relative;
+
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 460px;
+      height: 1px;
+      background-color: #dce1e6;
+    }
+
+    .btn {
+      width: 84px;
+      margin: 0;
+    }
+  }
+}

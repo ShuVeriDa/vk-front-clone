@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import styles from './MusicEdit.module.scss';
-import {MusicEditHeader} from "./MusicEditHeader/MusicEditHeader";
+import {MusicMWHeader} from "../MusicEditHeader/MusicMWHeader";
 import {MusicEditMain} from "./MusicEditMain/MusicEditMain";
 import {useMusicQuery} from "../../../../react-query/useMusicQuery";
 interface IMusicEditProps {
@@ -15,7 +15,7 @@ export const MusicEdit: FC<IMusicEditProps> = ({musicId, onClickClose}) => {
 
   return (
     <div className={styles.wrapper}>
-      <MusicEditHeader onClickClose={onClickClose} />
+      <MusicMWHeader onClickClose={onClickClose} title={'Редактирование аудиозаписи'} />
       {music && <MusicEditMain music={music} onClickClose={onClickClose}/>}
     </div>
   );
