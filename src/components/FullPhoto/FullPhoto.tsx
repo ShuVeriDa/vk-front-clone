@@ -58,6 +58,7 @@ export const FullPhoto: FC<IFullPhotoProps> = ({current, photo,
         />
         <FullPhotoMain description={photo.description!}
                        photoId={photo.id}
+                       photoUrl={photo.photoUrl}
                        photoFavoriteAdders={photo.photoFavoriteAdders}
         />
         <form onSubmit={handleSubmit(onSubmit)}>

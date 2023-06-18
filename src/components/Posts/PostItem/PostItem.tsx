@@ -74,6 +74,10 @@ export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId})
           />
           : <>
             <span className={styles.text}>{post.text}</span>
+            {post.imageUrl && <img src={serverUrl(post.imageUrl)}
+                                   alt={post.imageUrl}
+                                   className={styles.img}
+            />}
             <p>{post.user.firstName}</p>
 
             {/*{post.repost ? <PostItem post={post.repost} authorizedUserId={authorizedUserId} /> : null}*/}

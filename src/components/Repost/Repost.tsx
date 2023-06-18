@@ -8,7 +8,6 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {ICreatePost} from "../../types/post.interface";
 
 type ListType = 'На своей стене' | "В сообществе" | "В истории" | "В личном сообщении"
-
 const list: ListType[
 
   ] = ['На своей стене', "В сообществе", "В истории", "В личном сообщении"]
@@ -16,9 +15,21 @@ const list: ListType[
 interface IRepostProps {
   onClose: () => void
   id: string
+  photoUrl?: string
+  musicUrl?: string
+  videoUrl?: string
+  fileUrl?: string
 }
 
-export const Repost: FC<IRepostProps> = ({onClose, id}) => {
+export const Repost: FC<IRepostProps> = (
+  {
+    onClose, id,
+    photoUrl,
+    fileUrl,
+    videoUrl,
+    musicUrl
+  }
+) => {
   // const [images, setImages] = useState<string[]>([])
   // const [videos, setVideos] = useState<string[]>([])
   // const [music, setMusic] = useState<string[]>([])
@@ -40,20 +51,18 @@ export const Repost: FC<IRepostProps> = ({onClose, id}) => {
   //   // if(i === 3) setFiles((prev) => [...prev, url])
   // }
 
-  // console.log("images: ", images)
-  // console.log('videos: ', videos)
-  // console.log("music: ", music)
-  // console.log("files: ", files)
-
   const {register, handleSubmit, formState, reset} = useForm<ICreatePost>({mode: "onChange"})
 
   const onSubmit: SubmitHandler<ICreatePost> = async (data) => {
     if (selectedOption === 'На своей стене') {
-      mutate(data)
+      if(photoUrl) mutate({text: data.text, imageUrl: photoUrl} as ICreatePost)
+      if(musicUrl) mutate({text: data.text, musicUrl: musicUrl} as ICreatePost)
+      if(videoUrl) mutate({text: data.text, videoUrl: videoUrl} as ICreatePost)
+      // if(fileUrl) mutate({text: data.text, f: videoUrl} as ICreatePost)
     }
     reset()
+    onClose()
   }
-
 
 
   return (
@@ -103,12 +112,12 @@ export const Repost: FC<IRepostProps> = ({onClose, id}) => {
             <div className={styles.footer}>
               <UploadOptions title={'Поделиться записью'}
                              isRepost={true}
-                             // uploadFiles={uploadFiles}
+                // uploadFiles={uploadFiles}
               />
             </div>
           </div>
         </form>
       </div>
     </div>
-);
+  );
 };

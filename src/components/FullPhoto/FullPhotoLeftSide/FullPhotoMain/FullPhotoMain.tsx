@@ -9,10 +9,11 @@ import {IUserAbbr} from "../../../../types/user.interface";
 interface IFullPhotoMainProps {
   description: string
   photoId: string
+  photoUrl: string
   photoFavoriteAdders: IUserAbbr[]
 }
 
-export const FullPhotoMain: FC<IFullPhotoMainProps> = ({description, photoId, photoFavoriteAdders}) => {
+export const FullPhotoMain: FC<IFullPhotoMainProps> = ({description, photoId, photoFavoriteAdders, photoUrl}) => {
   const [isEditDescription, setEditDescription] = useState(false)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,6 +50,7 @@ export const FullPhotoMain: FC<IFullPhotoMainProps> = ({description, photoId, ph
     <div className={styles.main}>
       <FullPhotoFavoritesAndRepost photoId={photoId}
                                    photoFavoriteAdders={photoFavoriteAdders}
+                                   photoUrl={photoUrl}
       />
       <FullPhotoDescription isEditDescription={isEditDescription}
                             inputRef={inputRef}

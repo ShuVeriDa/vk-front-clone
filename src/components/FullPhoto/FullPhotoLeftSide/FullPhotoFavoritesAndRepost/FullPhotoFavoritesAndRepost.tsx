@@ -14,10 +14,11 @@ import {Repost} from "../../../Repost/Repost";
 interface IFullPhotoFavoritesAndRepostProps {
   photoId: string
   photoFavoriteAdders: IUserAbbr[]
+  photoUrl: string
 }
 
 export const FullPhotoFavoritesAndRepost: FC<IFullPhotoFavoritesAndRepostProps> = (
-  {photoId, photoFavoriteAdders}
+  {photoId, photoFavoriteAdders, photoUrl}
 ) => {
   const [isRepost, setRepost] = useState(false)
   const {user} = useAuth()
@@ -51,7 +52,8 @@ export const FullPhotoFavoritesAndRepost: FC<IFullPhotoFavoritesAndRepostProps> 
 
         <ModalWindow open={isRepost}>
           <Repost id={photoId}
-            onClose={() => setRepost(false)}
+                  photoUrl={photoUrl}
+                  onClose={() => setRepost(false)}
           />
         </ModalWindow>
       </div>
