@@ -19,7 +19,7 @@ export const CommunityItem: FC<ICommunityItemProps> = (
 
   const avatar = community.avatar !== null ? serverUrl(community.avatar) : defaultCommunityAvatar
   const name = community.name
-  const path = '../group/'
+  const path = `../group/`
 
   const {removeCommunity, addCommunity} = useCommunityQuery()
   const {mutate: subscribe} = addCommunity

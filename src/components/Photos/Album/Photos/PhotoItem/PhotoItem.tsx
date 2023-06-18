@@ -43,7 +43,7 @@ export const PhotoItem: FC<IPhotoItemProps> = ({photo, input, onBlur, onChangeVa
         <div className={styles.item}>
           <div className={styles.img}>
             <img src={photoImg}
-                 alt={photo.description!}/>
+                 alt={photo?.description!}/>
           </div>
           {input && <Input type={'text'}
                            classes={styles.input}

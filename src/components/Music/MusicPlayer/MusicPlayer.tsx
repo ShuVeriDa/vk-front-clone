@@ -38,6 +38,7 @@ export const MusicPlayer: FC<IMusicPlayerProps> = (
 
   // const [isPlaying, setIsPlaying] = useState(false);
   const [isRandom, setIsRandom] = useState(false)
+  const [isRepeat, setIsRepeat] = useState(false)
 
 
   const handleAudioEnded = () => {
@@ -106,6 +107,7 @@ export const MusicPlayer: FC<IMusicPlayerProps> = (
 
   const handleRepeat = async () => {
     audioRef.current!.currentTime = 0;
+    setIsRepeat(!isRepeat)
     await playAudio();
   };
 
@@ -163,10 +165,10 @@ export const MusicPlayer: FC<IMusicPlayerProps> = (
         <div className={styles.options}>
           <button onClick={() => setIsRandom(!isRandom)}
                   className={styles.random}
-          ><RandomMusicSVG/></button>
+          ><RandomMusicSVG styles={isRandom ? styles.activeRandom : ''}/></button>
           <button onClick={handleRepeat}
                   className={styles.repeat}
-          ><RepeatMusicSVG/></button>
+          ><RepeatMusicSVG styles={isRepeat ? styles.activeRepeat : ''} /></button>
         </div>
       </div>
 

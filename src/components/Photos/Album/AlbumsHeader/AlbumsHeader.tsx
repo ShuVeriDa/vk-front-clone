@@ -8,9 +8,10 @@ import {ICreatePhoto} from "../../../../types/photo.interface";
 
 interface IPhotosHeaderProps {
   onClickOpen: () => void
+  count: number
 }
 
-export const AlbumsHeader: FC<IPhotosHeaderProps> = ({onClickOpen}) => {
+export const AlbumsHeader: FC<IPhotosHeaderProps> = ({onClickOpen, count}) => {
   const navigate = useNavigate()
   const inputFileRef = useRef<any>(null)
   const {createPhoto} = usePhotoQuery()
@@ -30,7 +31,7 @@ export const AlbumsHeader: FC<IPhotosHeaderProps> = ({onClickOpen}) => {
   return (
     <div className={styles.header}>
       <div className={styles.albumTitle}>
-        <span className={styles.title}>Мои альбомы <span className={styles.count}>count</span></span>
+        <span className={styles.title}>Мои альбомы <span className={styles.count}>{count}</span></span>
       </div>
       <div className={styles.buttons}>
         <ul>

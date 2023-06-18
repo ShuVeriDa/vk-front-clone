@@ -100,6 +100,13 @@
             color: #99A2AD;
           }
         }
+
+        .activeRandom {
+          &:hover {
+            color: #447BBA;
+          }
+          color: #5a85c4;
+        }
       }
 
       .repeat {
@@ -109,6 +116,13 @@
           &:hover {
             color: #99A2AD;
           }
+        }
+
+        .activeRepeat {
+          &:hover {
+            color: #447BBA;
+          }
+          color: #5a85c4;
         }
       }
     }

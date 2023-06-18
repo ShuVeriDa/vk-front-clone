@@ -40,11 +40,11 @@ export const MusicInfo: FC<IMusicInfoProps> = (
   return (
     <div className={styles.info}>
             <span className={styles.title}>
-              {music && <> {isSuccess && music![currentAudio].title}</>}
+              {music && <> {isSuccess && music![currentAudio]?.title}</>}
               {musicItem?.title}
             </span>
       <span className={styles.artist}>
-          {music && <>{isSuccess && music![currentAudio].artist} </>}
+          {music && <>{isSuccess && music![currentAudio]?.artist} </>}
         {musicItem?.artist}
             </span>
       {isPlayer && <div className={styles.input}>

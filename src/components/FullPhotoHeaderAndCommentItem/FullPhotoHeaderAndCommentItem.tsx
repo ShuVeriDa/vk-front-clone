@@ -36,6 +36,9 @@ export const FullPhotoHeaderAndCommentItem: FC<IFullPhotoHeaderProps> = (
     remove(comment?.id!)
   }
 
+  console.log(!!comment)
+  console.log(isEdit)
+
   return (
     <div className={styles?.wrapper}>
       <div className={cn(styles?.header, {

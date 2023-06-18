@@ -8,37 +8,22 @@ import {ModalWindow} from "../../ModalWindow/ModalWindow";
 import {CreateAlbum} from "./CreateAlbum/CreateAlbum";
 
 interface IAlbumProps {
+  onClickOpen: () => void
 }
 
-export const Album: FC<IAlbumProps> = () => {
-    const [open, setOpen] = useState<boolean>(false)
+export const Album: FC<IAlbumProps> = ({onClickOpen}) => {
 
-    const onClickOpen = () => {
-      setOpen(true)
-    }
-
-    const onClickClose = () => {
-      setOpen(false)
-    }
 
     const {getMyAlbums} = usePhotoAlbumQuery()
     const {data: albums, isSuccess} = getMyAlbums
 
     return (
       <div className={styles.wrapper}>
-        <AlbumsHeader onClickOpen={onClickOpen}/>
+        <AlbumsHeader onClickOpen={onClickOpen} count={albums?.length!}/>
         <div className={styles.main}>
           {isSuccess && albums.map(album => <AlbumItem key={album.id} album={album}/>)}
         </div>
-
-        {open && <ModalWindow onClickClose={onClickClose} open={open}>
-         <CreateAlbum onClickClose={onClickClose}
-         />
-        </ModalWindow>}
       </div>
-
-
     )
-
   }
 ;

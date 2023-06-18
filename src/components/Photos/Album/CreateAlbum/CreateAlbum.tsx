@@ -48,7 +48,7 @@ export const CreateAlbum: FC<ICreateAlbumProps> = ({onClickClose}) => {
                          selectValue={selectValue}
                          onChangeSelectValue={onChangeSelectValue}
         />
-        <CreateAlbumFooter />
+        <CreateAlbumFooter onClickClose={onClickClose}/>
       </form>
     </div>
   )

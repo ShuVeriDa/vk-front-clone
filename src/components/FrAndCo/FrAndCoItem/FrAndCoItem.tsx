@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import styles from './FrAndCoItem.module.scss';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {SubscribeBtn} from "../../SubscribeBtn/SubscribeBtn";
 
 interface IFrAndCoItemProps {
@@ -28,11 +28,14 @@ export const FrAndCoItem: FC<IFrAndCoItemProps> = (
     path, isAuthorizedUser, isAnotherUsers
   }
 ) => {
+
   const isFriendOrCommunity =
     isFriend ? 'Вы подписаны' : 'Добавить в друзья' ||
     isCommunity ? 'Вы подписаны' : 'Подписаться'
 
   const isSubscribe = isFriend || isCommunity ? styles.removeFriend : ''
+
+
 
   return (
     <div className={styles.friendItem}>
@@ -41,10 +44,10 @@ export const FrAndCoItem: FC<IFrAndCoItemProps> = (
         </div>
       <div className={styles.info}>
         <span>
-          <a href={`${path}${userAndCommunityId}`}
+          <Link to={`${path}${userAndCommunityId}`}
              className={styles.fullName}>
             {name}
-          </a>
+          </Link>
         </span>
         {isAnotherUsers
           ? isAnotherUsers

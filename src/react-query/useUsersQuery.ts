@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 export const useUsersQuery = (userId: string | number) => {
   const getUserById = useQuery({
     queryFn: () => UserService.fetchUser(userId!),
-    queryKey: ['user', 'one'],
+    queryKey: ['user', 'one', userId],
     enabled: !!userId,
     // keepPreviousData: false,
     // refetchOnMount: 'always',

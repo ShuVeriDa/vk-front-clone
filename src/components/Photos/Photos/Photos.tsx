@@ -52,7 +52,7 @@ export const Photos: FC<IPhotosProps> = () => {
 
   return (
     <div className={styles.wrapper}>
-      <MyPhotosHeader count={2}/>
+      <MyPhotosHeader count={photos.length}/>
       <div className={styles.main}>
         {visible
           ? <>

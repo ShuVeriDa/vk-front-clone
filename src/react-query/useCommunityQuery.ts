@@ -12,7 +12,7 @@ export const useCommunityQuery = (communityId?: string ) => {
 
   const fetchOne = useQuery({
     queryFn: () => CommunityService.fetchOne(communityId!),
-    queryKey: ['communityOne', 'community'],
+    queryKey: ['communityOne', 'community', communityId],
     enabled: !!communityId
   })
 
