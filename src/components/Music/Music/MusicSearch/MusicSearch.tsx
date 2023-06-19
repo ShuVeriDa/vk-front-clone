@@ -4,7 +4,7 @@ import {Search} from "../../../Search/Search";
 import {useDebounce} from "../../../../hooks/useDebounce";
 
 interface IMusicSearchProps {
-  value: string
+  value?: string
   setValue: (value: string) => void
   status?: "error" | "success" | "loading"
 }

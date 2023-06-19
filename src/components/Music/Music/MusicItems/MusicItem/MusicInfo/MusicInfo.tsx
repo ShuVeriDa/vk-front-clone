@@ -1,14 +1,10 @@
-import {ChangeEvent, FC, MutableRefObject, useRef} from 'react';
+import {ChangeEvent, FC, useContext, useRef} from 'react';
 import styles from './MusicInfo.module.scss';
 import {IMusicFull} from "../../../../../../types/music.interface";
+import MusicContext from "../../../../../../context/MusicContext";
 
 
 interface IMusicInfoProps {
-  setCurrentTime: (number: number) => void
-  audioRef: MutableRefObject<HTMLAudioElement | null>
-  currentAudio: number
-  duration?: number
-  currentTime: number
   isSuccess: boolean
   music: IMusicFull[]
   musicItem: IMusicFull
@@ -19,15 +15,16 @@ export const MusicInfo: FC<IMusicInfoProps> = (
   {
     musicItem,
     music,
-    isSuccess,
+    isPlayer,
+  }
+) => {
+  const { isSuccess,
     audioRef,
     currentAudio,
     duration,
     currentTime,
     setCurrentTime,
-    isPlayer,
-  }
-) => {
+  } = useContext(MusicContext)!
 
   const progressBarRef = useRef<HTMLInputElement>(null);
 

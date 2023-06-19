@@ -9,6 +9,7 @@ import {MusicNotFound} from "../../components/Music/Music/MusicNotFound/MusicNot
 import {ModalWindow} from "../../components/ModalWindow/ModalWindow";
 import {MusicEdit} from "../../components/Music/Music/MusicEdit/MusicEdit";
 import {MusicUpload} from "../../components/Music/Music/MusicUpload/MusicUpload";
+import MusicContext from "../../context/MusicContext";
 
 interface IMusicPageProps {
   page: 'main' | 'allTracks' | 'myTracks'
@@ -19,6 +20,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   const [selectedMusicId, setSelectedMusicId] = useState<string | null>(null)
   const [openEdit, setOpenEdit] = useState(false)
   const [openUpload, setOpenUpload] = useState(false)
+  const [openRepost, setOpenRepost] = useState(false)
   const [value, setValue] = useState('')
   const [currentAudio, setCurrentAudio] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -48,108 +50,80 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
     setIsPlaying(true);
   }
 
-  console.log(openUpload)
-
   return (
     <div className={styles.wrapper}>
-      <MusicPlayer myMusic={myMusic!}
-                   isSuccess={isSuccess}
-                   audioRef={audioRef}
-                   currentAudio={currentAudio}
-                   duration={duration}
-                   currentTime={currentTime}
-                   isPlaying={isPlaying}
-                   setDuration={setDuration}
-                   setCurrentTime={setCurrentTime}
-                   setCurrentAudio={setCurrentAudio}
-                   setIsPlaying={setIsPlaying}
-                   playAudio={playAudio}
-                   pauseAudio={pauseAudio}
-      />
-      {page === "main" && <Music myMusic={myMusic!}
-                                 foundMusic={foundMusic!}
-                                 isSuccessFoundMusic={isSuccessFoundMusic}
-                                 isSuccess={isSuccess}
-                                 audioRef={audioRef}
-                                 currentAudio={currentAudio}
-                                 duration={duration}
-                                 currentTime={currentTime}
-                                 isPlaying={isPlaying}
-                                 value={value}
-                                 status={status}
-                                 setCurrentTime={setCurrentTime}
-                                 setCurrentAudio={setCurrentAudio}
-                                 setIsPlaying={setIsPlaying}
-                                 setOpenUpload={setOpenUpload}
-                                 onClickEdit={onClickEdit}
-                                 setValue={setValue}
-                                 playAudio={playAudio}
-                                 pauseAudio={pauseAudio}
-      />}
-      {page === "myTracks" &&
-        <div className={styles.myTracks}>
-          <Tracks page={page}
-                  value={value}
-                  setValue={setValue}
-          />
-          {isSuccess && myMusic.length
-            ? <MusicItemWrapper music={myMusic}
-                                audioRef={audioRef}
-                                currentAudio={currentAudio}
-                                onClickEdit={onClickEdit}
-                                currentTime={currentTime}
-                                isSuccess={isSuccess}
-                                isPlaying={isPlaying}
-                                setCurrentTime={setCurrentTime}
-                                setCurrentAudio={setCurrentAudio}
-                                setIsPlaying={setIsPlaying}
-                                playAudio={playAudio}
-                                pauseAudio={pauseAudio}
-                                styles={styles}
+      <MusicContext.Provider value={{
+        myMusic: myMusic!,
+        foundMusic: foundMusic!,
+        isSuccess,
+        isSuccessFoundMusic,
+        value,
+        status,
+        setValue,
+        setCurrentTime,
+        setCurrentAudio,
+        setSelectedMusicId,
+        setOpenEdit,
+        setOpenUpload,
+        setDuration,
+        openRepost,
+        setOpenRepost,
+        setIsPlaying,
+        audioRef,
+        selectedMusicId,
+        openEdit,
+        openUpload,
+        currentAudio,
+        duration,
+        currentTime,
+        isPlaying,
+        onClickCloseEdit,
+        onClickEdit,
+        onClickCloseUpload,
+        pauseAudio,
+        playAudio
+      }}>
+        <MusicPlayer/>
+        {page === "main" && <Music/>}
+        {page === "myTracks" &&
+          <div className={styles.myTracks}>
+            <Tracks page={page}
+                    value={value}
+                    setValue={setValue}
             />
-            : <MusicNotFound text={value}/>
-          }
+            {isSuccess && myMusic.length
+              ? <MusicItemWrapper music={myMusic}
+                                  styles={styles}/>
+              : <MusicNotFound text={value}/>
+            }
 
-        </div>
-      }
-      {page === "allTracks" &&
-        <div className={styles.myTracks}>
-          <Tracks page={page}
-                  value={value}
-                  setValue={setValue}
-          />
-          {isSuccessFoundMusic && foundMusic.length > 0
-            ? <MusicItemWrapper music={foundMusic!}
-                                audioRef={audioRef}
-                                currentAudio={currentAudio}
-                                currentTime={currentTime}
-                                isSuccess={isSuccessFoundMusic}
-                                isPlaying={isPlaying}
-                                setCurrentTime={setCurrentTime}
-                                setCurrentAudio={setCurrentAudio}
-                                setIsPlaying={setIsPlaying}
-                                onClickEdit={onClickEdit}
-                                playAudio={playAudio}
-                                pauseAudio={pauseAudio}
-                                styles={styles}
+          </div>
+        }
+        {page === "allTracks" &&
+          <div className={styles.myTracks}>
+            <Tracks page={page}
+                    value={value}
+                    setValue={setValue}
             />
-            : <MusicNotFound text={value}/>}
-        </div>
-      }
+            {isSuccessFoundMusic && foundMusic.length > 0
+              ? <MusicItemWrapper music={foundMusic!}
+                                  styles={styles}
+              />
+              : <MusicNotFound text={value}/>}
+          </div>
+        }
 
-      {
-        <ModalWindow open={openEdit}
-        >
-          {
-            selectedMusicId && <MusicEdit musicId={selectedMusicId}
-                                          onClickClose={onClickCloseEdit}
-            />
-          }
-        </ModalWindow>
-      }
-      {<ModalWindow open={openUpload}>
-        <MusicUpload onClickClose={onClickCloseUpload}/>
-      </ModalWindow>}
+        {<ModalWindow open={openEdit}>
+          {selectedMusicId && <MusicEdit musicId={selectedMusicId}
+                                         onClickClose={onClickCloseEdit}/>}
+        </ModalWindow>}
+        {<ModalWindow open={openUpload}>
+          <MusicUpload onClickClose={onClickCloseUpload}/>
+        </ModalWindow>}
+        {/*{<ModalWindow open={openRepost}>*/}
+        {/*  <Repost onClose={} id={} />*/}
+        {/*</ModalWindow>}*/}
+      </MusicContext.Provider>
     </div>
   );
 };

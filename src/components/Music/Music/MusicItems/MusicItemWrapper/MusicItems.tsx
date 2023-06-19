@@ -1,49 +1,36 @@
-import {FC, MutableRefObject} from 'react';
-
+import {FC, useContext} from 'react';
 import cn from "clsx";
 import {IMusicFull} from "../../../../../types/music.interface";
 import {MusicItem} from "../MusicItem/MusicItem";
+import MusicContext from "../../../../../context/MusicContext";
 
 interface IMusicItemsProps {
   music: IMusicFull[]
-  audioRef: MutableRefObject<HTMLAudioElement | null>
-  currentAudio: number
-  currentTime: number
-  isSuccess: boolean
-  isPlaying: boolean
   pixel?: number
-  setCurrentTime: (number: number) => void
-  setCurrentAudio: (number: number) => void
-  setIsPlaying: (isPlaying: boolean) => void
-  onClickEdit: (musicId: string) => void
-  playAudio: () => void
-  pauseAudio: () => void
   styles: { readonly [key: string]: string }
 }
 
-export const MusicItemWrapper: FC<IMusicItemsProps> = (
-  {
-    music,
-    currentTime, currentAudio,
-    audioRef, isSuccess, setCurrentTime, setCurrentAudio, pauseAudio,
-    playAudio, setIsPlaying, isPlaying, pixel, styles, onClickEdit
-  }
+export const MusicItemWrapper: FC<IMusicItemsProps> = ({music, pixel, styles}
 ) => {
-  const onClickHandler = (i: number) => {
+  const {
+    currentAudio, audioRef, isSuccess, setCurrentAudio, pauseAudio, playAudio, setIsPlaying, isPlaying
+  } = useContext(MusicContext)!
+
+  const onClickHandler = async(i: number) => {
     if (currentAudio !== i) {
       setIsPlaying(true)
       setCurrentAudio(i)
       audioRef.current?.load();
-      playAudio()
+      await playAudio()
     }
 
     if (currentAudio === i) {
       setCurrentAudio(i)
       if (isPlaying) {
-        pauseAudio()
+        await pauseAudio()
       }
       if (!isPlaying) {
-        playAudio()
+        await playAudio()
       }
     }
   }
@@ -56,21 +43,12 @@ export const MusicItemWrapper: FC<IMusicItemsProps> = (
                       onClick={() => onClickHandler(i)}
                       style={{transform: `translateX(${pixel}px)`, transition: 'transform 0.3s ease'}}
           >
-            <MusicItem
-              setCurrentTime={setCurrentTime}
-              setCurrentAudio={setCurrentAudio}
-              onClickEdit={onClickEdit}
-              audioRef={audioRef}
-              currentAudio={currentAudio}
-              currentTime={currentTime}
-              isSuccess={isSuccess}
-              musicItem={m}
-              classes={styles?.musicItem}
-              index={i}
-              isPlayer={false}
-              isPlaying={isPlaying}
-              classesTime={styles?.time}
-              classesRE={styles?.removeAndEdit}
+            <MusicItem musicItem={m}
+                       classes={styles?.musicItem}
+                       index={i}
+                       isPlayer={false}
+                       classesTime={styles?.time}
+                       classesRE={styles?.removeAndEdit}
             />
           </div>
         }

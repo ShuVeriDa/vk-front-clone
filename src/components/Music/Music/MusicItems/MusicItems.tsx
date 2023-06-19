@@ -1,38 +1,16 @@
-import {FC, MutableRefObject, useState} from 'react';
+import {FC, useState} from 'react';
 import styles from './MusicItems.module.scss';
 import {IMusicFull} from "../../../../types/music.interface";
-import {MusicItem} from "./MusicItem/MusicItem";
-import cn from "clsx";
-import {LeftArrowMusicSVG, RightArrow, RightArrowMusicSVG} from "../../../SvgComponent";
-import {Link, useNavigate} from "react-router-dom";
+import {LeftArrowMusicSVG, RightArrowMusicSVG} from "../../../SvgComponent";
+import {useNavigate} from "react-router-dom";
 import {MusicItemWrapper} from "./MusicItemWrapper/MusicItems";
 
 interface IMusicItemsProps {
   title?: 'Мои треки' | "Недавно прослушанные" | "Все аудиозаписи"
   music: IMusicFull[]
-  audioRef: MutableRefObject<HTMLAudioElement | null>
-  currentAudio: number
-  duration: number
-  currentTime: number
-  isSuccess: boolean
-  myMusic?: IMusicFull[]
-  isPlaying: boolean
-  setCurrentTime: (number: number) => void
-  setCurrentAudio: (number: number) => void
-  setIsPlaying: (isPlaying: boolean) => void
-  onClickEdit: (musicId: string) => void
-  playAudio: () => void
-  pauseAudio: () => void
 }
 
-export const MusicItems: FC<IMusicItemsProps> = (
-  {
-    title, music,
-    myMusic, currentTime, currentAudio,
-    audioRef, duration, isSuccess, setCurrentTime, setCurrentAudio, pauseAudio,
-    playAudio, setIsPlaying, isPlaying, onClickEdit
-  }
-) => {
+export const MusicItems: FC<IMusicItemsProps> = ({title, music}) => {
   const navigate = useNavigate()
 
   const [pixel, setPixel] = useState(0)
@@ -54,21 +32,15 @@ export const MusicItems: FC<IMusicItemsProps> = (
     if (pixel < 0) setPixel(pixel + 403)
   }
 
-
   const translateRight = () => {
     if (pixel > maxPixel) setPixel(pixel - 403);
     if (pixel < maxPixel) setPixel(pixel - 403);
   }
 
-
-
-  console.log(maxPixel)
-
   const onSetPage = () => {
     if (title === 'Мои треки') navigate('/music/mytracks')
     if (title === 'Все аудиозаписи') navigate('/music/alltracks')
   }
-
 
   return (
     <div className={styles.wrapper}>
@@ -80,20 +52,8 @@ export const MusicItems: FC<IMusicItemsProps> = (
       </div>
       {pixel !== 0 && <div onClick={translateLeft} className={styles.leftArrow}><LeftArrowMusicSVG/></div>}
 
-
       <MusicItemWrapper music={music}
-                        audioRef={audioRef}
-                        currentAudio={currentAudio}
-                        currentTime={currentTime}
-                        isSuccess={isSuccess}
-                        isPlaying={isPlaying}
                         pixel={pixel}
-                        setCurrentTime={setCurrentTime}
-                        setCurrentAudio={setCurrentAudio}
-                        setIsPlaying={setIsPlaying}
-                        playAudio={playAudio}
-                        pauseAudio={pauseAudio}
-                        onClickEdit={onClickEdit}
                         styles={styles}
       />
 

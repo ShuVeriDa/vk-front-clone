@@ -1,4 +1,4 @@
-import {FC, MutableRefObject, useEffect, useState} from 'react';
+import {FC, useContext, useEffect, useState} from 'react';
 import styles from './MusicPlayer.module.scss';
 import {serverUrl} from "../../../utils/serverUrl";
 import {
@@ -10,36 +10,17 @@ import {
   RepeatMusicSVG
 } from "../../SvgComponent";
 import {MusicItem} from "../Music/MusicItems/MusicItem/MusicItem";
-import {IMusicFull} from "../../../types/music.interface";
+import MusicContext from "../../../context/MusicContext";
 
-interface IMusicPlayerProps {
-  myMusic: IMusicFull[]
-  isSuccess: boolean
-  audioRef: MutableRefObject<HTMLAudioElement | null>
-  currentAudio: number
-  duration: number
-  currentTime: number
-  isPlaying: boolean
-  setCurrentAudio: (currentAudio: number | ((prev: number) => number)) => void;
-  setCurrentTime: (currentTime: number) => void
-  setDuration: (duration: number) => void
-  setIsPlaying: (isPlaying: boolean) => void
-  playAudio: () => void
-  pauseAudio: () => void
-
-}
+interface IMusicPlayerProps {}
 
 export const MusicPlayer: FC<IMusicPlayerProps> = (
-  {
-    myMusic, isSuccess, audioRef, setCurrentAudio, currentAudio, duration, currentTime, setDuration, setCurrentTime, playAudio, pauseAudio, setIsPlaying, isPlaying
-  }
+
 ) => {
+  const { myMusic, isSuccess, audioRef, setCurrentAudio, currentAudio, setDuration, setCurrentTime, playAudio, pauseAudio, setIsPlaying, isPlaying} = useContext(MusicContext)!
 
-
-  // const [isPlaying, setIsPlaying] = useState(false);
   const [isRandom, setIsRandom] = useState(false)
   const [isRepeat, setIsRepeat] = useState(false)
-
 
   const handleAudioEnded = () => {
     setIsPlaying(false);
@@ -153,12 +134,6 @@ export const MusicPlayer: FC<IMusicPlayerProps> = (
         </div>
 
         <MusicItem music={myMusic!}
-                   setCurrentTime={setCurrentTime}
-                   duration={duration}
-                   currentAudio={currentAudio}
-                   audioRef={audioRef}
-                   isSuccess={isSuccess}
-                   currentTime={currentTime}
                    isPlayer={true}
         />
 
