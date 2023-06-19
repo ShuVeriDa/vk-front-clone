@@ -6,11 +6,10 @@ import {TrackItems} from "./TrackItems/TrackItems";
 
 interface IMyTracksProps {
   page: 'main' | 'allTracks' | 'myTracks'
-  value: string
   setValue: (value: string) => void
 }
 
-export const Tracks: FC<IMyTracksProps> = ({page, value, setValue}) => {
+export const Tracks: FC<IMyTracksProps> = ({page, setValue}) => {
 
   const title = page === "allTracks" ? "Все аудиозаписи" : "Мои треки"
   return (
@@ -18,8 +17,7 @@ export const Tracks: FC<IMyTracksProps> = ({page, value, setValue}) => {
       <TracksHeader title={title}
                     setValue={setValue}
       />
-      <MusicSearch value={value}
-                   setValue={setValue}
+      <MusicSearch setValue={setValue}
       />
       {page === "myTracks" && <TrackItems/>}
     </div>

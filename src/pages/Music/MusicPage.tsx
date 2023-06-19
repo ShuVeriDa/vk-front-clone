@@ -88,7 +88,6 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         {page === "myTracks" &&
           <div className={styles.myTracks}>
             <Tracks page={page}
-                    value={value}
                     setValue={setValue}
             />
             {isSuccess && myMusic.length
@@ -102,7 +101,6 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         {page === "allTracks" &&
           <div className={styles.myTracks}>
             <Tracks page={page}
-                    value={value}
                     setValue={setValue}
             />
             {isSuccessFoundMusic && foundMusic.length > 0

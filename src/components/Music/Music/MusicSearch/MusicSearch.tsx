@@ -4,12 +4,11 @@ import {Search} from "../../../Search/Search";
 import {useDebounce} from "../../../../hooks/useDebounce";
 
 interface IMusicSearchProps {
-  value?: string
   setValue: (value: string) => void
   status?: "error" | "success" | "loading"
 }
 
-export const MusicSearch: FC<IMusicSearchProps> = ({value, setValue, status}) => {
+export const MusicSearch: FC<IMusicSearchProps> = ({ setValue, status}) => {
   const updateSearch = useDebounce(setValue, 350)
   return (
     <div className={styles.wrapper}>
