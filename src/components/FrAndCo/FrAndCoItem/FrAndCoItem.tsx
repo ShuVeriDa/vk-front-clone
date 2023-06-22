@@ -8,8 +8,6 @@ interface IFrAndCoItemProps {
   category?: string
   members?: number
   isCommunity?: boolean
-
-  isAuthorizedUser?: boolean
   isAnotherUsers?: boolean
   isFriend?: boolean
   location?: string
@@ -25,7 +23,7 @@ export const FrAndCoItem: FC<IFrAndCoItemProps> = (
     location, members, category,
     avatar, userAndCommunityId,
     name, onClick, isCommunity, isFriend,
-    path, isAuthorizedUser, isAnotherUsers
+    path,  isAnotherUsers
   }
 ) => {
 
@@ -34,7 +32,6 @@ export const FrAndCoItem: FC<IFrAndCoItemProps> = (
     isCommunity ? 'Вы подписаны' : 'Подписаться'
 
   const isSubscribe = isFriend || isCommunity ? styles.removeFriend : ''
-
 
 
   return (

@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useMemo, useRef, useState} from 'react';
+import {ChangeEvent, FC, useRef, useState} from 'react';
 
 import defaultAvatar from '../../../assets/img/defaultAvatar.png'
 import styles from './ProfileHeader.module.scss'
@@ -9,6 +9,7 @@ import {LocationSVG, MessageBtn} from "../../SvgComponent";
 import {useUsersQuery} from "../../../react-query/useUsersQuery";
 import {useUploadQuery} from "../../../react-query/useUploadQuery";
 import {UploadImage} from "../../UploadImage/UploadImage";
+import {serverUrl} from "../../../utils/serverUrl";
 
 interface IProfileHeader {
   user: IUserFull | null | undefined
@@ -27,7 +28,7 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
   const {updateUser, getUserById} = useUsersQuery(authUser?.id!)
   const {mutate: uploadImage} = updateUser
 
-  const avatar = `${process.env.REACT_APP_SERVER_URL}${user?.avatar}`
+  const avatar = user?.avatar ? serverUrl(user.avatar) : defaultAvatar
 
   const onChangeProfile = () => {
     navigate(`/profile/edit`)
@@ -68,8 +69,8 @@ export const ProfileHeader: FC<IProfileHeader> = ({user, profileId}) => {
                setShow(true)
              }}
         >
-          <img src={avatar || defaultAvatar}
-               alt=""
+          <img src={avatar}
+               alt={user?.lastName}
           />
         </div>
         <UploadImage show={show}

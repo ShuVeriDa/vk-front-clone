@@ -1,4 +1,5 @@
 import {FC} from 'react';
+import defaultAvatar from '../../assets/img/defaultAvatar.png'
 import styles from './Posts.module.scss';
 import {ProfileWall} from "../Profile/ProfileWall/ProfileWall";
 import {PostWrite} from "./PostWrite/PostWrite";
@@ -17,7 +18,7 @@ interface IPostsProps {
 
 export const PostsWrapper: FC<IPostsProps> = ({user, posts, isSuccessPosts, profileId}) => {
   const {user: authorizedUser} = useAuth()
-  const avatar = serverUrl(user?.avatar)
+  const avatar = user?.avatar ? serverUrl(user.avatar) : defaultAvatar
   const borderRadius = {
     borderTopLeftRadius: "0",
     borderTopRightRadius: "0",

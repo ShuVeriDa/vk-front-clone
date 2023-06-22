@@ -9,7 +9,6 @@ import {CommentPostSVG, FavoritePostSVG, RepostPostSVG, ViewsPostSVG} from "../.
 import {PostMenu} from "../PostMenu/PostMenu";
 import {PostUpdate} from "../PostUpdate/PostUpdate";
 import {serverUrl} from "../../../utils/serverUrl";
-import {ICommunitySearchAbbr, ICommunitySearchResponse} from "../../../types/community.interface";
 
 
 interface IPostProps {
@@ -22,7 +21,7 @@ interface IPostProps {
 
 export const PostItem: FC<IPostProps> = ({post, borderRadius, authorizedUserId}) => {
   const refOut = useRef(null)
-  const avatar = serverUrl(post.user.avatar) || defaultAvatar
+  const avatar = post.user.avatar ? serverUrl(post.user.avatar) : defaultAvatar
 
   const [show, setShow] = useState(false)
   const [isEdit, setIsEdit] = useState(false)

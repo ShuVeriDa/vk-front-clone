@@ -16,7 +16,7 @@ export const ProfileFriendsAndSubsItem: FC<FriendsItemPropsType> = (
 
   const friendUrl = `/profile/${id}`
   const communityUrl = `/group/${id}`
-  const membersUrl = `/members/${id}`
+  const membersUrl = `/profile/${id}`
   const link = title === 'Друзья'
     ? friendUrl
     : title === "Подписки"
