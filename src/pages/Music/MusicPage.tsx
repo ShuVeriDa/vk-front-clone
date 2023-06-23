@@ -10,6 +10,7 @@ import {ModalWindow} from "../../components/ModalWindow/ModalWindow";
 import {MusicEdit} from "../../components/Music/Music/MusicEdit/MusicEdit";
 import {MusicUpload} from "../../components/Music/Music/MusicUpload/MusicUpload";
 import MusicContext from "../../context/MusicContext";
+import {PlaylistCE} from "../../components/Music/Playlist/PlaylistCE/PlaylistCE";
 
 interface IMusicPageProps {
   page: 'main' | 'allTracks' | 'myTracks'
@@ -21,6 +22,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   const [openEdit, setOpenEdit] = useState(false)
   const [openUpload, setOpenUpload] = useState(false)
   const [openRepost, setOpenRepost] = useState(false)
+  const [openPlaylistCE, setOpenPlaylistCE] = useState(false)
   const [value, setValue] = useState('')
   const [currentAudio, setCurrentAudio] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -60,6 +62,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         value,
         status,
         setValue,
+        setOpenPlaylistCE,
         setCurrentTime,
         setCurrentAudio,
         setSelectedMusicId,
@@ -72,6 +75,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         audioRef,
         selectedMusicId,
         openEdit,
+        openPlaylist: openPlaylistCE,
         openUpload,
         currentAudio,
         duration,
@@ -118,6 +122,11 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         {<ModalWindow open={openUpload}>
           <MusicUpload onClickClose={onClickCloseUpload}/>
         </ModalWindow>}
+        {
+          <ModalWindow open={openPlaylistCE}>
+            <PlaylistCE title={'Создание нового плейлиста'} />
+          </ModalWindow>
+        }
         {/*{<ModalWindow open={openRepost}>*/}
         {/*  <Repost onClose={} id={} />*/}
         {/*</ModalWindow>}*/}

@@ -10,7 +10,7 @@ interface IMusicProps {
 }
 
 export const Music: FC<IMusicProps> = () => {
-  const {myMusic, setValue, value, foundMusic, isSuccessFoundMusic, setOpenUpload, status} = useContext(MusicContext)!
+  const {myMusic, setValue, value, foundMusic, isSuccessFoundMusic, setOpenUpload, status, setOpenPlaylistCE} = useContext(MusicContext)!
 
   const isFound = isSuccessFoundMusic && foundMusic?.length! > 0 && value.length > 0
   const isFoundMusic = isFound ? foundMusic! : myMusic
@@ -18,7 +18,9 @@ export const Music: FC<IMusicProps> = () => {
 
   return (
     <div className={styles.wrapper}>
-      <MusicHeader setOpenUpload={setOpenUpload}/>
+      <MusicHeader setOpenUpload={setOpenUpload}
+                   setOpenPlaylistCE={setOpenPlaylistCE}
+      />
       <MusicSearch setValue={setValue}
                    status={status}
       />

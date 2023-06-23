@@ -1,0 +1,28 @@
+.footer {
+  height: 61px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  justify-content: end;
+  padding: 14px 23px 14px 13px;
+  background: #FAFBFC;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 560px;
+    height: 1px;
+    background-color: #dce1e6;
+  }
+
+  .button {
+    position: relative;
+    bottom: 20px;
+    width: 105px;
+    padding: 0 16px;
+  }
+}

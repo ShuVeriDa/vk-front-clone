@@ -11,14 +11,16 @@ const list: ListType[] = ['Главная', "Моя музыка", "Обзор",
 
 interface IMusicHeaderProps {
   setOpenUpload: (openUpload: boolean) => void
+  setOpenPlaylistCE: (openPlaylist: boolean) => void
 }
 
-export const MusicHeader: FC<IMusicHeaderProps> = ({setOpenUpload}) => {
+export const MusicHeader: FC<IMusicHeaderProps> = ({setOpenUpload, setOpenPlaylistCE}) => {
   const [active, setActive] = useState<ListType | null>('Главная');
 
-  const handleOpenUpload = () => {
-    setOpenUpload(true)
-  }
+  const handleOpenUpload = () => setOpenUpload(true)
+  const handleOpenPlaylist = () => setOpenPlaylistCE(true)
+
+
 
   return (
     <div className={styles.wrapper}>
@@ -35,7 +37,7 @@ export const MusicHeader: FC<IMusicHeaderProps> = ({setOpenUpload}) => {
         </ul>
       </div>
       <div className={styles.uploadAndPlaylist}>
-        <PlaylistMusicSVG styles={styles.playListSVG}/>
+        <PlaylistMusicSVG styles={styles.playListSVG} onClick={handleOpenPlaylist}/>
         <UploadMusicSVG styles={styles.uploadSVG} onClick={handleOpenUpload}/>
       </div>
     </div>

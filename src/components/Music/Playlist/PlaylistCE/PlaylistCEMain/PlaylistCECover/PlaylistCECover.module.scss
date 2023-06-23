@@ -1,0 +1,24 @@
+.cover {
+  height: 76px;
+  width: 76px;
+  background: #EBEDF0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #447BBA;
+  border: 1px solid #D9DBDE;
+
+  .plus {
+    font-size: 37px;
+    font-weight: 100;
+    position: relative;
+    bottom: 2px;
+  }
+
+  .title {
+    position: relative;
+    bottom: 2px;
+    font-size: 12px;
+  }
+}

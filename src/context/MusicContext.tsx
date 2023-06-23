@@ -13,10 +13,12 @@ interface IMusicContext {
   setOpenUpload: (openUpload: boolean) => void
   setDuration: (duration: number) => void
   setOpenRepost: (openRepost: boolean) => void
+  setOpenPlaylistCE: ( openPlaylist: boolean) => void
   setIsPlaying: (isPlaying: boolean) => void
   audioRef: MutableRefObject<HTMLAudioElement | null>;
   selectedMusicId: string | null;
   openEdit: boolean;
+  openPlaylist: boolean
   openUpload: boolean;
   openRepost: boolean;
   value: string;

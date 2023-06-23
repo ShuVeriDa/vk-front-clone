@@ -364,7 +364,7 @@ export const ShuffleMusicSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
 
 export const PlaylistMusicSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
   return (
-    <svg className={styles} fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+    <svg onClick={onClick} className={styles} fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
       <g fill="currentColor">
         <path
           d="M17.9 11.9a.9.9 0 1 0-1.8 0v3.2h-3.2a.9.9 0 1 0 0 1.8h3.2v3.2a.9.9 0 0 0 1.8 0v-3.2h3.2a.9.9 0 0 0 0-1.8h-3.2zm-14-5h14.2a.9.9 0 1 0 0-1.8H3.9a.9.9 0 1 0 0 1.8zm0 3.2a.9.9 0 1 0 0 1.8h9.2a.9.9 0 0 0 0-1.8zm0 5a.9.9 0 1 0 0 1.8h5.2a.9.9 0 0 0 0-1.8z"></path>
@@ -395,6 +395,7 @@ export const RightArrowMusicSVG: FC<ISvgComponentProps> = ({styles, onClick}) =>
   );
 };
 
+
 export const LeftArrowMusicSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
   return (
     <svg onClick={onClick} className={styles} fill="none" height="16" viewBox="0 0 12 16" width="12"
@@ -402,6 +403,18 @@ export const LeftArrowMusicSVG: FC<ISvgComponentProps> = ({styles, onClick}) => 
       <path d="m4.77 8 3.37 3.36a.9.9 0 1 1-1.28 1.28l-4-4a.9.9 0 0 1 0-1.28l4-4a.9.9 0 1 1 1.28 1.28z"
             fill="currentColor"></path>
     </svg>
+  );
+};
+
+export const RightArrowSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
+  return (
+    <svg onClick={onClick} className={styles} width="16" height="24" viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg"><g id="chevron_24__Page-2" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="chevron_24__chevron_24"><path id="chevron_24__Bounds" d="M0 0h16v24H0z"></path><path d="M4.7 7.7a1 1 0 0 1 0-1.4l.1-.1a1 1 0 0 1 1.4 0l5.1 5.1a1 1 0 0 1 0 1.4l-5.1 5.1a1 1 0 0 1-1.4 0l-.1-.1a1 1 0 0 1 0-1.4L9 12 4.7 7.7Z" id="chevron_24__Mask" fill="currentColor"></path></g></g></svg>
+  );
+};
+
+export const PlusSVG: FC<ISvgComponentProps> = ({styles, onClick}) => {
+  return (
+    <svg onClick={onClick} className={styles} width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="add_24__Page-2" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="add_24__add_24"><path id="add_24__Bounds" d="M0 0h24v24H0z"></path><path d="M13 11h6.5a1 1 0 0 1 0 2H13v6.5a1 1 0 0 1-2 0V13H4.5a1 1 0 0 1 0-2H11V4.5a1 1 0 0 1 2 0V11Z" id="add_24__Mask" fill="currentColor"></path></g></g></svg>
   );
 };
 

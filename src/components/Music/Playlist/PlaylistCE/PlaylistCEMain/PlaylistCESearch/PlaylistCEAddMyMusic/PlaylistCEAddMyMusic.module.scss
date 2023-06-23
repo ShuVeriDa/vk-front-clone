@@ -1,0 +1,38 @@
+.wrapper {
+  height: 52px;
+  box-sizing: border-box;
+  padding: 16px 40px 16px 30px;
+  position: relative;
+  display: flex;
+  //justify-content: ;
+  align-items: center;
+  font-size: 13px;
+  
+  &:hover {
+    cursor: pointer;
+    background: rgba(174, 183, 194, 0.12);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 560px;
+    height: 1px;
+    background-color: #dce1e6;
+  }
+
+  svg {
+    color: #99A2AD;
+  }
+
+  .plus {
+    margin-right: 13px;
+  }
+
+  .arrow {
+    position: relative;
+    left: 305px;
+  }
+}
