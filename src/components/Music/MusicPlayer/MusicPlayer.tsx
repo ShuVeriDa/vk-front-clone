@@ -61,11 +61,9 @@ export const MusicPlayer: FC<IMusicPlayerProps> = (
       setCurrentAudio((prev) => prev === myMusic?.length! - 1 ? 0 : prev + 1)
       audioRef.current?.load();
     }
-
     if (isRandom) {
       randomAudio()
     }
-
     if (isPlaying) {
       await playAudio()
     }
@@ -76,11 +74,9 @@ export const MusicPlayer: FC<IMusicPlayerProps> = (
       setCurrentAudio((prev) => prev === 0 ? myMusic?.length! - 1 : prev - 1)
       audioRef.current?.load();
     }
-
     if (isRandom) {
       randomAudio()
     }
-
     if (isPlaying) {
       await playAudio()
     }

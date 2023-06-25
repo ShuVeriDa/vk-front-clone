@@ -16,39 +16,6 @@
     width: 401px;
     color: #818c99;
   }
-
-  .input {
-    height: 2px;
-
-    .duration {
-      width: 445px;
-      height: 2px;
-      appearance: none;
-      background: #447BBA;
-      background: linear-gradient(to right, blue, blue) no-repeat;
-
-      &:hover {
-        cursor: pointer;
-
-        &::-webkit-slider-thumb {
-          width: 6px;
-          height: 6px;
-        }
-      }
-    }
-
-    .duration::-webkit-slider-thumb {
-      appearance: none;
-      width: 0;
-      height: 0;
-      background: #447BBA;
-      border-radius: 50%;
-
-      transition: .15s ease-in-out;
-    }
-  }
-
-
 }
 
 .time {

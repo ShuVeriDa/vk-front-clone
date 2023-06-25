@@ -5,6 +5,7 @@ import {PlaylistCESearch} from "./PlaylistCESearch/PlaylistCESearch";
 import {PlaylistCEAddMyMusic} from "./PlaylistCESearch/PlaylistCEAddMyMusic/PlaylistCEAddMyMusic";
 import {MusicNotFound} from "../../../Music/MusicNotFound/MusicNotFound";
 import {PlaylistCESearchNotFound} from "./PlaylistCESearchNotFound/PlaylistCESearchNotFound";
+import {PlaylistItems} from "../../PlaylistItems/PlaylistItems";
 
 interface IPlaylistCEMainProps {
 }
@@ -15,7 +16,8 @@ export const PlaylistCEMain: FC<IPlaylistCEMainProps> = () => {
       <PlaylistCeInfo/>
       <PlaylistCESearch />
       <PlaylistCEAddMyMusic />
-      {true && <PlaylistCESearchNotFound />}
+      <PlaylistItems />
+      {false && <PlaylistCESearchNotFound />}
     </div>
   );
 };

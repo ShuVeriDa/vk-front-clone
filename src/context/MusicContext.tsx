@@ -1,4 +1,4 @@
-import {createContext, MutableRefObject} from 'react';
+import {ChangeEvent, createContext, MutableRefObject} from 'react';
 import {IMusicFull} from "../types/music.interface";
 
 interface IMusicContext {
@@ -16,6 +16,7 @@ interface IMusicContext {
   setOpenPlaylistCE: ( openPlaylist: boolean) => void
   setIsPlaying: (isPlaying: boolean) => void
   audioRef: MutableRefObject<HTMLAudioElement | null>;
+  progressBarRef: MutableRefObject<HTMLInputElement | null>
   selectedMusicId: string | null;
   openEdit: boolean;
   openPlaylist: boolean
@@ -28,6 +29,7 @@ interface IMusicContext {
   currentTime: number;
   isPlaying: boolean;
   onClickCloseEdit: () => void;
+  handleProgressBarChange: (e: ChangeEvent<HTMLInputElement>) => void
   onClickEdit: (musicId: string) => void;
   onClickCloseUpload: () => void;
   pauseAudio: () => Promise<void>;

@@ -1,4 +1,4 @@
-import {FC, useRef, useState} from 'react';
+import {ChangeEvent, FC, useRef, useState} from 'react';
 import styles from './MusicPage.module.scss';
 import {MusicPlayer} from "../../components/Music/MusicPlayer/MusicPlayer";
 import {Music} from "../../components/Music/Music/Music";
@@ -28,6 +28,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const progressBarRef = useRef<HTMLInputElement>(null);
 
   const onClickCloseEdit = () => setOpenEdit(false)
   const onClickEdit = (musicId: string) => {
@@ -52,6 +53,12 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
     setIsPlaying(true);
   }
 
+  const handleProgressBarChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const time = Number(e.currentTarget.value);
+    setCurrentTime(time);
+    audioRef.current!.currentTime = time;
+  };
+
   return (
     <div className={styles.wrapper}>
       <MusicContext.Provider value={{
@@ -61,6 +68,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         isSuccessFoundMusic,
         value,
         status,
+        progressBarRef,
         setValue,
         setOpenPlaylistCE,
         setCurrentTime,
@@ -69,6 +77,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         setOpenEdit,
         setOpenUpload,
         setDuration,
+        handleProgressBarChange,
         openRepost,
         setOpenRepost,
         setIsPlaying,

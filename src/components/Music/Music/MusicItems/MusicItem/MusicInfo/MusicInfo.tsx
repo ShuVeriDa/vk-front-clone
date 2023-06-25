@@ -2,6 +2,7 @@ import {ChangeEvent, FC, useContext, useRef} from 'react';
 import styles from './MusicInfo.module.scss';
 import {IMusicFull} from "../../../../../../types/music.interface";
 import MusicContext from "../../../../../../context/MusicContext";
+import {Duration} from "../../../../Duration/Duration";
 
 
 interface IMusicInfoProps {
@@ -24,9 +25,10 @@ export const MusicInfo: FC<IMusicInfoProps> = (
     duration,
     currentTime,
     setCurrentTime,
+    progressBarRef
   } = useContext(MusicContext)!
 
-  const progressBarRef = useRef<HTMLInputElement>(null);
+
 
   const handleProgressBarChange = (e: ChangeEvent<HTMLInputElement>) => {
     const time = Number(e.currentTarget.value);
@@ -44,21 +46,7 @@ export const MusicInfo: FC<IMusicInfoProps> = (
           {music && <>{isSuccess && music![currentAudio]?.artist} </>}
         {musicItem?.artist}
             </span>
-      {isPlayer && <div className={styles.input}>
-        <input
-          className={styles.duration}
-          type="range"
-          min={0}
-          max={duration}
-          value={currentTime}
-          onChange={handleProgressBarChange}
-          ref={progressBarRef}
-          style={{
-            background: `linear-gradient(to right,  #447BBA ${currentTime / duration! * 100}%, #edeef0 ${currentTime / duration! * 100}%)`
-          }}
-        />
-      </div>
-      }
+      {isPlayer && <Duration />}
     </div>
   );
 };

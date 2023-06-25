@@ -3,7 +3,7 @@ import styles from './MusicTime.module.scss';
 import cn from "clsx";
 interface IMusicIconProps {
   currentTime: number
-  classesTime: string
+  classesTime?: string
 }
 
 export const MusicTime: FC<IMusicIconProps> = ({currentTime, classesTime}) => {
