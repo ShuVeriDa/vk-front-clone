@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
-import TimeAgo from 'javascript-time-ago'
 
 import './index.css';
 import {Provider} from "react-redux";

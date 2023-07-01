@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useContext, useRef} from 'react';
+import {FC, useContext} from 'react';
 import styles from './MusicInfo.module.scss';
 import {IMusicFull} from "../../../../../../types/music.interface";
 import MusicContext from "../../../../../../context/MusicContext";
@@ -19,23 +19,8 @@ export const MusicInfo: FC<IMusicInfoProps> = (
     isPlayer,
   }
 ) => {
-  const { isSuccess,
-    audioRef,
-    currentAudio,
-    duration,
-    currentTime,
-    setCurrentTime,
-    progressBarRef
-  } = useContext(MusicContext)!
+  const { isSuccess,currentAudio} = useContext(MusicContext)!
 
-
-
-  const handleProgressBarChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const time = Number(e.currentTarget.value);
-    setCurrentTime(time);
-    audioRef.current!.currentTime = time;
-  };
-  
   return (
     <div className={styles.info}>
             <span className={styles.title}>
