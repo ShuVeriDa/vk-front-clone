@@ -1,21 +1,31 @@
 .item {
   display: flex;
   box-sizing: border-box;
-  border-radius: 8px;
-  padding: 9px 0;
+  //padding: 9px 0;
+  margin-bottom: 2px;
 
   .container {
     display: flex;
     align-items: center;
     height: 40px;
     width: 476px;
-    background: #F2F3F5;
+    border-radius: 8px;
+
+    &:hover {
+      cursor: pointer;
+      background: #F2F3F5;
+    }
+
+
     .pauseOrPlay {
+      position: relative;
+      top: 2px;
       padding: 0 9px;
-      
+
       &:hover {
         cursor: pointer;
       }
+
       svg {
         width: 24px;
         height: 24px;
@@ -24,6 +34,9 @@
     }
 
     .musicInfo {
+      position: relative;
+      bottom: 3px;
+
       .info {
         display: flex;
         align-items: center;
@@ -38,6 +51,13 @@
           font-size: 13px;
         }
       }
+
+      .durationWrapper {
+        overflow: hidden;
+        position: relative;
+        bottom: 10px;
+        left: -2px;
+      }
     }
 
 
@@ -45,10 +65,13 @@
       font-size: 13px;
       color: #818c99;
       position: relative;
+      bottom: 8px;
+      left: 28px;
     }
 
     .input {
       height: 2px;
+
       .duration {
         width: 356px;
         height: 2px;

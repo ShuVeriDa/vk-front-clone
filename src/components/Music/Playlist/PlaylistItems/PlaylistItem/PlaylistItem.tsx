@@ -46,7 +46,6 @@ export const PlaylistItem: FC<IPlaylistItemProps> = () => {
             : <PlayMusicSVG onClick={togglePlaying}/>
           }
         </div>
-
         <div className={styles.musicInfo}>
           <div className={styles.info}>
             <span>
@@ -54,7 +53,10 @@ export const PlaylistItem: FC<IPlaylistItemProps> = () => {
               <span className={styles.title}> title</span>
             </span>
           </div>
-          <Duration secondStyles={styles}/>
+          <div className={styles.durationWrapper}>
+            <Duration secondStyles={styles}/>
+          </div>
+
         </div>
 
 
