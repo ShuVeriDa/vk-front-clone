@@ -1,6 +1,14 @@
 import {axiosClassic, instance} from "../api/api.interceptor";
-import {getMusicUrl, getPhotosUrl} from "../api/api.config";
-import {ICreateMusic, IMusicFull, ISearchMusic, IUpdateMusic} from "../types/music.interface";
+import {getMusicUrl} from "../api/api.config";
+import {
+  ICreateMusic,
+  ICreatePlaylist,
+  IMusicFull,
+  ISearchMusic,
+  IToggleMusicToPlaylist,
+  IUpdateMusic,
+  IUpdatePlaylist
+} from "../types/music.interface";
 
 
 export const MusicService = {
@@ -41,24 +49,34 @@ export const MusicService = {
     return res.data
   },
 
-  // createPhoto: async (data: ICreatePhoto) => {
-  //   const res = await instance.post<IPhotoForAlbum>(getPhotosUrl(''), data)
-  //   return res.data
-  // },
-  //
-  // },
-  //
-  // toggleFavoritesPhoto: async (photoId:string) => {
-  //   const res = await instance.post<IPhotoFull>(getPhotosUrl(`/${photoId}/favorites`))
-  //   return res.data
-  // },
-  //
-  //
-  // //community
-  // getPhotosCommunityUrl: async (communityId: string) => {
-  //   const res = await axiosClassic.get<IPostCommunity[]>(getPostsCommunityUrl(communityId, ''))
-  //
-  //   return res.data
-  // }
+  //PLAYLIST
 
+  fetchPlaylists: async () => {
+    const res = await instance.get(getMusicUrl('/playlists'))
+    return res.data
+  },
+
+  fetchOnePlaylist:async (playlistId: string) => {
+    const res = await instance.get(getMusicUrl(`/playlists/${playlistId}`))
+    return res.data
+  },
+
+  createPlaylist: async (data: ICreatePlaylist) => {
+    const res = await instance.post(getMusicUrl(`/playlists}`), data)
+    return res.data
+  },
+
+  updatePlaylist: async (data: IUpdatePlaylist, playlistId: string) => {
+    const res  = await instance.patch(getMusicUrl(`/playlists/${playlistId}`), data)
+    return res.data
+  },
+
+  removePlaylist: async (playlistId: string) => {
+    const res = await instance.delete(getMusicUrl(`/playlists/${playlistId}`))
+    return res.data
+  },
+
+  toggleMusicToPlaylist: async (playlistId: string, data: IToggleMusicToPlaylist) => {
+    const res = await instance.post(getMusicUrl(`/playlists/${playlistId}`), data)
+  }
 }

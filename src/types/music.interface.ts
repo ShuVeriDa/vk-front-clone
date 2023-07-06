@@ -1,5 +1,6 @@
 import {ICommunity} from "./community.interface";
 import {IUserAbbr} from "./user.interface";
+import exp from "constants";
 
 export interface IMusicAbbr {
   id: string,
@@ -31,3 +32,16 @@ export interface ICreateMusic {
   musicUrl: string
 }
 
+export interface IPlaylist {
+  title: string
+  description: string
+  coverUrl: string
+}
+
+export interface IUpdatePlaylist extends IPlaylist {}
+
+export interface ICreatePlaylist extends IPlaylist {}
+
+export interface IToggleMusicToPlaylist {
+  musicIds: string[]
+}

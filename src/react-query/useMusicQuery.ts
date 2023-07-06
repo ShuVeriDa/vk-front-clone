@@ -3,7 +3,7 @@ import {useMemo} from "react";
 import {AlbumService} from "../services/album.service";
 import {ICreatePhotoAlbum, ICreatePhotoInAlbum, IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
 import {MusicService} from "../services/music.service";
-import {ICreateMusic, ISearchMusic} from "../types/music.interface";
+import {ICreateMusic, ISearchMusic, IUpdatePlaylist} from "../types/music.interface";
 
 export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   const getOneMusic = useQuery({
@@ -29,6 +29,13 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
 
   const client = useQueryClient()
 
+  const createMusic = useMutation({
+    mutationFn: (data:ICreateMusic) => MusicService.createMusic(data),
+    onSuccess: () => {
+      client.invalidateQueries({queryKey: ['myMusic']})
+    }
+  })
+
   const updateMusic = useMutation({
     mutationFn: (data: IUpdatePhotoAlbum) => MusicService.updateMusic(musicId!, data),
     onSuccess: () => {
@@ -44,12 +51,8 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
     }
   })
 
-  const createMusic = useMutation({
-    mutationFn: (data:ICreateMusic) => MusicService.createMusic(data),
-    onSuccess: () => {
-      client.invalidateQueries({queryKey: ['myMusic']})
-    }
-  })
+
+
   //
   // const createPhotoInAlbum = useMutation({
   //   mutationFn: (data:ICreatePhotoInAlbum) => AlbumService.createPhotoInAlbum(albumId!, data),
