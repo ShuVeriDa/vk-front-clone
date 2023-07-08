@@ -35,6 +35,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
     setSelectedMusicId(musicId)
     setOpenEdit(true)
   }
+  const onClickClosePlaylistCE = () => setOpenPlaylistCE(false)
 
   const onClickCloseUpload = () => setOpenUpload(false)
 
@@ -108,7 +109,6 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
                                   styles={styles}/>
               : <MusicNotFound text={value}/>
             }
-
           </div>
         }
         {page === "allTracks" &&
@@ -133,7 +133,10 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         </ModalWindow>}
         {
           <ModalWindow open={openPlaylistCE}>
-            <PlaylistCE title={'Создание нового плейлиста'} />
+            <PlaylistCE title={'Создание нового плейлиста'}
+                        isCreate
+                        onClickClose={onClickClosePlaylistCE}
+            />
           </ModalWindow>
         }
         {/*{<ModalWindow open={openRepost}>*/}

@@ -62,7 +62,7 @@ export const MusicService = {
   },
 
   createPlaylist: async (data: ICreatePlaylist) => {
-    const res = await instance.post(getMusicUrl(`/playlists}`), data)
+    const res = await instance.post(getMusicUrl(`/playlists`), data)
     return res.data
   },
 

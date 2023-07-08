@@ -35,7 +35,7 @@ export const Search: FC<ISearchProps> = ({updateSearch, status, placeholder, cla
     <div className={cn(styles.search, classes)}>
       <input type="text"
              placeholder={placeholder}
-             value={searchName}
+             value={searchName!}
              onChange={onChange}
       />
 

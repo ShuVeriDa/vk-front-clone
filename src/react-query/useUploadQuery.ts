@@ -5,7 +5,7 @@ import {UploadFileService} from "../services/uploadFile.services";
 export const useUploadQuery = (
   folder: string,
   setUrl: (url: string) => void,
-  entityType: 'user' | 'community' | 'img' | 'repost' | "singleImg" | 'music',
+  entityType: 'user' | 'community' | 'img' | 'repost' | "singleImg" | 'music' | 'cover',
   userId?: string | number,
   communityId?: string,
   albumId?: string,

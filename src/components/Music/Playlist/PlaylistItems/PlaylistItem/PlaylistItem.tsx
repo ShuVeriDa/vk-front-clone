@@ -6,9 +6,11 @@ import {MusicTime} from "../../../Music/MusicItems/MusicItem/MusicTime/MusicTime
 import {Duration} from "../../../Duration/Duration";
 
 interface IPlaylistItemProps {
+  artist: string
+  title: string
 }
 
-export const PlaylistItem: FC<IPlaylistItemProps> = () => {
+export const PlaylistItem: FC<IPlaylistItemProps> = ({title, artist}) => {
   const [isSelected, setIsSelected] = useState(false)
   const {
     isPlaying,
@@ -49,8 +51,8 @@ export const PlaylistItem: FC<IPlaylistItemProps> = () => {
         <div className={styles.musicInfo}>
           <div className={styles.info}>
             <span>
-              <span className={styles.artist}>artist </span> —
-              <span className={styles.title}> title</span>
+              <span className={styles.artist}>{artist} </span> —
+              <span className={styles.title}>{title}</span>
             </span>
           </div>
           <div className={styles.durationWrapper}>

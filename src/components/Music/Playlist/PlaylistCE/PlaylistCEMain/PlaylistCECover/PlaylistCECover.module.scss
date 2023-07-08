@@ -8,9 +8,30 @@
   align-items: center;
   color: #447BBA;
   border: 1px solid #D9DBDE;
+  position: relative;
+  
 
   &:hover {
     cursor: pointer;
+    
+    .clear {
+      display: block;
+      cursor: pointer;
+    }
+  }
+
+  .img {
+    width: inherit;
+    height: inherit;
+  }
+
+  .clear {
+    display: none;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 0;
+    right: 0;
   }
 
   .plus {
