@@ -10,10 +10,19 @@ interface ISearchProps {
   classes?: string
   classesClear?: string
   classesSpinner?: string
+  value?: string
 }
 
-export const Search: FC<ISearchProps> = ({updateSearch, status, placeholder, classes, classesClear, classesSpinner}) => {
-
+export const Search: FC<ISearchProps> = (
+  {
+    updateSearch,
+    status,
+    placeholder,
+    classes,
+    classesClear,
+    classesSpinner
+  }
+) => {
   const [searchName, setSearchName] = useState('')
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +34,7 @@ export const Search: FC<ISearchProps> = ({updateSearch, status, placeholder, cla
   }
 
   const onClear = () => {
-    if (updateSearch) {
-      updateSearch('')
-    }
+    if (updateSearch) updateSearch('')
     setSearchName('')
   }
 
@@ -38,13 +45,16 @@ export const Search: FC<ISearchProps> = ({updateSearch, status, placeholder, cla
              value={searchName!}
              onChange={onChange}
       />
-
       <button>
-        <MagnifierSVG />
+        <MagnifierSVG/>
       </button>
       {status === 'loading'
-        ? <div className={cn(styles.spinner, classesSpinner)}><SearchLoaderSVG/></div>
-        : searchName && <div className={cn(styles.clear, classesClear)}><ClearSearchValueSVG onClick={onClear}/> </div>
+        ? <div className={cn(styles.spinner, classesSpinner)}>
+          <SearchLoaderSVG/>
+        </div>
+        : searchName && <div className={cn(styles.clear, classesClear)}>
+        <ClearSearchValueSVG onClick={onClear}/>
+      </div>
       }
     </div>
   );

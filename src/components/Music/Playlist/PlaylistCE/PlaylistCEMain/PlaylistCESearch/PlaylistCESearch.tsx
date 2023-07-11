@@ -10,6 +10,7 @@ export const PlaylistCESearch: FC<IPlaylistCESearchProps> = ({updateSearch}) => 
   return (
     <div className={styles.searchWrapper}>
       <Search classes={styles.search}
+              classesClear={styles.clear}
               updateSearch={updateSearch}
               placeholder={'Быстрый поиск'}
       />

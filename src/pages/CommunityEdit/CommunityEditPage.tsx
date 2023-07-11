@@ -62,9 +62,9 @@ export const CommunityEditPage: FC<ICommunityEditProps> = () => {
   }
 
   return (
-    isLoading ? <>'Загрузка'</>
-      :
-    <div className={styles.wrapper}>
+    isLoading
+      ? <>'Загрузка'</>
+      : <div className={styles.wrapper}>
       <div className={styles.userInfo}>
         <div className={styles.img}>
           <img src={avatar} alt=""/>

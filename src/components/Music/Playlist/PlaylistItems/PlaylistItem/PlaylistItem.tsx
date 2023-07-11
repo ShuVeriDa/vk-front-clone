@@ -1,34 +1,26 @@
-import {FC, useContext, useState} from 'react';
+import {FC, useContext} from 'react';
 import styles from './PlaylistItem.module.scss';
 import MusicContext from "../../../../../context/MusicContext";
 import {NotSelectedMusicSVG, PauseMusicSVG, PlayMusicSVG, SelectedMusicSVG} from "../../../../SvgComponent";
 import {MusicTime} from "../../../Music/MusicItems/MusicItem/MusicTime/MusicTime";
 import {Duration} from "../../../Duration/Duration";
+import {IMusicFull} from "../../../../../types/music.interface";
 
 interface IPlaylistItemProps {
   artist: string
   title: string
+  music: IMusicFull
+  addedMusic: IMusicFull[]
+  setAddedMusic: (addedMusic: IMusicFull[]) => void
 }
 
-export const PlaylistItem: FC<IPlaylistItemProps> = ({title, artist}) => {
-  const [isSelected, setIsSelected] = useState(false)
-  const {
-    isPlaying,
-    setIsPlaying,
-    duration,
-    currentTime,
-    handleProgressBarChange,
-    progressBarRef
-  } = useContext(MusicContext)!
+export const PlaylistItem: FC<IPlaylistItemProps> = (
+  {title, artist, setAddedMusic, music, addedMusic}
+) => {
 
-  const selectionSwitch = () => {
-    if (isSelected) {
-      setIsSelected(false)
-    }
-    if (!isSelected) {
-      setIsSelected(true)
-    }
-  }
+  const isIncludes = addedMusic.some(m => m.id === music.id)
+
+  const {isPlaying, setIsPlaying} = useContext(MusicContext)!
 
   const togglePlaying = () => {
     if (isPlaying) {
@@ -36,6 +28,15 @@ export const PlaylistItem: FC<IPlaylistItemProps> = ({title, artist}) => {
     }
     if (!isPlaying) {
       setIsPlaying(true)
+    }
+  }
+
+  const onChangeMusicIds = () => {
+    if (isIncludes) {
+      setAddedMusic(addedMusic.filter(m => m.id !== music.id))
+    }
+    if (!isIncludes) {
+      setAddedMusic([...addedMusic, music])
     }
   }
 
@@ -60,15 +61,13 @@ export const PlaylistItem: FC<IPlaylistItemProps> = ({title, artist}) => {
           </div>
 
         </div>
-
-
         <MusicTime currentTime={0} classesTime={styles.time}/>
       </div>
 
-      <div className={styles.select}>
-        {isSelected
-          ? <SelectedMusicSVG onClick={selectionSwitch} styles={styles.selected}/>
-          : <NotSelectedMusicSVG onClick={selectionSwitch} styles={styles.notSelected}/>
+      <div className={styles.select} onClick={onChangeMusicIds}>
+        {isIncludes
+          ? <SelectedMusicSVG styles={styles.selected}/>
+          : <NotSelectedMusicSVG styles={styles.notSelected}/>
         }
       </div>
     </div>

@@ -18,7 +18,7 @@ export interface IMusicFull extends IMusicAbbr {
 }
 
 export interface ISearchMusic {
-  title?: string
+  title?: string | null
   artist?: string
   limit?: number
   take?: number
@@ -38,9 +38,19 @@ export interface IPlaylist {
   coverUrl: string
 }
 
-export interface IUpdatePlaylist extends IPlaylist {}
+export interface IPlaylistResponse extends IPlaylist {
+  music: IMusicFull[]
+  updatedAt: string;
+  createdAt: string
+}
 
-export interface ICreatePlaylist extends IPlaylist {}
+export interface IUpdatePlaylist extends IPlaylist {
+  musicIds: string[]
+}
+
+export interface ICreatePlaylist extends IPlaylist {
+  musicIds: string[]
+}
 
 export interface IToggleMusicToPlaylist {
   musicIds: string[]
