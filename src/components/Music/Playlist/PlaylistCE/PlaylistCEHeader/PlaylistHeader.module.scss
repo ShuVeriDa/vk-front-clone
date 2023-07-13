@@ -19,7 +19,29 @@
   }
 
   .title {
+    display: flex;
+    align-items: center;
     font-size: 14px;
+
+  }
+
+  .myMusic {
+    height: 100%;
+    width: 80px;
+    margin-left: 0;
+    position: relative;
+    left: -12px;
+
+    .arrow {
+      position: relative;
+      color: #99A2AD;
+      width: 25px;
+      height: 25px;
+    }
+    &:hover {
+      background: #F1F2F5;
+      cursor: pointer;
+    }
   }
 
   .close {
@@ -38,4 +60,9 @@
       fill: #929AA3;
     }
   }
+}
+
+.myMusic {
+  padding-left: 12px;
+  border-top-left-radius: 12px;
 }

@@ -1,8 +1,9 @@
 .items {
   padding: 20px;
-  height: 450px;
+  height: 485px;
   overflow: scroll;
   overflow-x: hidden;
+  box-sizing: border-box;
 
   .founded {
     height: 19px;
@@ -12,4 +13,8 @@
     font-weight: 500;
     color: #626d7a;
   }
+}
+
+.noScroll {
+  overflow: hidden;
 }

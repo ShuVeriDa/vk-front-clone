@@ -14,6 +14,7 @@ interface IPlaylistProps {
 }
 
 export const PlaylistCE: FC<IPlaylistProps> = ({title, onClickClose, isCreate}) => {
+  const [isMyMusic, setIsMyMusic] = useState(false)
   const [value, setValue] = useState('')
   const [coverImage, setCoverImage] = useState<null | string>(null)
   const [addedMusic, setAddedMusic] = useState<IMusicFull[]>([])
@@ -33,21 +34,32 @@ export const PlaylistCE: FC<IPlaylistProps> = ({title, onClickClose, isCreate}) 
   const onSubmit: SubmitHandler<ICreatePlaylist | IUpdatePlaylist> = (data) => {
     if(isCreate) {
       create({title: data.title, description: data.description, coverUrl: coverImage!, musicIds: musicIds})
+      console.log(reset())
+      reset()
     }
+    console.log(reset())
 
     onClickCloseHandler()
-    reset()
   }
 
-  console.log(addedMusic)
+  const toggleIsMyMusic = () => {
+    if(isMyMusic) setIsMyMusic(false)
+    if(!isMyMusic) setIsMyMusic(true)
+  }
+
+  // console.log(addedMusic)
 
   return (
     <div className={styles.wrapper}>
       <PlaylistHeader title={title}
                       onClickClose={onClickCloseHandler}
+                      isMyMusic={isMyMusic}
+                      toggleIsMyMusic={toggleIsMyMusic}
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <PlaylistCEMain register={register}
+                        toggleIsMyMusic={toggleIsMyMusic}
+                        isMyMusic={isMyMusic}
                         value={value}
                         setValue={setValue}
                         addedMusic={addedMusic}

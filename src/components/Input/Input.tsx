@@ -44,7 +44,7 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
           <input className={cn(fieldValue ? styles.isValue : '')}
                  type={type}
                  ref={ref}
-                 value={fieldValue}
+                 value={fieldValue || ''}
                  {...rest}
                  onChange={onChangeHandler}
                  step={step}

@@ -29,11 +29,13 @@ export const PlaylistCeInfo: FC<IPlaylistCeInfoProps> = ({register, setCoverImag
                type={'text'}
                stylesInput={styles}
                placeholder={'Название плейлиста'}
+               value={''}
         />
         <Input {...register('description')}
                type={'text'}
                stylesInput={styles}
                placeholder={'Описание плейлиста'}
+               value={''}
         />
       </div>
 
