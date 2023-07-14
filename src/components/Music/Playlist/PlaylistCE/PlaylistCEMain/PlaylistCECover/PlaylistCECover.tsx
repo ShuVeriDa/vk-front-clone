@@ -18,9 +18,7 @@ export const PlaylistCECover: FC<IPlaylistCoverProps> = ({setCoverImage, coverIm
   const onChangeCover =async (e: ChangeEvent<HTMLInputElement>) => {
     await uploadFile(e)
   }
-
   const onClearCover = () => setCoverImage(null)
-  console.log(coverImage)
 
   return (
     <div className={styles.cover}
@@ -49,7 +47,6 @@ export const PlaylistCECover: FC<IPlaylistCoverProps> = ({setCoverImage, coverIm
           />
         </>
       }
-
     </div>
   );
 };

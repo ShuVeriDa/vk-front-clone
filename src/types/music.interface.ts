@@ -17,6 +17,11 @@ export interface IMusicFull extends IMusicAbbr {
   musicAdders: IUserAbbr[]
 }
 
+export interface IMyMusicAndOther {
+  otherMusic: IMusicFull[]
+  myMusic: IMusicFull[]
+}
+
 export interface ISearchMusic {
   title?: string | null
   artist?: string

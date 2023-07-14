@@ -15,32 +15,41 @@ interface IPlaylistCEMainProps {
   isMyMusic: boolean
   coverImage: string | null
   addedMusic: IMusicFull[]
-  setValue: (value: string) => void
+  // setValue: (value: string) => void
   setAddedMusic: (musicIds: IMusicFull[]) => void
   setCoverImage: (coverImage: string | null) => void
   toggleIsMyMusic: () => void
   register: UseFormRegister<ICreatePlaylist | IUpdatePlaylist>
+  updateSearch: (str: string) => void
 }
 
 export const PlaylistCEMain: FC<IPlaylistCEMainProps> = (
-  {register, setCoverImage, coverImage, setAddedMusic, isMyMusic, addedMusic, value, setValue, toggleIsMyMusic}
+  {register, setCoverImage, coverImage, setAddedMusic, isMyMusic, addedMusic, value, /*setValue,*/ toggleIsMyMusic, updateSearch}
 ) => {
-  const updateSearch = useDebounce(setValue, 350)
-  const {searchMusic} = useMusicQuery(undefined, {title: value === '' ? null : value})
+
+  const {
+    searchMusic, searchMyMusicAndOther
+  } = useMusicQuery(undefined, {title: value === '' ? null : value})
+
+  const {data: myMusicAndOther} = searchMyMusicAndOther
   const {data: music, isSuccess} = searchMusic
+
   return (
     <div className={styles.main}>
-      {!isMyMusic && <> <PlaylistCeInfo register={register}
-                                        coverImage={coverImage}
-                                        setCoverImage={setCoverImage}
-      /></>}
-      <PlaylistCESearch updateSearch={updateSearch}/>
+      {!isMyMusic && <PlaylistCeInfo register={register}
+                                     coverImage={coverImage}
+                                     setCoverImage={setCoverImage}
+      />}
+      <PlaylistCESearch updateSearch={updateSearch} value={value}/>
       {!isMyMusic && <PlaylistCEAddMyMusic toggleIsMyMusic={toggleIsMyMusic}/>}
       {value
         ? <>
           {!music?.length
             ? <PlaylistCESearchNotFound/>
             : <PlaylistItems music={music!}
+                             value={value}
+                             myMusicAndOther={myMusicAndOther}
+                             isMyMusic={isMyMusic}
                              addedMusic={addedMusic}
                              setAddedMusic={setAddedMusic}
             />

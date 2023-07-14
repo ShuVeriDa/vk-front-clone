@@ -6,6 +6,7 @@ import {PlaylistFooter} from "./PlaylistFooter/PlaylistFooter";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {ICreatePlaylist, IMusicFull, IUpdatePlaylist} from "../../../../types/music.interface";
 import {usePlaylistQuery} from "../../../../react-query/usePlaylistQuery";
+import {useDebounce} from "../../../../hooks/useDebounce";
 
 interface IPlaylistProps {
   title: string
@@ -31,23 +32,27 @@ export const PlaylistCE: FC<IPlaylistProps> = ({title, onClickClose, isCreate}) 
 
   const musicIds = addedMusic.map(music => music.id)
 
+  const updateSearch = useDebounce(setValue, 350)
+
+  const toggleIsMyMusic = () => {
+    if(isMyMusic) {
+      setValue('')
+      setIsMyMusic(false)
+    }
+    if(!isMyMusic) {
+      setValue('')
+      setIsMyMusic(true)
+    }
+  }
+
   const onSubmit: SubmitHandler<ICreatePlaylist | IUpdatePlaylist> = (data) => {
     if(isCreate) {
       create({title: data.title, description: data.description, coverUrl: coverImage!, musicIds: musicIds})
-      console.log(reset())
       reset()
     }
-    console.log(reset())
 
     onClickCloseHandler()
   }
-
-  const toggleIsMyMusic = () => {
-    if(isMyMusic) setIsMyMusic(false)
-    if(!isMyMusic) setIsMyMusic(true)
-  }
-
-  // console.log(addedMusic)
 
   return (
     <div className={styles.wrapper}>
@@ -58,10 +63,11 @@ export const PlaylistCE: FC<IPlaylistProps> = ({title, onClickClose, isCreate}) 
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <PlaylistCEMain register={register}
+                        updateSearch={updateSearch}
                         toggleIsMyMusic={toggleIsMyMusic}
                         isMyMusic={isMyMusic}
                         value={value}
-                        setValue={setValue}
+                        // setValue={setValue}
                         addedMusic={addedMusic}
                         coverImage={coverImage}
                         setAddedMusic={setAddedMusic}

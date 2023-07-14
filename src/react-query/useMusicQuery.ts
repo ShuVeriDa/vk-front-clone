@@ -1,9 +1,8 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {useMemo} from "react";
-import {AlbumService} from "../services/album.service";
-import {ICreatePhotoAlbum, ICreatePhotoInAlbum, IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
+import {IUpdatePhotoAlbum} from "../types/photoAlbum.interface";
 import {MusicService} from "../services/music.service";
-import {ICreateMusic, ISearchMusic, IUpdatePlaylist} from "../types/music.interface";
+import {ICreateMusic, ISearchMusic} from "../types/music.interface";
 
 export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   const getOneMusic = useQuery({
@@ -25,6 +24,11 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
   const searchMusic = useQuery({
     queryFn: () => MusicService.searchMusic(query!),
     queryKey: ['searchMusic', query]
+  })
+
+  const searchMyMusicAndOther = useQuery({
+    queryFn: () => MusicService.searchMyMusicAndOther(query!),
+    queryKey: ['searchMyMusicAndOther', query]
   })
 
   const client = useQueryClient()
@@ -51,28 +55,8 @@ export const useMusicQuery = (musicId?: string, query?: ISearchMusic) => {
     }
   })
 
-
-
-  //
-  // const createPhotoInAlbum = useMutation({
-  //   mutationFn: (data:ICreatePhotoInAlbum) => AlbumService.createPhotoInAlbum(albumId!, data),
-  //   onSuccess: () => {
-  //     client.invalidateQueries({queryKey: ['myAlbum', 'albumOne']})
-  //   }
-  // })
-
-  //
-
-  //
-  // //community
-  // const getCommunityPosts = useQuery({
-  //   queryFn: () => PostService.getPostsCommunityUrl(communityId!),
-  //   queryKey: ['get all posts', 'in community', communityId],
-  //   enabled: !!communityId
-  // })
-
   return useMemo(() => ({
-    getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic, createMusic
+    getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic, createMusic, searchMyMusicAndOther
 
-  }), [getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic, createMusic])
+  }), [getOneMusic, getMyMusic, getAllMusic, searchMusic, updateMusic, deleteMusic, createMusic, searchMyMusicAndOther])
 }

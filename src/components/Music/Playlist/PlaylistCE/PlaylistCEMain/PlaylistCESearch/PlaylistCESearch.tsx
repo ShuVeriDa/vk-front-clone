@@ -4,15 +4,17 @@ import {Search} from "../../../../../Search/Search";
 
 interface IPlaylistCESearchProps {
   updateSearch: (str: string) => void
+  value: string
 }
 
-export const PlaylistCESearch: FC<IPlaylistCESearchProps> = ({updateSearch}) => {
+export const PlaylistCESearch: FC<IPlaylistCESearchProps> = ({updateSearch, value}) => {
   return (
     <div className={styles.searchWrapper}>
       <Search classes={styles.search}
               classesClear={styles.clear}
               updateSearch={updateSearch}
               placeholder={'Быстрый поиск'}
+              value={value}
       />
 
     </div>

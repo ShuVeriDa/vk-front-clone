@@ -17,7 +17,6 @@ export const PlaylistCeInfo: FC<IPlaylistCeInfoProps> = ({register, setCoverImag
       <PlaylistCECover coverImage={coverImage}
                        setCoverImage={setCoverImage}
       />
-
       <div className={styles.inputs}>
         <Input {...register('title', {
           required: "Название обязательно",

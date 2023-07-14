@@ -3,7 +3,7 @@ import {getMusicUrl} from "../api/api.config";
 import {
   ICreateMusic,
   ICreatePlaylist,
-  IMusicFull,
+  IMusicFull, IMyMusicAndOther,
   ISearchMusic,
   IToggleMusicToPlaylist,
   IUpdateMusic,
@@ -29,6 +29,12 @@ export const MusicService = {
 
   searchMusic: async (query?: ISearchMusic) => {
     const res = await axiosClassic.get<IMusicFull[]>(getMusicUrl(`/search?title=${query?.title}`))
+    // const res = await axiosClassic.get<IMusicFull[]>(getMusicUrl(`/search?title=${query?.title}&artist=${query?.artist}`))
+    return res.data
+  },
+
+  searchMyMusicAndOther: async (query?: ISearchMusic) => {
+    const res = await instance.get<IMyMusicAndOther>(getMusicUrl(`/search/mo?title=${query?.title}`))
     // const res = await axiosClassic.get<IMusicFull[]>(getMusicUrl(`/search?title=${query?.title}&artist=${query?.artist}`))
     return res.data
   },

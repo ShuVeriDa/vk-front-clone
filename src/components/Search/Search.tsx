@@ -11,6 +11,7 @@ interface ISearchProps {
   classesClear?: string
   classesSpinner?: string
   value?: string
+  isMyMusic?: boolean
 }
 
 export const Search: FC<ISearchProps> = (
@@ -20,10 +21,10 @@ export const Search: FC<ISearchProps> = (
     placeholder,
     classes,
     classesClear,
-    classesSpinner
+    classesSpinner, isMyMusic, value
   }
 ) => {
-  const [searchName, setSearchName] = useState('')
+  const [searchName, setSearchName] = useState(value ? value : '')
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (updateSearch) {
