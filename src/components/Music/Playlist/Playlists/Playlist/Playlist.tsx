@@ -12,18 +12,20 @@ import {
 import {PlaylistInfo} from "../PlaylistInfo/PlaylistInfo";
 import {IPlaylistResponse} from "../../../../../types/music.interface";
 import {serverUrl} from "../../../../../utils/serverUrl";
+import cn from "clsx";
 
 interface IPlaylistProps {
-playlist: IPlaylistResponse
+  playlist: IPlaylistResponse
+  classes?: { readonly [key: string]: string }
 }
 
-export const Playlist: FC<IPlaylistProps> = ({playlist}) => {
+export const Playlist: FC<IPlaylistProps> = ({playlist, classes}) => {
   const {title, user, music, coverUrl} = playlist
   const name = `${user.lastName} ${user.firstName}`
 
   return (
-    <div className={styles.item}>
-      <div className={styles.cover}>
+    <div className={cn(styles.item, classes?.item)}>
+      <div className={cn(styles.cover, classes?.cover)}>
         <EditSVG styles={styles.edit}/>
         <PlayPlaylistSVG styles={styles.play}/>
         <PausePlaylistSVG styles={styles.pause}/>

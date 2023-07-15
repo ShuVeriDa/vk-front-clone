@@ -4,7 +4,7 @@ import ArrowRight from '../../../../../assets/img/rightArrow.png'
 import {Link, useNavigate} from "react-router-dom";
 
 interface IPhotosHeaderProps {
-  title?: "Все аудиозаписи" | "Мои треки"
+  title?: "Все аудиозаписи" | "Мои треки" | "Плейлисты"
   setValue: (value: string) => void
 }
 
@@ -28,7 +28,7 @@ export const TracksHeader: FC<IPhotosHeaderProps> = (
               {
                 title === "Мои треки"
                 ? "Главная"
-                : "Результаты поиска"
+                : title=== 'Плейлисты' ? "Моя музыка" :"Результаты поиска"
               }
             </span>
           </span>

@@ -27,7 +27,7 @@
     justify-content: space-between;
 
 
-    .edit, .remove, .more {
+    .edit, .remove, .moreContainer {
       position: relative;
       bottom: 4px;
       fill: #AEB7C2;
@@ -47,7 +47,7 @@
       height: 20px;
     }
 
-    .more {
+    .moreContainer {
       position: relative;
       left: 10px;
       width: 14px;
