@@ -33,11 +33,13 @@ export interface IUpdateMusic {
   title?: string
   artist?: string
 }
+
 export interface ICreateMusic {
   musicUrl: string
 }
 
 export interface IPlaylist {
+  id?: string
   title: string
   description: string
   coverUrl: string
@@ -45,8 +47,13 @@ export interface IPlaylist {
 
 export interface IPlaylistResponse extends IPlaylist {
   music: IMusicFull[]
+  user: IUserAbbr,
   updatedAt: string;
   createdAt: string
+}
+
+export interface ICreatePlaylist extends IPlaylist {
+
 }
 
 export interface IUpdatePlaylist extends IPlaylist {

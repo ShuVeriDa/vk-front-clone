@@ -1,0 +1,74 @@
+.item {
+  width: 143px;
+  height: 196px;
+
+  .cover {
+    width: 143px;
+    height: 143px;
+    background: #EBEDF0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &:hover {
+      background-color: rgba(0,0,0,.5);
+      cursor: pointer;
+      
+      .bground {
+        fill: red;
+      }
+      
+      .play, .share, .pause, .edit, .length {
+        display: block;
+      }
+    }
+
+    .play, .share, .pause, .edit, .length {
+      display: none;
+    }
+
+    .play, .pause, .edit, .length {
+      position: absolute;
+      &:hover {
+        color: #e4e5e7;
+        fill: #e4e5e7;
+      }
+    }
+
+    .edit {
+      left: 15px;
+      fill: #fff;
+    }
+
+    .length {
+      bottom: 10px;
+      color: #fff;
+      fill: #fff;
+      font-size: 13px;
+    }
+
+    .play {
+
+    }
+
+    .bground {
+      width: 70px;
+      fill: #626d7a;
+    }
+
+    .img {
+      border-radius: inherit;
+      width: inherit;
+      height: inherit;
+    }
+
+    .share {
+      position: absolute;
+      right: 15px;
+    }
+  }
+
+
+}

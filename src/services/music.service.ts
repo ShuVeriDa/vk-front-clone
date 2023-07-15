@@ -3,7 +3,7 @@ import {getMusicUrl} from "../api/api.config";
 import {
   ICreateMusic,
   ICreatePlaylist,
-  IMusicFull, IMyMusicAndOther,
+  IMusicFull, IMyMusicAndOther, IPlaylistResponse,
   ISearchMusic,
   IToggleMusicToPlaylist,
   IUpdateMusic,
@@ -58,22 +58,22 @@ export const MusicService = {
   //PLAYLIST
 
   fetchPlaylists: async () => {
-    const res = await instance.get(getMusicUrl('/playlists'))
+    const res = await instance.get<IPlaylistResponse[]>(getMusicUrl('/playlists'))
     return res.data
   },
 
   fetchOnePlaylist:async (playlistId: string) => {
-    const res = await instance.get(getMusicUrl(`/playlists/${playlistId}`))
+    const res = await instance.get<IPlaylistResponse>(getMusicUrl(`/playlists/${playlistId}`))
     return res.data
   },
 
   createPlaylist: async (data: ICreatePlaylist) => {
-    const res = await instance.post(getMusicUrl(`/playlists`), data)
+    const res = await instance.post<IPlaylistResponse>(getMusicUrl(`/playlists`), data)
     return res.data
   },
 
   updatePlaylist: async (data: IUpdatePlaylist, playlistId: string) => {
-    const res  = await instance.patch(getMusicUrl(`/playlists/${playlistId}`), data)
+    const res  = await instance.patch<IPlaylistResponse>(getMusicUrl(`/playlists/${playlistId}`), data)
     return res.data
   },
 

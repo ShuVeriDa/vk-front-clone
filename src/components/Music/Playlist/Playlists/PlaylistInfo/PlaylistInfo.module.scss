@@ -1,0 +1,19 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 8px;
+  .name {
+    color: #818c99;
+  }
+  
+  span {
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

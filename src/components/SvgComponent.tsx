@@ -298,7 +298,7 @@ export const PrevMusicSVG: FC<ISvgComponentProps> = ({styles, onClick, width = "
 };
 export const NextMusicSVG: FC<ISvgComponentProps> = ({styles, onClick, width = "50px", height = "50px"}) => {
   return (
-    <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+    <svg onClick={onClick} className={styles} fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M14.25 5a.75.75 0 0 0-.75.75v3.18L6.38 5.1A.94.94 0 0 0 5 5.94v8.12a.94.94 0 0 0 1.38.83l7.12-3.82v3.18a.75.75 0 0 0 1.5 0v-8.5a.75.75 0 0 0-.75-.75z"
         fill="currentColor"></path>
@@ -481,6 +481,51 @@ export const SelectedMusicSVG: FC<ISvgComponentProps> = ({styles, onClick, onCli
   );
 };
 
+export const PlaylistSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
+  return (
+
+    <svg onClick={onClick} className={styles} height="72" viewBox="0 0 72 72" width="72" xmlns="http://www.w3.org/2000/svg"><g fill="none" fillRule="evenodd"><path d="m0 0h72v72h-72z"/><path d="m42.5 18h-33c-.82842712 0-1.5.6715729-1.5 1.5s.67157288 1.5 1.5 1.5h33c.8284271 0 1.5-.6715729 1.5-1.5s-.6715729-1.5-1.5-1.5zm0 12h-33c-.82842712 0-1.5.6715729-1.5 1.5s.67157288 1.5 1.5 1.5h33c.8284271 0 1.5-.6715729 1.5-1.5s-.6715729-1.5-1.5-1.5zm-33 15c-.82842712 0-1.5-.6715729-1.5-1.5s.67157288-1.5 1.5-1.5h23c.8284271 0 1.5.6715729 1.5 1.5s-.6715729 1.5-1.5 1.5zm44.5 1.2665767c0 9.0247975-1.7494466 10.7668864-8.7488058 11.684387-3.3364518.4373539-7.2511942-1.0769136-7.2511942-6.3234191 0-2.5628074 1.603626-4.996526 4.9222856-5.6324987 2.5344608-.4856924-.1815623.0363869 5.5521446-1.0280794 1.3919505-.2584165 1.5496826-.75646 1.5496826-1.8175819 0-.5328188-.0026365-5.1902877-.0192719-8.3880674v-8.6356283s-.010892-4.116544 0-6.1747951c.0130272-2.4617298 1.3592916-3.3664367 5.3275843-4.1679516 0 0 6.0464225-1.1479356 9.3704503-1.7508398.7355662-.1334152 1.2971245.1403611 1.2971245.9840516 0 0-.0213548 5.2442021 0 8.1086771.0062012.8318081-.3368479 1.208402-1.1799422 1.3580445-3.3633975.596976-9.7298555 1.7207236-9.7298555 1.7207236-.7477585.1836552-1.0902023.7099992-1.0902023 1.4665831z" fill="#AEB7C2"/></g></svg>
+  );
+};
+
+export const ShareSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
+  return (
+    <svg className={styles} onClick={onClick} height="24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fillRule="evenodd"><path d="m0 0h24v24h-24z"/><path d="m13 8.75v-4.348a.417.417 0 0 1 .687-.318l8.94 7.598a.417.417 0 0 1 0 .636l-8.94 7.598a.417.417 0 0 1 -.687-.318v-4.348c-5.361 0-9.16 1.04-11.398 3.121a.25.25 0 0 1 -.413-.241c1.496-6.253 5.434-9.38 11.811-9.38z" stroke="#fff" strokeWidth="1.8"/></g></svg>
+  );
+};
+
+export const PlayPlaylistSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
+  return (
+    <svg onClick={onClick} className={styles} height="48" viewBox="0 0 42 48" width="42" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="m15.514776 38.5872125c-1.3888724.899654-2.514776.2768039-2.514776-1.363785v-26.4438996c0-1.65285169 1.1242033-2.26454039 2.514776-1.36378494l20.757036 13.44554834c.9721331.6297076.9697008 1.6522408 0 2.2803728z"/><filter id="b" height="193.3%" width="216.7%" x="-58.3%" y="-43.3%"><feMorphology in="SourceAlpha" operator="dilate" radius="0.5" result="shadowSpreadOuter1"/><feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4"/><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/></filter></defs><g fill="none" fillRule="evenodd"><circle cx="20" cy="23" r="24"/><g transform="translate(-4 -1)"><use fill="#000" filter="url(#b)" xlinkHref="#a"/><use fill="#fff" xlinkHref="#a"/></g></g></svg>
+  );
+};
+
+export const PausePlaylistSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
+  return (
+    <svg onClick={onClick} className={styles} height="48" viewBox="0 0 40 48" width="40" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="m13 10.5082641c0-.83299127.6764628-1.5082641 1.5063976-1.5082641h5.9872048c.8319604 0 1.5063976.66865487 1.5063976 1.5082641v26.9834718c0 .8329913-.6764628 1.5082641-1.5063976 1.5082641h-5.9872048c-.8319604 0-1.5063976-.6686549-1.5063976-1.5082641zm13 0c0-.83299127.6764628-1.5082641 1.5063976-1.5082641h5.9872048c.8319604 0 1.5063976.66865487 1.5063976 1.5082641v26.9834718c0 .8329913-.6764628 1.5082641-1.5063976 1.5082641h-5.9872048c-.8319604 0-1.5063976-.6686549-1.5063976-1.5082641z"/><filter id="b" height="193.3%" width="227.3%" x="-63.6%" y="-43.3%"><feMorphology in="SourceAlpha" operator="dilate" radius="0.5" result="shadowSpreadOuter1"/><feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4"/><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/></filter></defs><g fill="none" fillRule="evenodd"><circle cx="20" cy="23" r="24"/><g transform="translate(-4 -1)"><use fill="#000" filter="url(#b)" xlinkHref="#a"/><use fill="#fff" xlinkHref="#a"/></g></g></svg>
+  );
+};
+
+export const EditPlaylistSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
+  return (
+    <svg onClick={onClick} className={styles} height="24" width="24" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="m4.95 17.15 1.705 1.679-.508.5-1.91.653c-.17.058-.26-.035-.227-.2l.433-2.131.508-.5zm1.492-1.467 10.548-10.387a1.017 1.017 0 0 1 1.427.001l.28.275a.977.977 0 0 1 0 1.405l-10.549 10.384-1.705-1.678z"/><filter id="b" height="286.7%" width="286.8%" x="-93.4%" y="-86.7%"><feMorphology in="SourceAlpha" operator="dilate" radius=".5" result="shadowSpreadOuter1"/><feOffset dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4"/><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/></filter></defs><g fill="none" fillRule="evenodd"><path d="m0 0h24v24h-24z"/><use fill="#000" filter="url\(#b\)" xlinkHref="#a"/><use fill="#fff" xlinkHref="#a"/></g></svg>
+  );
+};
+
+export const LengthMusicPlSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
+  return (
+
+    <svg onClick={onClick} className={styles} height="15" viewBox="0 0 17 15" width="17" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="m0 4.5c0-.27614237.22247315-.5.50966585-.5h7.9806683c.28148068 0 .50966585.23193359.50966585.5 0 .27614237-.22247314.5-.50966585.5h-7.9806683c-.28148068 0-.50966585-.23193359-.50966585-.5zm0 6c0-.2761424.21484375-.5.49769878-.5h4.00460244c.27487144 0 .49769878.2319336.49769878.5 0 .2761424-.21484375.5-.49769878.5h-4.00460244c-.27487144 0-.49769878-.2319336-.49769878-.5zm0-3c0-.27614237.22247315-.5.50966585-.5h7.9806683c.28148068 0 .50966585.23193359.50966585.5 0 .27614237-.22247314.5-.50966585.5h-7.9806683c-.28148068 0-.50966585-.23193359-.50966585-.5z"/><filter id="b" height="285.7%" width="244.4%" x="-72.2%" y="-78.6%"><feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/></filter></defs><g fill="none" fillRule="evenodd" transform="translate(4 -1)"><use fill="#000" filter="url(#b)" xlinkHref="#a"/><use fill="#fff" xlinkHref="#a"/></g></svg>
+  );
+};
+
+export const HeadphoneSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
+  return (
+
+
+    <svg onClick={onClick} className={styles} height="17" viewBox="0 0 17 17" width="17" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="m8.75111916 8.97953431c.16125158-.46337323.24888084-.96122032.24888084-1.47953431 0-2.48528137-2.01471863-4.5-4.5-4.5s-4.5 2.01471863-4.5 4.5c0 .51831399.08762926 1.01616108.24888084 1.47953431-.15398662.26641276-.24888084.60126401-.24888084 1.02046569 0 1.6666667 1.5 2 2.25 2s.75-.8954305.75-2 0-2-.75-2c-.24584017 0-.57226353.03581475-.90002774.14266307-.04213802-.20765337-.06425797-.42257503-.06425797-.64266307 0-1.77520098 1.43908473-3.21428571 3.21428571-3.21428571s3.21428571 1.43908473 3.21428571 3.21428571c0 .22008804-.02211995.4350097-.06425797.64266307-.32776421-.10684832-.65418757-.14266307-.90002774-.14266307-.75 0-.75.8954305-.75 2s0 2 .75 2 2.25-.3333333 2.25-2c0-.41920168-.09489422-.75405293-.24888084-1.02046569z"/><filter id="b" height="244.4%" width="244.4%" x="-72.2%" y="-61.1%"><feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/></filter></defs><g fill="none" fillRule="evenodd" transform="translate(4)"><use fill="#000" filter="url(#b)" xlinkHref="#a"/><use fill="#fff" xlinkHref="#a"/></g></svg>
+  );
+};
 
 
 

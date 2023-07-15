@@ -1,0 +1,10 @@
+.header {
+  margin: 4px 0 20px;
+  .title {
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  display: flex;
+  justify-content: space-between;
+}

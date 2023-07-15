@@ -4,6 +4,7 @@ import {IMusicFull} from "../../../../types/music.interface";
 import {LeftArrowMusicSVG, RightArrowMusicSVG} from "../../../SvgComponent";
 import {useNavigate} from "react-router-dom";
 import {MusicItemWrapper} from "./MusicItemWrapper/MusicItems";
+import {ShowMore} from "../../ShowMore/ShowMore";
 
 interface IMusicItemsProps {
   title?: 'Мои треки' | "Недавно прослушанные" | "Все аудиозаписи"
@@ -46,9 +47,7 @@ export const MusicItems: FC<IMusicItemsProps> = ({title, music}) => {
     <div className={styles.wrapper}>
       <div className={styles.title}>
         <h2>{title}</h2>
-        <span onClick={onSetPage}>
-          Показать все <RightArrowMusicSVG styles={styles.smallRightArrow}/>
-        </span>
+        <ShowMore onSetPage={onSetPage} />
       </div>
       {pixel !== 0 && <div onClick={translateLeft} className={styles.leftArrow}><LeftArrowMusicSVG/></div>}
 

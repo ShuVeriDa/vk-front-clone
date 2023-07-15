@@ -11,6 +11,7 @@ import {MusicEdit} from "../../components/Music/Music/MusicEdit/MusicEdit";
 import {MusicUpload} from "../../components/Music/Music/MusicUpload/MusicUpload";
 import MusicContext from "../../context/MusicContext";
 import {PlaylistCE} from "../../components/Music/Playlist/PlaylistCE/PlaylistCE";
+import {Playlists} from "../../components/Music/Playlist/Playlists/Playlists";
 
 interface IMusicPageProps {
   page: 'main' | 'allTracks' | 'myTracks'
@@ -123,6 +124,8 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
               : <MusicNotFound text={value}/>}
           </div>
         }
+
+        <Playlists />
 
         {<ModalWindow open={openEdit}>
           {selectedMusicId && <MusicEdit musicId={selectedMusicId}

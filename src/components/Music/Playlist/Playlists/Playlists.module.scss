@@ -1,0 +1,16 @@
+.wrapper {
+  width: inherit;
+  height: 279px;
+  border: 0.5px solid  #dce1e6;
+  padding: 20px 20px;
+  margin: 15px 0 0;
+  border-radius: 12px;
+  background: #fff;
+
+  box-sizing: border-box;
+
+  .container {
+    display: flex;
+    gap: 10px;
+  }
+}
