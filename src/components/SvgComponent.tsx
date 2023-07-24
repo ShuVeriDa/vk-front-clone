@@ -488,9 +488,9 @@ export const PlaylistSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEve
   );
 };
 
-export const ShareSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
+export const ShareSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent, fill}) => {
   return (
-    <svg className={styles} onClick={onClick} height="24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fillRule="evenodd"><path d="m0 0h24v24h-24z"/><path d="m13 8.75v-4.348a.417.417 0 0 1 .687-.318l8.94 7.598a.417.417 0 0 1 0 .636l-8.94 7.598a.417.417 0 0 1 -.687-.318v-4.348c-5.361 0-9.16 1.04-11.398 3.121a.25.25 0 0 1 -.413-.241c1.496-6.253 5.434-9.38 11.811-9.38z" stroke="#fff" strokeWidth="1.8"/></g></svg>
+    <svg className={styles} onClick={onClick} height="24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill='none' fillRule="evenodd"><path d="m0 0h24v24h-24z"/><path d="m13 8.75v-4.348a.417.417 0 0 1 .687-.318l8.94 7.598a.417.417 0 0 1 0 .636l-8.94 7.598a.417.417 0 0 1 -.687-.318v-4.348c-5.361 0-9.16 1.04-11.398 3.121a.25.25 0 0 1 -.413-.241c1.496-6.253 5.434-9.38 11.811-9.38z" stroke={fill ? fill : "#fff"} strokeWidth="1.8"/></g></svg>
   );
 };
 

@@ -9,16 +9,20 @@ interface IMusicContext {
   setCurrentTime: (currentTime: number) => void
   setCurrentAudio: (currentAudio: number | ((prev: number) => number)) => void;
   setSelectedMusicId: (selectedMusicId: string) => void
+  setSelectedPlaylistId: (selectedPlaylistId: string) => void
   setOpenEdit: (openEdit: boolean) => void
   setOpenUpload: (openUpload: boolean) => void
   setDuration: (duration: number) => void
   setOpenRepost: (openRepost: boolean) => void
-  setOpenPlaylistCE: ( openPlaylist: boolean) => void
+  setOpenFullPlaylist: (openFullPlaylist: boolean) => void
+  setOpenPlaylistCE: (openPlaylist: boolean) => void
   setIsPlaying: (isPlaying: boolean) => void
   audioRef: MutableRefObject<HTMLAudioElement | null>;
   progressBarRef: MutableRefObject<HTMLInputElement | null>
   selectedMusicId: string | null;
+  selectedPlaylistId: string | null;
   openEdit: boolean;
+  openFullPlaylist: boolean
   openPlaylist: boolean
   openUpload: boolean;
   openRepost: boolean;

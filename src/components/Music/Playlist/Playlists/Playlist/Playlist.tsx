@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useContext} from 'react';
 import styles from './Playlist.module.scss';
 import {
   AudioIconSVG,
@@ -13,18 +13,27 @@ import {PlaylistInfo} from "../PlaylistInfo/PlaylistInfo";
 import {IPlaylistResponse} from "../../../../../types/music.interface";
 import {serverUrl} from "../../../../../utils/serverUrl";
 import cn from "clsx";
+import MusicContext from "../../../../../context/MusicContext";
 
 interface IPlaylistProps {
   playlist: IPlaylistResponse
   classes?: { readonly [key: string]: string }
 }
 
-export const Playlist: FC<IPlaylistProps> = ({playlist, classes}) => {
-  const {title, user, music, coverUrl} = playlist
+export const Playlist: FC<IPlaylistProps> = (
+  {playlist, classes}
+) => {
+  const {setOpenFullPlaylist, setSelectedPlaylistId} = useContext(MusicContext)!
+  const {title, user, music, coverUrl, id} = playlist
   const name = `${user.lastName} ${user.firstName}`
 
+  const onChange = () => {
+    setSelectedPlaylistId(id!)
+    setOpenFullPlaylist(true)
+  }
+
   return (
-    <div className={cn(styles.item, classes?.item)}>
+    <div className={cn(styles.item, classes?.item)} onClick={onChange}>
       <div className={cn(styles.cover, classes?.cover)}>
         <EditSVG styles={styles.edit}/>
         <PlayPlaylistSVG styles={styles.play}/>

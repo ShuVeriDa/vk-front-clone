@@ -1,0 +1,28 @@
+.wrapper {
+  min-height: 500px;
+  width: 560px;
+
+  .main {
+    padding: 8px 8px 4px 8px;
+    .description {
+      box-sizing: border-box;
+      width: 514px;
+      min-height: 19px;
+      max-height: 114px;
+      margin: 9px 15px  8px;
+      font-size: 13px;
+    }
+  }
+}
+
+.item {
+  width: 545px;
+  .container {
+    width: 545px;
+
+    .musicInfo {
+      width: 430px;
+    }
+  }
+}
+

@@ -12,6 +12,7 @@ import {MusicUpload} from "../../components/Music/Music/MusicUpload/MusicUpload"
 import MusicContext from "../../context/MusicContext";
 import {PlaylistCE} from "../../components/Music/Playlist/PlaylistCE/PlaylistCE";
 import {Playlists} from "../../components/Music/Playlist/Playlists/Playlists";
+import {FullPlaylist} from "../../components/Music/Playlist/FullPlaylist/FullPlaylist";
 
 interface IMusicPageProps {
   page: 'main' | 'allTracks' | 'myTracks' | 'playlists'
@@ -20,10 +21,12 @@ interface IMusicPageProps {
 export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [selectedMusicId, setSelectedMusicId] = useState<string | null>(null)
+  const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(null)
   const [openEdit, setOpenEdit] = useState(false)
   const [openUpload, setOpenUpload] = useState(false)
   const [openRepost, setOpenRepost] = useState(false)
   const [openPlaylistCE, setOpenPlaylistCE] = useState(false)
+  const [openFullPlaylist, setOpenFullPlaylist] = useState(false)
   const [value, setValue] = useState('')
   const [currentAudio, setCurrentAudio] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -76,16 +79,20 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         setCurrentTime,
         setCurrentAudio,
         setSelectedMusicId,
+        setSelectedPlaylistId,
         setOpenEdit,
         setOpenUpload,
         setDuration,
+        setOpenFullPlaylist,
         handleProgressBarChange,
         openRepost,
         setOpenRepost,
         setIsPlaying,
         audioRef,
         selectedMusicId,
+        selectedPlaylistId,
         openEdit,
+        openFullPlaylist,
         openPlaylist: openPlaylistCE,
         openUpload,
         currentAudio,
@@ -102,8 +109,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         {page === "main" && <>
           <Music/>
           <Playlists />
-        </>
-        }
+        </>}
         {page === "myTracks" &&
           <div className={styles.myTracks}>
             <Tracks page={page}
@@ -135,9 +141,6 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
             />
           </div>
         }
-
-
-
         {<ModalWindow open={openEdit}>
           {selectedMusicId && <MusicEdit musicId={selectedMusicId}
                                          onClickClose={onClickCloseEdit}/>}
@@ -145,14 +148,15 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         {<ModalWindow open={openUpload}>
           <MusicUpload onClickClose={onClickCloseUpload}/>
         </ModalWindow>}
-        {
-          <ModalWindow open={openPlaylistCE}>
+        {<ModalWindow open={openPlaylistCE}>
             <PlaylistCE title={'Создание нового плейлиста'}
                         isCreate
                         onClickClose={onClickClosePlaylistCE}
             />
-          </ModalWindow>
-        }
+          </ModalWindow>}
+        {<ModalWindow open={openFullPlaylist} classes={styles}>
+          <FullPlaylist playlistId={selectedPlaylistId!}/>
+        </ModalWindow>}
         {/*{<ModalWindow open={openRepost}>*/}
         {/*  <Repost onClose={} id={} />*/}
         {/*</ModalWindow>}*/}

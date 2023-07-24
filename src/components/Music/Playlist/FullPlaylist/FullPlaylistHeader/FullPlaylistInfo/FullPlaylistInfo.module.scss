@@ -1,0 +1,64 @@
+.info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .information {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      text-decoration: none;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .title, .name {
+      &:hover {
+        a {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .name {
+      font-size: 13px;
+      margin-top: 5px;
+
+    }
+
+    .updatedAt {
+      font-size: 13px;
+      color: #818c99;
+      margin-top: 8px;
+    }
+  }
+
+  .btns {
+
+    .share {
+      width: 109px;
+      display: flex;
+      //align-items: center;
+      justify-content: space-between;
+      font-weight: 500;
+      color: #626d7a;
+      font-size: 14px;
+      
+      &:hover {
+        cursor: pointer;
+      }
+      
+      .text {
+        position: relative;
+        top: 3px;
+      }
+    }
+  }
+}

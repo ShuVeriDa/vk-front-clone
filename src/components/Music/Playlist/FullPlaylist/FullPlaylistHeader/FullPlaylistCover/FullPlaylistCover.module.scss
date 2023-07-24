@@ -1,0 +1,40 @@
+.cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: inherit;
+  background: #EBEDF0;
+  border-right: 1px solid #B5B9BF;
+  border-bottom: 1px solid #B5B9BF;
+  position: relative;
+
+  .img {
+    width: inherit;
+    height: inherit;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .wrapperSvg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    background: #000;
+    border-radius: 100%;
+    //z-index: 1;
+
+  }
+  .play, .pause {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    //z-index: 1;
+    color: #fff;
+    //bottom: -5px;
+  }
+}

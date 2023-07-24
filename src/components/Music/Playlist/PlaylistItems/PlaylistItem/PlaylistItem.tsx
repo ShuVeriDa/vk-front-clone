@@ -5,20 +5,22 @@ import {NotSelectedMusicSVG, PauseMusicSVG, PlayMusicSVG, SelectedMusicSVG} from
 import {MusicTime} from "../../../Music/MusicItems/MusicItem/MusicTime/MusicTime";
 import {Duration} from "../../../Duration/Duration";
 import {IMusicFull} from "../../../../../types/music.interface";
+import cn from "clsx";
 
 interface IPlaylistItemProps {
   artist: string
   title: string
-  music: IMusicFull
-  addedMusic: IMusicFull[]
-  setAddedMusic: (addedMusic: IMusicFull[]) => void
+  music?: IMusicFull
+  addedMusic?: IMusicFull[]
+  setAddedMusic?: (addedMusic: IMusicFull[]) => void
+  secondStyles?: { readonly [key: string]: string }
 }
 
 export const PlaylistItem: FC<IPlaylistItemProps> = (
-  {title, artist, setAddedMusic, music, addedMusic}
+  {title, artist, setAddedMusic, music, addedMusic, secondStyles}
 ) => {
 
-  const isIncludes = addedMusic.some(m => m.id === music.id)
+  const isIncludes = addedMusic?.some(m => m.id === music?.id)
 
   const {isPlaying, setIsPlaying} = useContext(MusicContext)!
 
@@ -33,27 +35,31 @@ export const PlaylistItem: FC<IPlaylistItemProps> = (
 
   const onChangeMusicIds = () => {
     if (isIncludes) {
-      setAddedMusic(addedMusic.filter(m => m.id !== music.id))
+      if (setAddedMusic) {
+        setAddedMusic(addedMusic!.filter(m => m.id !== music?.id))
+      }
     }
     if (!isIncludes) {
-      setAddedMusic([...addedMusic, music])
+      if (setAddedMusic && addedMusic) {
+        setAddedMusic([...addedMusic, music!])
+      }
     }
   }
 
   return (
-    <div className={styles.item}>
-      <div className={styles.container}>
+    <div className={cn(styles.item, secondStyles?.item)}>
+      <div className={cn(styles.container, secondStyles?.container)}>
         <div className={styles.pauseOrPlay}>
           {isPlaying
             ? <PauseMusicSVG onClick={togglePlaying}/>
             : <PlayMusicSVG onClick={togglePlaying}/>
           }
         </div>
-        <div className={styles.musicInfo}>
+        <div className={cn(styles.musicInfo, secondStyles?.musicInfo)}>
           <div className={styles.info}>
             <span>
               <span className={styles.artist}>{artist} </span> —
-              <span className={styles.title}>{title}</span>
+              <span className={styles.title}> {title}</span>
             </span>
           </div>
           <div className={styles.durationWrapper}>
@@ -63,13 +69,13 @@ export const PlaylistItem: FC<IPlaylistItemProps> = (
         </div>
         <MusicTime currentTime={0} classesTime={styles.time}/>
       </div>
-
-      <div className={styles.select} onClick={onChangeMusicIds}>
+      {addedMusic && <div className={styles.select} onClick={onChangeMusicIds}>
         {isIncludes
           ? <SelectedMusicSVG styles={styles.selected}/>
           : <NotSelectedMusicSVG styles={styles.notSelected}/>
         }
-      </div>
+      </div>}
+
     </div>
   );
 };
