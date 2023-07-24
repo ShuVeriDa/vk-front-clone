@@ -40,6 +40,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
     setOpenEdit(true)
   }
   const onClickClosePlaylistCE = () => setOpenPlaylistCE(false)
+  const onClickCloseFullPlaylist = () => setOpenFullPlaylist(false)
 
   const onClickCloseUpload = () => setOpenUpload(false)
 
@@ -108,7 +109,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         <MusicPlayer/>
         {page === "main" && <>
           <Music/>
-          <Playlists />
+          <Playlists/>
         </>}
         {page === "myTracks" &&
           <div className={styles.myTracks}>
@@ -149,13 +150,15 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
           <MusicUpload onClickClose={onClickCloseUpload}/>
         </ModalWindow>}
         {<ModalWindow open={openPlaylistCE}>
-            <PlaylistCE title={'Создание нового плейлиста'}
-                        isCreate
-                        onClickClose={onClickClosePlaylistCE}
-            />
-          </ModalWindow>}
+          <PlaylistCE title={'Создание нового плейлиста'}
+                      isCreate
+                      onClickClose={onClickClosePlaylistCE}
+          />
+        </ModalWindow>}
         {<ModalWindow open={openFullPlaylist} classes={styles}>
-          <FullPlaylist playlistId={selectedPlaylistId!}/>
+          <FullPlaylist playlistId={selectedPlaylistId!}
+                        onClickClose={onClickCloseFullPlaylist}
+          />
         </ModalWindow>}
         {/*{<ModalWindow open={openRepost}>*/}
         {/*  <Repost onClose={} id={} />*/}

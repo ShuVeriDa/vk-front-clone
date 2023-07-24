@@ -4,7 +4,7 @@ import styles from './CommunityHeader.module.scss'
 import {useAuth} from "../../../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import {ICommunityFull, ICommunityUpdate} from "../../../types/community.interface";
-import {PhotoSVG, SettingSvg} from "../../SvgComponent";
+import {SettingSvg} from "../../SvgComponent";
 import {CommunityMenu} from "../CommunityMenu/CommunityMenu";
 import {useUsersQuery} from "../../../react-query/useUsersQuery";
 import {SubscribeBtn} from "../../SubscribeBtn/SubscribeBtn";

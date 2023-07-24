@@ -9,6 +9,14 @@
   border-bottom: 1px solid #B5B9BF;
   position: relative;
 
+  &:hover {
+    background: red;
+
+    .play, .pause {
+      display: block;
+    }
+  }
+
   .img {
     width: inherit;
     height: inherit;
@@ -29,7 +37,9 @@
     //z-index: 1;
 
   }
+
   .play, .pause {
+    display: none;
     position: absolute;
     width: 44px;
     height: 44px;

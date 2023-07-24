@@ -1,8 +1,6 @@
 import {FC, MutableRefObject} from 'react';
 import styles from './CommunityMenu.module.scss';
-import {CheckMarkSVG, ShowPostMenuSVG} from "../../SvgComponent";
-import {usePostsQuery} from "../../../react-query/usePostsQuery";
-import {useAuth} from "../../../hooks/useAuth";
+import {CheckMarkSVG} from "../../SvgComponent";
 import {useCommunityQuery} from "../../../react-query/useCommunityQuery";
 
 const crudList = ['Отписаться', "Скрывать новости"]

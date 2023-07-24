@@ -41,24 +41,41 @@
   }
 
   .btns {
+    display: flex;
+    justify-content: space-between;
+    color: #626d7a;
+    font-weight: 500;
+    font-size: 14px;
+    width: 200px;
 
     .share {
       width: 109px;
       display: flex;
       //align-items: center;
       justify-content: space-between;
-      font-weight: 500;
-      color: #626d7a;
-      font-size: 14px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .more {
+      display: flex;
+      width: 60px;
       
       &:hover {
         cursor: pointer;
       }
-      
-      .text {
-        position: relative;
-        top: 3px;
+
+      .svg {
+        margin-left: 5px;
+        align-self: center;
       }
+    }
+
+    .text {
+      position: relative;
+      top: 3px;
     }
   }
 }

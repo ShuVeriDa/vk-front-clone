@@ -521,11 +521,16 @@ export const LengthMusicPlSVG: FC<ISvgComponentProps> = ({styles, onClick, onCli
 
 export const HeadphoneSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
   return (
-
-
     <svg onClick={onClick} className={styles} height="17" viewBox="0 0 17 17" width="17" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="m8.75111916 8.97953431c.16125158-.46337323.24888084-.96122032.24888084-1.47953431 0-2.48528137-2.01471863-4.5-4.5-4.5s-4.5 2.01471863-4.5 4.5c0 .51831399.08762926 1.01616108.24888084 1.47953431-.15398662.26641276-.24888084.60126401-.24888084 1.02046569 0 1.6666667 1.5 2 2.25 2s.75-.8954305.75-2 0-2-.75-2c-.24584017 0-.57226353.03581475-.90002774.14266307-.04213802-.20765337-.06425797-.42257503-.06425797-.64266307 0-1.77520098 1.43908473-3.21428571 3.21428571-3.21428571s3.21428571 1.43908473 3.21428571 3.21428571c0 .22008804-.02211995.4350097-.06425797.64266307-.32776421-.10684832-.65418757-.14266307-.90002774-.14266307-.75 0-.75.8954305-.75 2s0 2 .75 2 2.25-.3333333 2.25-2c0-.41920168-.09489422-.75405293-.24888084-1.02046569z"/><filter id="b" height="244.4%" width="244.4%" x="-72.2%" y="-61.1%"><feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/><feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/><feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/></filter></defs><g fill="none" fillRule="evenodd" transform="translate(4)"><use fill="#000" filter="url(#b)" xlinkHref="#a"/><use fill="#fff" xlinkHref="#a"/></g></svg>
   );
 };
+
+export const MoreMenuSVG: FC<ISvgComponentProps> = ({styles, onClick, onClickEvent}) => {
+  return (
+    <svg onClick={onClick} className={styles} height="8" width="8" xmlns="http://www.w3.org/2000/svg"><g fill="none" fillRule="evenodd"><path d="M0 0h8v8H0z"/><path d="M.8 2.7L4 5.3l3.2-2.6" stroke="#92a0b1" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.3"/></g></svg>
+  );
+};
+
 
 
 

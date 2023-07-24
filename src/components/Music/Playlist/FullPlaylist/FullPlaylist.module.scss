@@ -4,6 +4,7 @@
 
   .main {
     padding: 8px 8px 4px 8px;
+
     .description {
       box-sizing: border-box;
       width: 514px;
@@ -11,6 +12,28 @@
       max-height: 114px;
       margin: 9px 15px  8px;
       font-size: 13px;
+    }
+
+    .length {
+      box-sizing: border-box;
+      height: 15px;
+      font-size: 13px;
+      color: #939393;
+      padding: 10px 15px 7px 15px;
+    }
+  }
+
+  .close {
+    width: 40px;
+    height: 50px;
+    fill: #A6A6A6;
+    position: absolute;
+    top: 0;
+    right: -50px;
+
+    &:hover {
+      fill: #fff;
+      cursor: pointer;
     }
   }
 }
