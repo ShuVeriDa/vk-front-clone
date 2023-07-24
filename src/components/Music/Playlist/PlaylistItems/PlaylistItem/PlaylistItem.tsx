@@ -14,12 +14,13 @@ interface IPlaylistItemProps {
   addedMusic?: IMusicFull[]
   setAddedMusic?: (addedMusic: IMusicFull[]) => void
   secondStyles?: { readonly [key: string]: string }
+  index?: number
 }
 
 export const PlaylistItem: FC<IPlaylistItemProps> = (
-  {title, artist, setAddedMusic, music, addedMusic, secondStyles}
+  {title, artist, setAddedMusic, music, addedMusic, secondStyles, index}
 ) => {
-
+  const {currentAudio} = useContext(MusicContext)!
   const isIncludes = addedMusic?.some(m => m.id === music?.id)
 
   const {isPlaying, setIsPlaying} = useContext(MusicContext)!
@@ -50,7 +51,7 @@ export const PlaylistItem: FC<IPlaylistItemProps> = (
     <div className={cn(styles.item, secondStyles?.item)}>
       <div className={cn(styles.container, secondStyles?.container)}>
         <div className={styles.pauseOrPlay}>
-          {isPlaying
+          {isPlaying && currentAudio === index
             ? <PauseMusicSVG onClick={togglePlaying}/>
             : <PlayMusicSVG onClick={togglePlaying}/>
           }

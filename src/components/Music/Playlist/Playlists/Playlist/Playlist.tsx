@@ -1,4 +1,4 @@
-import {FC, useContext} from 'react';
+import {FC, MouseEvent, useContext} from 'react';
 import styles from './Playlist.module.scss';
 import {
   AudioIconSVG,
@@ -23,7 +23,7 @@ interface IPlaylistProps {
 export const Playlist: FC<IPlaylistProps> = (
   {playlist, classes}
 ) => {
-  const {setOpenFullPlaylist, setSelectedPlaylistId} = useContext(MusicContext)!
+  const {setOpenFullPlaylist, setSelectedPlaylistId, setOpenPlaylistCE} = useContext(MusicContext)!
   const {title, user, music, coverUrl, id} = playlist
   const name = `${user.lastName} ${user.firstName}`
 
@@ -32,10 +32,15 @@ export const Playlist: FC<IPlaylistProps> = (
     setOpenFullPlaylist(true)
   }
 
+  const onEditPlaylist = (e: MouseEvent<SVGSVGElement, MouseEvent>) => {
+    e.stopPropagation();
+    setOpenPlaylistCE(true)
+  }
+
   return (
     <div className={cn(styles.item, classes?.item)} onClick={onChange}>
       <div className={cn(styles.cover, classes?.cover)}>
-        <EditSVG styles={styles.edit}/>
+        <EditSVG styles={styles.edit} onClickEvent={onEditPlaylist}/>
         <PlayPlaylistSVG styles={styles.play}/>
         <PausePlaylistSVG styles={styles.pause}/>
         {coverUrl

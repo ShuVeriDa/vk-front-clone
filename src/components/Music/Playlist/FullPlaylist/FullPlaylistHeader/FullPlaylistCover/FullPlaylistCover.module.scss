@@ -15,6 +15,10 @@
     .play, .pause {
       display: block;
     }
+
+    .wrapperSvg {
+      background: #000;
+    }
   }
 
   .img {
@@ -32,10 +36,7 @@
     width: 20px;
     height: 20px;
     color: #fff;
-    background: #000;
     border-radius: 100%;
-    //z-index: 1;
-
   }
 
   .play, .pause {

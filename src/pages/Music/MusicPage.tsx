@@ -109,7 +109,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         <MusicPlayer/>
         {page === "main" && <>
           <Music/>
-          <Playlists/>
+          <Playlists />
         </>}
         {page === "myTracks" &&
           <div className={styles.myTracks}>

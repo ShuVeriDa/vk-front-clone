@@ -3,6 +3,7 @@ import cn from "clsx";
 import {IMusicFull} from "../../../../../types/music.interface";
 import {MusicItem} from "../MusicItem/MusicItem";
 import MusicContext from "../../../../../context/MusicContext";
+import {useMusicHandlers} from "../../../../../hooks/useMusicHandler";
 
 interface IMusicItemsProps {
   music: IMusicFull[]
@@ -12,28 +13,8 @@ interface IMusicItemsProps {
 
 export const MusicItemWrapper: FC<IMusicItemsProps> = ({music, pixel, styles}
 ) => {
-  const {
-    currentAudio, audioRef, isSuccess, setCurrentAudio, pauseAudio, playAudio, setIsPlaying, isPlaying
-  } = useContext(MusicContext)!
 
-  const onClickHandler = async(i: number) => {
-    if (currentAudio !== i) {
-      setIsPlaying(true)
-      setCurrentAudio(i)
-      audioRef.current?.load();
-      await playAudio()
-    }
-
-    if (currentAudio === i) {
-      setCurrentAudio(i)
-      if (isPlaying) {
-        await pauseAudio()
-      }
-      if (!isPlaying) {
-        await playAudio()
-      }
-    }
-  }
+  const {onClickHandler, isSuccess, currentAudio} = useMusicHandlers()
 
   return (
     <div className={styles?.musicItems}>

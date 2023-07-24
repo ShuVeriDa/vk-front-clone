@@ -10,7 +10,7 @@ export const Playlists: FC<IPlaylistsProps> = () => {
   return (
     <div className={styles.wrapper}>
       <PlaylistsHeader/>
-      <PlaylistsContainer/>
+      <PlaylistsContainer />
     </div>
   );
 };
