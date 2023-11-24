@@ -23,7 +23,7 @@ interface IPlaylistProps {
 export const Playlist: FC<IPlaylistProps> = (
   {playlist, classes}
 ) => {
-  const {setOpenFullPlaylist, setSelectedPlaylistId, setOpenPlaylistCE} = useContext(MusicContext)!
+  const {setOpenFullPlaylist, setSelectedPlaylistId, setOpenPlaylistCE, setEditPlaylist} = useContext(MusicContext)!
   const {title, user, music, coverUrl, id} = playlist
   const name = `${user.lastName} ${user.firstName}`
 
@@ -34,7 +34,8 @@ export const Playlist: FC<IPlaylistProps> = (
 
   const onEditPlaylist = (e: MouseEvent<SVGSVGElement, MouseEvent>) => {
     e.stopPropagation();
-    setOpenPlaylistCE(true)
+    setSelectedPlaylistId(id!)
+    setEditPlaylist(true)
   }
 
   return (

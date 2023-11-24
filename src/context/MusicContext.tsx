@@ -16,6 +16,7 @@ interface IMusicContext {
   setOpenRepost: (openRepost: boolean) => void
   setOpenFullPlaylist: (openFullPlaylist: boolean) => void
   setOpenPlaylistCE: (openPlaylist: boolean) => void
+  setEditPlaylist: (editPlaylist: boolean) => void
   setIsPlaying: (isPlaying: boolean) => void
   audioRef: MutableRefObject<HTMLAudioElement | null>;
   progressBarRef: MutableRefObject<HTMLInputElement | null>
@@ -24,6 +25,7 @@ interface IMusicContext {
   openEdit: boolean;
   openFullPlaylist: boolean
   openPlaylist: boolean
+  editPlaylist: boolean
   openUpload: boolean;
   openRepost: boolean;
   value: string;

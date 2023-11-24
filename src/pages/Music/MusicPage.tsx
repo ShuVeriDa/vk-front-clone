@@ -26,6 +26,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
   const [openUpload, setOpenUpload] = useState(false)
   const [openRepost, setOpenRepost] = useState(false)
   const [openPlaylistCE, setOpenPlaylistCE] = useState(false)
+  const [editPlaylist, setEditPlaylist] = useState(false)
   const [openFullPlaylist, setOpenFullPlaylist] = useState(false)
   const [value, setValue] = useState('')
   const [currentAudio, setCurrentAudio] = useState(0);
@@ -40,6 +41,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
     setOpenEdit(true)
   }
   const onClickClosePlaylistCE = () => setOpenPlaylistCE(false)
+  const onClickCloseEditPlaylist = () => setEditPlaylist(false)
   const onClickCloseFullPlaylist = () => setOpenFullPlaylist(false)
 
   const onClickCloseUpload = () => setOpenUpload(false)
@@ -65,6 +67,8 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
     audioRef.current!.currentTime = time;
   };
 
+  console.log(selectedPlaylistId)
+
   return (
     <div className={styles.wrapper}>
       <MusicContext.Provider value={{
@@ -77,6 +81,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         progressBarRef,
         setValue,
         setOpenPlaylistCE,
+        setEditPlaylist,
         setCurrentTime,
         setCurrentAudio,
         setSelectedMusicId,
@@ -95,6 +100,7 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         openEdit,
         openFullPlaylist,
         openPlaylist: openPlaylistCE,
+        editPlaylist,
         openUpload,
         currentAudio,
         duration,
@@ -151,9 +157,16 @@ export const MusicPage: FC<IMusicPageProps> = ({page}) => {
         </ModalWindow>}
         {<ModalWindow open={openPlaylistCE}>
           <PlaylistCE title={'Создание нового плейлиста'}
-                      isCreate
+                      isUpdate={false}
                       onClickClose={onClickClosePlaylistCE}
           />
+        </ModalWindow>}
+
+        {<ModalWindow open={editPlaylist}>
+          {selectedPlaylistId && <PlaylistCE title={'Редактирование плейлиста'}
+                       isUpdate={true}
+                       onClickClose={onClickCloseEditPlaylist}
+          />}
         </ModalWindow>}
         {<ModalWindow open={openFullPlaylist} classes={styles}>
           <FullPlaylist playlistId={selectedPlaylistId!}

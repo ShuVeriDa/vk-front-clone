@@ -10,11 +10,11 @@ import {useDebounce} from "../../../../hooks/useDebounce";
 
 interface IPlaylistProps {
   title: string
-  isCreate: boolean
+  isUpdate: boolean
   onClickClose: () => void
 }
 
-export const PlaylistCE: FC<IPlaylistProps> = ({title, onClickClose, isCreate}) => {
+export const PlaylistCE: FC<IPlaylistProps> = ({title, onClickClose, isUpdate}) => {
   const [isMyMusic, setIsMyMusic] = useState(false)
   const [value, setValue] = useState('')
   const [coverImage, setCoverImage] = useState<null | string>(null)
@@ -46,7 +46,7 @@ export const PlaylistCE: FC<IPlaylistProps> = ({title, onClickClose, isCreate}) 
   }
 
   const onSubmit: SubmitHandler<ICreatePlaylist | IUpdatePlaylist> = (data) => {
-    if(isCreate) {
+    if(!isUpdate) {
       create({title: data.title, description: data.description, coverUrl: coverImage!, musicIds: musicIds})
       reset()
     }
@@ -67,6 +67,7 @@ export const PlaylistCE: FC<IPlaylistProps> = ({title, onClickClose, isCreate}) 
                         toggleIsMyMusic={toggleIsMyMusic}
                         isMyMusic={isMyMusic}
                         value={value}
+                        isUpdate={isUpdate}
                         // setValue={setValue}
                         addedMusic={addedMusic}
                         coverImage={coverImage}

@@ -25,7 +25,6 @@ export const Search: FC<ISearchProps> = (
   }
 ) => {
   const [searchName, setSearchName] = useState(value ? value : '')
-
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (updateSearch) {
       updateSearch(e.currentTarget.value)
